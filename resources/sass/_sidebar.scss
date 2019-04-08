@@ -1,0 +1,97 @@
+.sidebar {
+    min-height: 100%;
+    background-color: $secondColor;
+    margin: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    position: relative;
+
+    li {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+}
+
+.logo {
+    transition: 0.85s ease;
+    width: 100%;
+    padding: 0px;
+    margin: 35px 0px;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    color: $primary;
+    font-size: 6em;
+
+    &:hover {
+        transition: 0.455s cubic-bezier(.47,0,.74,.71);
+        color: lighten($primary, 10%);
+    }
+}
+
+.sidebar-link {
+    transition: 0.85s ease;
+    width: 100%;
+    padding: 0px;
+    color: whitesmoke;
+    font-size: 1.2em;
+    font-weight: 200;
+    text-decoration: none;
+    line-height: 2;
+    border-left: 4px solid transparent;
+
+    &:hover {
+        transition: 0.455s cubic-bezier(.47,0,.74,.71);
+        text-decoration: none;
+        background-color: black;
+        border-left: 4px solid $primary;
+        color: $primary;
+    }
+}
+
+.sidebar-end {
+    width: 100%;
+    margin-top: 18.5em;
+    margin-bottom: 3em;
+    position: relative;
+    align-self: stretch;
+}
+
+.lang {
+    width: 100%;
+    text-align: center;
+}
+
+.lang-btn {
+    font-family: 'Lobster', cursive;
+    color: rgba(128, 128, 128, 0.829);
+    font-size: 2em;
+    background: none;
+    border: none !important;
+    user-select: none;
+    outline: 0px;
+
+    &:active,
+    &:hover {
+        transition: 0.5s linear;
+        color: $primary;
+        background: none;
+        border: none !important;
+    }
+}
+
+.social_icon {
+    transition: 0.4s linear;
+    color: white;
+    font-size: 1.2em;
+
+    &:hover {
+        transition: 0.3s linear;
+        transform: scale(0.8);
+        color: $primary;
+    }
+}

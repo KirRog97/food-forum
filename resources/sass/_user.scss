@@ -1,0 +1,21 @@
+.form-custom-foodrorum  {
+    display: flex;
+    width: 35%;
+    padding: 0.75em 1.25em;
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-self: center;
+    background-color: lightgray;
+    border: 0.25em solid $primary;
+    border-radius: 20px;
+}
+
+.flex-item-user{
+    width: 48.5%;
+
+    .card-header, .card-footer{
+        letter-spacing: 1px;
+    }
+}

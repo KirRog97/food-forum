@@ -1,0 +1,148 @@
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-fileload-custom {
+    width: 50%;
+    height: fit-content;
+    padding: 10px;
+    border: 4px outset rgb(175, 175, 175);
+    background: rgba(235, 235, 235, 0.855);
+}
+
+
+//Post.Index classses  START
+.post-element {
+    background: #efefef;
+    border-radius: 10px;
+
+    img {
+        border-radius: 10px 0 0 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        overflow: hidden;
+    }
+}
+
+.breadcrumbs {
+    display: block;
+    color: $primary;
+    font-size: 0.855em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.breadcrumbs-item {
+
+    &:not(:last-child)::after {
+        display: inline-block;
+        content: "\25CF";
+        font-size: 1em;
+        margin: -1px 0 0 2px;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+.post-element-recipe-title {
+    padding: 0;
+    margin-bottom: 0.5em;
+
+    h3 {
+        color: $thirdColor;
+        font-weight: 900 !important;
+        margin: 0;
+    }
+}
+
+.post-element-author-title {
+    padding: 0;
+    margin-bottom: 0.5em;
+
+    span {
+        font-weight: 400;
+        color: lightslategrey;
+        letter-spacing: 1px;
+    }
+}
+
+//Post.Index classses  END
+
+
+.pagination a {
+    color: $primary;
+
+    &:hover {
+        color: darken($primary, 20%);
+        text-shadow: 1px 1px 8px darken($primary, 25%);
+        background-color: lighten($primary, 20%);
+        border-color: lighten($primary, 2%);
+    }
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: $primary;
+    border-color: $primary;
+    z-index: 1;
+}
+
+
+
+//Post.show classses  START
+.post-sidecolumn div {
+    margin-bottom: 0.5em;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.post-sidecolumn-text {
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 900 !important;
+}
+
+
+.recipe-about {
+
+    h2 {
+        color: $primary;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0.5em 0;
+        padding: 0;
+    }
+
+    p {
+        color: gray;
+        margin-bottom: 1em;
+        padding: 0 1.2em;
+    }
+}
+
+.recipe-list-ingredients-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+//Post.show classses  END
