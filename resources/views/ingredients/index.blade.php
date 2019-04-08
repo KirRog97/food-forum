@@ -1,26 +1,21 @@
 @extends('layouts.app')
-
-@section('page_title')
-Книга ингредиентов
+@section('page_title') Книга ингредиентов
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
 
-    @heading
-    Книга ингредиентов
-    @endheading
+    @heading Книга ингредиентов @endheading
 
 
-<div class="text-center text-justify text-muted mb-4">
-    <p>
-        Здесь вы можете ознакомиться с ингредиентами, которые будут использоваться в ваших рецептах.        
-    </p>
-</div>
+    <div class="text-center text-justify text-muted mb-4">
+        <p>
+            Здесь вы можете ознакомиться с ингредиентами, которые будут использоваться в ваших рецептах.
+        </p>
+    </div>
 
-    @if (count($ingredients) > 0)
-    @foreach ($ingredients as $ingredient)
+    @if (count($ingredients) > 0) @foreach ($ingredients as $ingredient)
 
     <div class="ingredient-element mt-3 p-0 row">
         <div class="col-3 p-0">
@@ -34,7 +29,7 @@
                     <li class="breadcrumbs-item"><a href="#">Food Category</a></li>
                 </ul>
             </div>
-            
+
             <div class="ingredient-element-recipe-title">
                 <h3>
                     <a href="/ingredients/{{$ingredient->id}}">
@@ -75,6 +70,4 @@
     @endif
 
 </div>
-
-
 @endsection
