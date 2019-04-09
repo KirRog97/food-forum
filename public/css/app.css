@@ -14419,7 +14419,6 @@ nav {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: rgba(211, 211, 211, 0.322);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -14501,8 +14500,8 @@ nav {
   padding: 0px;
   color: whitesmoke;
   text-align: center;
-  font-size: 1em;
-  font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: lighter;
 }
 
 .recipe-compilation-item-name {
@@ -14511,8 +14510,8 @@ nav {
   padding: 0px;
   color: whitesmoke;
   text-align: center;
-  font-size: 1.8em;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .recipe-compilation-item-title {
@@ -14960,7 +14959,8 @@ footer {
   width: fit-content;
   margin-left: 0.5em;
   color: lightgrey;
-  font-size: 0.855em;
+  font-size: 0.855rem;
+  font-weight: lighter;
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
@@ -15001,6 +15001,14 @@ a:active {
 
 .bg-dark50 {
   background-color: rgba(0, 0, 0, 0.355);
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 4px black;
+}
+
+.min-height250 {
+  min-height: 250px;
 }
 
 .justify-self-end {

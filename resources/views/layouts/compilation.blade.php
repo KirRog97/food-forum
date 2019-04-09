@@ -4,16 +4,16 @@
 
     <div class="recipe-compilation-item-large-lt">
         <img src="/images/recipes/пельмени.jpg" alt="" class="img-fluid-center position-absolute ">
-        <div class="recipe-compilation-typography d-flex justify-content-center m-auto">
+        <div class="d-flex justify-content-center text-shadow m-auto">
             <h3 class="recipe-compilation-item-category">
                 Рецепт дня
             </h3>
-            <h2 class="recipe-compilation-item-name">
+            <h2 class="recipe-compilation-item-name ">
                 Курины ножки на гриле
             </h2>
 
-            <div class="w-50 border-bottom p-2 mb-2">
-                @include('components.forkspoon')
+            <div class="d-flex justify-content-center w-50 border-bottom p-2 mb-2">
+    @include('components.forkspoon')
             </div>
 
         </div>
@@ -21,7 +21,7 @@
 
     <div class="recipe-compilation-item-large-rt">
         <img src="/images/recipes/пельмени.jpg" alt="" class="img-fluid-center position-absolute ">
-        <div class="recipe-compilation-typography d-flex justify-content-center m-auto">
+        <div class="recipe-compilation-typography d-flex justify-content-center text-shadow m-auto">
             <h3 class="recipe-compilation-item-category">
                 Лучшие рецепты недели
             </h3>
