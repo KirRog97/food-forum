@@ -14415,19 +14415,60 @@ nav {
 }
 
 .recipe-compilation div {
-  background-color: lightgrey;
-  padding: 0.5em;
-  min-height: 150px;
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: rgba(211, 211, 211, 0.322);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.recipe-compilation div svg {
+  width: 24px;
+}
+
+.recipe-compilation div svg path {
+  fill: whitesmoke;
+}
+
+.recipe-compilation div img {
+  z-index: -999;
 }
 
 .recipe-compilation-item-large-lt {
   grid-column: 1/span 6;
-  min-height: 460px;
+}
+
+.recipe-compilation-item-large-lt div {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.recipe-compilation-item-large-lt div h2,
+.recipe-compilation-item-large-lt div h3,
+.recipe-compilation-item-large-lt div span,
+.recipe-compilation-item-large-lt div p {
+  width: 100%;
+  z-index: 2;
 }
 
 .recipe-compilation-item-large-rt {
   grid-column: 7/span 6;
-  min-height: 460px;
+}
+
+.recipe-compilation-item-large-rt div {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.recipe-compilation-item-large-rt div h2,
+.recipe-compilation-item-large-rt div h3,
+.recipe-compilation-item-large-rt div span,
+.recipe-compilation-item-large-rt div p {
+  width: 100%;
+  z-index: 2;
 }
 
 .recipe-compilation-item-medium-lc {
@@ -14478,6 +14519,9 @@ nav {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: 0.15em 0.25em;
   margin: 0;
   background-color: white;
@@ -14965,6 +15009,16 @@ a:active {
 
 .justify-self-start {
   justify-self: flex-start;
+}
+
+.img-fluid-center {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  overflow: hidden;
 }
 
 /* width */
