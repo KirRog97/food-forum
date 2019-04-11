@@ -1,5 +1,13 @@
-@heading Подбор рецптов @endheading
-    @include('layouts.compilation') @heading Рецепты @endheading
+
+@heading
+Подбор рецптов
+@endheading
+
+    @include('layouts.compilation')
+
+     @heading
+      Рецепты
+      @endheading
 
 <div class="row">
     <div class="btn-group btn-group-lg justify-content-center m-auto" role="group">
@@ -9,37 +17,39 @@
     </div>
 </div>
 
-<div class="recipe-list mt-4">
+<recipe-sorting></recipe-sorting>
 
-    @for ($i = 0; $i
-    < 6; $i++) @recipe @endrecipe @endfor </div>
+{{-- Closed for testing Vue
 
+    <div class="recipe-list mt-4">
 
-        @heading Горячая подборка @endheading
+    @for ($i = 0; $i< 6; $i++)
 
-        <div class="hotcollect">
-            <div class="container-fluid">
-                {{--
-                <div class="row justify-content-between">
-                    <a href="">Похмельные Рецепты</a>
-                    <a href="">Масленица</a>
-                    <a href="">Рецепты для детей</a>
-                    <a href="">Здоровое питание</a>
-                </div> --}}
+     @recipe
+    @endrecipe
 
-                <div class="card-deck">
-                    @for ($i = 0; $i
-                    < 5; $i++) {{-- FIX PLS --}} <div class="card bg-dark min-height250">
-                        <img class="card-img img-fluid-center" src="/images/category_coldDrinks.jpg" alt="">
-                        <div class="card-img-overlay">
-                            <h4 class="card-title text-white text-shadow">
-                                Похмельные Рецепты
-                            </h4>
-                        </div>
+    @endfor
+ </div> --}}
+
+@heading
+Горячая подборка
+@endheading
+
+<div class="hotcollect">
+    <div class="container-fluid">
+        <div class="card-deck">
+            @for ($i = 0; $i< 5; $i++) {{-- FIX PLS --}}
+            <div class="card bg-dark min-height250">
+                <img class="card-img img-fluid-center" src="/images/category_coldDrinks.jpg" alt="">
+                <div class="card-img-overlay">
+                    <h4 class="card-title text-white text-shadow">
+                        Похмельные Рецепты
+                    </h4>
                 </div>
-                @endfor
             </div>
+            @endfor
         </div>
+    </div>
 </div>
 
 <div class="AuthorRaiting">

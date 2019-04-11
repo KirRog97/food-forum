@@ -24,7 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // how to do it more safe??? Midl??? Token of app??
-Route::get('/RecipeFilter', 'RecipeFilter@getData');
+Route::get('/recipes/recipe-filter', 'RecipeFilter@getData');
+
+Route::get('/recipes/recipe-sorting', 'RecipeFilter@getData');
 
 Route::resource('posts', 'PostController');
 
