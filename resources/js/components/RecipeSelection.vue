@@ -8,7 +8,6 @@
               <div class="form-group p-0 m-1">
                 <select class="form-control custom-select custom-select-sm">
                   <option disabled selected>Выберите категорию</option>
-
                   <option
                     v-for="(category, index) in urldata['category_list']"
                     :key="index"
@@ -101,19 +100,17 @@ export default {
     return {
       show: false,
       urldata: []
-      // kitchens: [Австралийская Азербайджанская Азиатская Американская Аргентинская Армянская Арабская Белорусская Болгарская Бразильская Британская Венгерская Вьетнамская Греческая Грузинская Датская Еврейская Египетская Индийская Испанская Итальянская Казахская Китайская Латиноамериканская Латвийская Литовская Марокканская Мексиканская Молдавская Немецкая Польская Румынская Русская Татарская Таджикская Тунисская Турецкая Узбекская Украинская Французская Чешская Швейцарская Эстонская Югославская Японская]
     };
   },
 
   mounted() {
-    this.getData();
+    this.$_RecipeSelection_getData();
   },
 
   methods: {
-    getData: function() {
-      //   console.log(this.data);
+    $_RecipeSelection_getData: function() {
       axios
-        .get("/RecipeFilter")
+        .get("/recipes/recipe-filter")
         .then(res => {
           console.log(res);
           this.urldata = res.data;
