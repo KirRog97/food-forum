@@ -6,49 +6,41 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('author_id');
-            $table->unsignedInteger('picture_id');            
-            $table->unsignedInteger('description_id');
+            $table->string('title');
+            $table->boolean('is_banned');
+            $table->boolean('is_muted');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('picture_id');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('kitchen_id');
-            $table->string('title');
-            $table->string('TTC');
+            $table->unsignedInteger('dish_id');
+            $table->text('instruction');
+            $table->text('desciption');
+            $table->integer('TTC');
             $table->integer('COP');
             $table->integer('Kcal');
-            $table->text('instruction');    
-            $table->timestamps();    
-            
-            $table->foreign('author_id')->references('id')->on('users');
-            
-            $table->foreign('picture_id')->references('id')->on('pictures')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
 
-            $table->foreign('description_id')->references('id')->on('post_descriptions')
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->foreign('picture_id')->references('id')->on('pictures')
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onUpdate('cascade')->onDelete('cascade');
-                
-            $table->foreign('kitchen_id')->references('id')->on('ingredients')
+
+            $table->foreign('kitchen_id')->references('id')->on('kitchens')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('dish_id')->references('id')->on('dishs')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
-
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('posts');
