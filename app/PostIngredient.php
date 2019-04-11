@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PostIngredient extends Model
-{
-    
-}
+class PostIngredient extends Pivot
+{ }
