@@ -36,7 +36,7 @@ class CreatePostsTable extends Migration
             $table->foreign('kitchen_id')->references('id')->on('kitchens')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->foreign('dish_id')->references('id')->on('dishs')
+            $table->foreign('dish_id')->references('id')->on('dishes')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

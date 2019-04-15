@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->foreign('ingredient_id')->references('id')->on('ingredients')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
