@@ -30,8 +30,7 @@
 
         <li class="notification mx-2">
             <div class="dropdown">
-                <button class="btn btn rounded-right shadow-none" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false data-toggle=" tooltip" data-placement="bottom" title="Notification"">
+                <button class="btn btn rounded-right shadow-none" type="button" id="dropdownMenu1" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Notification">
                     <i class="fa fa-bell nav-icon" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -65,8 +64,7 @@
 
         <li class="nav-item dropdown mx-2">
             <div class="btn-group dropleft">
-                <button type="button" class="btn rounded-right shadow-none" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn rounded-right shadow-none" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Просмотреть профиль">
                     <i class="fa fa-user-circle nav-icon" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown-menu border-dark text-center p-0" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform; width: 200px;">
