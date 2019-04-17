@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = [];
+
     /**
      * The attributes that should be cast to native types.
      * https://laravel.com/docs/5.8/eloquent-mutators#attribute-casting
@@ -14,7 +16,7 @@ class Post extends Model
     protected $casts = [
         'title' => 'string',
         'instruction' => 'string',
-        'desciption' => 'string',
+        'description' => 'string',
 
         'user_id' => 'integer',
         'picture_id' => 'integer',
@@ -34,9 +36,14 @@ class Post extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    // public function pictures()
+    // {
+    //     return $this->morphMany('App\Picture', 'picture');
+    // }
+
     public function pictures()
     {
-        return $this->morphMany('App\Picture', 'picture');
+        return $this->belongsTo('App\Picture', 'picture_id');
     }
 
     public function category()
@@ -47,6 +54,11 @@ class Post extends Model
     public function kitchen()
     {
         return $this->belongsTo('App\Kitchen', 'kitchen_id');
+    }
+
+    public function dish()
+    {
+        return $this->belongsTo('App\Dish', 'dish_id');
     }
 
     public function ingredients()

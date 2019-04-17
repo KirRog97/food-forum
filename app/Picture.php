@@ -6,8 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
-    public function picture()
+    protected $fillable = [
+        'pic_path'
+    ];
+
+    protected $hidden = [];
+
+    public function user()
     {
-        return $this->morphTo();
+        return $this->hasMany('App\User', 'avatar_id');
     }
+
+    public function post()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function ingredient()
+    {
+        return $this->hasMany('App\Ingredient');
+    }
+
+    // public function picture()
+    // {
+    //     return $this->morphTo();
+    // }
 }

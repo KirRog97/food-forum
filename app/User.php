@@ -33,8 +33,9 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        return $this->morphMany('App\Picture', 'picture');
+        return $this->belongsTo('App\Picture');
     }
+
     public function posts()
     {
         return $this->hasMany('App\Post');
