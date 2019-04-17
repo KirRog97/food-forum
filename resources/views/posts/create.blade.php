@@ -22,18 +22,33 @@
         <img class="file_preview-image" src="/public/images/recipes/$loaded_file.jpg" alt="Загруженное" srcset="">
     </div> --}}
 
-    <div class="row mt-4">
-        <div class="form-group col">
-            <label for="TTC">Время приготовления(в минутах):</label>
-            <input type="number" class="form-control" name="TTC" id="TTC" placeholder="120 минут">
+    <div class="row justify-content-around">
+        <div class="col-4 d-flex input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-chart-pie"></i></span>
+            </div>
+            <input type="number" class="form-control text-center" min="1" name="COP" id="COP">
+            <div class="input-group-append">
+                <span class="input-group-text">{{__('порций')}}</span>
+            </div>
         </div>
-        <div class="form-group col">
-            <label for="COP">Количество порций(в шт.):</label>
-            <input type="number" class="form-control" min="1" name="COP" id="COP" placeholder="4 порции">
+        <div class="col-4 d-flex input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+            </div>
+            <input type="number" class="form-control text-center" min="1" name="TTC" id="TTC">
+            <div class="input-group-append">
+                <span class="input-group-text"{{__('минут')}}></span>
+            </div>
         </div>
-        <div class="form-group col">
-            <label for="Kcal">Количество калорий(в килокалориях):</label>
-            <input type="number" class="form-control" min="1" name="Kcal" id="Kcal" placeholder="328 калорий">
+        <div class="col-4 d-flex input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-running"></i></span>
+            </div>
+            <input type="number" class="form-control text-center" min="1" name="Kcal" id="Kcal">
+            <div class="input-group-append">
+                <span class="input-group-text">{{__('калорий')}}</span>
+            </div>
         </div>
     </div>
 
