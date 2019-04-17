@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page_title')
-Книга рецептов
+{{ __('Книга рецептов') }}
 @endsection
 
 
@@ -10,7 +10,7 @@
 <div class="container-fluid">
 
     @heading
-     Книга рецептов
+    {{  __('Книга рецептов')  }}
     @endheading
 
 
@@ -34,10 +34,10 @@
                 <div class="recipe-list-images position-relative d-flex">
                     <div class="recipe-author rounded-pill bg-dark50 w-auto px-2 py-1 mt-2">
                         <div class="recipe-author-name p-1">
-                            <a href="/users/{{$post->user->id}}" data-toggle="tooltip" data-placement="bottom"
+                            <a href="/users/{{ $post->user->id }}" data-toggle="tooltip" data-placement="bottom"
                                 title="Просмотреть профиль">
                                 <span>
-                                    {{$post->user->name}}
+                                    {{ $post->user->name }}
                                 </span>
                             </a>
                         </div>
@@ -52,23 +52,23 @@
                 </div>
                 <div class="recipe-list-title">
                     <h2>
-                        <a href="/posts/{{$post->id}}">
-                            <span>{{$post->title}}</span>
+                        <a href="/posts/{{ $post->id }}">
+                            <span>{{ $post->title }}</span>
                         </a>
                     </h2>
                 </div>
                 <div class="recipe-list-specification m-auto">
                     <div class="recipe-list-specification-line">
                         <i class="far fa-clock fa-lg mr-1"></i>
-                        <span>{{$post->TTC}} минут</span>
+                        <span>{{ $post->TTC }} {{ __('минут') }}</span>
                     </div>
                     <div class="recipe-list-specification-line">
                         <i class="fas fa-chart-pie fa-lg mr-1"></i>
-                        <span>{{$post->COP}} порции</span>
+                        <span>{{ $post->COP }} {{ __('порции') }}</span>
                     </div>
                     <div class="recipe-list-specification-line">
                         <i class="fas fa-running fa-lg mr-1"></i>
-                        <span>{{$post->Kcal}} Ккал</span>
+                        <span>{{ $post->Kcal }} {{ __('Ккал') }}</span>
                     </div>
                 </div>
                 <div class="recipe-list-ingredients">
@@ -103,7 +103,7 @@
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        {{$posts->links()}}
+        {{ $posts->links() }}
     </div>
 
     @else

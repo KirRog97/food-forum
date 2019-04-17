@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page_title')
-Рецепт
+{{ __('Рецепт') }}
 @endsection
 
 @section('content')
@@ -18,19 +18,19 @@
                         {{-- for hover --}}
                         {{-- <i class="fas fa-heart"></i> --}}
                         <i class="far fa-heart mr-1"></i>
-                        <span>Нравится</span>
+                        <span>{{ __('Нравится') }}</span>
                     </a>
-                    <a href="{{ route('posts.edit', ['id'=> $post->id]) }}" class="btn-edit">
+                    <a href="{{ route('posts.edit', $post) }}" class="btn-edit">
                         {{-- for hover --}}
                         {{-- <i class="fas fa-edit"></i> --}}
                         <i class="far fa-edit"></i>
-                        <span>Редактировать</span>
-                    </a>
+                        <span>{{ __('Редактировать') }}</span>
+                    </a>                     
                     <a href="" class="btn-bookmark">
                         {{-- for hover --}}
                         {{-- <i class="fa fa-bookmark" aria-hidden="true"></i> --}}
                         <i class="far fa-bookmark mr-1"></i>
-                        <span>Добавить в закладки</span>
+                        <span>{{ __('Добавить в закладки') }}</span>
                     </a>
                 </div>
             </div>
@@ -47,35 +47,19 @@
                 </p>
             </div>
 
-            {{-- <div class="container-fluid my-4">
-                <div class="row justify-content-around px-4">
-                    <div class="col-2 p-0 text-small">
-                        <i class="fas fa-chart-pie fa-lg mr-1"></i>
-                        <span>{{ $post->kitchen->name }} порций</span>
-                    </div>
-                    <div class="col-2 p-0 text-small">
-                        <i class="far fa-clock fa-lg mr-1"></i>
-                        <span>{{ $post->category->name }} минут</span>
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="container-fluid my-4">
                 <div class="row justify-content-around px-4">
                     <div class="col-2 p-0 text-small">
-                        {{-- <img src="/images/icons/CountOfPortions.ico" width="25px" alt=""> --}}
                         <i class="fas fa-chart-pie fa-lg mr-1"></i>
-                        <span>{{ $post->COP }} порций</span>
+                        <span>{{ $post->COP }} {{ __('порций') }}</span>
                     </div>
                     <div class="col-2 p-0 text-small">
-                        {{-- <img src="/images/icons/CountOfPortions.ico" width="25px" alt=""> --}}
                         <i class="far fa-clock fa-lg mr-1"></i>
-                        <span>{{ $post->TTC }} минут</span>
+                        <span>{{ $post->TTC }} {{ __('минут') }}</span>
                     </div>
                     <div class="col-2 p-0 text-small">
-                        {{-- <img src="/images/icons/Kcal.svg" width="25px" alt=""> --}}
                         <i class="fas fa-running fa-lg mr-1"></i>
-                        <span>{{ $post->Kcal }} Ккал</span>
+                        <span>{{ $post->Kcal }} {{ __('Ккал') }}</span>
                     </div>
                 </div>
             </div>
