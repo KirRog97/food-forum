@@ -23,9 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = Post::all();
-        $posts = Post::orderBy('title','desc') -> paginate(4);
-        return view('posts.index') -> with('posts', $posts);
+        $posts = Post::orderBy('title', 'desc')->paginate(4);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -47,24 +46,35 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $this ->validate($request, [
-            'title' => 'required',
-            'TTC' => 'required',
-            'COP' => 'required|integer',
-            'Kcal' => 'required|integer'
+        $this->validate($request, [
+            'title'         => 'required',
+            'description'   => 'required',
+            'TTC'           => 'required|integer',
+            'COP'           => 'required|integer',
+            'Kcal'          => 'required|integer'
         ]);
+
 
         $post = new Post;
-        $post ->author = Auth()->user()->id;
-        $post ->title = $request -> input('title');
-        $post ->TTC = $request -> input('TTC');
-        $post ->COP = $request -> input('COP');
-        $post ->Kcal = $request -> input('Kcal');
-        $post ->save();
 
-        return redirect()->route('posts', [
-            session()->flash('success', 'Ваш рецепт успешно создан.')
-        ]);
+        // Need Session
+        // $post->user_id =     Auth()->user()->id;
+        $post->user_id = 1;
+
+        // Need picture download process from Vue component
+        //or https://laravel.com/docs/5.8/responses#file-downloads
+        // $post->picture_id =     Auth()->user()->id;
+        $post->picture_id = 1;
+
+        $post->title =          $request->input('title');
+        $post->description =    $request->input('description');
+        $post->TTC =            $request->input('TTC');
+        $post->COP =            $request->input('COP');
+        $post->Kcal =           $request->input('Kcal');
+        $post->save();
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Ваш рецепт успешно создан');
     }
 
     /**
@@ -76,8 +86,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post = Post::find($post->id);
-        // return view('posts.show', compact('post'));
-        return view('posts.show') -> with('post', $post);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -89,7 +98,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $post = Post::find($post->id);
-        return view('posts.edit') -> with('post', $post);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -101,15 +110,16 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $result = Post::where('id', $post->id)->update();
-        if($result)
-        {
-            return redirect('post.index')->with('success', 'Post updated');
-        }
-        else
-        {
-            return back()->with('error', 'Something went wrong');
-        }
+        $post = Post::find($post->id);
+        $post->title =          $request->input('title');
+        $post->description =    $request->input('description');
+        $post->COP =            $request->input('COP');
+        $post->TTC =            $request->input('TTC');
+        $post->Kcal =           $request->input('Kcal');
+        $post->save();
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Внесенные изменения сохранены');
     }
 
     /**
@@ -120,14 +130,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $result = Post::where('id', $post->id)->delete();
-        if($result)
-        {
-            return redirect('post.index')->with('success', 'Post destroyed');
-        }
-        else
-        {
-            return back()->with('error', 'Something went wrong');
-        }
+        Post::destroy($post->id);
+        return redirect()->route('posts.index')
+            ->with('success', 'Рецепт удален');
     }
 }
