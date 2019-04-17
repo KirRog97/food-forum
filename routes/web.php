@@ -19,16 +19,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// how to do it more safe??? Midl??? Token of app??
+// ----------------- Vue routes (start) -----------------
+// how to do it more safe???
+
 Route::get('/recipes/recipe-filter', 'RecipeFilter@getData');
 
 Route::get('/recipes/recipe-sorting', 'RecipeFilter@getData');
+
+// ----------------- Vue routes (end) -----------------
 
 Route::resource('posts', 'PostController');
 
 Route::resource('users', 'UserController');
 
 Route::resource('ingredients', 'IngredientController');
+
+Route::resource('dishs', 'DishController');
 
 Route::get('/', function () {
     return redirect('home');
