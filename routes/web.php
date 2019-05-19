@@ -1,9 +1,5 @@
 <?php
 
-// use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Route;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +11,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
 
 // ----------------- Vue routes (start) -----------------
 // how to do it more safe???
 
-Route::get('/recipes/recipe-filter', 'RecipeFilter@getData');
+Route::get('recipes/recipe-filter', 'RecipeFilter@getData');
 
-Route::get('/recipes/recipe-sorting', 'RecipeFilter@getData');
+Route::get('recipes/recipe-sorting', 'RecipeFilter@getData');
+
+Route::resource('/download', 'DownloadingController')->only(['store', 'update', 'destroy']);
 
 // ----------------- Vue routes (end) -----------------
 
@@ -36,6 +33,7 @@ Route::resource('ingredients', 'IngredientController');
 
 Route::resource('dishs', 'DishController');
 
-Route::get('/', function () {
-    return redirect('home');
-});
+Route::redirect('/', 'home');
+
+// always in the end of list or Auth will break after page refresh
+Auth::routes();
