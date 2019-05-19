@@ -21,7 +21,12 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('recipe-selection', require('./components/RecipeSelection.vue').default);
+Vue.component('recipe-selection-add-ing', require('./components/RecipeSelectionAddIng.vue').default);
+Vue.component('recipe-selection-exlucde-ing', require('./components/RecipeSelectionExcludeIng.vue').default);
+
 Vue.component('recipe-sorting', require('./components/RecipeSorting.vue').default);
+Vue.component('file-downloading', require('./components/FileDownloading.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
