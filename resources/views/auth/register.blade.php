@@ -42,13 +42,13 @@
                                             </div>
                                         </div>
 
-                                        <input id="name" type="text"
-                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                            name="name" value="{{ old('name') }}" required autofocus>
+                                        <input id="username" type="text"
+                                            class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
+                                            name="username" value="{{ old('username') }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('username') }}</strong>
                                         </span>
                                         @endif
                                     </div>

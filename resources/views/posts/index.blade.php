@@ -37,7 +37,7 @@
                             <a href="/users/{{ $post->user->id }}" data-toggle="tooltip" data-placement="bottom"
                                 title="Просмотреть профиль">
                                 <span>
-                                    {{ $post->user->name }}
+                                    {{ $post->user->username }}
                                 </span>
                             </a>
                         </div>

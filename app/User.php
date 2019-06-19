@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     protected $hidden = [
@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'name' => 'string',
+        'username' => 'string',
         'email' => 'string',
         'avatar_id' => 'integer',
         'is_banned' => 'boolean',

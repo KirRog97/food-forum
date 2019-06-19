@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Picture;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -63,37 +64,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-
         $user = new User;
-        $user ->name = $data['name'];
-        $user ->email = $data['email']; 
-        $user ->avatar_id = '1';
-        
-        // I dont now how, but it works!!!
-        //save the avatar
-        // $picture = Picture::find(1);
-        // $picture-> pic_path = "avatar_default.jpg";
-        // $user->avatar()->associate($picture);    
-        //end of work
-        
-        $user ->password = Hash::make($data['password']); 
-        $user ->save();        
+        $user->username = $data['username'];
+        $user->email = $data['email'];
 
-        return redirect()->route('login', [ 
-            session()->flash('success', 'Ваш аккаунт успешно создан.')
+        $picture = Picture::create([
+            'path' => '/images/icons/user_avacado.svg'
         ]);
-      
-        // return User::create([
-        //     'name' => $data['name'],
-        //     // 'avatar' => avatar() -> save($comment), maybeThat
-        //     'email' => $data['email'], 
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        $user->avatar()->associate($picture);
+
+        $user->password = Hash::make($data['password']);
+        $user->save();
+
+        return redirect()->route('home')
+            ->with('success', 'Ваш аккаунт успешно создан');
     }
 }

@@ -70,13 +70,7 @@
                 <div class="dropdown-menu border-dark text-center p-0" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform; width: 200px;">
 
                     <a class="dropdown-header bg-dark text-white py-2" href="#">
-                            @if (Auth::user()->avatar_id == 1 )
-                            <img src="/images/icons/user_avacado.svg" style="width:72px;" alt="">
-                            @else
-                            <img src="/images/icons/user_male.ico" alt="">
-                            @endif
-                        <span>{{ Auth::user()->name }}</span>
-                    </a>
+                                <h5 class="mt-1">{{ Auth::user()->username }}</h5>
 
                 <a class="dropdown-item py-2" href="/users/{{ Auth::user()->id }}">{{__('Мой профиль')}}</a>
                     <a class="dropdown-item py-2" href="#">{{__('Мои рецепты')}}</a>
