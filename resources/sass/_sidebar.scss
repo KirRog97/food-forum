@@ -28,15 +28,15 @@
     font-size: 6em;
 
     &:hover {
-        transition: 0.455s cubic-bezier(.47,0,.74,.71);
+        transition: 0.455s cubic-bezier(.47, 0, .74, .71);
         color: lighten($primary, 10%);
     }
 }
 
 .sidebar-link {
-    transition: 0.85s ease;
+    transition: 0.5s linear;
     width: 100%;
-    padding: 0px;
+    padding: 0.25em 0;
     color: whitesmoke;
     font-size: 1.2em;
     font-weight: 200;
@@ -45,7 +45,7 @@
     border-left: 4px solid transparent;
 
     &:hover {
-        transition: 0.455s cubic-bezier(.47,0,.74,.71);
+        transition: 0.455s cubic-bezier(.47, 0, .74, .71);
         text-decoration: none;
         background-color: black;
         border-left: 4px solid $primary;
@@ -90,8 +90,8 @@
     font-size: 1.2em;
 
     &:hover {
-        transition: 0.3s linear;
-        transform: scale(0.8);
+        transition: 0.5s linear;
+        transform: scale(1.2);
         color: $primary;
     }
 }
