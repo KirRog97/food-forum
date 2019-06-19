@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Picture;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth', [ 'except' => [
-    //         'index', 'show'
-    //     ]]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'index', 'show'
+        ]]);
+    }
 
 
     /**
@@ -23,7 +26,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('title', 'desc')->paginate(4);
+        $posts = Post::orderBy('title', 'desc')->paginate(15);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -47,31 +50,43 @@ class PostController extends Controller
     {
 
         $this->validate($request, [
-            'title'         => 'required',
-            'description'   => 'required',
-            'TTC'           => 'required|integer',
-            'COP'           => 'required|integer',
-            'Kcal'          => 'required|integer'
+            'title'        =>   'required',
+            'description'  =>   'required',
+            'instruction'  =>   'required',
+            'TTC'          =>   'required|integer',
+            'COP'          =>   'required|integer',
+            'Kcal'         =>   'required|integer'
         ]);
 
 
-        $post = new Post;
+        $post =                 new Post;
+        $post->user_id =        Auth::user()->id;
+        $download =             $request->session()->get('download');
 
-        // Need Session
-        // $post->user_id =     Auth()->user()->id;
-        $post->user_id = 1;
+        $picture = Picture::create([
+            'path'          =>  $download['path'],
+            'mime'          =>  $download['mime'],
+            'size'          =>  $download['size']
+        ]);
 
-        // Need picture download process from Vue component
-        //or https://laravel.com/docs/5.8/responses#file-downloads
-        // $post->picture_id =     Auth()->user()->id;
-        $post->picture_id = 1;
+        $post->picture_id =     $picture->id;
+        $picture->save();
+        // $post->category_id =    $request->session()->get('category_id');
+        // $post->kitchen_id =     $request->session()->get('kitchen_id');
+        // $post->dish_id =        $request->session()->get('dish_id ');
+        $post->category_id =    1;
+        $post->kitchen_id =     1;
+        $post->dish_id =        1;
 
         $post->title =          $request->input('title');
         $post->description =    $request->input('description');
+        $post->instruction =    $request->input('instruction');
         $post->TTC =            $request->input('TTC');
         $post->COP =            $request->input('COP');
         $post->Kcal =           $request->input('Kcal');
         $post->save();
+
+        $request->session()->forget('download');
 
         return redirect()->route('posts.index')
             ->with('success', 'Ваш рецепт успешно создан');
