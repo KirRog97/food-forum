@@ -21,7 +21,7 @@ Route::get('recipes/recipe-filter', 'RecipeFilter@getData');
 
 Route::get('recipes/recipe-sorting', 'RecipeFilter@getData');
 
-Route::resource('/download', 'DownloadingController')->only(['store', 'update', 'destroy']);
+Route::resource('/picture', 'PictureController')->only(['store', 'update', 'destroy']);
 
 // ----------------- Vue routes (end) -----------------
 

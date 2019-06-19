@@ -10,7 +10,9 @@ class CreatePicturesTable extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pic_path', 255);
+            $table->string('path');
+            $table->string('mime')->nullable();
+            $table->string('size')->nullable();
             $table->timestamps();
         });
     }

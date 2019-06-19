@@ -15,9 +15,4 @@ class Ingredient extends Model
     {
         return $this->belongsTo('App\Picture', 'pic_id');
     }
-
-    // public function picture()
-    // {
-    //     return $this->morphMany('App\Picture', 'picture');
-    // }
 }
