@@ -18,11 +18,11 @@
 <body>
     <div class="container-fluid vh-100 p-0">
         <div class="row vh-100 m-0">
-            <div class="col-8 p-0">
+            <div class="col-2 col-sm-6 col-xl-8 p-0">
                 <img class="img-fluid-center" src="/images/login_background.jpg" alt="">
             </div>
 
-            <div class="col-4 justify-content-end align-content-center bg-dark border-left border-primary">
+            <div class="col-10 col-sm-6 col-xl-4 align-items-center bg-dark border-left border-primary">
                 <div class="logo">
                     <a href="/home" data-toggle="tooltip" data-placement="bottom" title="На главную">
                         Еда
@@ -99,12 +99,12 @@
                             <div class="form-group row d-flex justify-content-center mb-0">
                                 <div class="col-md-auto">
                                     <button type="submit" class="btn btn-primary bg-dark50 text-light px-3 py-1">
-                                        {{ __('Вход') }}
+                                        Вход
                                     </button>
 
                                     @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Забыли пароль?') }}
+                                        Забыли пароль?
                                     </a>
                                     @endif
                                 </div>
