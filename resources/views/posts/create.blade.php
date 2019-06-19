@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title') 
+@section('page_title')
 {{ __('Новый рецепт') }}
 @endsection
 
@@ -11,76 +11,88 @@
 
 <form action="{{route('posts.store') }}" method="post">
     @csrf
-    <div class="form-group">
-        <label for="title">{{ __('Название рецепта:') }}</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Селедка под шубой">
-    </div>
 
-    <div class="form-group">
-        <label for="description">{{ __('Описание блюда:') }}</label>
-        <textarea class="form-control text-justify" name="description" id="description" rows="3">
-        </textarea>
-    </div>
+    <div class="container-fluid form-custom-secondprimary border-r25 bg-secondary text-primary py-4">
+        <div class="form-group d-flex justify-content-center position-relative pt-4 mt-4">
+            <label class="text-shadow shadow" for="title">
+                {{ __('Название рецепта') }}
+            </label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+        </div>
 
-    {{-- Need Vue component --}}
-    {{-- <div class="custom-file mb-3">
-        <label class="custom-file">
-            <input type="file" name="recipe_photo" id="recipe_photo" placeholder="" class="custom-file-input">
-            <span class="custom-file-control">Download photo</span>
-        </label>
-    </div> --}}
-    {{--
-    <div class="file_preview">
-        <img class="file_preview-image" src="/public/images/recipes/$loaded_file.jpg" alt="Загруженное" srcset="">
-    </div> --}}
-
-    <div class="row justify-content-around">
-        <div class="col-4 d-flex input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-chart-pie"></i></span>
+        <div class="row justify-content-around">
+            <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+                <input type="number" class="form-control text-center" min="1" step="10" name="COP" id="COP"
+                    value="{{ old('Kcal') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <span>{{ __('порций') }}</span>
+                    </div>
+                </div>
             </div>
-            <input type="number" class="form-control text-center" min="1" name="COP" id="COP">
-            <div class="input-group-append">
-                <span class="input-group-text">{{ __('порций') }}</span>
+            <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <span><i class="fas fa-clock"></i></span>
+                    </div>
+                </div>
+                <input type="number" class="form-control text-center" min="1" step="1" name="TTC" id="TTC"
+                    value="{{ old('TTC') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <span>{{ __('минут') }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <span><i class="fas fa-running"></i></span>
+                    </div>
+                </div>
+                <input type="number" class="form-control text-center" min="1" step="10" name="Kcal" id="Kcal"
+                    value="{{ old('Kcal') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                        <span>{{ __('калорий') }}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-4 d-flex input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-clock"></i></span>
-            </div>
-            <input type="number" class="form-control text-center" min="1" name="TTC" id="TTC">
-            <div class="input-group-append">
-                <span class="input-group-text"{{ __('минут') }}></span>
-            </div>
-        </div>
-        <div class="col-4 d-flex input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-running"></i></span>
-            </div>
-            <input type="number" class="form-control text-center" min="1" name="Kcal" id="Kcal">
-            <div class="input-group-append">
-                <span class="input-group-text">{{ __('калорий') }}</span>
-            </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label for="HTC">{{ __('Способ приготовления:') }}</label>
-        <textarea class="form-control" name="HTC" id="HTC" rows="3"
-            placeholder="Для приготовления данного блюда..."></textarea>
-    </div>
+        <ingredient-selection></ingredient-selection>
 
-    <div class="form-group mb-3">
-        <label for="Ingredients">{{ __('Добавление ингредиентов:') }}</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <button class="btn btn-primary" type="button">{{ __('Добавить') }}</button>
-            </div>
-            <input type="text" class="form-control" placeholder="" name="Ingredients" id="Ingredients"
-                aria-describedby="basic-addon1">
+        <picture-downloading :isMultipleDownloadMode="false">
+        </picture-downloading>
+
+        <div class="form-group d-flex justify-content-center position-relative pt-2 mt-5">
+            <label class="col-form-label text-shadow shadow px-3" for="description">
+                {{ __('Описание блюда') }}
+            </label>
+            <textarea class="form-control text-primary text-justify" name="description" id="description" rows="5"
+                value="{{ old('description') }}">
+            </textarea>
+        </div>
+
+        <div class="form-group d-flex justify-content-center position-relative pt-2 mt-5">
+            <label class="col-form-label text-shadow shadow px-3" for="instruction">
+                {{ __('Способ приготовления') }}
+            </label>
+            <textarea class="form-control text-primary text-justify" name="instruction" id="instruction" rows="5"
+                value="{{ old('instruction') }}">
+            </textarea>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">{{ __('Сохранить рецепт') }}</button>
+    <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-lg btn-outline-primary">
+            {{ __('Сохранить рецепт') }}
+        </button>
+    </div>
 </form>
 @endsection

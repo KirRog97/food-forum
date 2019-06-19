@@ -66,6 +66,11 @@ a:active {
     color: inherit;
 }
 
+@mixin bg-dark50 {
+    background-color: rgba(0, 0, 0, 0.355);
+    // background-color: rgba(0, 0, 0, 0.555);
+}
+
 .bg-dark50 {
     background-color: rgba(0, 0, 0, 0.355);
     // background-color: rgba(0, 0, 0, 0.555);
@@ -93,6 +98,95 @@ a:active {
     object-fit: cover;
     object-position: center;
     overflow: hidden;
+}
+
+.border-r25 {
+    border-radius: 25px;
+}
+
+.form-custom-secondprimary {
+
+    .form-control::placeholder {
+        color: darken(lightgray, 15%) !important;
+        font-size: 1.25em;
+        text-align: center;
+        opacity: 1;
+    }
+
+    .btn:not([disabled]):not([type="submit"]) {
+        @include bg-dark50;
+        color: $primary;
+
+        &:hover {
+            transition: 0.4s linear;
+            color: inherit !important;
+            background-color: inherit !important;
+        }
+    }
+
+    input,
+    textarea {
+        color: $primary !important;
+        @include bg-dark50;
+        border: 1px solid $primary !important;
+        text-align: center;
+        overflow: hidden;
+        z-index: 999;
+    }
+
+    textarea {
+        resize: none;
+        overflow: auto;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 16px;
+        }
+    }
+
+    input:focus,
+    input:active,
+    textarea:active,
+    textarea:focus {
+        transition: 0.255s linear;
+        color: darken(lightgray, 5%) !important;
+        text-align: center;
+        text-shadow: none;
+        background-color: darken($secondary, 10%) !important;
+        border-color: darken($primary, 25%);
+        border-width: 2px;
+    }
+
+    li {
+        @include bg-dark50;
+        color: darken($primary, 3%);
+    }
+
+    .form-group label {
+        display: flex;
+        position: absolute;
+        top: -20%;
+        padding: calc(0.375em + 0.5px) 0.85em calc(0.375em + 0.5px) 0.85em !important;
+        margin: 0;
+        background-color: darken($secondary, 5%);
+        border: 2px solid $primary;
+        border-bottom: 0 !important;
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .custom-file-label {
+        border: 1px solid $primary;
+        @include bg-dark50;
+
+        &::after {
+            content: 'Выбрать файл' !important;
+            @include bg-dark50;
+            color: $primary;
+            opacity: 0.8;
+        }
+    }
 }
 
 //Style for Scrollbar im Chrome
