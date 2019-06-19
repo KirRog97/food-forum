@@ -1,12 +1,15 @@
 @extends('layouts.app')
-@section('page_title') Книга ингредиентов
+@section('page_title')
+Книга ингредиентов
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
 
-    @heading Книга ингредиентов @endheading
+    @heading
+    Книга ингредиентов
+    @endheading
 
 
     <div class="text-center text-justify text-muted mb-4">
@@ -15,48 +18,35 @@
         </p>
     </div>
 
-    @if (count($ingredients) > 0) @foreach ($ingredients as $ingredient)
+    @if (count($ingredients) > 0)
 
-    <div class="ingredient-element mt-3 p-0 row">
-        <div class="col-3 p-0">
-            <img class="img-fluid" src="/images/recipes/харчо.jpg" alt="">
+    @foreach ($ingredients as $ingredient)
+
+    <div class="row w-100 p-2">
+        <div class="col-4 p-0 rounded">
+            @if ($ingredient->picture->path && $ingredient->picture->path === '0')
+            <img class="img-fluid-center" src="/storage/{{ $ingredient->picture->path }}" alt="Ingredient Picture">
+            @else
+            <img class="img-fluid-center" src="/images/ingredients/meet.jpg" alt="Ingredient Picture">
+            @endif
         </div>
-        <div class="col p-2">
-
-            <div class="breadcrumbs">
-                <ul class=" d-flex flex-row justify-content-start mb-3">
-                    <li class="breadcrumbs-item"><a href="#">Russian Kitchen</a></li>
-                    <li class="breadcrumbs-item"><a href="#">Food Category</a></li>
-                </ul>
-            </div>
-
-            <div class="ingredient-element-recipe-title">
+        <div class="col px-4 text-justify text-secondary rounded">
+            <a class="text-center font-weight-light py-2" href="/ingredients/{{ $ingredient->id }}">
                 <h3>
-                    <a href="/ingredients/{{$ingredient->id}}">
-                        <span>{{$ingredient->title}}</span>
-                    </a>
+                    {{ $ingredient->name }}
                 </h3>
-            </div>
-
-            <div class="ingredient-element-author-title">
-                <span>Автор: Антон Антонов</span>
-            </div>
-
-            <div class="recipe-socials-widgets">
-                <div class="widget-like">
-                    <i class="fas fa-heart"></i>
-                    <span class="widget-like-count">15</span>
-                </div>
-                <div class="widget-vk">
-                    <i class="fab fa-vk"></i>
-                </div>
-                <div class="widget-facebook">
-                    <i class="fab fa-facebook"></i>
-                </div>
-            </div>
-
+            </a>
+            <hr>
+            <p class="text-wrap px-3 m-auto">
+                @if ($ingredient->description)
+                {{ $ingredient->description }}
+                @else
+                Для данного ингредиента описание отсутствует
+                @endif
+            </p>
         </div>
     </div>
+
     @endforeach
 
     <div class="d-flex justify-content-center mt-3">
