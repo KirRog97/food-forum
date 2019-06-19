@@ -25,8 +25,7 @@ Vue.component('recipe-selection-add-ing', require('./components/RecipeSelectionA
 Vue.component('recipe-selection-exlucde-ing', require('./components/RecipeSelectionExcludeIng.vue').default);
 
 Vue.component('ingredient-selection', require('./components/IngredientSelection.vue').default);
-Vue.component('recipe-sorting', require('./components/RecipeSorting.vue').default);
-Vue.component('file-downloading', require('./components/FileDownloading.vue').default);
+Vue.component('picture-downloading', require('./components/PictureDownloading.vue').default);
 
 
 /**
