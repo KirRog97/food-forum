@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', [ 'except' => [
+        $this->middleware('auth', ['except' => [
             'index', 'show'
         ]]);
     }
@@ -21,9 +21,11 @@ class UserController extends Controller
      */
     public function index()
     {
-       // $users = User::all();
-       $users = User::orderBy('name','desc') -> paginate(10);
-       return view('users.index') -> with('users', $users);
+        $users = User::orderBy('username', 'desc')
+            ->paginate(10);
+
+        return view('users.index')
+            ->with('users', $users);
     }
 
     /**
@@ -44,21 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this -> validate($request, [
-            'title' => 'required',
-            'TTC' => 'required',
-            'COP' => 'required',
-            'Kcal' => 'required'
-        ]);
-
-      $user = new User;
-      $user ->title =$request -> input('title');
-      $user ->TTC =$request -> input('TTC');
-      $user ->COP =$request -> input('COP');
-      $user ->Kcal =$request -> input('Kcal');
-      $user ->save();
-
-      return redirect('/users');
+        //
     }
 
     /**
@@ -70,7 +58,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = User::find($user);
-        return view('users.show') -> with('user', $user);
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -82,7 +70,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = User::find($user);
-        return view('users.edit') -> with('user', $user);
+        return view('users.edit')
+            ->with('user', $user);
     }
 
     /**
@@ -95,7 +84,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         User::where('id', $user->id)
-        ->update(array('username' => Input::get('username'), 'email' => Input::get('email')));
+            ->update(array('username' => Input::get('username'), 'email' => Input::get('email')));
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -106,6 +98,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect()->route('posts.index')
+            ->with('success', 'Рецепт удален');
     }
 }
