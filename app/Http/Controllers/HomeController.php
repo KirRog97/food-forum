@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Auth\SessionGuard;
 use Symfony\Component\HttpKernel\TerminableInterface;
-use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -18,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -28,8 +27,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->session()->flash('success','U right');
-        $request->session()->put('user_data', Auth::user());
         return view('home');
     }
 }
