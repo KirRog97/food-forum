@@ -43,11 +43,21 @@
                         </div>
 
                         <div class="recipe-list-photo-author rounded-circle ml-1">
-                            <img src="/images/icons/user_avacado.svg" alt="User_avatar">
+                            {{-- This IF fix $faker problem (lorempixel.com not available) --}}
+                            @if (!$post->user->avatar->path == '0' || !$post->user->avatar->path == null )
+                            <img src="/storage/{{ $post->user->avatar->path }}" alt="User picture">
+                            @else
+                            <img src="/images/icons/user_avacado.svg" alt="Default user picture">
+                            @endif
                         </div>
                     </div>
                     <div class="recipe-list-photo w-100">
-                        <img src="/images/recipes/блины.jpg" alt="Blin">
+                        {{-- This IF fix $faker problem (lorempixel.com not available) --}}
+                        @if (!$post->pictures->path == '0' || !$post->pictures->path == null )
+                        <img src="/storage/{{ $post->pictures->path }}" alt="Post picture">
+                        @else
+                        <img src="/images/recipes/блины.jpg" alt="Default post picture">
+                        @endif
                     </div>
                 </div>
                 <div class="recipe-list-title">
