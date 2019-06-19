@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Picture extends Model
 {
     protected $fillable = [
-        'pic_path'
+        'path', 'mime', 'size'
     ];
 
     protected $hidden = [];
@@ -19,16 +19,11 @@ class Picture extends Model
 
     public function post()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post', 'picture_id');
     }
 
     public function ingredient()
     {
         return $this->hasMany('App\Ingredient');
     }
-
-    // public function picture()
-    // {
-    //     return $this->morphTo();
-    // }
 }
