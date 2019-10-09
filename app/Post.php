@@ -6,7 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'picture_id',
+        'title',
+        'category_id',
+        'kitchen_id',
+        'dish_id',
+        'TTC',
+        'COP',
+        'Kcal',
+        'instruction',
+        'description',
+        'is_banned',
+        'is_muted'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -35,11 +49,6 @@ class Post extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
-
-    // public function pictures()
-    // {
-    //     return $this->morphMany('App\Picture', 'picture');
-    // }
 
     public function pictures()
     {
