@@ -38,9 +38,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // https://stackoverflow.com/questions/48399875/laravel-5-5-sessions-not-working
-            // \App\Http\Middleware\EncryptCookies::class,
-            // \Illuminate\Session\Middleware\StartSession::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
             'throttle:60,1',
             'bindings',
         ],
