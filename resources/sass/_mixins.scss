@@ -1,0 +1,18 @@
+@mixin bg-dark35 {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+@mixin bg-dark50 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@mixin img-fluid-custom {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    overflow: hidden;
+}
+
+@mixin text-shadow {
+    text-shadow: 1px 1px 4px black;
+}
