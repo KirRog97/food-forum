@@ -3,40 +3,21 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
 // for Logo
 @import url('https://fonts.googleapis.com/css?family=Lobster');
-// @import url('/fonts/PFDinTextCompPro.ttf');
 @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
 
 
-// Variables
 @import 'variables';
-
-// Bootstrap
+@import 'mixins';
 @import '~bootstrap/scss/bootstrap';
-
-//animate.ss
-@import 'animate';
-
-
-// Sidabar
 @import 'sidebar';
-
-//Navbar
 @import 'nav';
-
-//page
 @import 'page';
-
-//page
 @import 'recipe';
-
-//page
 @import 'user';
-
-//Post
 @import 'post';
-
-//Footer
 @import 'footer';
+//Style for Scrollbar im Chrome
+@import 'scrollbar';
 
 body {
     font-family: 'Oswald', sans-serif;
@@ -66,14 +47,12 @@ a:active {
     color: inherit;
 }
 
-@mixin bg-dark50 {
-    background-color: rgba(0, 0, 0, 0.355);
-    // background-color: rgba(0, 0, 0, 0.555);
+.bg-dark35 {
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 .bg-dark50 {
-    background-color: rgba(0, 0, 0, 0.355);
-    // background-color: rgba(0, 0, 0, 0.555);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .text-shadow {
@@ -93,11 +72,13 @@ a:active {
 }
 
 .img-fluid-center {
-    width: 100%;
-    height: 100%;
+    @include img-fluid-custom;
     object-fit: cover;
+}
+
+.img-fluid-contain {
+    @include img-fluid-custom;
     object-position: center;
-    overflow: hidden;
 }
 
 .border-r25 {
@@ -114,7 +95,7 @@ a:active {
     }
 
     .btn:not([disabled]):not([type="submit"]) {
-        @include bg-dark50;
+        @include bg-dark35;
         color: $primary;
 
         &:hover {
@@ -127,7 +108,7 @@ a:active {
     input,
     textarea {
         color: $primary !important;
-        @include bg-dark50;
+        @include bg-dark35;
         border: 1px solid $primary !important;
         text-align: center;
         overflow: hidden;
@@ -158,7 +139,7 @@ a:active {
     }
 
     li {
-        @include bg-dark50;
+        @include bg-dark35;
         color: darken($primary, 3%);
     }
 
@@ -178,77 +159,13 @@ a:active {
 
     .custom-file-label {
         border: 1px solid $primary;
-        @include bg-dark50;
+        @include bg-dark35;
 
         &::after {
             content: 'Выбрать файл' !important;
-            @include bg-dark50;
+            @include bg-dark35;
             color: $primary;
             opacity: 0.8;
         }
     }
 }
-
-//Style for Scrollbar im Chrome
-// Start
-
-/* width */
-::-webkit-scrollbar {
-    width: 15px;
-}
-
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: rgba($secondary, 0.25);
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: rgba($secondary, 0.5);
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: rgba($secondary, 0.85);
-}
-
-// Start
-//Style for Scrollbar im Chrome
-
-
-//Style for Title attribute
-// Start
-
-// [data-title]:hover:after {
-//     opacity: 1;
-//     transition: ease 0.355s;
-//     visibility: visible;
-// }
-
-// [data-title]:after {
-//     content: attr(data-title);
-//     background-color: gray;
-//     color: whitesmoke;
-//     font-size: 14px;
-//     position: absolute;
-//     padding: 0.25rem 0.5rem;
-//     bottom: -2.6em;
-//     left: 100%;
-//     white-space: nowrap;
-//     box-shadow: 1px 1px 5px #222222;
-//     opacity: 0;
-//     border-radius: 20px;
-//     z-index: 99999;
-//     visibility: hidden;
-// }
-
-// [data-title] {
-//     position: relative;
-// }
-
-// End
-//Style for Title attribute
