@@ -120,23 +120,18 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 900 !important;
 }
 
+.recipe-about-heading {
+    color: $primary;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+}
 
-.recipe-about {
-
-    h2 {
-        color: $primary;
-        font-weight: 700;
-        text-transform: uppercase;
-        text-align: center;
-        margin: 0.5em 0;
-        padding: 0;
-    }
-
-    p {
-        color: gray;
-        margin-bottom: 1em;
-        padding: 0 1.2em;
-    }
+.recipe-about-paragraph {
+    color: gray;
+    margin-bottom: 1em;
+    padding: 0 1.2em;
 }
 
 .recipe-list-ingredients-row {
