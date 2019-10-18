@@ -14,17 +14,6 @@
 
 Route::get('home', 'HomeController@index')->name('home');
 
-// ----------------- Vue routes (start) -----------------
-// how to do it more safe???
-
-Route::get('recipes/recipe-filter', 'RecipeFilter@getData');
-
-Route::get('recipes/recipe-sorting', 'RecipeFilter@getData');
-
-Route::resource('/picture', 'PictureController')->only(['store', 'update', 'destroy']);
-
-// ----------------- Vue routes (end) -----------------
-
 Route::resource('posts', 'PostController');
 
 Route::resource('users', 'UserController');

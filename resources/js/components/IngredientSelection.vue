@@ -180,7 +180,7 @@ export default {
 
     $_IngredientSelection_getData: function() {
       axios
-        .get("/recipes/recipe-filter")
+        .get("/api/recipe-filter")
         .then(res => {
           this.ingredient_list = res.data["ingredient_list"];
         })

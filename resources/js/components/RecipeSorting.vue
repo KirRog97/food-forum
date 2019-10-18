@@ -95,7 +95,7 @@ export default {
   methods: {
     $_RecipeSorting_getData: function() {
       axios
-        .get("/recipes/recipe-filter")
+        .get("/api/recipe-filter")
         .then(res => {
           console.log(res);
           this.urldata = res.data;

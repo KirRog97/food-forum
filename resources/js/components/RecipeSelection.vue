@@ -98,7 +98,7 @@ export default {
   methods: {
     $_RecipeSelection_getData: function() {
       axios
-        .get("/recipes/recipe-filter")
+        .get("/api/recipe-filter")
         .then(res => {
           this.urldata = res.data;
         })

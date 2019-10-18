@@ -193,7 +193,7 @@ export default {
       download.name = download.file.name;
 
       await axios
-        .post("/picture", form, {
+        .post("/api/p/s", form, {
           onUploadProgress: progressEvent => {
             download.fileProgress = Math.round(
               (progressEvent.loaded / progressEvent.total) * 100
