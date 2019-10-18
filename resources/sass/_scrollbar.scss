@@ -1,0 +1,53 @@
+//Style for Scrollbar im Chrome
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba($secondary, 0.25);
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba($secondary, 0.5);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba($secondary, 0.85);
+}
+
+//Style for Title attribute
+
+// [data-title]:hover:after {
+//     opacity: 1;
+//     transition: ease 0.355s;
+//     visibility: visible;
+// }
+
+// [data-title]:after {
+//     content: attr(data-title);
+//     background-color: gray;
+//     color: whitesmoke;
+//     font-size: 14px;
+//     position: absolute;
+//     padding: 0.25rem 0.5rem;
+//     bottom: -2.6em;
+//     left: 100%;
+//     white-space: nowrap;
+//     box-shadow: 1px 1px 5px #222222;
+//     opacity: 0;
+//     border-radius: 20px;
+//     z-index: 99999;
+//     visibility: hidden;
+// }
+
+// [data-title] {
+//     position: relative;
+// }
