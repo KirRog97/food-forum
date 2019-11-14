@@ -14,7 +14,7 @@ class Picture extends Model
 
     public function user()
     {
-        return $this->hasMany('App\User', 'avatar_id');
+        return $this->hasOne('App\User', 'avatar_id');
     }
 
     public function post()
