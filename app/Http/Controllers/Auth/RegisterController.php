@@ -64,17 +64,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = new User;
-        $user->username = $data['username'];
-        $user->email = $data['email'];
-
         $picture = Picture::create([
             'path' => '/images/icons/user_avacado.svg'
         ]);
-        $user->avatar()->associate($picture);
 
-        $user->password = Hash::make($data['password']);
-        $user->save();
+        return User::create([
+            'username'              =>      $data['username'],
+            'email'                 =>      $data['email'],
+            'avatar_id'             =>      $picture->id,
+            'password'              =>      Hash::make($data['password']),
+            'remember_token'        =>      now(),
+            'email_verified_at'     =>      now(),
+        ]);
 
         return redirect()->route('home')
             ->with('success', 'Ваш аккаунт успешно создан');
