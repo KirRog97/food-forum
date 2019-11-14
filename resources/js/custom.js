@@ -2,7 +2,17 @@ $("img").mousedown(function () {
     return false;
 });
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    // "Stop" func helps to create a "pendulum" of animation
+    $('.dropdown')
+        .on('show.bs.dropdown', function () {
+            $(this).children('.dropdown-menu').stop().fadeIn(650);
+            $(this).children('button').stop().css('color', '#b5904e');
+        })
+        .on('hide.bs.dropdown', function () {
+            $(this).children('.dropdown-menu').stop().fadeOut(350);
+            $(this).children('button').stop().css('color', '#212529');
+        });
+
     $('.dropdown-toggle').dropdown();
     $('.alert')
         .alert('dispose')
