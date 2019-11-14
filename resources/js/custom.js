@@ -1,6 +1,7 @@
 $("img").mousedown(function () {
     return false;
 });
+
 $(function () {
     // "Stop" func helps to create a "pendulum" of animation
     $('.dropdown')
@@ -13,7 +14,9 @@ $(function () {
             $(this).children('button').stop().css('color', '#212529');
         });
 
+    $('[data-toggle="tooltip"]').tooltip();
     $('.dropdown-toggle').dropdown();
+
     $('.alert')
         .alert('dispose')
         .delay($(this).text().length * 2)
