@@ -164,14 +164,24 @@ export default {
         });
       } else {
         this.hasError = true;
-        return this.hasError;
+        return this.$snotify.error(
+          "Указанный ингредиент уже выбран или отсутствует",
+          "Выбор ингредиента"
+        );
       }
     },
 
     $_IngredientSelection_delFromList: function(item, index) {
       if (_.find(this.added_ingredients, ["name", item.name])) {
-        return this.added_ingredients.splice(index, 1);
+        return this.$snotify.success(
+          "Указанный ингредиент успешно удален",
+          "Выбор ингредиента"
+        );
       }
+      return this.$snotify.error(
+        "Указанный для удаления ингредиент не был найден",
+        "Выбор ингредиента"
+      );
     },
 
     $_IngredientSelection_copyToSearch: function(item) {

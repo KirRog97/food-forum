@@ -32,6 +32,7 @@
                         @yield('content')
                     </div>
                     @include('layouts.footer')
+                    <vue-snotify></vue-snotify>
                 </div>
             </div>
         </div>

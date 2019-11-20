@@ -1,0 +1,29 @@
+.snotify {
+    width: 425px;
+    transition: 0.255s linear;
+
+    .snotifyToast__title {
+        font-size: 1.25rem;
+    }
+
+    .snotifyToast__body {
+        font-size: 1.15rem;
+    }
+
+    @include media-breakpoint-down(lg) {
+        width: 400px;
+    }
+
+    @include media-breakpoint-down(md) {
+        width: 400px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        width: 280px;
+    }
+
+    @include media-breakpoint-down(xs) {
+        width: 225px;
+    }
+
+}

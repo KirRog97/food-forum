@@ -8,6 +8,23 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// https:www.npmjs.com/package/vue-snotify
+import Snotify, {
+    SnotifyPosition
+} from 'vue-snotify'
+Vue.use(Snotify, {
+    toast: {
+        position: SnotifyPosition.leftBottom,
+        timeout: 5000,
+        animation: {
+            time: 800
+        },
+        titleMaxLength: 32,
+        bodyMaxLength: 240,
+        placeholder: "Введите текст..."
+    }
+})
+
 
 /**
  * The following block of code may be used to automatically register your

@@ -145,10 +145,10 @@ export default {
     $_PictureDownloading_deleteFile: function(index) {
       if (this.downloads[index].is_new) {
         this.downloads.splice(index, 1);
-        return this.messages.push({
-          type: "success",
-          text: "Удалено"
-        });
+        return this.$snotify.success(
+          "Выбранный файл для загрузки был сброшен",
+          "Загрузка изображения"
+        );
       }
 
       axios
@@ -156,10 +156,10 @@ export default {
         .then(res => {
           if (res.data.result === true) {
             this.downloads.splice(index, 1);
-            return this.messages.push({
-              type: "success",
-              text: "Файл успешно удален"
-            });
+            return this.$snotify.success(
+              "Файл успешно удален",
+              "Загрузка изображения"
+            );
           }
         })
         .catch(err => {
@@ -173,17 +173,21 @@ export default {
 
     $_PictureDownloading_uploadFile: async function(download) {
       if (!download.file) {
-        return this.messages.push({
-          type: "error",
-          text: "Файл для загрузки не был выбран"
-        });
+        return this.$snotify.error(
+          "Файл не был выбран",
+          "Ошибка загрузки изображения"
+        );
       }
 
       if (this.uploadableTypes.indexOf(download.file.type) === -1) {
-        return this.messages.push({
-          type: "error",
-          text: "Неверный тип загружаемого файла"
-        });
+        this.$snotify.error(
+          "Неверный тип загружаемого файла",
+          "Ошибка загрузки изображения"
+        );
+        return this.$snotify.info(
+          "Допустимые форматы для загрузки: jpeg, png, bmp",
+          "Загрузка изображения"
+        );
       }
 
       let form = new FormData();
@@ -203,10 +207,14 @@ export default {
         })
         .then(res => {
           download.id = res.data.id;
-          download.path = `/storage/${res.data.path}`;
+          this.$snotify.success(null, "Файл заргужен успешно");
         })
         .catch(err => {
           console.error(err);
+          this.$snotify.error(
+            "Произошла ошибка на стороне серверов. Файл не было загружено",
+            "Ошибка загрузки изображения"
+          );
         });
 
       download.isDownloading = false;

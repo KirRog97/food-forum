@@ -18,6 +18,8 @@
 @import 'footer';
 //Style for Scrollbar im Chrome
 @import 'scrollbar';
+@import "~vue-snotify/styles/material";
+@import 'snotifyStyles';
 
 body {
     font-family: 'Oswald', sans-serif;
