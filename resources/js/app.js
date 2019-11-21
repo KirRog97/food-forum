@@ -25,6 +25,16 @@ Vue.use(Snotify, {
     }
 })
 
+Vue.toArrayOfObjects = function (data) {
+    let resultArray = [];
+    _.each(data, function (value, key) {
+        resultArray.push({
+            id: key,
+            name: value
+        });
+    });
+    return resultArray;
+}
 
 /**
  * The following block of code may be used to automatically register your
