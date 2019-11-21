@@ -24,10 +24,11 @@
 
     <div class="row w-100 p-2">
         <div class="col-4 p-0 rounded">
-            @if ($ingredient->picture->path && $ingredient->picture->path === '0')
-            <img class="img-fluid-center" src="/storage/{{ $ingredient->picture->path }}" alt="Ingredient Picture">
+            @if ($ingredient->picture->path)
+            <img class="img-fluid-center" src="{{ $ingredient->picture->path }}" alt="Ingredient Picture">
             @else
-            <img class="img-fluid-center" src="/images/ingredients/meet.jpg" alt="Ingredient Picture">
+            <img class="img-fluid-center" src="/images/ingredients/default_ingredient_img.svg"
+                alt="Ingredient Default Picture">
             @endif
         </div>
         <div class="col px-4 text-justify text-secondary rounded">
