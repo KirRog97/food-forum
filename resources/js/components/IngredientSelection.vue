@@ -9,7 +9,7 @@
           <div class="input-group-prepend">
             <div class="input-group-sm">
               <button
-                class="btn h-100 border-right-0 shadow-none"
+                class="btn border border-right-0 border-primary rounded shadow-none"
                 type="button"
                 @click="$_IngredientSelection_addToList"
               >
@@ -20,9 +20,9 @@
           <input
             type="text"
             class="form-control text-left"
-            :class="{ 'is-invalid' : hasError }"
+            :class="{ 'is-invalid': hasError }"
             v-model="searchString"
-          >
+          />
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         tag="ul"
       >
         <li
-          v-for="(item, index) in filteredIAddingredients"
+          v-for="(item, index) in filterIngredients"
           class="list-group-item list-group-item-primary shadow px-3 py-2"
           :value="item"
           :key="index"
@@ -46,12 +46,10 @@
       </transition-group>
     </div>
 
-    <div class="col-12" :class="[ !added_ingredients.length > 0 ? 'd-none' : 'bg-dark-50']">
+    <div class="col-12" :class="[!added_ingredients.length > 0 ? 'd-none' : 'bg-dark-50']">
       <ul
-        class="list-group list-group-horizontal flex-wrap justify-content-center bg-dark50 rounded border border-primary p-2"
-        :class="[ 
-        added_ingredients.length > 0? 'mt-2' : 'd-none'
-        ]"
+        class="list-group list-group-horizontal flex-wrap justify-content-center bg-dark35 rounded border border-primary p-2"
+        :class="[added_ingredients.length > 0 ? 'mt-2' : 'd-none']"
       >
         <li
           class="list-group-item bg-transparent shadow-none border-0 p-2"
@@ -72,7 +70,7 @@
                     <i class="fas fa-times fa-lg" aria-hidden="true"></i>
                   </button>
                 </div>
-                <h4>{{item.name}}</h4>
+                <h4>{{ item.name }}</h4>
               </div>
               <div class="card-body py-3 px-2">
                 <h5 class="card-subtitle text-center mb-2">Количество грамм:</h5>
@@ -81,24 +79,24 @@
                     <button
                       type="button"
                       class="btn btn-outline-primary"
-                      @click="item.quantity -= 10"
+                      @click="item.amount -= 10"
                     >
                       <i class="fas fa-minus"></i>
                     </button>
                   </div>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     min="0"
                     max="10000"
                     step="1"
-                    v-model="item.quantity"
-                  >
+                    v-model="item.amount"
+                  />
                   <div class="input-group-append">
                     <button
                       type="button"
                       class="btn btn-outline-primary"
-                      @click="item.quantity += 10"
+                      @click="item.amount += 10"
                     >
                       <i class="fas fa-plus"></i>
                     </button>
@@ -117,7 +115,7 @@
 export default {
   data() {
     return {
-      ingredient_list: [],
+      ingredientArray: [],
       added_ingredients: [],
       hasError: false,
       searchString: ""
@@ -129,17 +127,17 @@ export default {
   },
 
   computed: {
-    filteredIAddingredients: function() {
-      var filtered_ing = this.ingredient_list,
-        searchString = this.searchString;
-
-      if (!searchString || searchString.length < 2) {
+    filterIngredients: function() {
+      if (!this.searchString || this.searchString.length < 3) {
         return;
       }
 
+      let ingNameArray = this.ingredientArray.map(i => i.name);
+      let searchString = this.searchString;
+
       searchString = searchString.trim().toLowerCase();
 
-      return (filtered_ing = filtered_ing.filter(function(item) {
+      return (ingNameArray = ingNameArray.filter(function(item) {
         if (item.toLowerCase().indexOf(searchString) !== -1) {
           return item;
         }
@@ -147,21 +145,35 @@ export default {
     }
   },
 
+
   methods: {
     $_IngredientSelection_addToList: function() {
-      var ingredient_list = this.ingredient_list,
-        added_ingredients = this.added_ingredients,
-        searchString = this.searchString.toString().trim();
+      if (_.isEmpty(this.searchString)) {
+        return this.$snotify.info(
+          "Вы не выбрали инредиент",
+          "Выбор ингредиента"
+        );
+      }
+      let ingNameArray = this.ingredientArray.map(i => i.name);
+      let added_ingredients = this.added_ingredients;
+      let searchString = this.searchString;
 
       // https://lodash.com/docs/4.17.11#find
-      if (
-        ingredient_list.includes(searchString) &&
-        !_.find(added_ingredients, ["name", searchString])
-      ) {
+      let existInIngredientList = ingNameArray.includes(searchString);
+      let missedInAddedIngredientsList = !_.find(added_ingredients, [
+        "name",
+        searchString
+      ]);
+
+      if (existInIngredientList && missedInAddedIngredientsList) {
+        let findedObj = _.find(this.ingredientArray, ["name", searchString]);
         return added_ingredients.push({
-          name: searchString,
-          quantity: 0
+          id: findedObj.id,
+          name: findedObj.name,
+          amount: 0
         });
+        this.hasError = false;
+        this.searchString = "";
       } else {
         this.hasError = true;
         return this.$snotify.error(
@@ -173,6 +185,7 @@ export default {
 
     $_IngredientSelection_delFromList: function(item, index) {
       if (_.find(this.added_ingredients, ["name", item.name])) {
+        this.added_ingredients.splice(index, 1);
         return this.$snotify.success(
           "Указанный ингредиент успешно удален",
           "Выбор ингредиента"
@@ -192,7 +205,9 @@ export default {
       axios
         .get("/api/recipe-filter")
         .then(res => {
-          this.ingredient_list = res.data["ingredient_list"];
+          this.ingredientArray = Vue.toArrayOfObjects(
+            res.data["ingredient_list"]
+          );
         })
         .catch(err => {
           console.error(err);

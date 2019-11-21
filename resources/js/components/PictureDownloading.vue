@@ -1,36 +1,24 @@
 <template>
-  <div class="container-fluid py-2 px-0">
-    <template v-if="messages">
-      <div
-        v-for="message in messages"
-        :key="message.id"
-        class="alert rounded-pill alert-dismissible shadow-sm fade show"
-        :class="[message.type === 'error' ? 'alert-danger' : 'alert-success' ]"
-        role="alert"
-      >
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>{{ message.text }}</strong>
-      </div>
-    </template>
-
+  <div class="container-fluid">
     <div
-      class="row align-items-center justify-content-around my-2 px-1 py-3"
+      class="row align-items-center justify-content-around py-3"
       v-for="(download, index) in downloads"
       :key="index"
     >
-      <input type="hidden" name="downloads[]" v-model="downloads.id">
+      <input type="hidden" name="downloads[]" v-model="downloads.id" />
 
       <div class="col-12 text-center my-2" v-if="download.isDownloading">
         <div class="w-100 py-2">
-          <span class="text-primary">{{ download.name }} : {{ download.fileProgress }} %</span>
+          <span class="text-primary">
+            {{ download.name }} :
+            {{ download.fileProgress }} %
+          </span>
         </div>
         <div class="progress shadow-sm h-100 py-1 px-1">
           <div
             class="progress-bar text-black-50 rounded"
             role="progressbar"
-            :style="{ width:  download.fileProgress + '%' }"
+            :style="{ width: download.fileProgress + '%' }"
             style="height: 15px"
             :aria-valuenow="download.fileProgress"
             aria-valuemin="0"
@@ -40,14 +28,14 @@
       </div>
 
       <template v-if="download.is_new">
-        <div class="col-12 col-sm-12 col-md-9 m-0">
+        <div class="col-10 col-sm-10 col-md-9 p-0 m-0">
           <div class="custom-file shadow-sm">
             <input
               type="file"
               class="custom-file-input shadow-none"
               id="file"
               @change="$_PictureDownloading_fileInputChange(download)"
-            >
+            />
             <label class="custom-file-label m-0" for="file">{{ download.name }}</label>
           </div>
         </div>
@@ -69,7 +57,7 @@
           v-show="!download.isDownloading"
           class="col-11 rounded bg-dark50 border border-primary text-center p-0 m-auto"
         >
-          <img class="img-fluid-center" :src="download.path">
+          <img class="img-fluid-center" :src="download.path" />
         </div>
       </template>
 
@@ -105,7 +93,6 @@ export default {
       downloads: [
         { id: 0, is_new: true, fileProgress: 0, isDownloading: false }
       ],
-      messages: [],
       uploadableTypes: ["image/jpeg", "image/png", "image/bmp"]
     };
   },
@@ -119,20 +106,11 @@ export default {
 
   updated: function() {
     this.$nextTick(function() {
-      this.$_PictureDownloading_messageFade();
       if (this.downloads.length === 0) this.$_PictureDownloading_addFile();
     });
   },
 
   methods: {
-    $_PictureDownloading_messageFade: function() {
-      $(".alert")
-        .delay(2200)
-        .slideUp(2000, function() {
-          $(this).remove();
-        });
-    },
-
     $_PictureDownloading_addFile: function() {
       this.downloads.push({
         id: 0,
