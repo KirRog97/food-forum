@@ -108,13 +108,14 @@ a:active {
     }
 
     input,
-    textarea {
+    textarea,
+    option {
         color: $primary !important;
         @include bg-dark35;
         border: 1px solid $primary !important;
         text-align: center;
         overflow: hidden;
-        z-index: 999;
+        z-index: 1;
     }
 
     textarea {
