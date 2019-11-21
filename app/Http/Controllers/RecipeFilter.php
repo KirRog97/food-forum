@@ -10,20 +10,20 @@ use Illuminate\Support\Facades\Cache;
 
 class RecipeFilter extends Controller
 {
-    public function cacheCheck($list, $class)
+    public function cacheCheck($array, $class)
     {
-        if (Cache::has($list)) {
-            return  $el_list = Cache::get($list);
+        if (Cache::has($array)) {
+            return  $el_array = Cache::get($array);
         } else {
-            $this->cacheRemember($list, $class);
-            return  $el_list = Cache::get($list);
+            $this->cacheRemember($array, $class);
+            return  $el_array = Cache::get($array);
         };
     }
 
-    public function cacheRemember($list, $class)
+    public function cacheRemember($array, $class)
     {
-        $arrToRemember = $class::all()->pluck('name');
-        Cache::put($list, $arrToRemember, now()->addMinutes(30));
+        $arrToRemember = $class::all()->pluck('name', 'id');
+        Cache::put($array, $arrToRemember, now()->addMinutes(30));
     }
 
     public function getData()
@@ -34,8 +34,10 @@ class RecipeFilter extends Controller
         $category_list =        $this->cacheCheck('Category', Category::class);
 
         return response()->json([
-            'ingredient_list' =>  $ingredient_list, 'kitchen_list' =>  $kitchen_list,
-            'dishes_list' =>  $dishes_list, 'category_list' =>  $category_list
+            'ingredient_list'   =>  $ingredient_list,
+            'kitchen_list'      =>  $kitchen_list,
+            'dish_list'         =>  $dishes_list,
+            'category_list'     =>  $category_list
         ]);
     }
 }
