@@ -146,6 +146,20 @@ a:active {
         color: darken($primary, 3%);
     }
 
+    select {
+        color: $primary !important;
+        @include bg-dark35;
+        border: 1px solid $primary !important;
+        text-align: center;
+        z-index: 2;
+
+        &:focus,
+        &:active {
+            background-color: darken($secondary, 10%) !important;
+            border-color: darken($primary, 25%);
+        }
+    }
+
     .form-group label {
         display: flex;
         position: absolute;
