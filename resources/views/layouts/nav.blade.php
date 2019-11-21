@@ -17,11 +17,11 @@
                 <li>
                     <div class="dropdown">
                         <button class="btn px-2 py-0 m-auto shadow-none" type="button" data-toggle="dropdown"
-                            data-offset="-120px" aria-haspopup="true" aria-expanded="false">
+                            data-offset="-120px, 10px" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell fa-lg" aria-hidden="true"></i>
                         </button>
 
-                        <div class="dropdown-menu text-center p-0 mr-5" style=" width: 250px;">
+                        <div class="dropdown-menu text-center p-0 mr-5" style="width: 250px;">
                             <div class="card bg-dark border-dark">
                                 <div
                                     class="card-header d-flex justify-content-between align-items-center text-white border-dark">
@@ -55,13 +55,14 @@
                 <li>
                     <div class="dropdown">
                         <button type="button" class="btn px-2 py-0 m-auto shadow-none" data-toggle="dropdown"
-                            data-offset="-120px" aria-haspopup="true" aria-expanded="false">
+                            data-offset="-124px, 10px" data-flip="true" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu rounded border-dark text-center p-0">
-                            <a class="dropdown-header bg-dark text-white py-2" href="#">
-                                <img src="{{ Auth::user()->avatar->path }}" style="width:64px;" alt="User Avatar">
-                                <h5 class="mt-1">{{ Auth::user()->username }}</h5>
+                            <a class="dropdown-header bg-dark text-white py-2" href="/users/{{ Auth::user()->id }}">
+                                <img src="{{ Auth::user()->avatar->path }}" class="rounded-circle" style="width:64px;"
+                                    alt="User Avatar">
+                                <h5 class="text-wrap mt-1">{{ Auth::user()->username }}</h5>
                             </a>
                             <a class="dropdown-item py-3" href="/users/{{ Auth::user()->id }}">
                                 {{__('Мой профиль')}}
