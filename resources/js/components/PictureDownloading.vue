@@ -207,6 +207,7 @@ export default {
         })
         .then(res => {
           download.id = res.data.id;
+          download.path = res.data.path;
           this.$snotify.success(null, "Файл заргужен успешно");
         })
         .catch(err => {
