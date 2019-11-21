@@ -7,7 +7,7 @@
           <button
             class="btn btn-light border rounded-left px-3"
             type="button"
-            @click="$_RecipeSelectionAddIng_moveToAddList"
+            @click="$_RecipeSelectionAddIng_addToPreferIng"
           >
             <i class="fas fa-plus"></i>
           </button>
@@ -15,9 +15,9 @@
         <input
           type="text"
           class="form-control shadow-none"
-          :class="{ 'is-invalid' : hasError }"
+          :class="{ 'is-invalid': hasError }"
           v-model="searchString"
-        >
+        />
       </div>
 
       <transition-group
@@ -28,7 +28,7 @@
         tag="ul"
       >
         <li
-          v-for="(item, index) in filteredIAddingredients"
+          v-for="(item, index) in filterIngredients"
           class="list-group-item list-group-item-success shadow px-3 py-2"
           :value="item"
           :key="index"
@@ -41,20 +41,22 @@
 
       <ul
         :class="[
-        'list-group', 'list-group-horizontal', 'flex-wrap',
-        added_ingredients.length > 0? 'mt-2' : 'd-none'
-        ]"
+                    'list-group',
+                    'list-group-horizontal',
+                    'flex-wrap',
+                    preferableIngredients.length > 0 ? 'mt-2' : 'd-none'
+                ]"
       >
         <li
           class="list-group-item list-group-item-success rounded-pill shadow-sm p-2 m-1"
-          v-for="(item, index) in added_ingredients"
+          v-for="(item, index) in preferableIngredients"
           :key="index"
         >
-          <span class="font-weight-lighter px-1">{{ item }}</span>
+          <span class="font-weight-lighter px-1">{{ item.name }}</span>
           <button
             type="button"
             class="btn btn-danger rounded close px-1"
-            @click="$_RecipeSelectionAddIng_delFromList(item)"
+            @click="$_RecipeSelectionAddIng_delFromPreferIng(item)"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -67,63 +69,70 @@
 <script>
 export default {
   props: {
-    ingredient_list: Array
+    ingredientArray: Array
   },
 
   data() {
     return {
-      added_ingredients: [],
+      preferableIngredients: [],
       hasError: false,
       searchString: ""
     };
   },
 
   computed: {
-    filteredIAddingredients: function() {
-      var filtered_ingredients_array = this.ingredient_list;
-      var searchString = this.searchString;
-
-      if (!searchString || searchString.length < 2) {
+    filterIngredients: function() {
+      if (!this.searchString || this.searchString.length < 3) {
         return;
       }
-
+      let ingNameArray = this.ingredientArray.map(i => i.name);
+      let searchString = this.searchString;
       searchString = searchString.trim().toLowerCase();
-
-      filtered_ingredients_array = filtered_ingredients_array.filter(function(
-        item
-      ) {
+      return (ingNameArray = ingNameArray.filter(function(item) {
         if (item.toLowerCase().indexOf(searchString) !== -1) {
           return item;
         }
-      });
-
-      return filtered_ingredients_array;
+      }));
     }
   },
 
   methods: {
-    $_RecipeSelectionAddIng_moveToAddList: function() {
-      var ingredient_list = this.ingredient_list,
-        added_ingredients = this.added_ingredients,
-        searchString = this.searchString;
-
-      if (
-        ingredient_list.includes(searchString) &&
-        !added_ingredients.includes(searchString)
-      ) {
-        return added_ingredients.push(searchString);
-      } else {
-        this.hasError = true;
-        return this.hasError;
+    $_RecipeSelectionAddIng_addToPreferIng: function() {
+      if (_.isEmpty(this.searchString)) {
+        return this.$snotify.info(
+          "Вы не выбрали инредиент",
+          "Выбор ингредиента"
+        );
       }
-
-      return added_ingredients;
+      let ingNameArray = this.ingredientArray.map(i => i.name),
+        preferableIngredients = this.preferableIngredients,
+        searchString = this.searchString;
+      if (
+        ingNameArray.includes(searchString) &&
+        !_.find(preferableIngredients, ["name", searchString])
+      ) {
+        let findedObj = _.find(this.ingredientArray, ["name", searchString]);
+        return preferableIngredients.push({
+          id: findedObj.id,
+          name: findedObj.name
+        });
+      } else {
+        this.$snotify.error(
+          "Указанный ингредиент уже выбран или отсутствует",
+          "Выбор ингредиента"
+        );
+        return (this.hasError = true);
+      }
     },
 
-    $_RecipeSelectionAddIng_delFromList: function(item) {
-      if (this.added_ingredients.includes(item))
-        this.added_ingredients.splice(item);
-      return this.added_ingredients;
+    $_RecipeSelectionAddIng_delFromPreferIng: function(item) {
+      if (this.preferableIngredients.includes(item)) {
+        return this.preferableIngredients.splice(item);
+      }
+      return this.$snotify.error(
+        "Указанный для удаления ингредиент не был найден",
+        "Выбор ингредиента"
+      );
     },
 
     $_RecipeSelectionAddIng_copyToSearch: function(item) {
