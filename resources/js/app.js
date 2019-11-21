@@ -37,6 +37,8 @@ Vue.use(Snotify, {
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component('selection', require('./components/layouts/Selection.vue').default);
+
 Vue.component('recipe-selection', require('./components/RecipeSelection.vue').default);
 Vue.component('recipe-selection-add-ing', require('./components/RecipeSelectionAddIng.vue').default);
 Vue.component('recipe-selection-exlucde-ing', require('./components/RecipeSelectionExcludeIng.vue').default);
