@@ -152,7 +152,7 @@ export default {
       }
 
       axios
-        .delete("/picture/" + this.downloads[index].id)
+        .delete("/api/p/d/" + this.downloads[index].id)
         .then(res => {
           if (res.data.result === true) {
             this.downloads.splice(index, 1);
