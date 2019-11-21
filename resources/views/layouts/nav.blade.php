@@ -1,6 +1,6 @@
-<div class="container-fluid px-0 py-3 fa-lg">
+<div class="container-fluid px-2 py-3 fa-lg">
     <div class="row justify-content-between align-items-center">
-        <div class="col-9 col-md-10">
+        <div class="col-9 col-md-10 p-0">
             <form class="form-inline" action="" method=" POST">
                 {{ csrf_field() }}
                 <button class="btn px-2 py-0 mr-2" type="submit">

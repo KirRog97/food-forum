@@ -32,8 +32,8 @@
 
             <div class="recipe-list-box">
                 <div class="recipe-list-images position-relative d-flex">
-                    <div class="recipe-author rounded-pill bg-dark50 w-auto px-2 py-1 mt-2">
-                        <div class="recipe-author-name p-1">
+                    <div class="recipe-author d-flex align-items-center rounded-pill bg-dark50 w-auto px-2 py-1 mt-2">
+                        <div class="recipe-author-name text-truncate p-1">
                             <a href="/users/{{ $post->user->id }}" data-toggle="tooltip" data-placement="bottom"
                                 title="Просмотреть профиль">
                                 <span>

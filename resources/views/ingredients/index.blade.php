@@ -6,12 +6,9 @@
 @section('content')
 
 <div class="container-fluid">
-
     @heading
     Книга ингредиентов
     @endheading
-
-
     <div class="text-center text-justify text-muted mb-4">
         <p>
             Здесь вы можете ознакомиться с ингредиентами, которые будут использоваться в ваших рецептах.
@@ -22,7 +19,7 @@
 
     @foreach ($ingredients as $ingredient)
 
-    <div class="row w-100 p-2">
+    <div class="row px-0 py-3">
         <div class="col-4 p-0 rounded">
             @if ($ingredient->picture->path)
             <img class="img-fluid-center" src="{{ $ingredient->picture->path }}" alt="Ingredient Picture">
@@ -31,7 +28,7 @@
                 alt="Ingredient Default Picture">
             @endif
         </div>
-        <div class="col px-4 text-justify text-secondary rounded">
+        <div class="col rounded text-justify text-secondary px-3">
             <a class="text-center font-weight-light py-2" href="/ingredients/{{ $ingredient->id }}">
                 <h3>
                     {{ $ingredient->name }}
