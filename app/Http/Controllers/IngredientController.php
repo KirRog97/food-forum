@@ -54,8 +54,8 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        $ingredient = Ingredient::find($ingredient);
-        return view('ingredients.show') -> with('ingredient', $ingredient);
+        $ingredient = Ingredient::find($ingredient->id);
+        return view('ingredients.show')->with('ingredient', $ingredient);
     }
 
     /**
