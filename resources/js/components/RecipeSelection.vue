@@ -1,62 +1,77 @@
 <template>
-  <div>
-    <div class="container-fluid">
-      <div class="row justify-content-between mb-2">
-        <div class="col-sm-12 col-md-8 col-xl-9 btn-group py-sm-2 py-md-1 px-0">
-          <div class="form-group w-25 shadow-none p-0 m-1">
-            <selection
-              @selectedItem="$_RecipeSelection_takeFromChildCategory"
-              :data="categoryArray"
-              :options="{ defaultText: 'Выберите категорию', isRequire: true }"
-            ></selection>
-          </div>
-          <div class="form-group w-25 shadow-none p-0 m-1">
-            <selection
-              @selectedItem="$_RecipeSelection_takeFromChildKitchen"
-              :data="kitchenArray"
-              :options="{ defaultText: 'Выберите кухню', isRequire: true }"
-            ></selection>
-          </div>
-          <div class="form-group w-25 shadow-none p-0 m-1">
-            <selection
-              @selectedItem="$_RecipeSelection_takeFromChildDish"
-              :data="dishArray"
-              :options="{ defaultText: 'Выберите блюдо', isRequire: true }"
-            ></selection>
-          </div>
-          <div class="form-group w-25 shadow-none p-0 m-1">
-            <selection
-              @selectedItem="$_RecipeSelection_takeFromChildMenu"
-              :data="menuArray"
-              :options="{ defaultText: 'Выберите меню', isRequire: true }"
-            ></selection>
-          </div>
-        </div>
+  <div class="container-fluid p-0">
+    <vs-row class="w-100 mb-2" vs-justify="space-between">
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
+        <vs-select
+          class="w-100"
+          placeholder="Выберите категорию"
+          v-model.number="selectedCategoryId"
+        >
+          <vs-select-item
+            :key="index"
+            :value="item.id"
+            :text="item.name"
+            v-for="(item,index) in categoryArray"
+          />
+        </vs-select>
+      </vs-col>
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
+        <vs-select class="w-100" placeholder="Выберите кухню" v-model.number="selectedKitchenId">
+          <vs-select-item
+            :key="index"
+            :value="item.id"
+            :text="item.name"
+            v-for="(item,index) in kitchenArray"
+          />
+        </vs-select>
+      </vs-col>
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
+        <vs-select class="w-100" placeholder="Выберите блюдо" v-model.number="selectedDishId">
+          <vs-select-item
+            :key="index"
+            :value="item.id"
+            :text="item.name"
+            v-for="(item,index) in dishArray"
+          />
+        </vs-select>
+      </vs-col>
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
+        <vs-select
+          class="w-100"
+          vs-w="12"
+          placeholder="Выберите меню"
+          v-model.number="selectedMenuId"
+        >
+          <vs-select-item
+            :key="index"
+            :value="item.id"
+            :text="item.name"
+            v-for="(item,index) in menuArray"
+          />
+        </vs-select>
+      </vs-col>
+    </vs-row>
 
-        <div class="col-auto py-1 px-0 mx-1">
-          <button
-            type="button"
-            class="btn btn-outline-secondary shadow-sm"
-            @click="show = !show"
-          >Ингредиенты</button>
-        </div>
-
-        <div class="col-auto py-1 px-0 m-0">
-          <button class="btn btn-xm btn-secondary shadow-sm" type="submit">Подобрать рецепт</button>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid bg-light rounded p-4" v-if="show">
-      <div class="row mb-3">
+    <vs-row class="bg-light rounded p-2" vs-w="12" vs-justify="space-between" v-if="show">
+      <vs-col class="row" vs-justify="space-between">
         <recipe-selection-add-ing :ingredientArray="ingredientArray" />
         <recipe-selection-exlucde-ing :ingredientArray="ingredientArray" />
-      </div>
-      <button type="button" class="btn btn-outline-secondary mr-1">Показать</button>
-      <button type="reset" class="btn btn-outline-light text-muted">
-        <i class="fas fa-redo mr-1"></i>
-        Очистить
-      </button>
-    </div>
+      </vs-col>
+      <vs-col vs-type="flex" vs-justify="space-around">
+        <vs-button class="w-100" color="secondary" type="flat" icon="replay">Очистить</vs-button>
+      </vs-col>
+    </vs-row>
+
+    <vs-row class="w-100 mb-2" vs-justify="space-between">
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
+        <vs-button class="w-100" color="secondary" type="relief" @click="show = !show">Ингредиенты</vs-button>
+      </vs-col>
+
+      <!-- add submit func -->
+      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
+        <vs-button class="w-100" color="secondary" type="relief">Подобрать рецепт</vs-button>
+      </vs-col>
+    </vs-row>
   </div>
 </template>
 
@@ -69,10 +84,10 @@ export default {
       kitchenArray: [],
       dishArray: [],
       menuArray: [],
-      selectedCategoryId: null,
-      selectedDishId: null,
-      selectedKitchenId: null,
-      selectedMenuId: null,
+      selectedCategoryId: Number,
+      selectedDishId: Number,
+      selectedKitchenId: Number,
+      selectedMenuId: Number,
       show: false
     };
   },
@@ -82,18 +97,6 @@ export default {
   },
 
   methods: {
-    $_RecipeSelection_takeFromChildCategory: function(newSelectedItem) {
-      this.selectedCategoryId = newSelectedItem.selected;
-    },
-    $_RecipeSelection_takeFromChildKitchen: function(newSelectedItem) {
-      this.selectedKitchenId = newSelectedItem.selected;
-    },
-    $_RecipeSelection_takeFromChildDish: function(newSelectedItem) {
-      this.selectedDishId = newSelectedItem.selected;
-    },
-    $_RecipeSelection_takeFromChildMenu: function(newSelectedItem) {
-      this.selectedMenuId = newSelectedItem.selected;
-    },
     $_RecipeSelection_getData: function() {
       axios
         .get("/api/recipe-filter")
