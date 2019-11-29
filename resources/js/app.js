@@ -72,6 +72,7 @@ Vue.component('recipe-selection-exlucde-ing', require('./components/RecipeSelect
 
 Vue.component('ingredient-selection', require('./components/IngredientSelection.vue').default);
 Vue.component('picture-downloading', require('./components/PictureDownloading.vue').default);
+Vue.component('post-selection-options', require('./components/PostSelectionOptions.vue').default);
 
 
 /**

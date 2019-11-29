@@ -65,6 +65,7 @@
             </div>
         </div>
 
+        <post-selection-options></post-selection-options>
         <ingredient-selection></ingredient-selection>
 
         <picture-downloading :isMultipleDownloadMode="false">
