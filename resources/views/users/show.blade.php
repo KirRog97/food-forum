@@ -1,231 +1,59 @@
 @extends('layouts.app')
 
 @section('page_title')
-Рецепт
+Профиль пользователя
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col p-0" style="background-color: lightgrey;">
-            <div class="card text-white border-0">
-                <img class="card-img-top" src="/images/recipes/плов.jpg" alt="">
-                <div class="card-body d-flex flex-row badge-dark">
-                    <div class="btn-group-sm">
-                        <button type="button" name="" id="" class="btn btn-primary border-0" btn-lg>
-                            <i class="fas fa-heart"></i>
-                            <span>Нравится</span>
-                        </button>
-
-                        <button type="button" name="" id="" class="btn btn-primary border-0" btn-lg>
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                            <span>Добавить в закладки</span>
-                        </button>
-                    </div>
+    <div class="card border-0 mb-3">
+        <div class="row no-gutters">
+            <div class="col-12 col-md-4">
+                <img class="card-img-top img-fluid-center" src="{{ $user->avatar->path}}" alt="user image">
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        {{ $user->username  }}
+                    </h5>
+                    <vs-list>
+                        <vs-list-header icon="person" title="Личные данные"> </vs-list-header>
+                        <vs-list-item title="Дата регистрации:" subtitle="{{ $user->created_at}}">
+                            <label for="switch2">Doesnt work </label>
+                            <vs-switch color="success" v-model="switch2" vs-icon="done"></vs-switch>
+                        </vs-list-item>
+                        <vs-list-item title="Email:" subtitle="{{ $user->email}}">
+                            <vs-button type="flat" color="secondary">Изменить</vs-button>
+                        </vs-list-item>
+                        <vs-list-header icon="assignment" title="Активность пользователя"> </vs-list-header>
+                        <vs-list-item title="Опубликованно рецептов:" subtitle="1123">
+                            <vs-button type="flat" color="secondary">Список</vs-button>
+                        </vs-list-item>
+                        <vs-list-item title="Написанно комментариев:" subtitle="235">
+                            <vs-button type="flat" color="secondary">Список</vs-button>
+                        </vs-list-item>
+                    </vs-list>
+                    <p class="card-text d-flex justify-content-end">
+                        <small class="text-muted">
+                            Last updated 54 mins ago
+                        </small>
+                    </p>
                 </div>
             </div>
-
-            <div class="recipe-about">
-                <h2>Лазанья классическая с мясом</h2>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque repudiandae repellendus non
-                    doloremque hic perferendis maxime. Delectus eveniet ex optio repudiandae, id quam non cupiditate.
-                    Officia pariatur dicta rem modi?
-                </p>
-            </div>
-
-            <div class="container-fluid mb-4">
-                <div class="row justify-content-between px-4">
-
-                    <div class="col-2 p-0">
-                        <img src="/images/icons/CountOfPortions.ico" width="25px" alt="">
-                        <h5><span>5 порций</span></h5>
-                    </div>
-                    <div class="col-2 p-0">
-                        <img src="/images/icons/CountOfPortions.ico" width="25px" alt="">
-                        <h5><span>120 минут</span></h5>
-                    </div>
-
-                    <div class="col-2 p-0">
-                        <img src="/images/icons/Kcal.svg" width="25px" alt="">
-                        <h5><span>563 Ккал</span></h5>
-                    </div>
-
-                    <div class="col-2 p-0">
-                        <img src="/images/icons/CountOfPortions.ico" width="25px" alt="">
-                        <h5><span>5 порций</span></h5>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="container-fluid">
-                <div class="card-columns">
-
-                    <div class="card border-0 bg-transparent">
-                        <img class="card-img-top" src="/images/category_meat.jpg" alt="">
-                        <div class="card-body p-1 text-center">
-                            <h4 class="card-title mb-1">Масло</h4>
-                            <p class="card-text">200гр</p>
-                        </div>
-                    </div>
-                    <div class="card border-0 bg-transparent">
-                        <img class="card-img-top" src="/images/category_meat.jpg" alt="">
-                        <div class="card-body p-1 text-center">
-                            <h4 class="card-title mb-1">Масло</h4>
-                            <p class="card-text">200гр</p>
-                        </div>
-                    </div>
-                    <div class="card border-0 bg-transparent">
-                        <img class="card-img-top" src="/images/category_meat.jpg" alt="">
-                        <div class="card-body p-1 text-center">
-                            <h4 class="card-title mb-1">Масло</h4>
-                            <p class="card-text">200гр</p>
-                        </div>
-                    </div>
-                    <div class="card border-0 bg-transparent">
-                        <img class="card-img-top" src="/images/category_meat.jpg" alt="">
-                        <div class="card-body p-1 text-center">
-                            <h4 class="card-title mb-1">Масло</h4>
-                            <p class="card-text">200гр</p>
-                        </div>
-                    </div>
-                    <div class="card border-0 bg-transparent">
-                        <img class="card-img-top" src="/images/category_meat.jpg" alt="">
-                        <div class="card-body p-1 text-center">
-                            <h4 class="card-title mb-1">Масло</h4>
-                            <p class="card-text">200гр</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
         </div>
-        <div class="col-3 p-0 ml-2">
-
-            <div class="container p-0">
-
-                <div class="post-sidecolumn flex-column">
-
-                    <div class="card w-100 p-0 border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-
-                    <div class="card p-0  border-0">
-
-                        <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-
-                        <div class="post-sidecolumn-text card-img-overlay">
-                            <h3>
-                                <a href="#">
-                                    <span>Рецепты лазаньи с молоком</span>
-                                </a>
-                            </h3>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+    </div>
+    <div class="col-12 my-2">
+        <h6 class="card-subtitle text-center py-2">О себе</h6>
+        <p class="card-text text-justify">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
+            Voluptatum accusantium dolore sunt consequatur.Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
+            Voluptatum accusantium dolore sunt consequatur.Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
+            Voluptatum accusantium dolore sunt consequatur.
+        </p>
     </div>
 </div>
 
