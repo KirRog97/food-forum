@@ -58,35 +58,26 @@ class PostController extends Controller
             'Kcal'         =>   'required|integer'
         ]);
 
-
-        $post =                 new Post;
-        $post->user_id =        Auth::user()->id;
-        $download =             $request->session()->get('download');
-
-        $picture = Picture::create([
-            'path'          =>  $download['path'],
-            'mime'          =>  $download['mime'],
-            'size'          =>  $download['size']
+        Post::create([
+            'user_id'      =>  Auth::user()->id,
+            'picture_id'   =>  session('post_picture'),
+            'category_id'  =>  session('post_category_id'),
+            'kitchen_id'   =>  session('post_kitchen_id'),
+            'dish_id'      =>  session('post_dish_id'),
+            'menu_id'      =>  session('post_menu_id'),
+            'title'        =>  $request->title,
+            'description'  =>  $request->description,
+            'instruction'  =>  $request->instruction,
+            'TTC'          =>  $request->TTC,
+            'COP'          =>  $request->COP,
+            'Kcal'         =>  $request->Kcal,
         ]);
 
-        $post->picture_id =     $picture->id;
-        $picture->save();
-        // $post->category_id =    $request->session()->get('category_id');
-        // $post->kitchen_id =     $request->session()->get('kitchen_id');
-        // $post->dish_id =        $request->session()->get('dish_id ');
-        $post->category_id =    1;
-        $post->kitchen_id =     1;
-        $post->dish_id =        1;
-
-        $post->title =          $request->input('title');
-        $post->description =    $request->input('description');
-        $post->instruction =    $request->input('instruction');
-        $post->TTC =            $request->input('TTC');
-        $post->COP =            $request->input('COP');
-        $post->Kcal =           $request->input('Kcal');
-        $post->save();
-
         $request->session()->forget('download');
+        $request->session()->forget('post_category_id');
+        $request->session()->forget('post_kitchen_id');
+        $request->session()->forget('post_dish_id');
+        $request->session()->forget('post_menu_id');
 
         return redirect()->route('posts.index')
             ->with('success', 'Ваш рецепт успешно создан');
