@@ -11,18 +11,17 @@ window.Vue = require('vue');
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 Vue.use(Vuesax, {
-    theme: {
-        colors: {
-            primary: '#b5904e',
-            secondary: '#5b5b5b',
-            success: 'rgb(23, 201, 100)',
-            danger: 'rgb(242, 19, 93)',
-            warning: 'rgb(255, 130, 0)',
-            dark: 'rgb(36, 33, 69)'
-        }
+  theme: {
+    colors: {
+      primary: "#b5904e",
+      secondary: "#5b5b5b",
+      success: "#28a745",
+      danger: "#dc3545",
+      warning: "#ffc107",
+      dark: "#343a40"
     }
-})
-import 'material-icons/iconfont/material-icons.css'
+  }
+});
 
 
 // https:www.npmjs.com/package/vue-snotify
