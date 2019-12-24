@@ -68,12 +68,11 @@ class RegisterController extends Controller
             'path' => '/images/icons/user_avacado.svg'
         ]);
 
-        return User::create([
+        User::create([
             'username'              =>      $data['username'],
             'email'                 =>      $data['email'],
             'avatar_id'             =>      $picture->id,
-            'password'              =>      Hash::make($data['password']),
-            'remember_token'        =>      now(),
+            'password'              =>      bcrypt($data['password']),
             'email_verified_at'     =>      now(),
         ]);
 
