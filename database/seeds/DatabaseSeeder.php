@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             IngredientsTableSeeder::class,
             CategoriesTableSeeder::class,
             DishesTableSeeder::class,
+            MenusTableSeeder::class,
             PostsTableSeeder::class
         ]);
     }

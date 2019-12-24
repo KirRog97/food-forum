@@ -11,6 +11,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'category_id'       =>          $faker->numberBetween(1, 20),
         'kitchen_id'        =>          $faker->numberBetween(1, 20),
         'dish_id'           =>          $faker->numberBetween(1, 20),
+        'menu_id'           =>          $faker->numberBetween(1, 20),
         'description'       =>          $faker->paragraphs($faker->numberBetween(3, 6), true),
         'instruction'       =>          $faker->text($faker->numberBetween(145, 255)),
         'TTC'               =>          $faker->numberBetween(1, 240),

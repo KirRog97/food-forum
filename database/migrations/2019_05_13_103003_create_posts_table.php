@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('kitchen_id');
             $table->unsignedInteger('dish_id');
+            $table->unsignedInteger('menu_id');
             $table->text('instruction');
             $table->text('description');
             $table->integer('TTC');
@@ -26,15 +27,13 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->foreign('picture_id')->references('id')->on('pictures')
                 ->onUpdate('cascade')->onDelete('cascade');
-
             $table->foreign('category_id')->references('id')->on('categories');
-
             $table->foreign('kitchen_id')->references('id')->on('kitchens');
-
             $table->foreign('dish_id')->references('id')->on('dishes');
+            $table->foreign('menu_id')->references('id')->on('menus');
+
         });
     }
 

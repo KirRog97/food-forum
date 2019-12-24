@@ -13,6 +13,7 @@ class Post extends Model
         'category_id',
         'kitchen_id',
         'dish_id',
+        'menu_id',
         'TTC',
         'COP',
         'Kcal',
@@ -37,6 +38,8 @@ class Post extends Model
         'category_id' => 'integer',
         'kitchen_id' => 'integer',
         'dish_id' => 'integer',
+        'menu_id' => 'integer',
+
         'TTC' => 'integer',
         'COP' => 'integer',
         'Kcal' => 'integer',
@@ -68,6 +71,11 @@ class Post extends Model
     public function dish()
     {
         return $this->belongsTo('App\Dish', 'dish_id');
+    }
+
+public function menu()
+    {
+        return $this->belongsTo('App\Menu', 'menu_id');
     }
 
     public function ingredients()
