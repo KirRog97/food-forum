@@ -11,16 +11,8 @@
         <div class="col p-0" style="background-color: lightgrey;">
 
             <div class="card text-white border-0 position-relative">
-                {{-- <img class="card-img-top" src="/storage/recipes/{{ $post->picture->pic_path }}" alt=""> --}}
-                <img class="card-img-top" src="/images/recipes/плов.jpg" alt="">
-
-                <div class="card-body d-flex flex-row bg-dark50 position-absolute fixed-bottom justify-content-between">
-                    <a href="" class="btn-like">
-                        {{-- for hover --}}
-                        {{-- <i class="fas fa-heart"></i> --}}
-                        <i class="far fa-heart mr-1"></i>
-                        <span>{{ __('Нравится') }}</span>
-                    </a>
+                <img class="card-img-top" src="{{ $post->pictures->path }}" alt="Post picture">
+                <div class="card-body d-flex flex-row bg-dark50 position-absolute fixed-bottom justify-content-center">
                     <form action="{{ route('posts.destroy', $post) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -31,14 +23,102 @@
                             <span>{{ __('Удалить') }}</span>
                         </button>
                     </form>
-                    <a href="" class="btn-bookmark">
-                        {{-- for hover --}}
-                        {{-- <i class="fa fa-bookmark" aria-hidden="true"></i> --}}
-                        <i class="far fa-bookmark mr-1"></i>
-                        <span>{{ __('Добавить в закладки') }}</span>
-                    </a>
                 </div>
             </div>
+
+            <form action="{{ route('posts.update', ['id'=> $post->id]) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="container-fluid form-custom-secondprimary py-4">
+                    <div class="form-group d-flex justify-content-center position-relative pt-4 mt-4">
+                        <label class="text-shadow shadow" for="title">
+                            {{ __('Название рецепта') }}
+                        </label>
+                        <input type="text" class="form-control text-center" name="title" id="title"
+                            value="{{ $post->title }}" placeholder="{{ $post->title }}" required>
+                    </div>
+
+                    <div class="row justify-content-around">
+                        <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control text-center" min="1" name="COP" id="COP"
+                                value="{{ $post->COP }}" placeholder="{{ $post->COP }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <span>{{ __('порций') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <span><i class="fas fa-clock"></i></span>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control text-center" min="1" name="TTC" id="TTC"
+                                value="{{ $post->TTC }}" placeholder="{{ $post->TTC }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <span>{{ __('минут') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 d-flex input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <span><i class="fas fa-running"></i></span>
+                                </div>
+                            </div>
+                            <input type="number" class="form-control text-center" min="1" name="Kcal" id="Kcal"
+                                value="{{ $post->Kcal }}" placeholder="{{ $post->Kcal }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text border-primary bg-dark50 text-primary text-shadow">
+                                    <span>{{ __('калорий') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <post-selection-options></post-selection-options>
+                    <ingredient-selection></ingredient-selection>
+
+                    <picture-downloading :isMultipleDownloadMode="false">
+                    </picture-downloading>
+
+                    <div class="form-group d-flex justify-content-center position-relative pt-2 mt-5">
+                        <label class="col-form-label text-shadow shadow px-3" for="description">
+                            {{ __('Описание блюда') }}
+                        </label>
+                        <textarea class="form-control text-primary text-justify" name="description" id="description"
+                            rows="5" value="{{ old('description') }}" required>
+                            {{ $post->description }}
+                        </textarea>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-center position-relative pt-2 mt-5">
+                        <label class="col-form-label text-shadow shadow px-3" for="instruction">
+                            {{ __('Способ приготовления') }}
+                        </label>
+                        <textarea class="form-control text-primary text-justify" name="instruction" id="instruction"
+                            rows="5" value="{{ old('instruction') }}" required>
+                             {{ $post->instruction }}
+            </textarea>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <vs-button color="primary" type="filled" size="large" icon="done" onclick="submit()">
+                        Сохранить рецепт
+                    </vs-button>
+                </div>
+            </form>
+
+
 
             <form action="{{ route('posts.update', ['id'=> $post->id]) }}" method="POST">
                 @csrf
@@ -50,14 +130,12 @@
                         <input type="text" class="form-control text-center" name="title" id="title"
                             value="{{ $post->title }}" placeholder="{{ $post->title }}" required>
                     </div>
-                    <p>
-                        <div class="form-group px-4">
-                            <label for="description">{{ __('Описание блюда:') }}</label>
-                            <textarea class="form-control text-justify" name="description" id="description" rows="3"
-                                required>
+                    <div class="form-group px-4">
+                        <label for="description">{{ __('Описание блюда:') }}</label>
+                        <textarea class="form-control text-justify" name="description" id="description" required>
+                                {{ $post->description }}
                             </textarea>
-                        </div>
-                    </p>
+                    </div>
                 </div>
 
                 <div class="container-fluid my-4">
@@ -92,7 +170,7 @@
                                 value="{{ $post->Kcal }}" placeholder="{{ $post->Kcal }}" data-toggle="tooltip"
                                 data-placement="bottom" title="Пожалуйста,введите число" required>
                             <div class="input-group-append">
-                                <span class="input-group-text"{{ __('калорий') }}></span>
+                                <span class="input-group-text" {{ __('калорий') }}></span>
                             </div>
                         </div>
                     </div>
@@ -126,26 +204,6 @@
         </div>
         </form>
     </div>
-
-    <div class="col-3 p-0 ml-2">
-        <div class="container p-0">
-            <div class="post-sidecolumn flex-column">
-
-                @for ($i = 0; $i < 8; $i++) <div class="card p-0  border-0">
-                    <img class="card-img-top" src="/images/spice.jpg" alt="IMG">
-                    <div class="post-sidecolumn-text card-img-overlay">
-                        <h3>
-                            <a href="#">
-                                <span>Рецепты лазаньи с молоком</span>
-                            </a>
-                        </h3>
-                    </div>
-            </div>
-            @endfor
-
-        </div>
-    </div>
-
 </div>
 </div>
 </div>
