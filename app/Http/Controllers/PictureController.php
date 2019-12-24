@@ -44,6 +44,19 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'file' => [
+                'required',
+                'file',
+                'filled',
+                'image',
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(null, 500);
+        }
+
         $path = $request->file->store('uploads', 'public');
 
         $picture = Picture::create([
