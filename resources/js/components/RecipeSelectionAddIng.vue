@@ -1,7 +1,9 @@
 <template>
   <div class="col-6">
     <div class="form-group">
-      <label class="text-muted font-weight-lighter">Включить ингредиенты:</label>
+      <label class="text-muted font-weight-lighter">
+        Включить ингредиенты:
+      </label>
       <div class="input-group shadow-sm">
         <div class="input-group-prepend">
           <button
@@ -86,8 +88,7 @@ export default {
         return;
       }
       let ingNameArray = this.ingredientArray.map(i => i.name);
-      let searchString = this.searchString;
-      searchString = searchString.trim().toLowerCase();
+      let searchString = this.searchString.trim().toLowerCase();
       return (ingNameArray = ingNameArray.filter(function(item) {
         if (item.toLowerCase().indexOf(searchString) !== -1) {
           return item;

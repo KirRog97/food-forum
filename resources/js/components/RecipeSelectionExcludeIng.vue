@@ -1,7 +1,9 @@
 <template>
   <div class="col-6">
     <div class="form-group">
-      <label for class="text-muted font-weight-lighter">Исключить ингредиенты:</label>
+      <label for class="text-muted font-weight-lighter">
+        Исключить ингредиенты:
+      </label>
       <div class="input-group shadow-sm">
         <div class="input-group-append">
           <button

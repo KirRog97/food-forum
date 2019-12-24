@@ -11,27 +11,35 @@
             :key="index"
             :value="item.id"
             :text="item.name"
-            v-for="(item,index) in categoryArray"
+            v-for="(item, index) in categoryArray"
           />
         </vs-select>
       </vs-col>
       <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select class="w-100" placeholder="Выберите кухню" v-model.number="selectedKitchenId">
+        <vs-select
+          class="w-100"
+          placeholder="Выберите кухню"
+          v-model.number="selectedKitchenId"
+        >
           <vs-select-item
             :key="index"
             :value="item.id"
             :text="item.name"
-            v-for="(item,index) in kitchenArray"
+            v-for="(item, index) in kitchenArray"
           />
         </vs-select>
       </vs-col>
       <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select class="w-100" placeholder="Выберите блюдо" v-model.number="selectedDishId">
+        <vs-select
+          class="w-100"
+          placeholder="Выберите блюдо"
+          v-model.number="selectedDishId"
+        >
           <vs-select-item
             :key="index"
             :value="item.id"
             :text="item.name"
-            v-for="(item,index) in dishArray"
+            v-for="(item, index) in dishArray"
           />
         </vs-select>
       </vs-col>
@@ -46,30 +54,46 @@
             :key="index"
             :value="item.id"
             :text="item.name"
-            v-for="(item,index) in menuArray"
+            v-for="(item, index) in menuArray"
           />
         </vs-select>
       </vs-col>
     </vs-row>
 
-    <vs-row class="bg-light rounded p-2" vs-w="12" vs-justify="space-between" v-if="show">
+    <vs-row
+      class="bg-light rounded p-2"
+      vs-w="12"
+      vs-justify="space-between"
+      v-if="show"
+    >
       <vs-col class="row" vs-justify="space-between">
         <recipe-selection-add-ing :ingredientArray="ingredientArray" />
         <recipe-selection-exlucde-ing :ingredientArray="ingredientArray" />
       </vs-col>
       <vs-col vs-type="flex" vs-justify="space-around">
-        <vs-button class="w-100" color="secondary" type="flat" icon="replay">Очистить</vs-button>
+        <vs-button class="w-100" color="secondary" type="flat" icon="replay">
+          Очистить
+        </vs-button>
       </vs-col>
     </vs-row>
 
     <vs-row class="w-100 mb-2" vs-justify="space-between">
       <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
-        <vs-button class="w-100" color="secondary" type="relief" @click="show = !show">Ингредиенты</vs-button>
+        <vs-button
+          class="w-100"
+          color="secondary"
+          type="relief"
+          @click="show = !show"
+        >
+          Ингредиенты
+        </vs-button>
       </vs-col>
 
       <!-- add submit func -->
       <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
-        <vs-button class="w-100" color="secondary" type="relief">Подобрать рецепт</vs-button>
+        <vs-button class="w-100" color="secondary" type="relief">
+          Подобрать рецепт
+        </vs-button>
       </vs-col>
     </vs-row>
   </div>

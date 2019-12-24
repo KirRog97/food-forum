@@ -46,7 +46,10 @@
       </transition-group>
     </div>
 
-    <div class="col-12" :class="[!added_ingredients.length > 0 ? 'd-none' : 'bg-dark-50']">
+    <div
+      class="col-12"
+      :class="[!added_ingredients.length > 0 ? 'd-none' : 'bg-dark-50']"
+    >
       <ul
         class="list-group list-group-horizontal flex-wrap justify-content-center bg-dark35 rounded border border-primary p-2"
         :class="[added_ingredients.length > 0 ? 'mt-2' : 'd-none']"
@@ -56,7 +59,9 @@
           v-for="(item, index) in added_ingredients"
           :key="index"
         >
-          <div class="d-flex justify-content-center rounded border-primary bg-secondary p-2">
+          <div
+            class="d-flex justify-content-center rounded border-primary bg-secondary p-2"
+          >
             <div class="card bg-secondary border-0 text-shadow">
               <div
                 class="card-head position-relative border-bottom border-primary text-center text-wrap"
@@ -65,7 +70,7 @@
                   <button
                     type="button"
                     class="close text-danger text-shadow p-2"
-                    @click="$_IngredientSelection_delFromList(item,index)"
+                    @click="$_IngredientSelection_delFromList(item, index)"
                   >
                     <i class="fas fa-times fa-lg" aria-hidden="true"></i>
                   </button>
@@ -73,7 +78,9 @@
                 <h4>{{ item.name }}</h4>
               </div>
               <div class="card-body py-3 px-2">
-                <h5 class="card-subtitle text-center mb-2">Количество грамм:</h5>
+                <h5 class="card-subtitle text-center mb-2">
+                  Количество грамм:
+                </h5>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <button
