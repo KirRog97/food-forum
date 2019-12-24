@@ -4,12 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue');
+window.Vue = require("vue");
 
-import Vuesax from 'vuesax'
-import 'vuesax/dist/vuesax.css' //Vuesax styles
+import Vuesax from "vuesax";
+import "vuesax/dist/vuesax.css"; //Vuesax styles
 Vue.use(Vuesax, {
   theme: {
     colors: {
@@ -22,35 +22,33 @@ Vue.use(Vuesax, {
     }
   }
 });
-
+import "material-icons/iconfont/material-icons.css";
 
 // https:www.npmjs.com/package/vue-snotify
-import Snotify, {
-    SnotifyPosition
-} from 'vue-snotify'
+import Snotify, { SnotifyPosition } from "vue-snotify";
 Vue.use(Snotify, {
-    toast: {
-        position: SnotifyPosition.leftBottom,
-        timeout: 5000,
-        animation: {
-            time: 800
-        },
-        titleMaxLength: 32,
-        bodyMaxLength: 240,
-        placeholder: "Введите текст..."
-    }
-})
+  toast: {
+    position: SnotifyPosition.leftBottom,
+    timeout: 5000,
+    animation: {
+      time: 800
+    },
+    titleMaxLength: 32,
+    bodyMaxLength: 240,
+    placeholder: "Введите текст..."
+  }
+});
 
-Vue.toArrayOfObjects = function (data) {
-    let resultArray = [];
-    _.each(data, function (value, key) {
-        resultArray.push({
-            id: key,
-            name: value
-        });
+Vue.toArrayOfObjects = function(data) {
+  let resultArray = [];
+  _.each(data, function(value, key) {
+    resultArray.push({
+      id: key,
+      name: value
     });
-    return resultArray;
-}
+  });
+  return resultArray;
+};
 
 /**
  * The following block of code may be used to automatically register your
@@ -81,7 +79,7 @@ Vue.component('post-selection-options', require('./components/PostSelectionOptio
  */
 
 const app = new Vue({
-    el: '#app'
+  el: "#app"
 });
 
-require('./custom');
+require("./custom");
