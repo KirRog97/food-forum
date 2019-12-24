@@ -11,6 +11,7 @@ class CreatePostIngredientsTable extends Migration
         Schema::create('post_ingredient', function (Blueprint $table) {
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('ingredient_id');
+            $table->unsignedInteger('amount');
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts')
