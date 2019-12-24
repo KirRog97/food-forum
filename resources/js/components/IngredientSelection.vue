@@ -142,9 +142,21 @@ export default {
           return item;
         }
       }));
+    },
+    summaryAmountOfIng: function() {
+      let ingredientAmountArray = this.added_ingredients.map(i => i.amount);
+      let ingredientTotalAmount = _.sum(ingredientAmountArray);
+      if (ingredientTotalAmount > 0) {
+        return ingredientTotalAmount;
+    }
     }
   },
 
+  watch: {
+    summaryAmountOfIng: function() {
+      this.$_IngredientSelection_sendData();
+    }
+  },
 
   methods: {
     $_IngredientSelection_addToList: function() {
@@ -200,6 +212,25 @@ export default {
     $_IngredientSelection_copyToSearch: function(item) {
       return (this.searchString = item);
     },
+
+    $_IngredientSelection_sendData: _.debounce(function() {
+      let form = new FormData();
+      form.append("added_ingredients", this.added_ingredients);
+
+      axios
+        .post("/api/post/ing/save", form)
+        .then(res => {
+          return this.$snotify.info("Изменения сохранены", "Выбор ингредиента");
+        })
+        .catch(err => {
+          this.$snotify.error(
+            "Изменения не были сохранены",
+            "Выбор ингредиента"
+          );
+          return this.$snotify.error(null, "Ошибка сервера");
+          console.error(err);
+        });
+    }, 5000),
 
     $_IngredientSelection_getData: function() {
       axios
