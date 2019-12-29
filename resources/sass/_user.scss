@@ -1,21 +1,40 @@
-.form-custom-foodrorum  {
-    display: flex;
-    width: 35%;
-    padding: 0.75em 1.25em;
-    margin: auto;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-self: center;
-    background-color: lightgray;
-    border: 0.25em solid $primary;
-    border-radius: 20px;
+.form-custom-foodrorum {
+  display: flex;
+  width: 35%;
+  padding: 0.75em 1.25em;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-self: center;
+  background-color: lightgray;
+  border: 0.25em solid $primary;
+  border-radius: 20px;
 }
 
-.flex-item-user{
-    width: 48.5%;
+.user-list {
+  @include grid-list-row;
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(120px, auto);
+}
 
-    .card-header, .card-footer{
-        letter-spacing: 1px;
-    }
+.user-list-item {
+  @include grid-list-item;
+  @include media-breakpoint-up(sm) {
+    max-width: 224px;
+  }
+  max-width: 100%;
+  border-radius: 0.25rem;
+  transition: all 0.2s linear;
+
+  &:hover {
+    transform: scale(1.1);
+    color: $primary;
+  }
 }
