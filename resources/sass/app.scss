@@ -1,25 +1,31 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
-// for Logo
-@import url('https://fonts.googleapis.com/css?family=Lobster');
-@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond");
+    // for Logo
+@import url("https://fonts.googleapis.com/css?family=Lobster");
 
+@import url("https://use.fontawesome.com/releases/v5.6.3/css/all.css");
 
-@import 'variables';
-@import 'mixins';
-@import '~bootstrap/scss/bootstrap';
-@import 'sidebar';
-@import 'nav';
-@import 'page';
-@import 'recipe';
-@import 'user';
-@import 'post';
-@import 'footer';
-//Style for Scrollbar im Chrome
-@import 'scrollbar';
+@import "variables";
+@import "mixins";
+@import "~bootstrap/scss/bootstrap";
+@import "nav";
+@import "page";
+@import "recipe";
+@import "user";
+@import "post";
+@import "footer";
 @import "~vue-snotify/styles/material";
-@import 'snotifyStyles';
+@import "snotifyStyles";
+
+//Style for Scrollbar im Chrome
+@import "scrollbar";
+
+// Without Vuesax
+// @import "sidebar";
+
+// Vuesax
+@import "sidebarVuesax";
 
 body {
     font-family: 'Oswald', sans-serif;
