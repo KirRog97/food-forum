@@ -73,6 +73,7 @@ Vue.component('picture-downloading', require('./components/PictureDownloading.vu
 Vue.component('post-selection-options', require('./components/PostSelectionOptions.vue').default);
 
 Vue.component("user-index-card", require("./components/UserIndexCard.vue").default);
+Vue.component("post-index-card", require("./components/PostIndexCard.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
