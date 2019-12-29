@@ -1,37 +1,83 @@
 <template>
-  <div class="row form-group justify-content-around m-auto">
-    <div class="col-12 col-md-3 form-group p-0 shadow-none">
-      <selection
-        @selectedItem="$_PostSelectionOptions_takeFromChildCategory"
-        :data="categoryArray"
-        :options="{
-                    defaultText: 'Выберите категорию',
-                    isRequire: true
-                }"
-      ></selection>
-    </div>
-    <div class="col-12 col-md-3 form-group p-0 shadow-none">
-      <selection
-        @selectedItem="$_PostSelectionOptions_takeFromChildKitchen"
-        :data="kitchenArray"
-        :options="{ defaultText: 'Выберите кухню', isRequire: true }"
-      ></selection>
-    </div>
-    <div class="col-12 col-md-3 form-group p-0 shadow-none">
-      <selection
-        @selectedItem="$_PostSelectionOptions_takeFromChildDish"
-        :data="dishArray"
-        :options="{ defaultText: 'Выберите блюдо', isRequire: true }"
-      ></selection>
-    </div>
-    <div class="col-12 col-md-3 form-group p-0 shadow-none">
-      <selection
-        @selectedItem="$_PostSelectionOptions_takeFromChildMenu"
-        :data="menuArray"
-        :options="{ defaultText: 'Выберите меню', isRequire: false }"
-      ></selection>
-    </div>
-  </div>
+  <vs-row vs-align="center" vs-type="flex" vs-justify="space-between" vs-w="12">
+    <vs-col
+      :vs-lg="selectOptions.grid.lg"
+      :vs-sm="selectOptions.grid.sm"
+      :vs-xs="selectOptions.grid.xs"
+    >
+      <vs-select
+        color="primary"
+        :class="selectOptions.selectClass"
+        placeholder="Выберите категорию"
+        v-model="selectedCategoryId"
+      >
+        <vs-select-item
+          :class="selectOptions.selectClass"
+          :key="index"
+          :value="item.id"
+          :text="item.name"
+          v-for="(item, index) in categoryArray"
+        />
+      </vs-select>
+    </vs-col>
+    <vs-col
+      :vs-lg="selectOptions.grid.lg"
+      :vs-sm="selectOptions.grid.sm"
+      :vs-xs="selectOptions.grid.xs"
+    >
+      <vs-select
+        color="primary"
+        :class="selectOptions.selectClass"
+        placeholder="Выберите кухню"
+        v-model="selectedKitchenId"
+      >
+        <vs-select-item
+          :key="index"
+          :value="item.id"
+          :text="item.name"
+          v-for="(item, index) in kitchenArray"
+        />
+      </vs-select>
+    </vs-col>
+    <vs-col
+      :vs-lg="selectOptions.grid.lg"
+      :vs-sm="selectOptions.grid.sm"
+      :vs-xs="selectOptions.grid.xs"
+    >
+      <vs-select
+        color="primary"
+        :class="selectOptions.selectClass"
+        placeholder="Выберите кухню"
+        v-model="selectedDishId"
+      >
+        <vs-select-item
+          :key="index"
+          :value="item.id"
+          :text="item.name"
+          v-for="(item, index) in dishArray"
+        />
+      </vs-select>
+    </vs-col>
+    <vs-col
+      :vs-lg="selectOptions.grid.lg"
+      :vs-sm="selectOptions.grid.sm"
+      :vs-xs="selectOptions.grid.xs"
+    >
+      <vs-select
+        color="primary"
+        :class="selectOptions.selectClass"
+        placeholder="Выберите кухню"
+        v-model="selectedMenuId"
+      >
+        <vs-select-item
+          :key="index"
+          :value="item.id"
+          :text="item.name"
+          v-for="(item, index) in menuArray"
+        />
+      </vs-select>
+    </vs-col>
+  </vs-row>
 </template>
 
 <script>
@@ -46,48 +92,40 @@ export default {
       selectedDishId: null,
       selectedKitchenId: null,
       selectedMenuId: null,
-      show: false
+      selectOptions: {
+        selectClass: "w-100 py-2 px-1",
+        grid: {
+          xs: 12,
+          md: 6,
+          lg: 6
+        }
+      }
     };
   },
 
   mounted() {
     this.$_PostSelectionOptions_getData();
   },
-
-  methods: {
-    $_PostSelectionOptions_takeFromChildCategory: function(newSelectedItem) {
-      this.selectedCategoryId = newSelectedItem.selected;
-      this.$_PostSelectionOptions_checkFormCompletion();
-    },
-    $_PostSelectionOptions_takeFromChildKitchen: function(newSelectedItem) {
-      this.selectedKitchenId = newSelectedItem.selected;
-      this.$_PostSelectionOptions_checkFormCompletion();
-    },
-    $_PostSelectionOptions_takeFromChildDish: function(newSelectedItem) {
-      this.selectedDishId = newSelectedItem.selected;
-      this.$_PostSelectionOptions_checkFormCompletion();
-    },
-    $_PostSelectionOptions_takeFromChildMenu: function(newSelectedItem) {
-      this.selectedMenuId = newSelectedItem.selected;
-      this.$_PostSelectionOptions_checkFormCompletion();
-    },
-
+  computed: {
     $_PostSelectionOptions_checkFormCompletion: function() {
       if (
         _.isNumber(this.selectedCategoryId) &&
         _.isNumber(this.selectedKitchenId) &&
-        _.isNumber(this.selectedDishId)
+        _.isNumber(this.selectedDishId) &&
+        _.isNumber(this.selectedMenuId)
       ) {
         this.$_PostSelectionOptions_sendData();
       }
-    },
+    }
+  },
 
+  methods: {
     $_PostSelectionOptions_sendData: _.debounce(function() {
       let form = new FormData();
       form.append("selectedCategoryId", this.selectedCategoryId);
       form.append("selectedDishId", this.selectedDishId);
       form.append("selectedKitchenId", this.selectedKitchenId);
-      // form.append("selectedMenuId", this.selectedMenuId);
+      form.append("selectedMenuId", this.selectedMenuId);
 
       axios
         .post("/api/r/tags/cache", form)
