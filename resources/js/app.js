@@ -63,7 +63,6 @@ Vue.toArrayOfObjects = function(data) {
 
 Vue.component('selection', require('./components/layouts/Selection.vue').default);
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
-Vue.component(
 
 Vue.component('recipe-selection', require('./components/RecipeSelection.vue').default);
 Vue.component('recipe-selection-add-ing', require('./components/RecipeSelectionAddIng.vue').default);
@@ -73,6 +72,7 @@ Vue.component('ingredient-selection', require('./components/IngredientSelection.
 Vue.component('picture-downloading', require('./components/PictureDownloading.vue').default);
 Vue.component('post-selection-options', require('./components/PostSelectionOptions.vue').default);
 
+Vue.component("user-index-card", require("./components/UserIndexCard.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
