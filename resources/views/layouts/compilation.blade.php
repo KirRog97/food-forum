@@ -2,86 +2,127 @@
 
 <div class="recipe-compilation my-2">
 
-    <div class="recipe-compilation-item-large-lt">
-        <img src="/images/recipes/пельмени.jpg" alt="" class="img-fluid-center position-absolute ">
-        <div class="d-flex justify-content-center text-shadow m-auto">
-            <h3 class="recipe-compilation-item-category">
-                Рецепт дня
-            </h3>
-            <h2 class="recipe-compilation-item-name ">
-                Курины ножки на гриле
-            </h2>
-
-            <div class="d-flex justify-content-center w-50 border-bottom p-2 mb-2">
-    @include('components.forkspoon')
+    <div class="recipe-compilation-item grid-item-1-1">
+        <img class="img-fluid-center position-absolute" src="/images/recipes/пельмени.jpg"
+            alt="Изображение рецепта дня">
+        <div class="recipe-compilation-typography vignette-large justify-content-center align-content-center">
+            <div class="recipe-compilation-item-category">
+                <h5>
+                    Рецепт дня
+                </h5>
             </div>
-
+            <div class="recipe-compilation-item-large-title">
+                <h2>
+                    Курины ножки на гриле
+                </h2>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-large-rt">
-        <img src="/images/recipes/пельмени.jpg" alt="" class="img-fluid-center position-absolute ">
-        <div class="recipe-compilation-typography d-flex justify-content-center text-shadow m-auto">
-            <h3 class="recipe-compilation-item-category">
-                Лучшие рецепты недели
-            </h3>
-            <h2 class="recipe-compilation-item-name">
-                7 лучших рецептов
-            </h2>
+    <div class="recipe-compilation-item grid-item-1-2">
+        <img class="img-fluid-center position-absolute" src="/images/recipes/пельмени.jpg"
+            alt="Изображение рецепта дня">
+        <div class="recipe-compilation-typography vignette-large justify-content-center align-content-center">
+            <div class="recipe-compilation-item-category">
+                <h5>
+                    Лучшие рецепты недели
+                </h5>
+            </div>
+            <div class="recipe-compilation-item-large-title">
+                <h2>
+                    7 лучших рецептов
+                </h2>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-medium-lc">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute ">
-        <div class=" d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                Как приготовить пирог в одной посуде 5 рецептов
-            </h2>
+    <div class="recipe-compilation-item grid-item-2-1">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div>
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-small-cc">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute">
-        <div class="d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                Как приготовить сырный торт с овощами
-            </h2>
+    <div class="recipe-compilation-item grid-item-2-2">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div>
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-small-rc">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute">
-        <div class=" d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                10 простых напитков в жару
-            </h2>
+    <div class="recipe-compilation-item grid-item-2-3">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div>
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-small-lb">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute">
-        <div class=" d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                Как приготовить пирог в одной посуде 5 рецептов
-            </h2>
+    <div class="recipe-compilation-item grid-item-3-1">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div>
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-small-cb">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute">
-        <div class=" d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                Как приготовить пирог в одной посуде 5 рецептов
-            </h2>
+    <div class="recipe-compilation-item grid-item-3-2">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            {{-- <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div> --}}
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
-    <div class="recipe-compilation-item-large-rb">
-        <img src="/images/spice.jpg" alt="" class="img-fluid-center position-absolute">
-        <div class=" d-flex  align-content-start p-2">
-            <h2 class="recipe-compilation-item-title">
-                Как приготовить пирог в одной посуде 5 рецептов
-            </h2>
+    <div class="recipe-compilation-item grid-item-3-3">
+        <img class="img-fluid-center position-absolute" src="/images/spice.jpg" alt="">
+        <div class="recipe-compilation-typography vignette align-content-start p-2">
+            <div class="recipe-compilation-item-tags">
+                <div class="recipe-compilation-item-tag">
+                    <i class="fas fa-drumstick-bite mr-1"></i>
+                    <h6>Вкусно</h6>
+                </div>
+            </div>
+            <div class="recipe-compilation-item-title p-1 m-0">
+                <h5>Как приготовить пирог в одной посуде 5 рецептов</h5>
+            </div>
         </div>
     </div>
 
