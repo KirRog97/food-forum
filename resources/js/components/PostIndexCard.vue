@@ -2,50 +2,46 @@
   <div class="recipe-list-item">
     <div class="recipe-list-images">
       <div class="recipe-author w-100 rounded-pill px-2 py-1 mt-2">
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-lg="10"
-          vs-sm="10"
-          vs-xs="10"
-        >
-          <div class="recipe-author-name p-1">
-            <a
-              :href="`/users/${userid}`"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Просмотреть профиль"
-            >
-              <span>
-                {{ username }}
-              </span>
-            </a>
-          </div>
-        </vs-col>
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-lg="3"
-          vs-sm="3"
-          vs-xs="3"
-        >
-          <div class="recipe-list-photo-author rounded-circle">
-            <img
-              class="img-fluid-center"
-              :src="useravatarpath"
-              alt="User picture"
-            />
-          </div>
-        </vs-col>
+        <el-row class="w-100" type="flex" justify="center" align="middle">
+          <el-col :span="18">
+            <div class="recipe-author-name py-0 px-0 mr-1">
+              <a
+                :href="`/users/${userid}`"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Просмотреть профиль"
+              >
+                <span>
+                  {{ username }}
+                </span>
+              </a>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="recipe-list-photo-author rounded-circle">
+              <el-avatar
+                class="img-fluid-center"
+                shape="circle"
+                fit="contain"
+                :src="useravatarpath"
+                :size="50"
+                alt="User picture"
+              >
+                <img src="/images/icons/user_avacado.svg" />
+              </el-avatar>
+            </div>
+          </el-col>
+        </el-row>
       </div>
       <div>
-        <a :href="`/posts/${postid}`">
-          <img
-            class="img-fluid-center"
-            :src="postpicturepath"
-            alt="Post picture"
-          />
-        </a>
+        <el-image
+          class="img-fluid-center"
+          fit="cover"
+          :src="postpicturepath"
+          :preview-src-list="photoList"
+          alt="Post picture"
+        >
+        </el-image>
       </div>
     </div>
     <div class="recipe-list-title">
@@ -75,43 +71,29 @@
         </span>
       </div>
     </div>
-    <div class="recipe-list-ingredients">
-      <vs-button color="primary" type="line" @click="showIngredients = true">
-        Ингредиенты
-      </vs-button>
-      <vs-popup
-        style="color: rgba(var(--vs-primary),1)"
-        title="Ингредиенты"
-        background-color="secondary"
-        background-color-popup="rgba(var(--vs-secondary),1)"
-        :active.sync="showIngredients"
+    <div class="recipe-list-ingredients w-100">
+      <el-popover
+        placement="right"
+        :title="`Ингредиенты ${posttitle}`"
+        trigger="click"
       >
-        <vs-table
-          style="background-color: rgba(var(--vs-secondary),1); border: 1px solid rgba(var(--vs-primary),1)"
-          :data="ingredients"
-          noDataText="Данные не обнаруженны"
-        >
-          <template slot="thead">
-            <vs-th style="background-color: rgba(var(--vs-secondary),1)">
-              Название ингредиента
-            </vs-th>
-            <vs-th style="background-color: rgba(var(--vs-secondary),1)">
-              Количество
-            </vs-th>
-          </template>
-
-          <template slot-scope="{ ingredients }">
-            <vs-tr :key="indextr" v-for="(tr, indextr) in ingredients">
-              <vs-td :data="data[indextr].ingredient.name">
-                {{ data[indextr].ingredient.name }}
-              </vs-td>
-              <vs-td :data="data[indextr].showIngredients.amount">
-                {{ data[indextr].showIngredients.amount }}
-              </vs-td>
-            </vs-tr>
-          </template>
-        </vs-table>
-      </vs-popup>
+        <el-table border max-height="250" :data="ingredientsArray">
+          <el-table-column
+            width="250"
+            property="name"
+            label="Имя"
+          ></el-table-column>
+          <el-table-column
+            width="100"
+            align="center"
+            property="amount"
+            label="Грамм"
+          ></el-table-column>
+        </el-table>
+        <el-button type="warning" plain slot="reference">
+          Ингредиенты
+        </el-button>
+      </el-popover>
     </div>
     <div class="recipe-socials-widgets">
       <div class="widget-like">
@@ -139,7 +121,9 @@
 export default {
   data() {
     return {
-      showIngredients: false
+      showIngredients: false,
+      photoList: [this.postpicturepath, this.postpicturepath],
+      ingredientsArray: []
     };
   },
   props: [
