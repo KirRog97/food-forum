@@ -34,7 +34,9 @@
   transition: all 0.2s linear;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     color: $primary;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    border: 25px;
   }
 }

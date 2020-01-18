@@ -1,7 +1,7 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond");
-    // for Logo
+// for Logo
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 
 @import url("https://use.fontawesome.com/releases/v5.6.3/css/all.css");
@@ -9,11 +9,16 @@
 @import "variables";
 @import "mixins";
 @import "~bootstrap/scss/bootstrap";
-@import "nav";
+@import "sidebar";
+@import "header";
 @import "page";
-@import "recipe";
 @import "user";
-@import "post";
+
+@import "posts/postCompilation";
+@import "posts/postCreate";
+@import "posts/postShow";
+@import "posts/postIndex";
+
 @import "footer";
 @import "~vue-snotify/styles/material";
 @import "snotifyStyles";
@@ -21,174 +26,113 @@
 //Style for Scrollbar im Chrome
 @import "scrollbar";
 
-// Without Vuesax
-// @import "sidebar";
-
-// Vuesax
-@import "sidebarVuesax";
-
 body {
-    font-family: 'Oswald', sans-serif;
-    scroll-behavior: smooth;
+  font-family: "Oswald", sans-serif;
+  scroll-behavior: smooth;
 }
 
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 ul {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .icon {
-    width: 1.2em;
-    height: 1.2em;
-    align-self: center;
+  width: 1.2em;
+  height: 1.2em;
+  align-self: center;
 }
 
 a,
 a:hover,
 a:active {
-    outline: none;
-    text-decoration: none;
-    color: inherit;
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .bg-dark35 {
-    background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 .bg-dark50 {
-    background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .text-shadow {
-    text-shadow: 1px 1px 4px black;
+  text-shadow: 1px 1px 4px black;
 }
 
 .min-height250 {
-    min-height: 250px;
+  min-height: 250px;
 }
 
 .justify-self-end {
-    justify-self: flex-end;
+  justify-self: flex-end;
 }
 
 .justify-self-start {
-    justify-self: flex-start;
+  justify-self: flex-start;
 }
 
 .img-fluid-center {
-    @include img-fluid-custom;
-    object-fit: cover;
+  @include img-fluid-custom;
+  object-fit: cover;
 }
 
 .img-fluid-contain {
-    @include img-fluid-custom;
-    object-position: center;
+  @include img-fluid-custom;
+  object-position: center;
 }
 
 .border-r25 {
-    border-radius: 25px;
+  border-radius: 25px;
 }
 
-.form-custom-secondprimary {
+.logo {
+  transition: 0.455s cubic-bezier(0.47, 0, 0.74, 0.71);
+  width: 100%;
+  padding: 0px;
+  margin: 0;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  color: $primary;
+  transition: all 0.4s ease;
 
-    .form-control::placeholder {
-        color: darken(lightgray, 15%) !important;
-        font-size: 1.25em;
-        text-align: center;
-        opacity: 1;
-    }
+  @include media-breakpoint-up(xs) {
+    font-size: 1.5rem;
+  }
 
-    .btn:not([disabled]):not([type="submit"]) {
-        @include bg-dark35;
-        color: $primary;
+  @include media-breakpoint-up(sm) {
+    font-size: 2.25rem;
+  }
 
-        &:hover {
-            transition: 0.4s linear;
-            color: inherit !important;
-            background-color: inherit !important;
-        }
-    }
+  @include media-breakpoint-up(md) {
+    font-size: 2rem;
+  }
 
-    input,
-    textarea,
-    option {
-        color: $primary !important;
-        @include bg-dark35;
-        border: 1px solid $primary !important;
-        text-align: center;
-        overflow: hidden;
-        z-index: 1;
-    }
+  @include media-breakpoint-up(lg) {
+    font-size: 2.5rem;
+  }
 
-    textarea {
-        resize: none;
-        overflow: auto;
+  @include media-breakpoint-up(xl) {
+    font-size: 3rem;
+  }
 
-        /* width */
-        &::-webkit-scrollbar {
-            width: 16px;
-        }
-    }
-
-    input:focus,
-    input:active,
-    textarea:active,
-    textarea:focus {
-        transition: 0.255s linear;
-        color: darken(lightgray, 5%) !important;
-        text-align: center;
-        text-shadow: none;
-        background-color: darken($secondary, 10%) !important;
-        border-color: darken($primary, 25%);
-        border-width: 2px;
-    }
-
-    li {
-        @include bg-dark35;
-        color: darken($primary, 3%);
-    }
-
-    select {
-        color: $primary !important;
-        @include bg-dark35;
-        border: 1px solid $primary !important;
-        text-align: center;
-        z-index: 2;
-
-        &:focus,
-        &:active {
-            background-color: darken($secondary, 10%) !important;
-            border-color: darken($primary, 25%);
-        }
-    }
-
-    .form-group label {
-        display: flex;
-        position: absolute;
-        top: -20%;
-        padding: calc(0.375em + 0.5px) 0.85em calc(0.375em + 0.5px) 0.85em !important;
-        margin: 0;
-        background-color: darken($secondary, 5%);
-        border: 2px solid $primary;
-        border-bottom: 0 !important;
-        border-radius: 20px 20px 0 0;
-        overflow: hidden;
-        z-index: 0;
-    }
-
-    .custom-file-label {
-        border: 1px solid $primary;
-        @include bg-dark35;
-
-        &::after {
-            content: 'Выбрать файл' !important;
-            @include bg-dark35;
-            color: $primary;
-            opacity: 0.8;
-        }
-    }
+  &:hover {
+    color: lighten($primary, 10%);
+  }
 }

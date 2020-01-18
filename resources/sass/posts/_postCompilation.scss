@@ -1,0 +1,130 @@
+.recipe-compilation {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 300px 200px 200px;
+  grid-template-areas:
+    "grid-item-1-1 grid-item-1-1 grid-item-1-2 grid-item-1-2"
+    "grid-item-2-1 grid-item-2-1 grid-item-2-2 grid-item-2-3"
+    "grid-item-3-1 grid-item-3-2 grid-item-3-3 grid-item-3-3";
+  grid-gap: 10px;
+  margin: 0;
+  padding: 0;
+
+  img {
+    z-index: 1001;
+  }
+}
+
+.recipe-compilation-item {
+  display: flex;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.recipe-compilation-typography {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1002;
+}
+
+.vignette-large {
+  box-shadow: inset 0px -170px 40px rgba(0, 0, 0, 0.25);
+}
+
+.vignette {
+  box-shadow: inset 0px -35px 40px rgba(0, 0, 0, 0.25);
+}
+
+.recipe-compilation-item-category {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.recipe-compilation-item-title {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgba(128, 128, 128, 0.9);
+  text-transform: uppercase;
+  text-align: left;
+  z-index: 1002;
+}
+
+.recipe-compilation-item-large-title {
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+}
+
+.recipe-compilation-item-tags {
+  width: 100%;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+}
+
+.recipe-compilation-item-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: black;
+}
+
+.grid-item-1-1 {
+  grid-area: grid-item-1-1;
+}
+
+.grid-item-1-2 {
+  grid-area: grid-item-1-2;
+}
+
+.grid-item-2-1 {
+  grid-area: grid-item-2-1;
+}
+.grid-item-2-2 {
+  grid-area: grid-item-2-2;
+}
+
+.grid-item-2-3 {
+  grid-area: grid-item-2-3;
+}
+
+.grid-item-3-1 {
+  grid-area: grid-item-3-1;
+}
+
+.grid-item-3-2 {
+  grid-area: grid-item-3-2;
+}
+
+.grid-item-3-3 {
+  grid-area: grid-item-3-3;
+}

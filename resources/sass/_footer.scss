@@ -1,54 +1,22 @@
 footer {
-    height: 60px;
-    padding: 1em 0;
-    background-color: $thirdColor;
-    margin-right: -15px;
-    margin-left: -15px;
-    overflow: hidden;
-}
-
-.mailing-list {
-    width: 100%;
-    background: #999999;
-    text-align: center;
-    display: inline-block;
-    padding: 15px 0px;
-    margin: 0px;
-}
-
-#mailing-list-header {
-    margin-top: 10px;
-    font-size: 1em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bolder;
-}
-
-#mailing-list-input {
-    background: #d6d6d6;
-    margin: 0px;
-    border: none;
-}
-
-#mailing-list-btn {
-    background: black;
-    color: whitesmoke;
-    margin: 0px;
-    border: none;
+  min-height: 60px;
+  padding: 1em 0 !important;
+  background-color: $thirdColor;
+  overflow: hidden;
 }
 
 .footer-menu-link {
-    transition: 0.8s ease;
-    width: fit-content;
-    margin-left: 0.5em;
-    color: lightgrey;
-    font-size: 0.855rem;
-    font-weight: lighter;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
+  transition: all 0.5s ease;
+  width: fit-content;
+  color: lightgrey;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: lighter;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
 
-    &:hover {
-        transition: 0.8s ease;
-        color: $primary;
-        text-decoration: none;
-    }
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
 }
