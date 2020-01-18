@@ -1,83 +1,136 @@
 <template>
-  <vs-row vs-align="center" vs-type="flex" vs-justify="space-between" vs-w="12">
-    <vs-col
-      :vs-lg="selectOptions.grid.lg"
-      :vs-sm="selectOptions.grid.sm"
-      :vs-xs="selectOptions.grid.xs"
+  <el-row
+    class="flex-wrap"
+    type="flex"
+    justify="betwwen"
+    align="middle"
+    :gutter="12"
+  >
+    <el-col
+      :xs="selectOptions.grid.xs"
+      :sm="selectOptions.grid.sm"
+      :md="selectOptions.grid.md"
+      :lg="selectOptions.grid.lg"
+      :xl="selectOptions.grid.xl"
     >
-      <vs-select
-        color="primary"
-        :class="selectOptions.selectClass"
+      <el-select
         placeholder="Выберите категорию"
-        v-model="selectedCategoryId"
+        :class="selectOptions.selectClass"
+        v-model="selectedCategory"
+        value-key="id"
       >
-        <vs-select-item
-          :class="selectOptions.selectClass"
-          :key="index"
-          :value="item.id"
-          :text="item.name"
-          v-for="(item, index) in categoryArray"
-        />
-      </vs-select>
-    </vs-col>
-    <vs-col
-      :vs-lg="selectOptions.grid.lg"
-      :vs-sm="selectOptions.grid.sm"
-      :vs-xs="selectOptions.grid.xs"
+        <el-option
+          v-for="item in categoryArray"
+          :key="item.id"
+          :label="item.name"
+          :value="item"
+        >
+          <span>{{ item.name }}</span>
+          <span style="float: right; color: #8492a6; font-size: 13px">
+            Категория
+          </span>
+        </el-option>
+      </el-select>
+      <el-input-number
+        v-show="false"
+        v-model="selectedCategory.id"
+        name="post_category_id"
+      ></el-input-number>
+    </el-col>
+    <el-col
+      :xs="selectOptions.grid.xs"
+      :sm="selectOptions.grid.sm"
+      :md="selectOptions.grid.md"
+      :lg="selectOptions.grid.lg"
+      :xl="selectOptions.grid.xl"
     >
-      <vs-select
-        color="primary"
+      <el-select
         :class="selectOptions.selectClass"
         placeholder="Выберите кухню"
-        v-model="selectedKitchenId"
+        v-model="selectedKitchen"
+        value-key="id"
       >
-        <vs-select-item
-          :key="index"
-          :value="item.id"
-          :text="item.name"
-          v-for="(item, index) in kitchenArray"
-        />
-      </vs-select>
-    </vs-col>
-    <vs-col
-      :vs-lg="selectOptions.grid.lg"
-      :vs-sm="selectOptions.grid.sm"
-      :vs-xs="selectOptions.grid.xs"
+        <el-option
+          v-for="item in kitchenArray"
+          :key="item.id"
+          :label="item.name"
+          :value="item"
+        >
+          <span>{{ item.name }}</span>
+          <span style="float: right; color: #8492a6; font-size: 13px">
+            Кухня
+          </span>
+        </el-option>
+      </el-select>
+      <el-input-number
+        v-show="false"
+        v-model="selectedKitchen.id"
+        name="post_kitchen_id"
+      ></el-input-number>
+    </el-col>
+    <el-col
+      :xs="selectOptions.grid.xs"
+      :sm="selectOptions.grid.sm"
+      :md="selectOptions.grid.md"
+      :lg="selectOptions.grid.lg"
+      :xl="selectOptions.grid.xl"
     >
-      <vs-select
-        color="primary"
+      <el-select
         :class="selectOptions.selectClass"
-        placeholder="Выберите кухню"
-        v-model="selectedDishId"
+        placeholder="Выберите блюдо"
+        v-model="selectedDish"
+        value-key="id"
       >
-        <vs-select-item
-          :key="index"
-          :value="item.id"
-          :text="item.name"
-          v-for="(item, index) in dishArray"
-        />
-      </vs-select>
-    </vs-col>
-    <vs-col
-      :vs-lg="selectOptions.grid.lg"
-      :vs-sm="selectOptions.grid.sm"
-      :vs-xs="selectOptions.grid.xs"
+        <el-option
+          v-for="item in dishArray"
+          :key="item.id"
+          :label="item.name"
+          :value="item"
+        >
+          <span>{{ item.name }}</span>
+          <span style="float: right; color: #8492a6; font-size: 13px">
+            Блюдо
+          </span>
+        </el-option>
+      </el-select>
+      <el-input-number
+        v-show="false"
+        v-model="selectedDish.id"
+        name="post_dish_id"
+      ></el-input-number>
+    </el-col>
+    <el-col
+      :xs="selectOptions.grid.xs"
+      :sm="selectOptions.grid.sm"
+      :md="selectOptions.grid.md"
+      :lg="selectOptions.grid.lg"
+      :xl="selectOptions.grid.xl"
     >
-      <vs-select
-        color="primary"
+      <el-select
         :class="selectOptions.selectClass"
-        placeholder="Выберите кухню"
-        v-model="selectedMenuId"
+        placeholder="Выберите меню"
+        v-model="selectedMenu"
+        value-key="id"
       >
-        <vs-select-item
-          :key="index"
-          :value="item.id"
-          :text="item.name"
-          v-for="(item, index) in menuArray"
-        />
-      </vs-select>
-    </vs-col>
-  </vs-row>
+        <el-option
+          v-for="item in menuArray"
+          :key="item.id"
+          :label="item.name"
+          :value="item"
+        >
+          <span>{{ item.name }}</span>
+          <span style="float: right; color: #8492a6; font-size: 13px">
+            Меню
+          </span>
+        </el-option>
+      </el-select>
+      <el-input-number
+        v-show="false"
+        v-model="selectedMenu.id"
+        name="post_menu_id"
+      ></el-input-number>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -88,16 +141,18 @@ export default {
       kitchenArray: [],
       dishArray: [],
       menuArray: [],
-      selectedCategoryId: null,
-      selectedDishId: null,
-      selectedKitchenId: null,
-      selectedMenuId: null,
+      selectedCategory: {},
+      selectedDish: {},
+      selectedKitchen: {},
+      selectedMenu: {},
       selectOptions: {
-        selectClass: "w-100 py-2 px-1",
+        selectClass: "w-100 py-1",
         grid: {
-          xs: 12,
-          md: 6,
-          lg: 6
+          xs: 24,
+          sm: 12,
+          md: 12,
+          lg: 12,
+          xl: 12
         }
       }
     };
@@ -106,40 +161,8 @@ export default {
   mounted() {
     this.$_PostSelectionOptions_getData();
   },
-  computed: {
-    $_PostSelectionOptions_checkFormCompletion: function() {
-      if (
-        _.isNumber(this.selectedCategoryId) &&
-        _.isNumber(this.selectedKitchenId) &&
-        _.isNumber(this.selectedDishId) &&
-        _.isNumber(this.selectedMenuId)
-      ) {
-        this.$_PostSelectionOptions_sendData();
-      }
-    }
-  },
 
   methods: {
-    $_PostSelectionOptions_sendData: _.debounce(function() {
-      let form = new FormData();
-      form.append("selectedCategoryId", this.selectedCategoryId);
-      form.append("selectedDishId", this.selectedDishId);
-      form.append("selectedKitchenId", this.selectedKitchenId);
-      form.append("selectedMenuId", this.selectedMenuId);
-
-      axios
-        .post("/api/r/tags/cache", form)
-        .then(res => {
-          return this.$snotify.success(
-            "Внесенные изменения сохранены",
-            "Выбор тэгов"
-          );
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }, 1000),
-
     $_PostSelectionOptions_getData: function() {
       axios
         .get("/api/recipe-filter")
