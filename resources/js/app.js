@@ -8,21 +8,7 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
-import Vuesax from "vuesax";
-import "vuesax/dist/vuesax.css"; //Vuesax styles
-Vue.use(Vuesax, {
-  theme: {
-    colors: {
-      primary: "#b5904e",
-      secondary: "#5b5b5b",
-      success: "#28a745",
-      danger: "#dc3545",
-      warning: "#ffc107",
-      dark: "#343a40"
-    }
-  }
-});
-import "material-icons/iconfont/material-icons.css";
+import { store } from "./store";
 
 window.ElementUI = require("element-ui");
 import "element-ui/lib/theme-chalk/index.css";
@@ -86,7 +72,8 @@ Vue.component("post-index-card", require("./components/PostIndexCard.vue").defau
  */
 
 const app = new Vue({
-  el: "#app"
+  el: "#app",
+  store
 });
 
 require("./custom");
