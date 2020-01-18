@@ -1,21 +1,17 @@
-<footer class="footer mt-4">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col py-1">
-                <a class="footer-menu-link" href="/">{{__('Главная')}}</a>
-                <a class="footer-menu-link" href="/posts">{{__('Рецепты')}}</a>
-                <a class="footer-menu-link" href="">{{__('Идеи')}}</a>
-                <a class="footer-menu-link" href="">{{__('Авторы')}}</a>
-                <a class="footer-menu-link" href="">{{__('Журналы')}}</a>
-                <a class="footer-menu-link" href="">{{__('Реклама')}}</a>
-                <a class="footer-menu-link" href="">{{__('FAQ')}}</a>
-            </div>
-            <div class="col py-1">
-                <div class="ml-auto w-50">
-                    @social_buttons
-                    @endsocial_buttons
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row justify-content-center align-content-lg-center">
+        <div class="col-12 col-md-9 d-flex flex-wrap justify-content-md-start justify-content-between py-1 px-3">
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="/">Главная</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="/posts">Рецепты</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="">Идеи</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="/users">Авторы</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="">Журналы</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="">Реклама</a>
+            <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="">FAQ</a>
+        </div>
+        <div class="col-4 col-md-3 py-1 px-0">
+            @social_buttons
+            @endsocial_buttons
         </div>
     </div>
-</footer>
+</div>
