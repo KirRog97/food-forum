@@ -53,6 +53,8 @@ Vue.toArrayOfObjects = function(data) {
 
 Vue.component('selection', require('./components/layouts/Selection.vue').default);
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
+Vue.component("sidebar-drawer", require("./components/layouts/SidebarDrawer.vue").default);
+Vue.component( "sidebar-menu", require("./components/layouts/SidebarMenu.vue").default);
 
 Vue.component('recipe-selection', require('./components/RecipeSelection.vue').default);
 Vue.component("recipe-selection-search", require("./components/RecipeSelectionSearch.vue").default);
