@@ -1,101 +1,141 @@
 <template>
   <div class="container-fluid p-0">
-    <vs-row class="w-100 mb-2" vs-justify="space-between">
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select
-          class="w-100"
-          placeholder="Выберите категорию"
-          v-model.number="selectedCategoryId"
-        >
-          <vs-select-item
-            :key="index"
-            :value="item.id"
-            :text="item.name"
-            v-for="(item, index) in categoryArray"
-          />
-        </vs-select>
-      </vs-col>
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select
-          class="w-100"
-          placeholder="Выберите кухню"
-          v-model.number="selectedKitchenId"
-        >
-          <vs-select-item
-            :key="index"
-            :value="item.id"
-            :text="item.name"
-            v-for="(item, index) in kitchenArray"
-          />
-        </vs-select>
-      </vs-col>
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select
-          class="w-100"
-          placeholder="Выберите блюдо"
-          v-model.number="selectedDishId"
-        >
-          <vs-select-item
-            :key="index"
-            :value="item.id"
-            :text="item.name"
-            v-for="(item, index) in dishArray"
-          />
-        </vs-select>
-      </vs-col>
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="6" vs-xs="12">
-        <vs-select
-          class="w-100"
-          vs-w="12"
-          placeholder="Выберите меню"
-          v-model.number="selectedMenuId"
-        >
-          <vs-select-item
-            :key="index"
-            :value="item.id"
-            :text="item.name"
-            v-for="(item, index) in menuArray"
-          />
-        </vs-select>
-      </vs-col>
-    </vs-row>
-
-    <vs-row
-      class="bg-light rounded p-2"
-      vs-w="12"
-      vs-justify="space-between"
-      v-if="show"
+    <el-row
+      class="flex-wrap"
+      type="flex"
+      justify="betwwen"
+      align="middle"
+      :gutter="12"
     >
-      <vs-col class="row" vs-justify="space-between">
-        <recipe-selection-add-ing :ingredientArray="ingredientArray" />
-        <recipe-selection-exlucde-ing :ingredientArray="ingredientArray" />
-      </vs-col>
-      <vs-col vs-type="flex" vs-justify="space-around">
-        <vs-button class="w-100" color="secondary" type="flat" icon="replay">
+      <el-col
+        :xs="recipeSelection.grid.xs"
+        :sm="recipeSelection.grid.sm"
+        :md="recipeSelection.grid.md"
+        :lg="recipeSelection.grid.lg"
+        :xl="recipeSelection.grid.xl"
+      >
+        <el-select
+          :class="recipeSelection.selectClass"
+          placeholder="Выберите категорию"
+          v-model="selectedCategory"
+          value-key="id"
+        >
+          <el-option
+            v-for="item in categoryArray"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col
+        :xs="recipeSelection.grid.xs"
+        :sm="recipeSelection.grid.sm"
+        :md="recipeSelection.grid.md"
+        :lg="recipeSelection.grid.lg"
+        :xl="recipeSelection.grid.xl"
+      >
+        <el-select
+          :class="recipeSelection.selectClass"
+          placeholder="Выберите категорию"
+          v-model="selectedKitchen"
+          value-key="id"
+        >
+          <el-option
+            v-for="item in kitchenArray"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col
+        :xs="recipeSelection.grid.xs"
+        :sm="recipeSelection.grid.sm"
+        :md="recipeSelection.grid.md"
+        :lg="recipeSelection.grid.lg"
+        :xl="recipeSelection.grid.xl"
+      >
+        <el-select
+          :class="recipeSelection.selectClass"
+          placeholder="Выберите категорию"
+          v-model="selectedDish"
+          value-key="id"
+        >
+          <el-option
+            v-for="item in dishArray"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col
+        :xs="recipeSelection.grid.xs"
+        :sm="recipeSelection.grid.sm"
+        :md="recipeSelection.grid.md"
+        :lg="recipeSelection.grid.lg"
+        :xl="recipeSelection.grid.xl"
+      >
+        <el-select
+          :class="recipeSelection.selectClass"
+          placeholder="Выберите категорию"
+          v-model="selectedMenu"
+          value-key="id"
+        >
+          <el-option
+            v-for="item in menuArray"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+    </el-row>
+    <el-row
+      class="bg-light rounded my-2 p-2"
+      justify="between"
+      v-if="isIngVisible"
+    >
+      <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
+        <recipe-selection-search
+          :ingredientArray="ingredientArray"
+          :isAdding="true"
+        />
+      </el-col>
+      <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
+        <recipe-selection-search
+          :ingredientArray="ingredientArray"
+          :isAdding="false"
+        />
+      </el-col>
+      <el-col :span="24">
+        <el-button class="w-100" type="warning">
           Очистить
-        </vs-button>
-      </vs-col>
-    </vs-row>
+        </el-button>
+      </el-col>
+    </el-row>
 
-    <vs-row class="w-100 mb-2" vs-justify="space-between">
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
-        <vs-button
+    <el-row>
+      <el-col class="px-1 py-2" :span="12">
+        <el-button
           class="w-100"
-          color="secondary"
-          type="relief"
-          @click="show = !show"
+          type="warning"
+          @click="isIngVisible = !isIngVisible"
         >
           Ингредиенты
-        </vs-button>
-      </vs-col>
-
-      <!-- add submit func -->
-      <vs-col class="px-1 py-2" vs-lg="3" vs-sm="12" vs-xs="12">
-        <vs-button class="w-100" color="secondary" type="relief">
-          Подобрать рецепт
-        </vs-button>
-      </vs-col>
-    </vs-row>
+        </el-button>
+      </el-col>
+      <el-col class="px-1 py-2" :span="12">
+        <el-button class="w-100" type="warning">
+          Подобрать
+        </el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -108,11 +148,21 @@ export default {
       kitchenArray: [],
       dishArray: [],
       menuArray: [],
-      selectedCategoryId: Number,
-      selectedDishId: Number,
-      selectedKitchenId: Number,
-      selectedMenuId: Number,
-      show: false
+      selectedCategory: {},
+      selectedDish: {},
+      selectedKitchen: {},
+      selectedMenu: {},
+      recipeSelection: {
+        selectClass: "w-100 py-1",
+        grid: {
+          xs: 24,
+          sm: 6,
+          md: 6,
+          lg: 6,
+          xl: 6
+        }
+      },
+      isIngVisible: true
     };
   },
 

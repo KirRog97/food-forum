@@ -55,8 +55,7 @@ Vue.component('selection', require('./components/layouts/Selection.vue').default
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
 
 Vue.component('recipe-selection', require('./components/RecipeSelection.vue').default);
-Vue.component('recipe-selection-add-ing', require('./components/RecipeSelectionAddIng.vue').default);
-Vue.component('recipe-selection-exlucde-ing', require('./components/RecipeSelectionExcludeIng.vue').default);
+Vue.component("recipe-selection-search", require("./components/RecipeSelectionSearch.vue").default);
 
 Vue.component('ingredient-selection', require('./components/IngredientSelection.vue').default);
 Vue.component('picture-downloading', require('./components/PictureDownloading.vue').default);
