@@ -18,26 +18,25 @@
 
 <body>
     <div id="app">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 col-md-auto col-lg-2 sidebar">
-                    @include('layouts.sidebar')
-                </div>
-                <div class="col-sm-12 col-md-10 col-lg-10">
-                    <div class="page">
-                        @include('layouts.nav')
-
-                        @include('components.message')
-
-                        @yield('content')
-                    </div>
-                    @include('layouts.footer')
+        <el-container>
+            <el-aside width="64px">
+                <sidebar></sidebar>
+                <sidebar-drawer></sidebar-drawer>
+            </el-aside>
+            <el-container>
+                <el-header>
+                    @include('layouts.nav')
+                </el-header>
+                <el-main>
                     <vue-snotify></vue-snotify>
-                </div>
-            </div>
-        </div>
-
-        {{-- Vue div down here --}}
+                    @include('components.message')
+                    @yield('content')
+                </el-main>
+                <el-footer height="fit-content">
+                    @include('layouts.footer')
+                </el-footer>
+            </el-container>
+        </el-container>
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
