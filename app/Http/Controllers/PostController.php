@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\Picture;
-use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -43,21 +43,11 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StorePost   $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
-
-        $this->validate($request, [
-            'title'        =>   'required',
-            'description'  =>   'required',
-            'instruction'  =>   'required',
-            'TTC'          =>   'required|integer',
-            'COP'          =>   'required|integer',
-            'Kcal'         =>   'required|integer'
-        ]);
-
         Post::create([
             'user_id'      =>  Auth::user()->id,
             'picture_id'   =>  session('post_picture'),
@@ -110,11 +100,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\UpdatePost $request
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, Post $post)
     {
         $post = Post::find($post->id);
         $post->title =          $request->input('title');
