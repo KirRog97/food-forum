@@ -6,12 +6,10 @@
 
 @section('content')
 
-<div class="container-fluid">
 
     @heading
     Список кулинаров
     @endheading
-
 
     <div class="text-center text-justify text-muted mb-4">
         <p>
