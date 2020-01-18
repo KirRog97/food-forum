@@ -1,16 +1,20 @@
 <div class="container-fluid px-2 py-3 fa-lg">
     <div class="row justify-content-between align-items-center">
-        <div class="col-9 col-md-10 p-0">
-            <form class="form-inline" action="" method=" POST">
+        <div class="col-2 col-sm-2 d-flex justify-content-center px-1 px-md-0">
+            <a href="/home">
+                <span class="logo_header">Еда</span>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-8 p-0">
+            <form class="form-inline flex-nowrap" action="" method=" POST">
                 {{ csrf_field() }}
-                <button class="btn px-2 py-0 mr-2" type="submit">
+                <button class="btn px-2 py-0 mr-1" type="submit">
                     <i class="fa fa-search fa-lg" aria-hidden="true"></i>
                 </button>
                 <input class="form-control form-control-sm flex-fill" type="search" name="search">
             </form>
         </div>
-
-        <div class="col-3 col-md-2">
+        <div class="col-4 col-sm-3 col-md-2 px-1">
             <ul class="d-flex flex-row flex-nowrap justify-content-around">
 
                 @auth
@@ -76,15 +80,12 @@
                             <a class="dropdown-item py-3" href="#">
                                 {{__('Закладки')}}
                             </a>
-
                             <div class="dropdown-divider m-0"></div>
-
                             <a class="dropdown-item  bg-dark text-white" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); $('#logout-form').submit();">
                                 <i class="fas fa-sign-out-alt py-2 mr-1"></i>
                                 <span>{{__('Выход')}}</span>
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                                 {{ csrf_field() }}
                             </form>
