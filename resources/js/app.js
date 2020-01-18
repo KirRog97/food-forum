@@ -24,6 +24,10 @@ Vue.use(Vuesax, {
 });
 import "material-icons/iconfont/material-icons.css";
 
+window.ElementUI = require("element-ui");
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(ElementUI);
+
 // https:www.npmjs.com/package/vue-snotify
 import Snotify, { SnotifyPosition } from "vue-snotify";
 Vue.use(Snotify, {
