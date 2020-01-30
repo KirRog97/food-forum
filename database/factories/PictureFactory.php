@@ -3,16 +3,18 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Picture::class, function (Faker $faker) {
+    $imgPath =  '/images/recipes/default_post_img.svg';
     return [
-        'path'  =>  '/storage/' . $faker->image(public_path('storage'), 800, 600, 'food', false),
+        'path'  =>   $imgPath,
         'mime'  =>  'image/jpg',
         'size'  =>  $faker->randomDigitNotNull
     ];
 });
 
 $factory->defineAs(App\Picture::class, 'avatar', function (Faker $faker) {
+    $imgPath =  '/images/icons/user_avacado.svg';
     return [
-        'path'  =>  '/storage/' . $faker->image(public_path('storage'), 200, 200, 'people', false, 'Faker'),
+        'path'  =>  $imgPath,
         'mime'  =>  'image/jpg',
         'size'  =>  $faker->randomDigitNotNull
     ];
