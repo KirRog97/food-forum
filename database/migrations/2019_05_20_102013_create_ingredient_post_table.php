@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostIngredientsTable extends Migration
+class CreateIngredientPostTable extends Migration
 {
     public function up()
     {
-        Schema::create('post_ingredient', function (Blueprint $table) {
+        Schema::create('ingredient_post', function (Blueprint $table) {
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('ingredient_id');
-            $table->unsignedInteger('amount');
+            $table->integer('amount');
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts')
@@ -24,6 +24,6 @@ class CreatePostIngredientsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('post_ingredients');
+        Schema::dropIfExists('ingredient_post');
     }
 }

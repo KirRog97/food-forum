@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    public function post()
+    public function posts()
     {
-        return $this->belongsToMany('App\Post', 'post_ingredient', 'ingredient_id', 'post_id');
+        return $this->belongsToMany('App\Post')
+            ->using('App\IngredientPost')
+            ->withPivot(['amount']);
     }
 
     public function picture()

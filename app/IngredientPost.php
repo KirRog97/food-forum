@@ -4,5 +4,5 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PostIngredient extends Pivot
+class IngredientPost extends Pivot
 { }

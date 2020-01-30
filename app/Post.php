@@ -73,22 +73,15 @@ class Post extends Model
         return $this->belongsTo('App\Dish', 'dish_id');
     }
 
-public function menu()
+    public function menu()
     {
         return $this->belongsTo('App\Menu', 'menu_id');
     }
 
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient', 'post_ingredient', 'post_id', 'ingredient_id');
-    }
-
-    public function like()
-    {
-        return $this->belongsTo('App\Like');
-    }
-    public function comment()
-    {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsToMany('App\Ingredient')
+            ->using('App\IngredientPost')
+            ->withPivot(['amount']);
     }
 }
