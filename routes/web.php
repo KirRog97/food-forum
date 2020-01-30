@@ -15,12 +15,20 @@
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
-
 Route::resource('users', 'UserController');
-
 Route::resource('ingredients', 'IngredientController');
+Route::resource('dishes', 'DishController');
 
-Route::resource('dishs', 'DishController');
+
+Route::get('/recipe-filter', 'RecipeFilter@getData');
+
+Route::post('/p/s', 'PictureController@store');
+Route::put('/p/u/{id}', 'PictureController@update');
+Route::delete('/p/d/{id}', 'PictureController@destroy');
+
+Route::post('/post/ing/save', 'PostIngredientController@saveInSession');
+Route::post('/post/ing/store/', 'PostIngredientController@store');
+Route::put('/post/ing/update/{id}', 'PostIngredientController@update');
 
 Route::redirect('/', 'home');
 

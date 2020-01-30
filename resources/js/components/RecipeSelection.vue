@@ -173,7 +173,7 @@ export default {
   methods: {
     $_RecipeSelection_getData: function() {
       axios
-        .get("/api/recipe-filter")
+        .get("/recipe-filter")
         .then(res => {
           this.ingredientArray = Vue.toArrayOfObjects(
             res.data["ingredient_list"]

@@ -16,12 +16,3 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-Route::get('/recipe-filter', 'RecipeFilter@getData');
-Route::post('/r/tags/cache', 'PostTagController@cache');
-
-Route::get('/recipe-sorting', 'RecipeFilter@getData');
-
-Route::post('/p/s', 'PictureController@store');
-Route::put('/p/u/{id}', 'PictureController@update');
-Route::delete('/p/d/{id}', 'PictureController@destroy');

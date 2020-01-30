@@ -130,7 +130,7 @@ export default {
       }
 
       axios
-        .delete("/api/p/d/" + this.downloads[index].id)
+        .delete("/p/d/" + this.downloads[index].id)
         .then(res => {
           if (res.data.result === true) {
             this.downloads.splice(index, 1);
@@ -175,7 +175,7 @@ export default {
       download.name = download.file.name;
 
       await axios
-        .post("/api/p/s", form, {
+        .post("/p/s", form, {
           onUploadProgress: progressEvent => {
             download.fileProgress = Math.round(
               (progressEvent.loaded / progressEvent.total) * 100

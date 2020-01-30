@@ -225,7 +225,7 @@ export default {
       form.append("added_ingredients", this.added_ingredients);
 
       axios
-        .post("/api/post/ing/save", form)
+        .post("/post/ing/save", form)
         .then(res => {
           return this.$snotify.info("Изменения сохранены", "Выбор ингредиента");
         })
@@ -241,7 +241,7 @@ export default {
 
     $_IngredientSelection_getData: function() {
       axios
-        .get("/api/recipe-filter")
+        .get("/recipe-filter")
         .then(res => {
           this.ingredientArray = Vue.toArrayOfObjects(
             res.data["ingredient_list"]

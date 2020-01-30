@@ -165,7 +165,7 @@ export default {
   methods: {
     $_PostSelectionOptions_getData: function() {
       axios
-        .get("/api/recipe-filter")
+        .get("/recipe-filter")
         .then(res => {
           this.categoryArray = Vue.toArrayOfObjects(res.data["category_list"]);
           this.kitchenArray = Vue.toArrayOfObjects(res.data["kitchen_list"]);
