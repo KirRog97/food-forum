@@ -15,6 +15,6 @@ class Ingredient extends Model
 
     public function picture()
     {
-        return $this->belongsTo('App\Picture', 'pic_id');
+        return $this->belongsTo('App\Picture', 'picture_id');
     }
 }

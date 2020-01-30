@@ -9,7 +9,7 @@ $array = [
 $factory->define(App\Ingredient::class, function (Faker $faker) use ($array) {
     return [
         'description'  =>   $faker->paragraphs(5, true),
-        'pic_id'       =>   factory(\App\Picture::class)->create(),
+        'picture_id'   =>   factory(\App\Picture::class)->create(),
         'name'         =>   $faker->unique()->randomElement($array)
     ];
 });

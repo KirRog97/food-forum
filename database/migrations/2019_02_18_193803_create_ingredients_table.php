@@ -10,12 +10,12 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('picture_id');
             $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('pic_id');
             $table->timestamps();
 
-            $table->foreign('pic_id')->references('id')->on('pictures');
+            $table->foreign('picture_id')->references('id')->on('pictures');
         });
     }
 
