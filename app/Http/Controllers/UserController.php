@@ -17,15 +17,14 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $users = User::orderBy('username', 'desc')
-            ->paginate(10);
-
-        return view('users.index')
-            ->with('users', $users);
+        return view('users.index', [
+            'users' => $user->getAscUsernames()->paginate(12)
+        ]);
     }
 
     /**

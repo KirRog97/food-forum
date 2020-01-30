@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
@@ -18,16 +17,16 @@ class PostController extends Controller
         ]]);
     }
 
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        $posts = Post::orderBy('title', 'desc')->paginate(15);
-        return view('posts.index')->with('posts', $posts);
+        return view('posts.index', [
+            'posts' => $post->getAscTitles()->paginate(16)
+        ]);
     }
 
     /**

@@ -10,4 +10,14 @@ class Dish extends Model
     {
         return $this->hasMany('App\Post');
     }
+
+    public function getDescNames()
+    {
+        return User::orderBy('name', 'desc');
+    }
+
+    public function getAscNames()
+    {
+        return User::orderBy('name', 'asc');
+    }
 }

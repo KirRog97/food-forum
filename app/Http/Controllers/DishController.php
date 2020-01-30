@@ -10,12 +10,14 @@ class DishController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Dish $dish)
     {
-        $dishes = Dish::orderBy('name', 'desc')->paginate(10);
-        return view('dishes.index')->with('dishes', $dishes);
+        return view('dishes.index', [
+            'dishes' => $dish->getAscNames()->paginate(10)
+        ]);
     }
 
     /**

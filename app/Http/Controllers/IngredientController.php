@@ -17,12 +17,14 @@ class IngredientController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Ingredient $ingredient)
     {
-        $ingredients = Ingredient::orderBy('name','desc') -> paginate(10);
-        return view('ingredients.index') -> with('ingredients', $ingredients);
+        return view('ingredients.index', [
+            'ingredients' => $ingredient->getAscNames()->paginate(10)
+        ]);
     }
 
     /**

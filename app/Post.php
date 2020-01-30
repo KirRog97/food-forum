@@ -48,6 +48,16 @@ class Post extends Model
         'is_muted' => 'boolean',
     ];
 
+    public function getAscTitles()
+    {
+        return Post::orderBy('title', 'asc');
+    }
+
+    public function getDescTitles()
+    {
+        return Post::orderBy('title', 'desc');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

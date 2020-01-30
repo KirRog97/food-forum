@@ -34,6 +34,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getDescUsernames()
+    {
+        return User::orderBy('username', 'desc');
+    }
+
+    public function getAscUsernames()
+    {
+        return User::orderBy('username', 'asc');
+    }
+
     public function avatar()
     {
         return $this->belongsTo('App\Picture');
@@ -42,15 +52,5 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany('App\Post');
-    }
-
-    public function like()
-    {
-        return $this->belongsTo('App\Like');
-    }
-
-    public function comment()
-    {
-        return $this->belongsTo('App\Comment');
     }
 }
