@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Picture;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,19 +63,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $picture = Picture::create([
+        $picture = \App\Picture::create([
             'path' => '/images/icons/user_avacado.svg'
         ]);
 
-        User::create([
-            'username'              =>      $data['username'],
-            'email'                 =>      $data['email'],
-            'avatar_id'             =>      $picture->id,
-            'password'              =>      bcrypt($data['password']),
-            'email_verified_at'     =>      now(),
+        return User::create([
+            'username'      =>      $data['username'],
+            'email'         =>      $data['email'],
+            'avatar_id'     =>      $picture->id,
+            'password'      =>      Hash::make($data['password']),
         ]);
-
-        return redirect()->route('home')
-            ->with('success', 'Ваш аккаунт успешно создан');
     }
 }
