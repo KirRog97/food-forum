@@ -9,7 +9,7 @@ class IngredientController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', [ 'except' => [
+        $this->middleware('auth', ['except' => [
             'index', 'show'
         ]]);
     }
@@ -56,8 +56,7 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        $ingredient = Ingredient::find($ingredient->id);
-        return view('ingredients.show')->with('ingredient', $ingredient);
+        return view('ingredients.show', compact('ingredient'));
     }
 
     /**
@@ -68,7 +67,8 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        //
+        return view('ingredients.edit')
+            ->with('ingredient', $ingredient);
     }
 
     /**

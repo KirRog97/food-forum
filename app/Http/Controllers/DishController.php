@@ -62,8 +62,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        $dish = Dish::find($dish->id);
-        return view('dishes.show')->with('dish', $dish);
+        return view('dishes.show', compact('dish'));
     }
 
     /**
@@ -74,8 +73,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        $dish = Dish::find($dish->id);
-        return view('dishes.edit')->with('dish', $dish);
+        return view('dishes.edit', compact('dish'));
     }
 
     /**
@@ -87,10 +85,7 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        $dish = Dish::find($dish->id);
-        $dish->name = $request->input('name');
-        $dish->save();
-
+        Dish::whereId($dish->id)->update($request->all());
         return redirect()->route('dishes.index')
             ->with('success', 'Изменения сохранены');
     }
