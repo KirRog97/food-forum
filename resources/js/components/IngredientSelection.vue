@@ -221,11 +221,10 @@ export default {
     },
 
     $_IngredientSelection_sendData: _.debounce(function() {
-      let form = new FormData();
-      form.append("added_ingredients", this.added_ingredients);
-
       axios
-        .post("/post/ing/save", form)
+        .post("/post/ing/save", {
+          added_ingredients: this.added_ingredients
+        })
         .then(res => {
           return this.$snotify.info("Изменения сохранены", "Выбор ингредиента");
         })
@@ -235,9 +234,8 @@ export default {
             "Выбор ингредиента"
           );
           return this.$snotify.error(null, "Ошибка сервера");
-          console.error(err);
         });
-    }, 5000),
+    }, 3000),
 
     $_IngredientSelection_getData: function() {
       axios
