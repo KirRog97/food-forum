@@ -2,8 +2,10 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Category::class, function (Faker $faker) {
+$arrayOfCategories = ['Заготовки', 'Выпечка и десерты', 'Основные блюда', 'Завтраки', 'Салаты', 'Супы', 'Паста и пицца', 'Закуски', 'Сэндвичи',  'Напитки', 'Бульоны'];
+
+$factory->define(App\Category::class, function (Faker $faker) use ($arrayOfCategories) {
     return [
-        'name' => $faker->title
+        'name' => $faker->unique()->randomElement($arrayOfCategories)
     ];
 });

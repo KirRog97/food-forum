@@ -7,10 +7,13 @@ class CategoriesTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
+     * Make sure the number of creating seed equal or less than 11
+     * Because 11 is number of $arrayofCategories length in factory
+     *
      * @return void
      */
     public function run()
     {
-        factory(App\Category::class, 20)->create();
+        factory(App\Category::class, 11)->create();
     }
 }
