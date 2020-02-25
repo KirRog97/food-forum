@@ -26,9 +26,9 @@ Route::post('/p/s', 'PictureController@store');
 Route::put('/p/u/{id}', 'PictureController@update');
 Route::delete('/p/d/{id}', 'PictureController@destroy');
 
-Route::post('/post/ing/save', 'PostIngredientController@saveInSession');
-Route::post('/post/ing/store/', 'PostIngredientController@store');
-Route::put('/post/ing/update/{id}', 'PostIngredientController@update');
+Route::post('/post/ing/save', 'IngredientPostController@saveInSession');
+Route::post('/post/ing/store/', 'IngredientPostController@store');
+Route::put('/post/ing/update/{id}', 'IngredientPostController@update');
 
 Route::redirect('/', 'home');
 
