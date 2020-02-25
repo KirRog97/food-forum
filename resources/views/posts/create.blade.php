@@ -91,9 +91,9 @@
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        <button type="submit" class="btn btn-lg btn-outline-primary">
-            {{ __('Сохранить рецепт') }}
-        </button>
+        <el-button type="primary" icon="el-icon-check" onclick="submit()">
+            Сохранить рецепт
+        </el-button>
     </div>
 </form>
 @endsection
