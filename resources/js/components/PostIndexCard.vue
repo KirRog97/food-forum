@@ -33,16 +33,14 @@
           </el-col>
         </el-row>
       </div>
-      <div>
-        <el-image
-          class="img-fluid-center"
-          fit="cover"
-          :src="postpicturepath"
-          :preview-src-list="photoList"
-          alt="Post picture"
-        >
-        </el-image>
-      </div>
+      <el-image
+        class="img-fluid-center w-100"
+        fit="cover"
+        :src="postpicturepath"
+        :preview-src-list="photoList"
+        alt="Post picture"
+      >
+      </el-image>
     </div>
     <div class="recipe-list-title">
       <a :href="`/posts/${postid}`">
