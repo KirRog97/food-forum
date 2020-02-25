@@ -45,28 +45,38 @@ class PostController extends Controller
      * @param  App\Http\Requests\StorePost   $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePost $request)
+    public function store(StorePost $request, IngredientPost $ingredientPost)
     {
-        Post::create([
+        $ingredients = session('post_ing');
+        $picture_id = session('post_picture');
+
+        $post = Post::create([
             'user_id'      =>  Auth::user()->id,
-            'picture_id'   =>  session('post_picture'),
-            'category_id'  =>  session('post_category_id'),
-            'kitchen_id'   =>  session('post_kitchen_id'),
-            'dish_id'      =>  session('post_dish_id'),
-            'menu_id'      =>  session('post_menu_id'),
+            'picture_id'   =>  $picture_id,
+            'category_id'  =>  $request->post_category_id,
+            'kitchen_id'   =>  $request->post_kitchen_id,
+            'dish_id'      =>  $request->post_dish_id,
+            'menu_id'      =>  $request->post_menu_id,
             'title'        =>  $request->title,
             'description'  =>  $request->description,
             'instruction'  =>  $request->instruction,
             'TTC'          =>  $request->TTC,
             'COP'          =>  $request->COP,
-            'Kcal'         =>  $request->Kcal,
+            'Kcal'         =>  $request->Kcal
         ]);
 
-        $request->session()->forget('download');
-        $request->session()->forget('post_category_id');
-        $request->session()->forget('post_kitchen_id');
-        $request->session()->forget('post_dish_id');
-        $request->session()->forget('post_menu_id');
+        foreach ($ingredients as $ingredient) {
+            $post->ingredients()->attach(1, [
+                'post_id' => $post->id,
+                'ingredient_id' => $ingredient['ingredient_id'],
+                'amount' => $ingredient['amount'],
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        $request->session()->forget('post_picture');
+        $request->session()->forget('post_ing');
 
         return redirect()->route('posts.index')
             ->with('success', 'Ваш рецепт успешно создан');
