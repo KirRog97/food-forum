@@ -45,7 +45,7 @@ class PostController extends Controller
      * @param  App\Http\Requests\StorePost   $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePost $request, IngredientPost $ingredientPost)
+    public function store(StorePost $request)
     {
         $ingredients = session('post_ing');
         $picture_id = session('post_picture');
@@ -90,8 +90,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post = Post::find($post->id);
-        return view('posts.show')->with('post', $post);
+        return view('posts.show', compact('post'));
     }
 
     /**
