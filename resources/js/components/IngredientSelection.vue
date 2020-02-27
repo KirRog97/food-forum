@@ -35,7 +35,7 @@
       >
         <li
           v-for="(item, index) in filterIngredients"
-          class="list-group-item list-group-item-primary shadow px-3 py-2"
+          class="list-group-item list-group-item-primary shadow-sm px-3 py-2"
           :value="item"
           :key="index"
           @click="$_IngredientSelection_copyToSearch(item)"
@@ -135,7 +135,7 @@ export default {
 
   computed: {
     filterIngredients: function() {
-      if (!this.searchString || this.searchString.length < 3) {
+      if (!this.searchString || this.searchString.length < 2) {
         return;
       }
 
@@ -155,7 +155,7 @@ export default {
       let ingredientTotalAmount = _.sum(ingredientAmountArray);
       if (ingredientTotalAmount > 0) {
         return ingredientTotalAmount;
-    }
+      }
     }
   },
 

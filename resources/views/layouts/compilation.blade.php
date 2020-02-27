@@ -1,6 +1,6 @@
 <recipe-selection></recipe-selection>
 
-<div class="recipe-compilation my-2">
+<div class="recipe-compilation py-3">
 
     <div class="recipe-compilation-item grid-item-1-1">
         <img class="img-fluid-center position-absolute" src="/images/recipes/пельмени.jpg"

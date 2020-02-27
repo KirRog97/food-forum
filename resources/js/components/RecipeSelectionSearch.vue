@@ -1,9 +1,9 @@
 <template>
   <div class="form-group w-100">
-    <label class="text-secondary font-weight-lighter" v-if="isAdding">
+    <label class="text-secondary font-lighter" v-if="isAdding">
       Предпочитаемые ингредиенты:
     </label>
-    <label class="text-secondary font-weight-lighter" v-else>
+    <label class="text-secondary font-lighter" v-else>
       Исключаемые ингредиенты:
     </label>
     <div class="input-group shadow-sm">

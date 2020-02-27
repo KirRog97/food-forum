@@ -12,7 +12,7 @@
 <form action="{{route('posts.store') }}" method="post">
     @csrf
 
-    <div class="container-fluid form-custom-secondprimary border-r25 bg-secondary text-primary py-4">
+    <div class="container-fluid form-custom-secondprimary border-r25 py-4">
         <div class="form-group d-flex justify-content-center position-relative pt-4 mt-4">
             <label class="text-shadow shadow" for="title">
                 {{ __('Название рецепта') }}
