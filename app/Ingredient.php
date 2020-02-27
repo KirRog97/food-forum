@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Ingredient extends Model
 {
 
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
+    protected $fillable = [
+        'name',
+        'picture_id',
+        'description',
+    ];
 
     public function getDescNames()
     {
