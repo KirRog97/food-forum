@@ -2,6 +2,7 @@
 
 namespace App;
 
+use \Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,6 +43,11 @@ class User extends Authenticatable
     public function getAscUsernames()
     {
         return User::orderBy('username', 'asc');
+    }
+
+    public function hasOwnerRights($checkId)
+    {
+        return !Auth::guest() && Auth::user()->id === $checkId;
     }
 
     public function avatar()

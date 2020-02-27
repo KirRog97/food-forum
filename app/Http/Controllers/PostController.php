@@ -15,6 +15,10 @@ class PostController extends Controller
         $this->middleware('auth', ['except' => [
             'index', 'show'
         ]]);
+
+        $this->middleware('own.post', ['only' => [
+            'edit',  'update', 'destroy'
+        ]]);
     }
 
     /**

@@ -12,6 +12,10 @@ class UserController extends Controller
         $this->middleware('auth', ['except' => [
             'index', 'show'
         ]]);
+
+        $this->middleware('own.user', ['only' => [
+            'edit',  'update', 'destroy'
+        ]]);
     }
 
     /**
