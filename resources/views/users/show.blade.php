@@ -1,59 +1,156 @@
 @extends('layouts.app')
 
 @section('page_title')
-Профиль пользователя
+Профиль {{ $user->username }}
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
-    <div class="card border-0 mb-3">
-        <div class="row no-gutters">
-            <div class="col-12 col-md-4">
-                <img class="card-img-top img-fluid-center" src="{{ $user->avatar->path}}" alt="user image">
-            </div>
-            <div class="col-12 col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        {{ $user->username  }}
-                    </h5>
-                    <vs-list>
-                        <vs-list-header icon="person" title="Личные данные"> </vs-list-header>
-                        <vs-list-item title="Дата регистрации:" subtitle="{{ $user->created_at}}">
-                            <label for="switch2">Doesnt work </label>
-                            <vs-switch color="success" v-model="switch2" vs-icon="done"></vs-switch>
-                        </vs-list-item>
-                        <vs-list-item title="Email:" subtitle="{{ $user->email}}">
-                            <vs-button type="flat" color="secondary">Изменить</vs-button>
-                        </vs-list-item>
-                        <vs-list-header icon="assignment" title="Активность пользователя"> </vs-list-header>
-                        <vs-list-item title="Опубликованно рецептов:" subtitle="1123">
-                            <vs-button type="flat" color="secondary">Список</vs-button>
-                        </vs-list-item>
-                        <vs-list-item title="Написанно комментариев:" subtitle="235">
-                            <vs-button type="flat" color="secondary">Список</vs-button>
-                        </vs-list-item>
-                    </vs-list>
-                    <p class="card-text d-flex justify-content-end">
-                        <small class="text-muted">
-                            Last updated 54 mins ago
-                        </small>
-                    </p>
-                </div>
-            </div>
+
+    @heading
+    @if ($user->hasOwnerRights($user->id))
+    Ваша кухня
+    @else
+    Добро пожаловать на кухню к {{ $user->username}}
+    @endif
+    @endheading
+
+    <div class="row">
+        <div class="col-12 col-md-7 col-lg-5 d-flex justify-content-center">
+            <el-avatar fit="contain" shape="circle" :size="350" src="{{ $user->avatar->path }}" alt="User picture">
+                <img src="/images/icons/user_avacado.svg" />
+            </el-avatar>
+        </div>
+        <div class="col-12 col-md-5 col-lg-7 d-flex flex-wrap align-content-center ">
+            <h5 class="text-center py-2">Личные данные</h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td scope="row">Имя пользователя:</td>
+                        <td>{{ $user->username }}</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Дата регистрации:</td>
+                        <td>{{ $user->created_at }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 class="text-center py-2">Активность пользователя</h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td scope="row">Опубликованно рецептов:</td>
+                    <td>{{ $user->posts->count() }}</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Написанно комментариев:</td>
+                        {{-- <td>{{ $user->comments->count() }}</td> --}}
+                        <td>Random digit</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="col-12 my-2">
-        <h6 class="card-subtitle text-center py-2">О себе</h6>
-        <p class="card-text text-justify">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
-            Voluptatum accusantium dolore sunt consequatur.Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
-            Voluptatum accusantium dolore sunt consequatur.Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Ea neque eos expedita reiciendis cumque nisi. Quis ullam, ab ex obcaecati quas temporibus soluta est iusto.
-            Voluptatum accusantium dolore sunt consequatur.
-        </p>
+
+    @heading
+    @if ($user->hasOwnerRights($user->id))
+    Ваши рецепты
+    @else
+    Рецепты от {{ $user->username }}
+    @endif
+    @endheading
+
+    <div class="row">
+        <div class="col-12 p-0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Название блюда</th>
+                        <th>Автор</th>
+                        @if ($user->hasOwnerRights($user->id))
+                        <th>Редактирование</th>
+                        <th>Удаление</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($user->posts as $post)
+                    <tr>
+                        <td scope="row">{{ $post->title }}:</td>
+                        <td>{{ $user->username }}</td>
+                        @if ($user->hasOwnerRights($user->id))
+                        <td>
+                            <el-tooltip placement="top">
+                                <div slot="content">
+                                    <span class="text-center">Переход к редатированию рецепта</span>
+                                    <br />
+                                    <span class="text-danger">После удаления происходит перенаправление</span>
+                                </div>
+                                <a href="{{ route('posts.edit', $post) }}">
+                                    <el-button type="info" icon="el-icon-edit" circle> </el-button>
+                                </a>
+                            </el-tooltip>
+
+                        </td>
+                        <td>
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <el-tooltip placement="top">
+                                    <div slot="content">
+                                        <span class="text-center">Удаление рецепта</span>
+                                        <br />
+                                        <span class="text-danger">После удаления происходит перенаправление</span>
+                                    </div>
+                                    <el-button type="danger" icon="el-icon-delete" onclick="submit()" circle>
+                                    </el-button>
+                                </el-tooltip>
+                            </form>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @heading
+    @if ($user->hasOwnerRights($user->id))
+    Ваши коментарии
+    @else
+    Коментарии {{ $user->username }}
+    @endif
+    @endheading
+
+    <div class="row">
+        <div class="col-12 p-0">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Блюдо</th>
+                        <th>Коментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
