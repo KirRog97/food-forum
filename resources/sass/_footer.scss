@@ -6,7 +6,6 @@ footer {
 }
 
 .footer-menu-link {
-  transition: all 0.5s ease;
   width: fit-content;
   color: lightgrey;
   font-size: 1rem;
@@ -14,6 +13,8 @@ footer {
   font-weight: lighter;
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
+
+  @include transition-500ms;
 
   &:hover {
     color: $primary;

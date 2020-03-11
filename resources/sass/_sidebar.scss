@@ -23,12 +23,11 @@
 }
 
 .social_icon {
-  transition: 0.4s linear;
   color: white;
+  @include transition-500ms;
 
   &:hover {
-    transition: 0.5s linear;
-    transform: scale(1.2);
+    transform: scale(2);
     color: $primary;
   }
 }

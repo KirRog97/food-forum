@@ -14,9 +14,9 @@
     color: $primary;
 
     &:hover {
-      transition: 0.4s linear;
       color: inherit !important;
       background-color: inherit !important;
+      @include transition-500ms;
     }
   }
 

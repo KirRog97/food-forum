@@ -17,6 +17,10 @@
   text-shadow: 1px 1px 4px black;
 }
 
+@mixin transition-500ms {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
 @mixin border-dark($type: border, $line-width: 1px) {
   #{$type}: $line-width solid rgba(0, 0, 0, 0.125);
 }
