@@ -1,13 +1,14 @@
 .recipe-about-heading {
+  margin: 0;
+  padding: 0.75em 0;
   color: $primary;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 900;
   text-align: center;
-  padding: 0;
 }
 
 .recipe-about-paragraph {
-  color: gray;
-  margin-bottom: 1em;
   padding: 0 1.2em;
+  margin-bottom: 1em;
+  color: $secondary;
+  font-size: 1.2em;
 }
