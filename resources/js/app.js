@@ -12,6 +12,7 @@ import { store } from "./store";
 
 window.ElementUI = require("element-ui");
 import "element-ui/lib/theme-chalk/index.css";
+import '../sass/element-ui/element-variables.scss';
 Vue.use(ElementUI);
 
 // https:www.npmjs.com/package/vue-snotify
