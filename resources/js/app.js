@@ -62,6 +62,8 @@ Vue.component("recipe-selection-search", require("./components/RecipeSelectionSe
 
 Vue.component('ingredient-selection', require('./components/IngredientSelection.vue').default);
 Vue.component('picture-downloading', require('./components/PictureDownloading.vue').default);
+Vue.component('picture-upload-single', require('./components/PictureUploadSingle.vue').default);
+
 Vue.component('post-selection-options', require('./components/PostSelectionOptions.vue').default);
 
 Vue.component("user-index-card", require("./components/UserIndexCard.vue").default);
