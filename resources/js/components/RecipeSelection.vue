@@ -114,7 +114,7 @@
         />
       </el-col>
       <el-col :span="24">
-        <el-button class="w-100" type="warning">
+        <el-button class="w-100" type="primary">
           Очистить
         </el-button>
       </el-col>
@@ -124,14 +124,14 @@
       <el-col class="px-1 py-2" :span="12">
         <el-button
           class="w-100"
-          type="warning"
+          type="primary"
           @click="isIngVisible = !isIngVisible"
         >
           Ингредиенты
         </el-button>
       </el-col>
       <el-col class="px-1 py-2" :span="12">
-        <el-button class="w-100" type="warning">
+        <el-button class="w-100" type="primary">
           Подобрать
         </el-button>
       </el-col>

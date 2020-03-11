@@ -19,7 +19,7 @@
       </a>
     </el-col>
     <el-col class="d-flex justify-content-center" :span="13">
-      <el-button :href="`users/${id}`" type="warning" plain>
+      <el-button :href="`users/${id}`" type="primary" plain>
         Список рецептов
       </el-button>
     </el-col>

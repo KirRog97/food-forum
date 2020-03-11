@@ -88,7 +88,7 @@
             label="Грамм"
           ></el-table-column>
         </el-table>
-        <el-button type="warning" plain slot="reference">
+        <el-button type="primary" plain slot="reference">
           Ингредиенты
         </el-button>
       </el-popover>
