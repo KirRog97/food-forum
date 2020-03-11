@@ -18,7 +18,7 @@ class IngredientPostController extends Controller
         $postIng = [];
 
         foreach ($request->added_ingredients as $key => $value) {
-            $postIng[$key]['id'] = $value['id'];
+            $postIng[$key]['ingredient_id'] = $value['id'];
             $postIng[$key]['amount'] = $value['amount'];
         };
 
