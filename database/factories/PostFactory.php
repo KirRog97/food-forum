@@ -1,13 +1,16 @@
 <?php
 
+use App\User;
+use App\Post;
+use App\Picture;
 use Faker\Generator as Faker;
 
-$factory->define(App\Post::class, function (Faker $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     $faker = \Faker\Factory::create('ru_RU');
     return [
         'title'         =>   $faker->name,
-        'user_id'       =>   factory(\App\User::class)->create(),
-        'picture_id'    =>   factory(\App\Picture::class)->create(),
+        'user_id'       =>   factory(User::class)->create(),
+        'picture_id'    =>   factory(Picture::class)->create(),
         'category_id'   =>   $faker->numberBetween(1, 11),
         'kitchen_id'    =>   $faker->numberBetween(1, 10),
         'dish_id'       =>   $faker->numberBetween(1, 70),
