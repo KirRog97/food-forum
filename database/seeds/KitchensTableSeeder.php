@@ -10,6 +10,8 @@ class KitchensTableSeeder extends Seeder
      * Make sure the number of creating seed equal or less than 10
      * Because 10 is number of $arrayofKitchens length in factory
      *
+     * (!!!)Make sure you set right second argument in PostFactory
+     *
      * @return void
      */
     public function run()

@@ -10,6 +10,8 @@ class CategoriesTableSeeder extends Seeder
      * Make sure the number of creating seed equal or less than 11
      * Because 11 is number of $arrayofCategories length in factory
      *
+     * (!!!)Make sure you set right second argument in PostFactory
+     *
      * @return void
      */
     public function run()
