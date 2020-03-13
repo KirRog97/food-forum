@@ -10,7 +10,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'picture_id'    =>   factory(\App\Picture::class)->create(),
         'category_id'   =>   $faker->numberBetween(1, 11),
         'kitchen_id'    =>   $faker->numberBetween(1, 10),
-        'dish_id'       =>   $faker->numberBetween(1, 73),
+        'dish_id'       =>   $faker->numberBetween(1, 70),
         'menu_id'       =>   $faker->numberBetween(1, 6),
         'description'   =>   $faker->paragraphs($faker->numberBetween(3, 6), true),
         'instruction'   =>   $faker->text($faker->numberBetween(145, 255)),
