@@ -5,9 +5,10 @@
 @endsection
 
 @section('content')
-@heading
-{{ __('Создание рецепта') }}
-@endheading
+
+<x-heading>
+    Создание рецепта
+</x-heading>
 
 <form action="{{route('posts.store') }}" method="post">
     @csrf

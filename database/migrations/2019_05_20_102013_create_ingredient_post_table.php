@@ -9,8 +9,8 @@ class CreateIngredientPostTable extends Migration
     public function up()
     {
         Schema::create('ingredient_post', function (Blueprint $table) {
-            $table->unsignedInteger('post_id');
-            $table->unsignedInteger('ingredient_id');
+            $table->foreignId('post_id');
+            $table->foreignId('ingredient_id');
             $table->integer('amount');
             $table->timestamps();
 

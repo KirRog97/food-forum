@@ -9,14 +9,14 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('picture_id');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('kitchen_id');
-            $table->unsignedInteger('dish_id');
-            $table->unsignedInteger('menu_id');
+            $table->foreignId('user_id');
+            $table->foreignId('picture_id');
+            $table->foreignId('category_id');
+            $table->foreignId('kitchen_id');
+            $table->foreignId('dish_id');
+            $table->foreignId('menu_id');
             $table->text('instruction');
             $table->text('description');
             $table->integer('TTC');
@@ -33,7 +33,6 @@ class CreatePostsTable extends Migration
             $table->foreign('kitchen_id')->references('id')->on('kitchens');
             $table->foreign('dish_id')->references('id')->on('dishes');
             $table->foreign('menu_id')->references('id')->on('menus');
-
         });
     }
 

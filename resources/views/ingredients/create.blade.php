@@ -6,9 +6,9 @@
 
 @section('content')
 
-@heading
-Создание рецепта
-@endheading
+<x-heading>
+    Создание рецепта
+</x-heading>
 
 {!! Form::open(['action' => 'PostController@store', 'method' => 'POST']) !!}
 <div class="form-group">
@@ -54,7 +54,8 @@
         <div class="input-group-prepend">
             <button class="btn btn-primary" type="button">Добавить</button>
         </div>
-        <input type="text" class="form-control" placeholder="" name="Ingredients" id="Ingredients" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="" name="Ingredients" id="Ingredients"
+            aria-describedby="basic-addon1">
     </div>
 </div>
 

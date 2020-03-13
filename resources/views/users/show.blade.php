@@ -8,13 +8,13 @@
 
 <div class="container-fluid">
 
-    @heading
-    @if ($user->hasOwnerRights($user->id))
-    Ваша кухня
-    @else
-    Добро пожаловать на кухню к {{ $user->username}}
-    @endif
-    @endheading
+    <x-heading>
+        @if ($user->hasOwnerRights($user->id))
+        Ваша кухня
+        @else
+        Добро пожаловать на кухню к {{ $user->username}}
+        @endif
+    </x-heading>
 
     <div class="row">
         <div class="col-12 col-md-7 col-lg-5 d-flex justify-content-center">
@@ -42,7 +42,7 @@
                 <tbody>
                     <tr>
                         <td scope="row">Опубликованно рецептов:</td>
-                    <td>{{ $user->posts->count() }}</td>
+                        <td>{{ $user->posts->count() }}</td>
                     </tr>
                     <tr>
                         <td scope="row">Написанно комментариев:</td>
@@ -54,13 +54,13 @@
         </div>
     </div>
 
-    @heading
-    @if ($user->hasOwnerRights($user->id))
-    Ваши рецепты
-    @else
-    Рецепты от {{ $user->username }}
-    @endif
-    @endheading
+    <x-heading>
+        @if ($user->hasOwnerRights($user->id))
+        Ваши рецепты
+        @else
+        Рецепты от {{ $user->username }}
+        @endif
+    </x-heading>
 
     <div class="row">
         <div class="col-12 p-0">
@@ -103,7 +103,8 @@
                                     <div slot="content">
                                         <span class="text-center">Удаление рецепта</span>
                                         <br />
-                                        <span class="text-danger">После удаления происходит перенаправление</span>
+                                        <span class="text-danger">После удаления происходит
+                                            перенаправление</span>
                                     </div>
                                     <el-button type="danger" icon="el-icon-delete" onclick="submit()" circle>
                                     </el-button>
@@ -118,13 +119,13 @@
         </div>
     </div>
 
-    @heading
-    @if ($user->hasOwnerRights($user->id))
-    Ваши коментарии
-    @else
-    Коментарии {{ $user->username }}
-    @endif
-    @endheading
+    <x-heading>
+        @if ($user->hasOwnerRights($user->id))
+        Ваши коментарии
+        @else
+        Коментарии {{ $user->username }}
+        @endif
+    </x-heading>
 
     <div class="row">
         <div class="col-12 p-0">

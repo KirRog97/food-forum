@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('page_title')
 Книга ингредиентов
 @endsection
@@ -6,9 +7,11 @@
 @section('content')
 
 <div class="container-fluid">
-    @heading
-    Книга ингредиентов
-    @endheading
+
+    <x-heading>
+        Книга ингредиентов
+    </x-heading>
+
     <div class="text-center text-justify text-muted mb-4">
         <p>
             Здесь вы можете ознакомиться с ингредиентами, которые будут использоваться в ваших рецептах.

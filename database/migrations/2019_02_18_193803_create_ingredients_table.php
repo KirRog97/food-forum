@@ -9,8 +9,8 @@ class CreateIngredientsTable extends Migration
     public function up()
     {
         Schema::create('ingredients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('picture_id');
+            $table->id();
+            $table->foreignId('picture_id');
             $table->string('name');
             $table->text('description');
             $table->timestamps();

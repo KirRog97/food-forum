@@ -6,10 +6,9 @@
 
 @section('content')
 
-
-    @heading
+<x-heading>
     Список кулинаров
-    @endheading
+</x-heading>
 
     <div class="text-center text-justify text-muted mb-4">
         <p>

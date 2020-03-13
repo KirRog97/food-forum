@@ -6,9 +6,9 @@
 
 @section('content')
 
-@heading
-Изменение рецепта
-@endheading
+<x-heading>
+    Изменение рецепта
+</x-heading>
 
 <div class="container-fluid">
     <div class="row">

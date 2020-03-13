@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('components.heading', 'heading');
         Blade::component('components.social_buttons', 'social_buttons');
         Blade::component('components.message', 'message');
-        Blade::component('components.recipe', 'recipe');      
+        Blade::component('components.recipe', 'recipe');
     }
 }

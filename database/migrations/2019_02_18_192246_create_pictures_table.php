@@ -9,7 +9,7 @@ class CreatePicturesTable extends Migration
     public function up()
     {
         Schema::create('pictures', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('path');
             $table->string('mime')->nullable();
             $table->string('size')->nullable();

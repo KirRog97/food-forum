@@ -9,9 +9,9 @@
 
 <div class="container-fluid">
 
-    @heading
-    {{  __('Книга рецептов')  }}
-    @endheading
+    <x-heading>
+        Книга рецептов
+    </x-heading>
 
 
     <div class="position-relative text-center text-muted text-justify mb-5">
