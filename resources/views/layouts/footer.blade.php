@@ -10,8 +10,7 @@
             <a class="col-4 col-md-auto footer-menu-link py-1 py-lg-0 px-2" href="">FAQ</a>
         </div>
         <div class="col-4 col-md-3 py-1 px-0">
-            @social_buttons
-            @endsocial_buttons
+            <x-social_buttons></x-social_buttons>
         </div>
     </div>
 </div>
