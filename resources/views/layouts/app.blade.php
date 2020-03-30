@@ -32,6 +32,7 @@
                 </el-header>
                 <el-main>
                     <vue-snotify></vue-snotify>
+                    <backtop></backtop>
                     @include('components.message')
                     @yield('content')
                 </el-main>

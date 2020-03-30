@@ -56,6 +56,7 @@ Vue.component(
     "selection",
     require("./components/layouts/Selection.vue").default
 );
+Vue.component("backtop", require("./components/layouts/Backtop.vue").default);
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
 Vue.component(
     "sidebar-drawer",
