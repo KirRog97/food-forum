@@ -149,10 +149,10 @@ export default {
         selectClass: "w-100 py-1",
         grid: {
           xs: 24,
-          sm: 12,
-          md: 12,
-          lg: 12,
-          xl: 12
+          sm: 24,
+          md: 24,
+          lg: 6,
+          xl: 6
         }
       }
     };
