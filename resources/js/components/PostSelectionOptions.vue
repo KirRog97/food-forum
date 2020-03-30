@@ -26,7 +26,7 @@
           :value="item"
         >
           <span>{{ item.name }}</span>
-          <span style="float: right; color: #8492a6; font-size: 13px">
+          <span :style="selectOptions.selectSubSpanStyles">
             Категория
           </span>
         </el-option>
@@ -57,7 +57,7 @@
           :value="item"
         >
           <span>{{ item.name }}</span>
-          <span style="float: right; color: #8492a6; font-size: 13px">
+          <span :style="selectOptions.selectSubSpanStyles">
             Кухня
           </span>
         </el-option>
@@ -88,7 +88,7 @@
           :value="item"
         >
           <span>{{ item.name }}</span>
-          <span style="float: right; color: #8492a6; font-size: 13px">
+          <span :style="selectOptions.selectSubSpanStyles">
             Блюдо
           </span>
         </el-option>
@@ -119,7 +119,7 @@
           :value="item"
         >
           <span>{{ item.name }}</span>
-          <span style="float: right; color: #8492a6; font-size: 13px">
+          <span :style="selectOptions.selectSubSpanStyles">
             Меню
           </span>
         </el-option>
@@ -147,6 +147,7 @@ export default {
       selectedMenu: {},
       selectOptions: {
         selectClass: "w-100 py-1",
+        selectSubSpanStyles: "float: right; color: #8492a6; font-size: 13px;",
         grid: {
           xs: 24,
           sm: 24,
