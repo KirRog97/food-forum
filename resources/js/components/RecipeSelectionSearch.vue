@@ -24,7 +24,13 @@
       />
     </div>
 
-    <ul class="list-group mt-1">
+    <transition-group
+      class="list-group mt-1"
+      enter-active-class="animated fadeInDown"
+      leave-active-class="animated fadeOut faster"
+      tag="ul"
+      css
+    >
       <li
         :class="[
           'list-group-item',
@@ -42,7 +48,7 @@
         <i class="fas fa-minus mr-3" v-else></i>
         <span>{{ item }}</span>
       </li>
-    </ul>
+    </transition-group>
 
     <ul
       :class="[
