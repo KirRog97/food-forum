@@ -28,10 +28,10 @@
 
       <transition-group
         class="list-group mt-1"
-        enter-active-class="animated fadeInDown"
-        leave-active-class="animated fadeOut"
+        move-class="animated fadeOutUp slow"
+        enter-active-class="animate fadeInDownBig delay-1s slow"
+        leave-active-class="animated fadeOutUp d-none delay-1s slow"
         tag="ul"
-        css
       >
         <li
           v-for="(item, index) in filterIngredients"
