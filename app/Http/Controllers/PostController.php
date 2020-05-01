@@ -29,7 +29,7 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('posts.index', [
-            'posts' => $post->getAscTitles()->paginate(16)
+            'posts' => $post->getAscTitles()->paginate(10)
         ]);
     }
 

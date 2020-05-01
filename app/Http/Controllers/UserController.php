@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index(User $user)
     {
         return view('users.index', [
-            'users' => $user->getAscUsernames()->paginate(12)
+            'users' => $user->getAscUsernames()->paginate(8)
         ]);
     }
 
