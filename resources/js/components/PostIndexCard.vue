@@ -1,20 +1,22 @@
 <template>
-  <div class="recipe-list-item">
+  <div class="recipe-list-item" v-loading="isComponentLoading">
     <div class="recipe-list-images">
       <div class="recipe-author w-100 rounded-pill px-2 py-1 mt-2">
         <el-row class="w-100" type="flex" justify="center" align="middle">
           <el-col :span="18">
-            <div class="recipe-author-name py-0 px-0 mr-1">
-              <a
-                :href="`/users/${userid}`"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Просмотреть профиль"
-              >
-                <span>
-                  {{ username }}
-                </span>
-              </a>
+            <div class="recipe-author-name p-0">
+              <h5>
+                <a
+                  :href="`/users/${userid}`"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Просмотреть профиль"
+                >
+                  <span>
+                    {{ username }}
+                  </span>
+                </a>
+              </h5>
             </div>
           </el-col>
           <el-col :span="6">
@@ -43,11 +45,13 @@
       </el-image>
     </div>
     <div class="recipe-list-title">
-      <a :href="`/posts/${postid}`">
-        <h2>
-          {{ posttitle }}
-        </h2>
-      </a>
+      <h3>
+        <a :href="`/posts/${postid}`">
+          <span>
+            {{ posttitle }}
+          </span>
+        </a>
+      </h3>
     </div>
     <div class="recipe-list-specification m-auto">
       <div class="recipe-list-specification-line">
@@ -75,20 +79,30 @@
         :title="`Ингредиенты ${posttitle}`"
         trigger="click"
       >
-        <el-table border max-height="250" :data="ingredientsArray">
+        <el-table max-height="250" :data="postingredients" border stripe>
           <el-table-column
-            width="250"
+            type="index"
+            width="32"
+            align="center"
+            label="№"
+          ></el-table-column>
+          <el-table-column
+            width="200"
             property="name"
             label="Имя"
           ></el-table-column>
           <el-table-column
             width="100"
             align="center"
-            property="amount"
+            property="pivot.amount"
             label="Грамм"
           ></el-table-column>
         </el-table>
-        <el-button type="primary" plain slot="reference">
+        <el-button
+          class="text-primary font-weight-normal"
+          type="text"
+          slot="reference"
+        >
           Ингредиенты
         </el-button>
       </el-popover>
@@ -120,9 +134,16 @@ export default {
   data() {
     return {
       showIngredients: false,
-      photoList: [this.postpicturepath, this.postpicturepath],
-      ingredientsArray: []
+      isComponentLoading: true,
+      photoList: [this.postpicturepath]
     };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.isComponentLoading = false;
+      }, 800);
+    });
   },
   props: [
     "userid",
@@ -133,7 +154,8 @@ export default {
     "posttitle",
     "postttc",
     "postcop",
-    "postkcal"
+    "postkcal",
+    "postingredients"
   ]
 };
 </script>
