@@ -13,32 +13,33 @@ import { store } from "./store";
 window.ElementUI = require("element-ui");
 import "element-ui/lib/theme-chalk/index.css";
 import "../sass/element-ui/element-variables.scss";
+
 Vue.use(ElementUI);
 
 // https:www.npmjs.com/package/vue-snotify
 import Snotify, { SnotifyPosition } from "vue-snotify";
 Vue.use(Snotify, {
-    toast: {
-        position: SnotifyPosition.leftBottom,
-        timeout: 5000,
-        animation: {
-            time: 800
-        },
-        titleMaxLength: 32,
-        bodyMaxLength: 240,
-        placeholder: "Введите текст..."
-    }
+  toast: {
+    position: SnotifyPosition.leftBottom,
+    timeout: 5000,
+    animation: {
+      time: 800
+    },
+    titleMaxLength: 32,
+    bodyMaxLength: 240,
+    placeholder: "Введите текст..."
+  }
 });
 
 Vue.toArrayOfObjects = function(data) {
-    let resultArray = [];
-    _.each(data, function(value, key) {
-        resultArray.push({
-            id: key,
-            name: value
-        });
+  let resultArray = [];
+  _.each(data, function(value, key) {
+    resultArray.push({
+      id: key,
+      name: value
     });
-    return resultArray;
+  });
+  return resultArray;
 };
 
 /**
@@ -53,54 +54,60 @@ Vue.toArrayOfObjects = function(data) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component(
-    "selection",
-    require("./components/layouts/Selection.vue").default
+  "selection",
+  require("./components/layouts/Selection.vue").default
 );
 Vue.component("backtop", require("./components/layouts/Backtop.vue").default);
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
 Vue.component(
-    "sidebar-drawer",
-    require("./components/layouts/SidebarDrawer.vue").default
+  "sidebar-drawer",
+  require("./components/layouts/SidebarDrawer.vue").default
 );
 Vue.component(
-    "sidebar-menu",
-    require("./components/layouts/SidebarMenu.vue").default
-);
-
-Vue.component(
-    "recipe-selection",
-    require("./components/RecipeSelection.vue").default
-);
-Vue.component(
-    "recipe-selection-search",
-    require("./components/RecipeSelectionSearch.vue").default
+  "sidebar-menu",
+  require("./components/layouts/SidebarMenu.vue").default
 );
 
 Vue.component(
-    "ingredient-selection",
-    require("./components/IngredientSelection.vue").default
-);
-Vue.component(
-    "picture-downloading",
-    require("./components/PictureDownloading.vue").default
-);
-Vue.component(
-    "picture-upload-single",
-    require("./components/PictureUploadSingle.vue").default
+  "recipe-selection",
+  require("./components/RecipeSelection.vue").default
 );
 
 Vue.component(
-    "post-selection-options",
-    require("./components/PostSelectionOptions.vue").default
+  "recipe-selection-search",
+  require("./components/RecipeSelectionSearch.vue").default
+);
+Vue.component(
+  "ingredient-selection",
+  require("./components/IngredientSelection.vue").default
 );
 
 Vue.component(
-    "user-index-card",
-    require("./components/UserIndexCard.vue").default
+  "picture-downloading",
+  require("./components/PictureDownloading.vue").default
 );
 Vue.component(
-    "post-index-card",
-    require("./components/PostIndexCard.vue").default
+  "picture-upload-single",
+  require("./components/PictureUploadSingle.vue").default
+);
+
+Vue.component(
+  "post-selection-options",
+  require("./components/PostSelectionOptions.vue").default
+);
+
+Vue.component(
+  "user-index-card",
+  require("./components/UserIndexCard.vue").default
+);
+Vue.component(
+  "post-index-card",
+  require("./components/PostIndexCard.vue").default
+);
+
+Vue.component(
+  "post-show-card",
+  require("./components/PostShowCard.vue").default
 );
 
 /**
@@ -110,8 +117,8 @@ Vue.component(
  */
 
 const app = new Vue({
-    el: "#app",
-    store
+  el: "#app",
+  store
 });
 
 require("./custom");
