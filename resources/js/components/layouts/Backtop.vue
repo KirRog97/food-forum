@@ -1,5 +1,7 @@
 <template>
-  <el-backtop :bottom="70" :right="15" :visibility-height="200"></el-backtop>
+  <transition enter-active-class="animated zoomIn fast" css>
+    <el-backtop :bottom="70" :right="15" :visibility-height="200"></el-backtop>
+  </transition>
 </template>
 
 <style lang="scss" scoped>
@@ -12,6 +14,7 @@
 
   &:hover {
     opacity: 1;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
   }
 }
 </style>
