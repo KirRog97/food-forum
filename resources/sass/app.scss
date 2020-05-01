@@ -9,6 +9,8 @@
 @import "variables";
 @import "mixins";
 @import "~bootstrap/scss/bootstrap";
+@import "defaultStyles";
+@import "utilityClasses";
 @import "sidebar";
 @import "header";
 @import "page";
@@ -26,105 +28,4 @@
 //Style for Scrollbar im Chrome
 @import "scrollbar";
 
-body {
-  font-family: "Oswald", sans-serif;
-  scroll-behavior: smooth;
-}
-
-li {
-  list-style-type: none;
-}
-
-ul {
-  margin: 0px;
-  padding: 0px;
-}
-
-.icon {
-  width: 1.2em;
-  height: 1.2em;
-  align-self: center;
-}
-
-a,
-a:hover,
-a:active {
-  outline: none;
-  text-decoration: none;
-  color: inherit;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.transition-500ms {
-  @include transition-500ms;
-}
-
-.bg-dark35 {
-  @include bg-dark35;
-}
-
-.bg-dark50 {
-  @include bg-dark50;
-}
-
-.text-shadow {
-  @include text-shadow;
-}
-
-.img-fluid-center {
-  @include img-fluid-custom;
-  object-fit: cover;
-}
-
-.img-fluid-contain {
-  @include img-fluid-custom;
-  object-position: center;
-}
-
-.border-r25 {
-  border-radius: 25px;
-}
-
-.logo {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  font-family: "Lobster", cursive;
-  color: $primary;
-
-  @include transition-500ms;
-
-  @include media-breakpoint-up(xs) {
-    font-size: 1.5rem;
-  }
-
-  @include media-breakpoint-up(sm) {
-    font-size: 2.25rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    font-size: 2rem;
-  }
-
-  @include media-breakpoint-up(lg) {
-    font-size: 2.5rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 3rem;
-  }
-
-  &:hover {
-    color: lighten($primary, 10%);
-  }
-}
+@import "~animate.css/animate.min.css";
