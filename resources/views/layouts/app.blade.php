@@ -27,10 +27,10 @@
                 <sidebar-drawer></sidebar-drawer>
             </el-aside>
             <el-container>
-                <el-header>
+                <el-header height="auto">
                     @include('layouts.nav')
                 </el-header>
-                <el-main>
+                <el-main style="min-height: 100vh;">
                     <vue-snotify></vue-snotify>
                     <backtop></backtop>
                     @include('components.message')
