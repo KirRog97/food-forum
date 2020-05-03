@@ -1,6 +1,6 @@
 .recipe-compilation {
   @include media-breakpoint-up(xs) {
-    grid-template-rows: 255px 255px 200px 180px 180px 200px;
+    grid-template-rows: 400px 400px 270px 270px 270px 270px;
     grid-template-areas:
       "grid-item-1-1 grid-item-1-1 grid-item-1-1 grid-item-1-1"
       "grid-item-1-2 grid-item-1-2 grid-item-1-2 grid-item-1-2"
@@ -10,8 +10,8 @@
       "grid-item-3-3 grid-item-3-3 grid-item-3-3 grid-item-3-3";
   }
 
-  @include media-breakpoint-up(md) {
-    grid-template-rows: 300px 200px 200px;
+  @include media-breakpoint-up(lg) {
+    grid-template-rows: 400px 270px 270px;
     grid-template-areas:
       "grid-item-1-1 grid-item-1-1 grid-item-1-2 grid-item-1-2"
       "grid-item-2-1 grid-item-2-1 grid-item-2-2 grid-item-2-3"
