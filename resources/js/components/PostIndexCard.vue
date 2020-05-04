@@ -1,10 +1,10 @@
 <template>
-  <div class="recipe-list-item" v-loading="isComponentLoading">
-    <div class="recipe-list-images">
-      <div class="recipe-author w-100 rounded-pill px-2 py-1 mt-2">
+  <div class="post-list-item" v-loading="isComponentLoading">
+    <div class="post-list-images">
+      <div class="post-author w-100 rounded-pill px-2 py-1 mt-2">
         <el-row class="w-100" type="flex" justify="center" align="middle">
           <el-col :span="18">
-            <div class="recipe-author-name p-0">
+            <div class="post-author-name p-0">
               <h5>
                 <a
                   :href="`/users/${userid}`"
@@ -20,7 +20,7 @@
             </div>
           </el-col>
           <el-col :span="6">
-            <div class="recipe-list-photo-author rounded-circle">
+            <div class="post-list-photo-author rounded-circle">
               <el-avatar
                 class="img-fluid-center"
                 shape="circle"
@@ -44,7 +44,7 @@
       >
       </el-image>
     </div>
-    <div class="recipe-list-title">
+    <div class="post-list-title">
       <h3>
         <a :href="`/posts/${postid}`">
           <span>
@@ -53,27 +53,27 @@
         </a>
       </h3>
     </div>
-    <div class="recipe-list-specification m-auto">
-      <div class="recipe-list-specification-line">
+    <div class="post-list-specification m-auto">
+      <div class="post-list-specification-line">
         <span>
           <i class="far fa-clock fa-lg"></i>
           {{ postttc }} минут
         </span>
       </div>
-      <div class="recipe-list-specification-line">
+      <div class="post-list-specification-line">
         <span>
           <i class="fas fa-chart-pie fa-lg"></i>
           {{ postcop }} порции
         </span>
       </div>
-      <div class="recipe-list-specification-line">
+      <div class="post-list-specification-line">
         <span>
           <i class="fas fa-running fa-lg"></i>
           {{ postkcal }} Ккал
         </span>
       </div>
     </div>
-    <div class="recipe-list-ingredients w-100">
+    <div class="post-list-ingredients w-100">
       <el-popover
         placement="right"
         :title="`Ингредиенты ${posttitle}`"
@@ -107,7 +107,7 @@
         </el-button>
       </el-popover>
     </div>
-    <div class="recipe-socials-widgets">
+    <div class="post-socials-widgets">
       <div class="widget-like">
         <a href="" class="btn-like">
           <i class="far fa-heart"></i>

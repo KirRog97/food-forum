@@ -8,14 +8,14 @@
       :gutter="12"
     >
       <el-col
-        :xs="recipeSelection.grid.xs"
-        :sm="recipeSelection.grid.sm"
-        :md="recipeSelection.grid.md"
-        :lg="recipeSelection.grid.lg"
-        :xl="recipeSelection.grid.xl"
+        :xs="postSelection.grid.xs"
+        :sm="postSelection.grid.sm"
+        :md="postSelection.grid.md"
+        :lg="postSelection.grid.lg"
+        :xl="postSelection.grid.xl"
       >
         <el-select
-          :class="recipeSelection.selectClass"
+          :class="postSelection.selectClass"
           placeholder="Выберите категорию"
           v-model="selectedCategory"
           value-key="id"
@@ -30,14 +30,14 @@
         </el-select>
       </el-col>
       <el-col
-        :xs="recipeSelection.grid.xs"
-        :sm="recipeSelection.grid.sm"
-        :md="recipeSelection.grid.md"
-        :lg="recipeSelection.grid.lg"
-        :xl="recipeSelection.grid.xl"
+        :xs="postSelection.grid.xs"
+        :sm="postSelection.grid.sm"
+        :md="postSelection.grid.md"
+        :lg="postSelection.grid.lg"
+        :xl="postSelection.grid.xl"
       >
         <el-select
-          :class="recipeSelection.selectClass"
+          :class="postSelection.selectClass"
           placeholder="Выберите категорию"
           v-model="selectedKitchen"
           value-key="id"
@@ -52,14 +52,14 @@
         </el-select>
       </el-col>
       <el-col
-        :xs="recipeSelection.grid.xs"
-        :sm="recipeSelection.grid.sm"
-        :md="recipeSelection.grid.md"
-        :lg="recipeSelection.grid.lg"
-        :xl="recipeSelection.grid.xl"
+        :xs="postSelection.grid.xs"
+        :sm="postSelection.grid.sm"
+        :md="postSelection.grid.md"
+        :lg="postSelection.grid.lg"
+        :xl="postSelection.grid.xl"
       >
         <el-select
-          :class="recipeSelection.selectClass"
+          :class="postSelection.selectClass"
           placeholder="Выберите категорию"
           v-model="selectedDish"
           value-key="id"
@@ -74,14 +74,14 @@
         </el-select>
       </el-col>
       <el-col
-        :xs="recipeSelection.grid.xs"
-        :sm="recipeSelection.grid.sm"
-        :md="recipeSelection.grid.md"
-        :lg="recipeSelection.grid.lg"
-        :xl="recipeSelection.grid.xl"
+        :xs="postSelection.grid.xs"
+        :sm="postSelection.grid.sm"
+        :md="postSelection.grid.md"
+        :lg="postSelection.grid.lg"
+        :xl="postSelection.grid.xl"
       >
         <el-select
-          :class="recipeSelection.selectClass"
+          :class="postSelection.selectClass"
           placeholder="Выберите категорию"
           v-model="selectedMenu"
           value-key="id"
@@ -102,13 +102,13 @@
       v-if="isIngVisible"
     >
       <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
-        <recipe-selection-search
+        <post-selection-search
           :ingredientArray="ingredientArray"
           :isAdding="true"
         />
       </el-col>
       <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
-        <recipe-selection-search
+        <post-selection-search
           :ingredientArray="ingredientArray"
           :isAdding="false"
         />
@@ -152,7 +152,7 @@ export default {
       selectedDish: {},
       selectedKitchen: {},
       selectedMenu: {},
-      recipeSelection: {
+      postSelection: {
         selectClass: "w-100 py-1",
         grid: {
           xs: 24,
@@ -167,13 +167,13 @@ export default {
   },
 
   mounted() {
-    this.$_RecipeSelection_getData();
+    this.$_postSelection_getData();
   },
 
   methods: {
-    $_RecipeSelection_getData: function() {
+    $_postSelection_getData: function() {
       axios
-        .get("/recipe-filter")
+        .get("/post-filter")
         .then(res => {
           this.ingredientArray = Vue.toArrayOfObjects(
             res.data["ingredient_list"]

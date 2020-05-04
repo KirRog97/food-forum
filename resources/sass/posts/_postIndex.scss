@@ -1,12 +1,12 @@
-.recipe-list {
+.post-list {
   @include grid-list-row;
 
-  // One '.recipe-list-item' in grid line
+  // One '.post-list-item' in grid line
   @include media-breakpoint-up(md) {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  // One '.recipe-list-item' in grid line
+  // One '.post-list-item' in grid line
   @include media-breakpoint-up(lg) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -14,7 +14,7 @@
   grid-auto-rows: minmax(150px, auto);
 }
 
-.recipe-list-item {
+.post-list-item {
   @include grid-list-item;
   @include border-dark(border, 1px);
   grid-template-columns: repeat(2, 1fr);
@@ -22,14 +22,14 @@
   border-radius: 0.25rem;
 }
 
-.recipe-list-images {
+.post-list-images {
   grid-row: 1 / end;
   display: flex;
   border: none;
   position: relative;
 }
 
-.recipe-author {
+.post-author {
   @include bg-dark50;
   display: flex;
   position: absolute;
@@ -38,8 +38,8 @@
   z-index: 1;
 }
 
-.recipe-author-name {
-  // One '.recipe-list-item' in grid line
+.post-author-name {
+  // One '.post-list-item' in grid line
   @include media-breakpoint-up(xs) {
     font-size: 0.8rem;
   }
@@ -52,7 +52,7 @@
     font-size: 1.3rem;
   }
 
-  // Two '.recipe-list-item' in grid line
+  // Two '.post-list-item' in grid line
   @include media-breakpoint-up(lg) {
     font-size: 0.9rem;
   }
@@ -68,11 +68,11 @@
   word-break: normal;
 }
 
-.recipe-list-photo-author {
+.post-list-photo-author {
   display: flex;
   width: 100%;
   justify-content: center;
-  @include transition-500ms;
+  user-select: none;
 
   img {
     object-fit: cover;
@@ -81,7 +81,7 @@
   }
 }
 
-.recipe-list-title {
+.post-list-title {
   grid-row: 1 / span 2;
   display: flex;
   justify-content: center;
@@ -121,7 +121,7 @@
   }
 }
 
-.recipe-list-specification {
+.post-list-specification {
   grid-row: 3 / 3;
   display: flex;
   width: 100%;
@@ -129,8 +129,8 @@
   justify-content: space-between;
 }
 
-.recipe-list-specification-line {
-  // One '.recipe-list-item' in grid line
+.post-list-specification-line {
+  // One '.post-list-item' in grid line
   @include media-breakpoint-up(xs) {
     font-size: 0.65rem;
   }
@@ -143,7 +143,7 @@
     font-size: 1.1rem;
   }
 
-  // Two '.recipe-list-item' in grid line
+  // Two '.post-list-item' in grid line
   @include media-breakpoint-up(lg) {
     font-size: 0.7rem;
   }
@@ -165,16 +165,16 @@
   border-radius: 20px;
 }
 
-.recipe-list-ingredients {
+.post-list-ingredients {
   grid-row: 4 / 6;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px;
+  margin: 0;
   padding: 0.5em;
 }
 
-.recipe-socials-widgets {
+.post-socials-widgets {
   grid-row: 6 / 7;
   display: flex;
   align-items: center;
@@ -221,7 +221,7 @@
 .widget-facebook,
 .widget-vk {
   flex-grow: 1;
-  margin: 0px;
+  margin: 0;
   text-align: center;
   color: lightgrey;
 

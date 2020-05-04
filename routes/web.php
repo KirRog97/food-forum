@@ -23,7 +23,7 @@ Route::resource('ingredients', 'IngredientController');
 Route::resource('dishes', 'DishController');
 
 
-Route::get('/recipe-filter', 'RecipeFilter@getData');
+Route::get('/post-filter', 'PostFilter@getData');
 
 Route::post('/p/s', 'PictureController@store');
 Route::put('/p/u/{id}', 'PictureController@update');

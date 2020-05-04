@@ -19,7 +19,7 @@
     </p>
   </div>
 
-  <div class="recipe-list">
+  <div class="post-list">
 
     @foreach ($posts as $post)
     <post-index-card userId="{{$post->user->id}}" username="{{$post->user->username}}"

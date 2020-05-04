@@ -69,14 +69,15 @@ Vue.component(
 );
 
 Vue.component(
-  "recipe-selection",
-  require("./components/RecipeSelection.vue").default
+  "post-selection",
+  require("./components/PostSelection.vue").default
 );
 
 Vue.component(
-  "recipe-selection-search",
-  require("./components/RecipeSelectionSearch.vue").default
+  "post-selection-search",
+  require("./components/PostSelectionSearch.vue").default
 );
+
 Vue.component(
   "ingredient-selection",
   require("./components/IngredientSelection.vue").default

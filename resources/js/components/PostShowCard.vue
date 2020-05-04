@@ -51,7 +51,7 @@
             </span>
           </a>
         </h3>
-        <div class="recipe-socials-widgets border-0">
+        <div class="post-socials-widgets border-0">
           <div class="widget-like">
             <a href="" class="btn-like">
               <i class="far fa-heart"></i>
@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        <div class="recipe-list-ingredients w-100">
+        <div class="post-list-ingredients w-100">
           <el-popover
             placement="right"
             :title="`Ингредиенты ${posttitle}`"

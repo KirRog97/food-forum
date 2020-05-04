@@ -11,7 +11,7 @@
         <button
           class="btn btn-light border rounded-left px-3"
           type="button"
-          @click="$_RecipeSelectionSearch_addToOutputArray"
+          @click="$_PostSelectionSearch_addToOutputArray"
         >
           <i class="fas fa-plus" v-if="isAdding === true"></i>
           <i class="fas fa-minus" v-else></i>
@@ -36,7 +36,7 @@
         v-for="(item, index) in filteredInput"
         :value="item"
         :key="index"
-        @click="$_RecipeSelectionSearch_copyToSearch(item)"
+        @click="$_PostSelectionSearch_copyToSearch(item)"
       >
         <i class="fas fa-plus mr-3" v-if="isAdding === true"></i>
         <i class="fas fa-minus mr-3" v-else></i>
@@ -60,7 +60,7 @@
         <el-tag
           :type="[isAdding ? 'success' : 'danger']"
           closable
-          @close="$_RecipeSelectionSearch_delFromOutputArray(item, index)"
+          @close="$_PostSelectionSearch_delFromOutputArray(item, index)"
         >
           <span class="text-center h6 m-0">{{ item.name }}</span>
         </el-tag>
@@ -101,7 +101,7 @@ export default {
   },
 
   methods: {
-    $_RecipeSelectionSearch_addToOutputArray: function() {
+    $_PostSelectionSearch_addToOutputArray: function() {
       if (_.isEmpty(this.searchString)) {
         return this.$snotify.info(
           "Вы не выбрали инредиент",
@@ -132,7 +132,7 @@ export default {
       }
     },
 
-    $_RecipeSelectionSearch_delFromOutputArray: function(item, index) {
+    $_PostSelectionSearch_delFromOutputArray: function(item, index) {
       let outputArray = this.outputArray;
 
       if (_.find(outputArray, ["id", item.id])) {
@@ -150,7 +150,7 @@ export default {
       );
     },
 
-    $_RecipeSelectionSearch_copyToSearch: function(item) {
+    $_PostSelectionSearch_copyToSearch: function(item) {
       return (this.searchString = item);
     }
   }

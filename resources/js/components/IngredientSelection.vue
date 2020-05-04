@@ -239,7 +239,7 @@ export default {
 
     $_IngredientSelection_getData: function() {
       axios
-        .get("/recipe-filter")
+        .get("/post-filter")
         .then(res => {
           this.ingredientArray = Vue.toArrayOfObjects(
             res.data["ingredient_list"]

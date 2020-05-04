@@ -9,7 +9,7 @@ use App\Ingredient;
 use App\Menu;
 use Illuminate\Support\Facades\Cache;
 
-class RecipeFilter extends Controller
+class PostFilter extends Controller
 {
     public function cacheCheck($array, $class)
     {
