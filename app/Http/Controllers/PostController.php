@@ -7,13 +7,14 @@ use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
-            'index', 'show'
+            'index', 'show', 'popularPosts'
         ]]);
 
         $this->middleware('own.post', ['only' => [
@@ -30,6 +31,19 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'posts' => $post->getAscTitles()->paginate(10)
+        ]);
+    }
+
+    /**
+     * Display a top-10 of the popular posts witch have more likes.
+     *
+     * @param  \App\Post  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function popularPosts()
+    {
+        return view('users.show-users-liked-index', [
+            'posts' => $this->getPopularPosts()
         ]);
     }
 
@@ -140,5 +154,24 @@ class PostController extends Controller
         Post::destroy($post->id);
         return redirect()->route('posts.index')
             ->with('success', 'Рецепт удален');
+    }
+
+    /**
+     * Take 10 most liked posts.
+     *
+     * @return Illuminate\Support\Facades\Cache
+     */
+    private function getPopularPosts()
+    {
+        if (!Cache::has('popularPosts')) {
+            $popularPosts = \App\Post::query()
+                ->joinReactionCounterOfType('Like')
+                ->orderBy('reaction_like_count', 'desc')
+                ->limit(10)
+                ->get();
+            Cache::put('popularPosts',  $popularPosts, now()->addDay(1));
+        };
+
+        return Cache::get('popularPosts');
     }
 }
