@@ -18,12 +18,20 @@ use Illuminate\Support\Facades\Auth;
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController');
+Route::get('/popular/posts', 'PostController@popularPosts');
+
 Route::resource('users', 'UserController');
+Route::get('/users/{user}/favorites', 'UserController@postsLikedByUser');
+
 Route::resource('ingredients', 'IngredientController');
 Route::resource('dishes', 'DishController');
 
 
-Route::get('/post-filter', 'PostFilter@getData');
+Route::group(['prefix' => 'api'], function () {
+    Route::post('/favorites/{post_id}/action', 'LikeController@reactToPost');
+    Route::post('/favorites/{post_id}/status', 'LikeController@isReactedByUser');
+    Route::post('/favorites/{post_id}/count', 'LikeController@likeCount');
+});
 
 Route::post('/p/s', 'PictureController@store');
 Route::put('/p/u/{id}', 'PictureController@update');
