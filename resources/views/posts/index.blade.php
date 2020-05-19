@@ -23,10 +23,10 @@
 
     @foreach ($posts as $post)
     <post-index-card userId="{{$post->user->id}}" username="{{$post->user->username}}"
-      userAvatarPath="{{$post->user->avatar->path}}" postId="{{$post->id}}" postPicturePath="{{$post->pictures->path}}"
-      postTitle="{{$post->title}}" postTTC="{{$post->TTC}}" postCOP="{{$post->COP}}" postKcal="{{$post->Kcal}}"
+      userAvatarPath="{{$post->user->avatar->path}}" :post='@json($post)' postPicturePath="{{$post->pictures->path}}"
       :postIngredients='@json($post->ingredients)'>
     </post-index-card>
+
     @endforeach
   </div>
 

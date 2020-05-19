@@ -33,10 +33,9 @@
     </div> --}}
 
     @foreach ($user->posts as $post)
-    <post-show-card userId="{{ $post->user->id }}" username="{{ $post->user->username }}"
-      userAvatarPath="{{ $post->user->avatar->path }}" postId="{{ $post->id }}"
-      postPicturePath="{{ $post->pictures->path }}" postTitle="{{ $post->title }}" postTTC="{{ $post->TTC }}"
-      postCOP="{{ $post->COP }}" postKcal="{{ $post->Kcal }}" :postIngredients='@json($post->ingredients)'>
+    <post-show-card :post='@json($post)' :postIngredients='@json($post->ingredients)'
+      username="{{ $post->user->username }}" userAvatarPath="{{ $post->user->avatar->path }}"
+      postPicturePath="{{ $post->pictures->path }}">
     </post-show-card>
     @endforeach
   </el-main>
