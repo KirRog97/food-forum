@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
@@ -173,5 +174,22 @@ class PostController extends Controller
         };
 
         return Cache::get('popularPosts');
+    }
+
+    /**
+     * Display a listing of the posts witch created by given user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function postsCreatedByUser(User $user)
+    {
+        $posts = Post::query()
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('users.show-users-created-index', [
+            'posts' => $posts
+        ]);
     }
 }

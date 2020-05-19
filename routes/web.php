@@ -21,6 +21,7 @@ Route::resource('posts', 'PostController');
 Route::get('/popular/posts', 'PostController@popularPosts');
 
 Route::resource('users', 'UserController');
+Route::get('/users/{user}/posts', 'UserController@postsCreatedByUser');
 Route::get('/users/{user}/favorites', 'UserController@postsLikedByUser');
 
 Route::resource('ingredients', 'IngredientController');
