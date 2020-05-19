@@ -52,13 +52,7 @@
           </a>
         </h3>
         <div class="post-socials-widgets border-0">
-          <div class="widget-like">
-            <a href="" class="btn-like">
-              <i class="far fa-heart"></i>
-              <i class="fas fa-heart" hidden></i>
-              <span>1923</span>
-            </a>
-          </div>
+          <like-button :post_id="parseInt(post.id)"></like-button>
           <div class="widget-facebook">
             <a href="" class="btn-facebook">
               <i class="fab fa-facebook-f"></i>

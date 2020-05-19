@@ -11,10 +11,9 @@
       <div class="card text-white border-0 position-relative">
         <img class="card-img-top img-fluid-center h-25" src="{{ $post->pictures->path}}" alt="Post image">
         <div class="card-body d-flex flex-row justify-content-between position-absolute fixed-bottom bg-dark50">
-          <a class="btn-like" href="">
-            <i class="far fa-heart mr-1"></i>
-            <span>Нравится</span>
-          </a>
+
+          <like-button post_id="{{ $post->id }}"></like-button>
+
           @if ($post->user->hasOwnerRights($post->user->id))
           <a class="btn-edit" href="{{ route('posts.edit', $post) }}">
             <i class="far fa-edit"></i>

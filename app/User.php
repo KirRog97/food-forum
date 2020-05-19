@@ -6,10 +6,13 @@ use \Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReacterableContract
 {
     use Notifiable;
+    use Reacterable;
 
     protected $fillable = [
         'username',
@@ -34,6 +37,27 @@ class User extends Authenticatable
         'is_banned' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAllReactions()
+    {
+        $reacterFacade = $this->viaLoveReacter();
+        return $reacterFacade->getReactions();
+    }
+
+    public function react($reactant)
+    {
+        $reacterFacade = $this->viaLoveReacter();
+
+        if ($reacterFacade->hasReactedTo($reactant)) {
+            $reacterFacade->unreactTo($reactant, 'Like');
+            return 'UnLike';
+        }
+
+        if ($reacterFacade->hasNotReactedTo($reactant)) {
+            $reacterFacade->reactTo($reactant, 'Like');
+            return 'Like';
+        }
+    }
 
     public function getDescUsernames()
     {

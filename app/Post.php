@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 
-class Post extends Model
+class Post extends Model implements ReactableContract
 {
+    use Reactable;
+
     protected $fillable = [
         'user_id',
         'picture_id',
@@ -47,6 +51,20 @@ class Post extends Model
         'is_banned' => 'boolean',
         'is_muted' => 'boolean',
     ];
+
+    public function isReactedByUser($user)
+    {
+        $reactantFacade = $this->viaLoveReactant();
+        $isReacted = $reactantFacade->isReactedBy($user, 'Like', 1.0);
+        return $isReacted;
+    }
+
+    public function likeCount()
+    {
+        $reactantFacade = $this->viaLoveReactant();
+        $likeCount = $reactantFacade->getReactionCounterOfType('Like')->getCount();
+        return $likeCount;
+    }
 
     public function getAscTitles()
     {

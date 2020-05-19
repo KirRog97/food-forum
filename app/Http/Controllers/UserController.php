@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -101,5 +102,22 @@ class UserController extends Controller
         User::destroy($user->id);
         return redirect()->route('posts.index')
             ->with('success', 'Рецепт удален');
+    }
+
+    /**
+     * Display a listing of the posts witch liked by given user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function postsLikedByUser(User $user)
+    {
+        $posts = Post::query()
+            ->whereReactedBy($user, 'Like')
+            ->get();
+
+        return view('users.show-users-liked-index', [
+            'posts' => $posts
+        ]);
     }
 }
