@@ -12,9 +12,7 @@
                   data-placement="bottom"
                   title="Просмотреть профиль"
                 >
-                  <span>
-                    {{ username }}
-                  </span>
+                  <span>{{ username }}</span>
                 </a>
               </h5>
             </div>
@@ -46,10 +44,8 @@
     </div>
     <div class="post-list-title">
       <h3>
-        <a :href="`/posts/${postid}`">
-          <span>
-            {{ posttitle }}
-          </span>
+        <a :href="`/posts/${post.id}`">
+          <span>{{ post.title }}</span>
         </a>
       </h3>
     </div>
@@ -57,26 +53,26 @@
       <div class="post-list-specification-line">
         <span>
           <i class="far fa-clock fa-lg"></i>
-          {{ postttc }} минут
+          {{ post.TTC }} минут
         </span>
       </div>
       <div class="post-list-specification-line">
         <span>
           <i class="fas fa-chart-pie fa-lg"></i>
-          {{ postcop }} порции
+          {{ post.COP }} порции
         </span>
       </div>
       <div class="post-list-specification-line">
         <span>
           <i class="fas fa-running fa-lg"></i>
-          {{ postkcal }} Ккал
+          {{ post.Kcal }} Ккал
         </span>
       </div>
     </div>
     <div class="post-list-ingredients w-100">
       <el-popover
         placement="right"
-        :title="`Ингредиенты ${posttitle}`"
+        :title="`Ингредиенты ${post.title}`"
         trigger="click"
       >
         <el-table max-height="250" :data="postingredients" border stripe>
@@ -145,17 +141,29 @@ export default {
       }, 800);
     });
   },
-  props: [
-    "userid",
-    "username",
-    "useravatarpath",
-    "postid",
-    "postpicturepath",
-    "posttitle",
-    "postttc",
-    "postcop",
-    "postkcal",
-    "postingredients"
-  ]
+  props: {
+    post: {
+      type: Object
+    },
+    postingredients: {
+      type: Array
+    },
+    postpicturepath: {
+      type: String
+    },
+    userid: {
+      type: String
+    },
+    username: {
+      type: String
+    },
+
+    username: {
+      type: String
+    },
+    useravatarpath: {
+      type: String
+    }
+  }
 };
 </script>

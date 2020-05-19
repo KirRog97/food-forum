@@ -45,9 +45,9 @@
       </div>
       <div class="col-7 text-center px-2 m-auto">
         <h3>
-          <a :href="`/posts/${postid}`">
+          <a :href="`/posts/${post.id}`">
             <span>
-              {{ posttitle }}
+              {{ post.title }}
             </span>
           </a>
         </h3>
@@ -74,7 +74,7 @@
         <div class="post-list-ingredients w-100">
           <el-popover
             placement="right"
-            :title="`Ингредиенты ${posttitle}`"
+            :title="`Ингредиенты ${post.title}`"
             trigger="click"
           >
             <el-table border max-height="250" :data="postingredients">
@@ -110,18 +110,26 @@ export default {
       photoList: [this.postpicturepath]
     };
   },
-  props: [
-    "userid",
-    "username",
-    "useravatarpath",
-    "postid",
-    "postpicturepath",
-    "posttitle",
-    "postttc",
-    "postcop",
-    "postkcal",
-    "postingredients"
-  ]
+  props: {
+    post: {
+      type: Object
+    },
+    postingredients: {
+      type: Array
+    },
+    username: {
+      type: String
+    },
+    postpicturepath: {
+      type: String
+    },
+    username: {
+      type: String
+    },
+    useravatarpath: {
+      type: String
+    }
+  }
 };
 </script>
 
