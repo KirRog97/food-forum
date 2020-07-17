@@ -1,5 +1,8 @@
 <template>
-  <transition enter-active-class="animated zoomIn fast" css>
+  <transition
+    enter-active-class="animate__animated animate__zoomIn animate__fast"
+    css
+  >
     <el-backtop :bottom="70" :right="15" :visibility-height="200"></el-backtop>
   </transition>
 </template>

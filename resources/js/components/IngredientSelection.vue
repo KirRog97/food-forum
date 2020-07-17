@@ -28,8 +28,8 @@
 
       <transition-group
         class="list-group mt-1"
-        enter-active-class="animated fadeInDown"
-        leave-active-class="animated fadeOut"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOutRight animate__delay-75 animate__fast"
         tag="ul"
         css
       >
