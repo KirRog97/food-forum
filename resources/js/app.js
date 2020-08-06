@@ -11,10 +11,10 @@ window.Vue = require("vue");
 import { store } from "./store";
 
 window.ElementUI = require("element-ui");
-import "element-ui/lib/theme-chalk/index.css";
 import "../sass/element-ui/element-variables.scss";
+import locale from "element-ui/lib/locale/lang/ru-RU";
 
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale });
 
 // https:www.npmjs.com/package/vue-snotify
 import Snotify, { SnotifyPosition } from "vue-snotify";
