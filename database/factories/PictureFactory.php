@@ -4,7 +4,7 @@ use App\Picture;
 use Faker\Generator as Faker;
 
 $factory->define(Picture::class, function (Faker $faker) {
-    $imgPath =  '/images/recipes/default_post_img.svg';
+    $imgPath =  '/images/recipes/default_post_img.jpg';
     return [
         'path'  =>   $imgPath,
         'mime'  =>  'image/jpg',
