@@ -1,16 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import "es6-promise/auto";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    isDrawerOpen: false
+    isDrawerOpen: false,
   },
   getters: {
-    DrawerOpenStatus: state => {
+    DrawerOpenStatus: (state) => {
       return state.isDrawerOpen;
-    }
+    },
   },
   mutations: {
     toggleOnDrawer(state) {
@@ -18,7 +19,7 @@ export const store = new Vuex.Store({
     },
     toggleOffDrawer(state) {
       state.isDrawerOpen = false;
-    }
+    },
   },
-  actions: {}
+  actions: {},
 });
