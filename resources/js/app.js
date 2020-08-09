@@ -11,7 +11,6 @@ window.Vue = require("vue");
 import { store } from "./store";
 
 window.ElementUI = require("element-ui");
-import "../sass/element-ui/element-variables.scss";
 import locale from "element-ui/lib/locale/lang/ru-RU";
 
 Vue.use(ElementUI, { locale });
