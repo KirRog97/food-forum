@@ -1,7 +1,15 @@
 @extends('layouts.app')
-@section('page_title') Home Page
+@section('page_title')
+Eда - Главная
 @endsection
 
 @section('content')
-    @include('layouts.main')
+<x-heading>
+    Подбор рецптов
+</x-heading>
+
+<post-selection></post-selection>
+
+@include('layouts.compilation')
+
 @endsection
