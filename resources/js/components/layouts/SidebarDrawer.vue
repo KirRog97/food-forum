@@ -5,14 +5,17 @@
     :withHeader="false"
     :append-to-body="true"
     :wrapperClosable="true"
+    :destroy-on-close="true"
     :visible.sync="DrawerOpenStatus"
     @close="toggleOffDrawer()"
   >
     <sidebar-menu :isCollapse="false">
       <template v-slot:fistElement>
         <el-menu-item index="1" @click="toggleOffDrawer()">
-          <i class="el-icon-back"></i>
-          <span slot="title">Свернуть</span>
+          <a href="#">
+            <i class="el-icon-back"></i>
+            <span slot="title">Свернуть</span>
+          </a>
         </el-menu-item>
       </template>
     </sidebar-menu>
@@ -29,13 +32,29 @@ export default {
       drawerDirection: "ltl"
     };
   },
+  watch: {
+    DrawerOpenStatus: function(newVal, oldVal) {
+      if (newVal === true) {
+        window.addEventListener("resize", this.onResize);
+      }
+    }
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  },
   computed: {
     ...mapGetters(["DrawerOpenStatus"])
   },
   methods: {
     ...mapMutations({
       toggleOffDrawer: "toggleOffDrawer"
-    })
+    }),
+    onResize() {
+      if (window.innerWidth >= 991) {
+        this.toggleOffDrawer();
+      }
+    }
   }
 };
 </script>
