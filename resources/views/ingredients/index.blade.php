@@ -48,9 +48,9 @@
 
     @endforeach
 
-    <div class="d-flex justify-content-center mt-3">
-        {{$ingredients->links()}}
-    </div>
+<x-paginate-links>
+    {{$ingredients->links()}}
+</x-paginate-links>
 
     @else
     <div class="alert-danger rounded-pill text-center p-1 m-2 border border-danger text-uppercase">

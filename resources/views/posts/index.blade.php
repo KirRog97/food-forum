@@ -28,9 +28,8 @@
     @endforeach
   </div>
 
-  <div class="d-flex justify-content-center mt-3">
+<x-paginate-links>
     {{ $posts->links() }}
-  </div>
+</x-paginate-links>
 
-</div>
 @endsection

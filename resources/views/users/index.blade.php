@@ -23,9 +23,9 @@
         @endforeach
     </div>
 
-    <div class="d-flex justify-content-center my-3">
-        {{$users->links()}}
-    </div>
+<x-paginate-links>
+    {{$users->links()}}
+</x-paginate-links>
 
     @endif
 
