@@ -1,23 +1,60 @@
-footer {
-  min-height: 60px;
-  padding: 1em 0 !important;
-  background-color: $thirdColor;
-  overflow: hidden;
+.footer__link-wrapper {
+  @apply w-full;
+  @apply flex;
+  @apply flex-wrap;
+  @apply justify-center;
+  @apply items-center;
+  @apply mb-3;
+
+  @media (min-width: $breakpoint-md) {
+    @apply w-9/12;
+    @apply justify-start;
+    @apply mb-0;
+  }
 }
 
-.footer-menu-link {
-  width: fit-content;
-  color: lightgrey;
-  font-size: 1rem;
-  text-align: center;
-  font-weight: lighter;
-  font-family: "Oswald", sans-serif;
-  text-transform: uppercase;
-
+.footer__link {
   @include transition-500ms;
+  @apply w-3/12;
+  @apply text-lg;
+  @apply text-white;
+  @apply uppercase;
+  @apply tracking-wide;
+  @apply mx-2;
+
+  @media (min-width: $breakpoint-md) {
+    @apply w-auto;
+  }
 
   &:hover {
-    color: $primary;
-    text-decoration: none;
+    @apply text-primary-600;
+    @apply text-shadow;
+    @apply text-primary-600;
+    @apply text-primary-600;
+  }
+}
+
+.footer__icons {
+  @apply w-full;
+  @apply flex;
+  @apply flex-no-wrap;
+  @apply justify-evenly;
+  @apply items-center;
+  @apply p-2;
+
+  @media (min-width: $breakpoint-md) {
+    @apply w-3/12;
+    @apply justify-around;
+  }
+}
+.footer__icons-item {
+  @apply text-white;
+  @apply transform;
+  @apply transition-500ms;
+  @apply mx-2;
+
+  &:hover {
+    @apply scale-150;
+    @apply text-primary-600;
   }
 }
