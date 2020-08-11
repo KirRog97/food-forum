@@ -2,9 +2,8 @@
   <el-menu
     default-active="3000"
     class="sidebar"
-    background-color="var(--secondary)"
-    text-color="var(--white)"
-    active-text-color="var(--primary)"
+    background-color="var(--color-secondary600)"
+    active-text-color="var(--color-primary500)"
     @open="handleOpen"
     @close="handleClose"
     :collapse="isCollapse"

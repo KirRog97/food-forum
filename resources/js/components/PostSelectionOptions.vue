@@ -1,10 +1,6 @@
 <template>
   <el-row
-    class="flex-wrap"
-    type="flex"
-    justify="betwwen"
-    align="middle"
-    :gutter="12"
+    class="w-full flex flex-col sm:flex-row justify-between items-center sm:space-x-2 space-y-3 sm:space-y-0"
   >
     <el-col
       :xs="selectOptions.grid.xs"
@@ -146,7 +142,7 @@ export default {
       selectedKitchen: {},
       selectedMenu: {},
       selectOptions: {
-        selectClass: "w-100 py-1",
+        selectClass: "w-full",
         selectSubSpanStyles: "float: right; color: #8492a6; font-size: 13px;",
         grid: {
           xs: 24,

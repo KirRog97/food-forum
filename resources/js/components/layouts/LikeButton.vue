@@ -1,23 +1,26 @@
 <template>
-  <div class="widget-like">
-    <el-button
-      :class="{ 'el-button--danger': liked }"
-      round
-      size="small"
-      @click="sendReaction()"
+  <button
+    class="w-auto flex justify-center items-center bg-transparent text-secondary-700 font-semibold rounded-lg px-2 py-1"
+    @click="sendReaction()"
+  >
+    <transition
+      enter-active-class="animate__animated animate__zoomIn animate__slow"
+      leave-active-class="animate__animated animate__zoomOut animate__slow"
+      appear
+      css
     >
-      <transition
-        enter-active-class="animated zoomIn slow"
-        leave-active-class="animated zoomOut slow"
-        appear
-        css
-      >
-        <i class="fas fa-heart" v-if="liked"></i>
-        <i class="far fa-heart " v-else></i>
-      </transition>
-      <span>{{ likeCount }}</span>
-    </el-button>
-  </div>
+      <i
+        class="fa-lg fa-heart leading-tight cursor-pointer mr-2"
+        :class="[liked ? 'fas text-red-500' : 'far text-secondary-200']"
+      ></i>
+    </transition>
+    <span
+      class="text-base leading-tight font-light tracking-wide"
+      :class="[liked ? 'text-red-500' : 'text-secondary-200']"
+    >
+      {{ likeCount }}
+    </span>
+  </button>
 </template>
 
 <script>

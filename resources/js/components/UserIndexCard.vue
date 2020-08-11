@@ -1,6 +1,9 @@
 <template>
-  <el-row class="flex-wrap justify-content-center" type="flex">
-    <el-col class="d-flex justify-content-center" :span="24">
+  <el-row
+    class="flex-wrap justify-center items-center p-3 space-y-1"
+    type="flex"
+  >
+    <el-col class="flex justify-center" :span="24">
       <el-avatar
         fit="contain"
         shape="circle"
@@ -11,17 +14,23 @@
         <img src="/images/icons/user_avacado.svg" />
       </el-avatar>
     </el-col>
-    <el-col class="d-flex justify-content-center" :span="24">
-      <a :href="`users/${id}`">
-        <h5 class="text-center px-1 py-2">
+    <el-col class="flex justify-center" :span="24">
+      <a
+        class="text-lg sm:text-xl lg:text-2xl text-center tracking-wide leading-normal font-handwritten p-1"
+        :href="`users/${id}`"
+      >
+        <span>
           {{ username }}
-        </h5>
+        </span>
       </a>
     </el-col>
-    <el-col class="d-flex justify-content-center" :span="13">
-      <el-button :href="`users/${id}`" type="primary" plain>
-        Список рецептов
-      </el-button>
+    <el-col class="flex justify-center" :span="13">
+      <button
+        class="text-sm sm:text-lg text-primary-500 focus:text-primary-300 focus:bg-secondary-700 text-center leading-normal focus:border focus:border-secondary-200 rounded-lg px-1 py-2"
+        type="button"
+      >
+        <a :href="`users/${id}/posts`"> Список рецептов</a>
+      </button>
     </el-col>
   </el-row>
 </template>

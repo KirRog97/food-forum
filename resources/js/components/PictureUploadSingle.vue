@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid px-0 my-3">
+  <div class="flex flex-auto mx-auto px-0 my-3">
     <el-upload
-      class="w-100"
+      class="w-64"
       list-type="picture-card"
       action="/p/s/"
       :file-list="fileList"
@@ -16,13 +16,13 @@
       <i v-if="!isLoadedOnServer" class="el-icon-plus avatar-uploader-icon"></i>
       <i v-else class="el-icon-plus el-icon-circle-close"></i>
       <div
-        class="h-100"
+        class="h-full bg-secondary-300"
         slot="file"
         slot-scope="{ file }"
         v-loading="isLoading"
       >
         <img
-          class="el-upload-list__item-thumbnail img-fluid-center"
+          class="el-upload-list__item-thumbnail object-scale-down"
           :src="file.url"
           alt=""
         />

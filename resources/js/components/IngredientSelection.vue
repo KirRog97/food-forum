@@ -1,120 +1,62 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <div
-        class="form-group d-flex flex-wrap justify-content-center position-relative pt-4 mt-5 mb-0"
-      >
-        <label class="text-shadow shadow">Включить ингредиенты</label>
-        <div class="input-group shadow-sm">
-          <div class="input-group-prepend">
-            <div class="input-group-sm">
-              <button
-                class="btn border border-right-0 border-primary rounded shadow-none"
-                type="button"
-                @click="$_IngredientSelection_addToList"
-              >
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-          <input
-            type="text"
-            class="form-control text-left"
-            :class="{ 'is-invalid': hasError }"
-            v-model="searchString"
-          />
-        </div>
-      </div>
+  <div class="flex flex-col justify-center">
+    <el-input v-model="searchString">
+      <template slot="prepend">
+        <i
+          class="fas fa-plus text-sm sm:text-base text-green-500 leading-tight cursor-pointer"
+          @click="$_IngredientSelection_addToList"
+        ></i>
+      </template>
+    </el-input>
 
-      <transition-group
-        class="list-group mt-1"
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOutRight animate__delay-75 animate__fast"
-        tag="ul"
-        css
-      >
-        <li
-          v-for="(item, index) in filterIngredients"
-          class="list-group-item list-group-item-primary shadow-sm px-3 py-2"
-          :value="item"
-          :key="index"
-          @click="$_IngredientSelection_copyToSearch(item)"
-        >
-          <i class="fas fa-plus mr-3"></i>
-          <span>{{ item }}</span>
-        </li>
-      </transition-group>
-    </div>
-
-    <div
-      class="col-12"
-      :class="[!added_ingredients.length > 0 ? 'd-none' : 'bg-dark-50']"
+    <transition-group
+      class="flex flex-col mt-2"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOutRight animate__delay-75 animate__fast"
+      tag="ul"
+      css
     >
-      <ul
-        class="list-group list-group-horizontal flex-wrap justify-content-center bg-dark35 rounded border border-primary p-2"
-        :class="[added_ingredients.length > 0 ? 'mt-2' : 'd-none']"
+      <li
+        v-for="item in filterIngredients"
+        class="flex flex-start items-center shadow-sm px-6 py-4"
+        :value="item"
+        :key="item.id"
+        @click="$_IngredientSelection_copyToSearch(item)"
       >
-        <li
-          class="list-group-item bg-transparent shadow-none border-0 p-2"
-          v-for="(item, index) in added_ingredients"
-          :key="index"
+        <i class="fas fa-plus text-base sm:text-lg text-green-500 mr-3"></i>
+        <span class="text-base sm:text-lg text-secondary700">{{ item }}</span>
+      </li>
+    </transition-group>
+
+    <ul
+      class="list-group list-group-horizontal flex-wrap justify-center bg-dark35 rounded border border-primary-500 p-2 space-y-4 sm:space-y-3"
+      :class="[added_ingredients.length > 0 ? 'mt-2' : 'hidden']"
+    >
+      <li
+        class="list-group-item bg-transparent shadow-none border-0"
+        v-for="(item, index) in added_ingredients"
+        :key="index"
+      >
+        <el-input
+          class="el-input_indgredient"
+          placeholder="Введите число"
+          v-model="item.amount"
         >
           <div
-            class="d-flex justify-content-center rounded border-primary bg-secondary p-2"
+            class="custom-el-input_prepend flex justify-center items-center text-xs xs:text-base sm:text-lg"
+            slot="prepend"
           >
-            <div class="card bg-secondary border-0 text-shadow">
-              <div
-                class="card-head position-relative border-bottom border-primary text-center text-wrap"
-              >
-                <div class="position-absolute" style="top: -23px; right: -23px">
-                  <button
-                    type="button"
-                    class="close text-danger text-shadow p-2"
-                    @click="$_IngredientSelection_delFromList(item, index)"
-                  >
-                    <i class="fas fa-times fa-lg" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <h4>{{ item.name }}</h4>
-              </div>
-              <div class="card-body py-3 px-2">
-                <h5 class="card-subtitle text-center mb-2">
-                  Количество грамм:
-                </h5>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary"
-                      @click="item.amount -= 10"
-                    >
-                      <i class="fas fa-minus"></i>
-                    </button>
-                  </div>
-                  <input
-                    type="number"
-                    class="form-control"
-                    min="0"
-                    max="10000"
-                    step="1"
-                    v-model="item.amount"
-                  />
-                  <div class="input-group-append">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary"
-                      @click="item.amount += 10"
-                    >
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {{ item.name }}
           </div>
-        </li>
-      </ul>
-    </div>
+          <div
+            class="custom-el-input_append flex justify-center items-center tex-xs xs:text-base sm:text-lg"
+            slot="append"
+          >
+            грамм
+          </div>
+        </el-input>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -252,3 +194,17 @@ export default {
   }
 };
 </script>
+<style lang="scss" scopped>
+.el-input_indgredient.el-input-group.el-input-group--append.el-input-group--prepend {
+  .el-input-group__prepend {
+    width: 70% !important;
+  }
+
+  .el-input-group__append {
+    width: 20% !important;
+  }
+  input {
+    text-align: center;
+  }
+}
+</style>

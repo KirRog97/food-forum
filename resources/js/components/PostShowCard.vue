@@ -1,41 +1,46 @@
 <template>
-  <div class="container-fluid mb-5 p-0">
-    <div class="row no-gutters mb-1">
-      <div
-        class="col-4 col-sm-3 col-lg-auto d-flex justify-content-center p-0 m-0"
-      >
+  <div class="flex flex-col mb-5 p-0">
+    <!-- Avatar, Usename, Action, Date -->
+    <div class="grid grid-cols-12 gap-1 mb-2">
+      <!-- Avatar -->
+      <div class="post-list__item flex justify-center p-0 m-0">
         <el-avatar
-          class="img-fluid-center"
+          class="w-full h-full object-cover"
           shape="circle"
-          fit="contain"
           :src="useravatarpath"
-          :size="72"
+          :size="40"
           alt="User picture"
         >
           <img src="/images/icons/user_avacado.svg" />
         </el-avatar>
       </div>
-      <div class="col-8 col-sm-9 col-lg-10 d-flex flex-wrap">
-        <div class="col-12">
-          <h5 class="font-weight-light m-0">
-            {{ username }}
-          </h5>
-        </div>
-        <div class="col-8 d-flex flex-wrap justify-content-between">
-          <p class="w-50 text-wrap font-weight-light m-0">
-            Добавлен комментарий
-          </p>
-          <p class="w-25 font-weight-light m-0">
-            12.12.2014
-          </p>
-        </div>
+
+      <!-- Usename -->
+      <div class="col-span-6 flex flex-col justify-start">
+        <span class="text-lg text-secondary-700 tracking-wide leading-none">
+          {{ username }}
+        </span>
+
+        <!-- Action -->
+        <span class="text-base text-secondary-700 font-light">
+          Добавлен комментарий
+        </span>
+      </div>
+
+      <!-- Date -->
+      <div class="col-span-4 md:col-span-5  flex  justify-start items-end">
+        <span class="text-base text-secondary-700 font-light">
+          12.12.2014
+        </span>
       </div>
     </div>
 
-    <div class="row no-gutters">
-      <div class="col-5">
+    <div
+      class="grid grid-cols-12 grid-rows-6 gap-0 bg-secondary-50 rounded overflow-hidden"
+    >
+      <div class="col-span-5 row-span-6">
         <el-image
-          class="img-fluid-center w-100"
+          class="w-full h-full"
           fit="cover"
           :src="postpicturepath"
           :preview-src-list="photoList"
@@ -43,54 +48,56 @@
         >
         </el-image>
       </div>
-      <div class="col-7 text-center px-2 m-auto">
-        <h3>
-          <a :href="`/posts/${post.id}`">
-            <span>
-              {{ post.title }}
-            </span>
-          </a>
-        </h3>
-        <div class="post-socials-widgets border-0">
-          <like-button :post_id="parseInt(post.id)"></like-button>
-          <div class="widget-facebook">
-            <a href="" class="btn-facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </div>
-          <div class="widget-vk">
-            <a href="" class="btn-vk">
-              <i class="fab fa-vk"></i>
-            </a>
-          </div>
-        </div>
 
-        <div class="post-list-ingredients w-100">
-          <el-popover
-            placement="right"
-            :title="`Ингредиенты ${post.title}`"
-            trigger="click"
+      <!-- Post Title-->
+      <div
+        class="col-span-7 row-span-2 flex justify-center items-center overflow-x-hidden overflow-y-auto px-2 py-3"
+      >
+        <a
+          class="w-full max-h-full text-lg xs:text-xl sm:text-2xl text-center font-medium tracking-tight leading-tight whitespace-pre-line"
+          :href="`/posts/${post.id}`"
+        >
+          <!-- max: 64 characters -->
+          <!-- <span>Идейные соображения высшего порядка, а также укрепление и развит</span
+        > -->
+          <span>{{ post.title }}</span>
+        </a>
+      </div>
+
+      <!-- Post Comment-->
+      <div class="col-span-7 row-span-3 px-2 py-3">
+        <p
+          class="h-24 text-lg text-secondary-700 font-base leading-tight bg-secondary-100 rounded overflow-x-hidden overflow-y-auto px-2 py-1 mb-2"
+        >
+          {{ testComment }}
+          <span class="text-teal-600 font-handwritten">
+            / {{ testComment.length }}
+          </span>
+        </p>
+        <button>
+          <a
+            class="block text-base md:text-lg text-secondary500 bg-primary-300 border border-primary-400 rounded px-2 py-1"
+            href="#"
           >
-            <el-table border max-height="250" :data="postingredients">
-              <el-table-column type="index" width="36" label="№">
-              </el-table-column>
-              <el-table-column width="170" property="name" label="Имя">
-              </el-table-column>
-              <el-table-column
-                width="100"
-                align="center"
-                property="pivot.amount"
-                label="Грамм"
-              ></el-table-column>
-            </el-table>
-            <el-button
-              class="text-secondary font-weight-normal"
-              type="text"
-              slot="reference"
-            >
-              Ингредиенты
-            </el-button>
-          </el-popover>
+            Ответить
+          </a>
+        </button>
+      </div>
+
+      <!-- Post Like, Share-->
+      <div
+        class="col-span-7 row-span-1 w-full h-full flex justify-between items-center border-t border-secondary-100 px-2 py-1"
+      >
+        <div class="w-7/12 flex justify-start items-center">
+          <like-button :post_id="parseInt(post.id)"></like-button>
+        </div>
+        <div class="w-5/12 flex justify-end items-center space-x-1">
+          <a class="text-secondary-200 hover:text-blue-800 px-2" href="">
+            <i class="fab fa-facebook-f fa-lg"></i>
+          </a>
+          <a class="text-secondary-200 hover:text-blue-800 px-2" href="">
+            <i class="fab fa-vk fa-lg"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -101,7 +108,9 @@
 export default {
   data() {
     return {
-      photoList: [this.postpicturepath]
+      photoList: [this.postpicturepath],
+      testComment:
+        "Я в шоке от вашего рецепта! Даже наш кот из дома сбежал в знак протеста против ваших гнилых рецептов. Я потеряла семью, работу, кота и шторы только из-за вашего рецепта. Хотя шторы, наверное, вина. lorem ipsum lorem ipsum"
     };
   },
   props: {

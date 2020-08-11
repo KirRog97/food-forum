@@ -1,34 +1,32 @@
 <template>
-  <div class="form-group w-100">
-    <label class="text-secondary font-lighter" v-if="isAdding">
-      Предпочитаемые ингредиенты:
+  <div class="w-full space-y-1">
+    <label
+      class="text-base sm:text-lg text-secondary-600 font-lighter"
+      v-text="
+        isAdding ? 'Предпочитаемые ингредиенты' : 'Исключаемые ингредиенты'
+      "
+    >
     </label>
-    <label class="text-secondary font-lighter" v-else>
-      Исключаемые ингредиенты:
-    </label>
-    <div class="input-group shadow-sm">
-      <div class="input-group-prepend">
-        <button
-          class="btn btn-light border rounded-left px-3"
-          type="button"
-          @click="$_PostSelectionSearch_addToOutputArray"
-        >
-          <i class="fas fa-plus" v-if="isAdding === true"></i>
-          <i class="fas fa-minus" v-else></i>
-        </button>
-      </div>
-      <input
-        type="text"
-        class="form-control shadow-none"
-        v-model="searchString"
-      />
-    </div>
 
-    <ul class="list-group mt-1">
+    <el-input v-model="searchString">
+      <template slot="prepend">
+        <i
+          class="fas fa-lg leading-tight cursor-pointer"
+          :class="[
+            isAdding ? 'fa-plus text-green-500' : 'fa-minus text-red-500'
+          ]"
+          @click="$_PostSelectionSearch_addToOutputArray"
+        ></i>
+      </template>
+    </el-input>
+
+    <ul class="flex justify-start items-center mt-1">
       <li
         :class="[
-          'list-group-item',
-          isAdding ? 'list-group-item-success' : 'list-group-item-danger',
+          'flex justify-center items-center',
+          isAdding
+            ? 'text-green-500 bg-green-400 border-green-700'
+            : 'text-red-500 bg-red-400 border-red-700',
           'shadow',
           'px-3',
           'py-2'
@@ -38,34 +36,37 @@
         :key="index"
         @click="$_PostSelectionSearch_copyToSearch(item)"
       >
-        <i class="fas fa-plus mr-3" v-if="isAdding === true"></i>
-        <i class="fas fa-minus mr-3" v-else></i>
+        <i
+          class="fas fa-lg leading-tight cursor-pointer mr-3"
+          :class="[
+            isAdding ? 'fa-plus text-green-500' : 'fa-minus text-red-500'
+          ]"
+        >
+        </i>
         <span>{{ item }}</span>
       </li>
     </ul>
 
-    <ul
-      :class="[
-        'list-group',
-        'list-group-horizontal',
-        'flex-wrap',
-        outputArray.length > 0 ? 'mt-2' : 'd-none'
-      ]"
+    <transition-group
+      name="el-fade-in-linear"
+      class="w-full flex flex-wrap justify-start items-center"
+      :class="[outputArray.length > 0 ? 'mt-2' : 'hidden']"
+      tag="ul"
     >
       <li
-        class="col-auto p-1"
+        class="mr-2 sm:mr-3 mb-3 sm:mb-2"
         v-for="(item, index) in outputArray"
-        :key="index"
+        :key="item.id"
       >
         <el-tag
-          :type="[isAdding ? 'success' : 'danger']"
+          :type="isAdding ? 'success' : 'danger'"
           closable
           @close="$_PostSelectionSearch_delFromOutputArray(item, index)"
         >
-          <span class="text-center h6 m-0">{{ item.name }}</span>
+          <span class="text-base sm:text-lg text-center">{{ item.name }}</span>
         </el-tag>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -133,10 +134,9 @@ export default {
     },
 
     $_PostSelectionSearch_delFromOutputArray: function(item, index) {
-      let outputArray = this.outputArray;
+      if (_.find(this.outputArray, ["id", item.id])) {
+        this.outputArray.splice(index, 1);
 
-      if (_.find(outputArray, ["id", item.id])) {
-        outputArray.splice(index, 1);
         return this.$snotify.success(
           "Указанный ингредиент успешно удален",
           "Выбор ингредиента",

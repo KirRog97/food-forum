@@ -1,11 +1,8 @@
 <template>
-  <div class="container-fluid p-0">
+  <div class="flex flex-auto flex-wrap mb-2 sm:mb-3">
+    <!-- Selects: Category, Kitchen, Dish, Menu -->
     <el-row
-      class="flex-wrap"
-      type="flex"
-      justify="betwwen"
-      align="middle"
-      :gutter="12"
+      class="w-full flex flex-wrap sm:flex-no-wrap justify-between items-center mb-3 sm:mb-2 sm:space-x-2 space-y-2 sm:space-y-0"
     >
       <el-col
         :xs="postSelection.grid.xs"
@@ -96,42 +93,46 @@
         </el-select>
       </el-col>
     </el-row>
-    <el-row
-      class="bg-light rounded my-2 p-2"
-      justify="between"
-      v-if="isIngVisible"
-    >
-      <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
-        <post-selection-search
-          :ingredientArray="ingredientArray"
-          :isAdding="true"
-        />
-      </el-col>
-      <el-col class="d-flex flex-wrap px-2 py-1" :xs="24" :md="12">
-        <post-selection-search
-          :ingredientArray="ingredientArray"
-          :isAdding="false"
-        />
-      </el-col>
-      <el-col :span="24">
-        <el-button class="w-100" type="primary">
-          Очистить
-        </el-button>
-      </el-col>
-    </el-row>
 
-    <el-row>
-      <el-col class="px-1 py-2" :span="12">
+    <el-collapse-transition>
+      <el-row
+        class="w-full flex flex-wrap justify-between items-center bg-secondary-100 rounded-lg mb-3 sm:mb-2 px-2 py-3"
+        v-if="isIngVisible"
+      >
+        <el-col class="flex flex-wrap px-2" :xs="24" :md="12">
+          <post-selection-search
+            :ingredientArray="ingredientArray"
+            :isAdding="true"
+          />
+        </el-col>
+        <el-col class="flex flex-wrap px-2" :xs="24" :md="12">
+          <post-selection-search
+            :ingredientArray="ingredientArray"
+            :isAdding="false"
+          />
+        </el-col>
+        <el-col class="mt-8 sm:mt-4" :span="24">
+          <el-button class="w-full" type="primary">
+            Очистить
+          </el-button>
+        </el-col>
+      </el-row>
+    </el-collapse-transition>
+
+    <el-row
+      class="w-full flex flex-col sm:flex-row justify-between items-center sm:space-x-2 space-y-3 sm:space-y-0"
+    >
+      <el-col :xs="24" :sm="12">
         <el-button
-          class="w-100"
+          class="w-full"
           type="primary"
           @click="isIngVisible = !isIngVisible"
         >
           Ингредиенты
         </el-button>
       </el-col>
-      <el-col class="px-1 py-2" :span="12">
-        <el-button class="w-100" type="primary">
+      <el-col :xs="24" :sm="12">
+        <el-button class="w-full" type="primary">
           Подобрать
         </el-button>
       </el-col>
@@ -153,7 +154,7 @@ export default {
       selectedKitchen: {},
       selectedMenu: {},
       postSelection: {
-        selectClass: "w-100 py-1",
+        selectClass: "w-full",
         grid: {
           xs: 24,
           sm: 6,

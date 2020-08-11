@@ -9,9 +9,9 @@
 
 <style lang="scss" scoped>
 .el-backtop {
-  background-color: var(--secondary);
+  background-color: var(--color-secondary500);
   transition: 0.7s cubic-bezier(0.55, 0, 0.1, 1);
-  opacity: 0.2;
+  opacity: 0.4;
   user-select: none;
   z-index: 1000;
 
