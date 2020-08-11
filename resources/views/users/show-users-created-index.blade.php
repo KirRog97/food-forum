@@ -14,11 +14,10 @@
     Созданные рецепты
   </x-heading>
 
-  <div class="position-relative text-center text-muted text-justify mb-5">
-    <p>
-      Здесь собраны все рецепты, которые были написанны пользователем
-    </p>
-  </div>
+<x-sub-heading>
+    Здесь собраны все рецепты, которые были написанны пользователем
+</x-sub-heading>
+
 
   <div class="post-list">
     @foreach ($posts as $post)

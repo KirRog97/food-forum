@@ -13,11 +13,9 @@
     Книга рецептов
   </x-heading>
 
-  <div class="position-relative text-center text-muted text-justify mb-5">
-    <p>
-      Ищите рецепты, выбирая категорию блюда, его подкатегорию, кухню или меню.
-    </p>
-  </div>
+<x-sub-heading>
+    Ищите рецепты, выбирая категорию блюда, его подкатегорию, кухню или меню.
+</x-sub-heading>
 
   <div class="post-list">
 

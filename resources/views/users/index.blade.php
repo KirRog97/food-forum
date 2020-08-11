@@ -10,12 +10,10 @@
     Список кулинаров
 </x-heading>
 
-    <div class="text-center text-justify text-muted mb-4">
-        <p>
-           Список кулинаров нашего сайта. Объединяйтесь и воплощайте свои самые смелые кулинарные фантазии в жизнь.
-        </p>
-    </div>
-    @if (count($users) > 0)
+<x-sub-heading>
+    Список кулинаров нашего сайта. Объединяйтесь и воплощайте свои самые смелые кулинарные фантазии в жизнь.
+</x-sub-heading>
+
     <div class="user-list">
         @foreach ($users as $user)
         <div class="user-list-item py-3">

@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('components.heading', 'heading');
-        Blade::component('components.social_buttons', 'social_buttons');
+        Blade::component('components.sub-heading', 'sub-heading');
         Blade::component('components.message', 'message');
         Blade::component('components.message-empty-collection', 'message-empty-collection');
     }
