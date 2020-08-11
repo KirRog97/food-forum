@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
 @section('page_title')
-{{ __('Книга рецептов') }}
+Книга любимых рецептов
 @endsection
 
 
 @section('content')
 
 <x-heading>
-    Книга рецептов
+    Любимые рецепты
 </x-heading>
 
 <x-sub-heading>
-    Ищите рецепты, выбирая категорию блюда, его подкатегорию, кухню или меню.
+    Здесь собраны все рецепты, которые понравились пользователю
 </x-sub-heading>
 
+@if (count($posts) > 0)
 
 <div class="post-list">
     @foreach ($posts as $post)
@@ -27,8 +28,13 @@
     @endforeach
 </div>
 
-<x-paginate-links>
-    {{ $posts->links() }}
-</x-paginate-links>
+</div>
+@else
+
+<x-message-empty-collection>
+    Пользователь пока не дал оценки ни одному рецепту
+</x-message-empty-collection>
+
+@endif
 
 @endsection

@@ -116,7 +116,7 @@ class UserController extends Controller
             ->whereReactedBy($user, 'Like')
             ->get();
 
-        return view('users.show-users-liked-index', [
+        return view('posts.index-liked-by-user', [
             'posts' => $posts
         ]);
     }

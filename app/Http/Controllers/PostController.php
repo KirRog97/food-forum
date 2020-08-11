@@ -43,7 +43,7 @@ class PostController extends Controller
      */
     public function popularPosts()
     {
-        return view('users.show-users-liked-index', [
+        return view('posts.index-liked-by-user', [
             'posts' => $this->getPopularPosts()
         ]);
     }
@@ -188,7 +188,7 @@ class PostController extends Controller
             ->where('user_id', $user->id)
             ->get();
 
-        return view('users.show-users-created-index', [
+        return view('posts.index-created-by-user', [
             'posts' => $posts
         ]);
     }

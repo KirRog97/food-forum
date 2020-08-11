@@ -1,18 +1,18 @@
-    <div class="row d-flex flex-wrap">
-        @foreach ($post->ingredients as $ingredient)
-        <div class="col-12 col-sm-12 col-md-4 col-lg-auto card bg-secondary border-0 shadow p-0 mx-auto mb-1"
-            style="max-width: 250px; max-heiht: 450px;">
-            <div class="card-body">
-                <h4 class="card-title text-center text-light mb-0">
-                    {{ $ingredient['name'] }}
-                </h4>
-            </div>
-            <img class="card-img-top bg-light" src="{{$ingredient->picture->path}}" alt="Ingredient image" />
-            <div class="card-body text-center px-0 py-2">
-                <h5 class="text-center text-light mb-0">
-                    {{ $ingredient->pivot['amount'] }} Грамм
-                </h5>
-            </div>
+<div class="grid grid-cols-2 gap-8">
+    @foreach ($post->ingredients as $ingredient)
+    <div class="col-span-2 sm:col-span-1 rounded-lg shadow-lg overflow-hidden">
+
+        <div class="h-4/12 flex flex-col justify-center items-center bg-secondary-700 px-2 py-2">
+            <span class="text-2xl sm:text-3xl text-primary-700 text-center font-display tracking-wid mb-1 sm:mb-2">
+                {{ $ingredient['name'] }}
+            </span>
+            <span class="text-base sm:text-lg bg-secondary-900 text-primary-300 text-center rounded-lg px-3 py-2">
+                {{ $ingredient->pivot['amount'] }} Грамм
+            </span>
         </div>
-        @endforeach
+
+        <img class="w-full h-8/12 bg-gray-200 object-cover" src="{{$ingredient->picture->path}}"
+            alt="Ingredient image" />
+    </div>
+    @endforeach
 </div>
