@@ -6,41 +6,25 @@
 
 @section('content')
 
-{{-- <x-heading>
-    @if ($user->hasOwnerRights($user->id))
-    Ваши коментарии
-    @else
-    Коментарии {{ $user->username }}
-@endif
-</x-heading> --}}
+<div class="grid grid-cols-12 gap-2">
+    <div class="col-span-8 md:col-span-9">
+        <x-heading>
+            @if ($user->hasOwnerRights($user->id))
+            Ваша история
+            @else
+            История "{{ $user->username }}"
+            @endif
+        </x-heading>
 
-{{-- @include('users.show-users-bar') --}}
-
-<el-container>
-  <el-main>
-    <x-heading>
-      @if ($user->hasOwnerRights($user->id))
-      Ваши рецепты
-      @else
-      Рецепты от {{ $user->username }}
-      @endif
-    </x-heading>
-
-    {{-- <div class="row">
-      <div class="col-12 p-2">
-        @include('users.show-users-posts')
-      </div>
-    </div> --}}
-
-    @foreach ($user->posts as $post)
-    <post-show-card :post='@json($post)' :postIngredients='@json($post->ingredients)'
-      username="{{ $post->user->username }}" userAvatarPath="{{ $post->user->avatar->path }}"
-      postPicturePath="{{ $post->pictures->path }}">
-    </post-show-card>
-    @endforeach
-  </el-main>
-
-  @include('users.show-users-sidebar')
-
-</el-container>
+        @foreach ($user->posts as $post)
+        <post-show-card :post='@json($post)' :postIngredients='@json($post->ingredients)'
+            username="{{ $post->user->username }}" userAvatarPath="{{ $post->user->avatar->path }}"
+            postPicturePath="{{ $post->pictures->path }}">
+        </post-show-card>
+        @endforeach
+    </div>
+    <div class="col-span-4 md:col-span-3">
+        @include('users.show-sidebar')
+    </div>
+</div>
 @endsection

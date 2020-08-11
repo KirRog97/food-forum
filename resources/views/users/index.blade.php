@@ -14,19 +14,20 @@
     Список кулинаров нашего сайта. Объединяйтесь и воплощайте свои самые смелые кулинарные фантазии в жизнь.
 </x-sub-heading>
 
-    <div class="user-list">
-        @foreach ($users as $user)
-        <div class="user-list-item py-3">
-            <user-index-card username="{{ $user->username }}" avatar="{{ $user->avatar->path }}" id="{{ $user->id }}">
-            </user-index-card>
-        </div>
-        @endforeach
+@if (count($users) > 0)
+<div class="grid grid-cols-6 gap-5">
+    @foreach ($users as $user)
+    <div class="col-span-6 sm:col-span-3 lg:col-span-2 rounded-lg transition-500ms shadow hover:shadow-2xl">
+        <user-index-card username="{{ $user->username }}" avatar="{{ $user->avatar->path }}" id="{{ $user->id }}">
+        </user-index-card>
     </div>
+    @endforeach
+</div>
 
 <x-paginate-links>
     {{$users->links()}}
 </x-paginate-links>
 
-    @endif
+@endif
 
-    @endsection
+@endsection
