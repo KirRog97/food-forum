@@ -2,8 +2,6 @@
 
 @import url("https://use.fontawesome.com/releases/v5.9.0/css/all.css");
 
-@import "element-ui/element-variables.scss";
-
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
@@ -13,6 +11,10 @@
 @import "mixins";
 @import "defaultStyles";
 @import "utilityClasses";
+
+@import "element-ui/style-fixes";
+@import "element-ui/element-variables";
+
 @import "sidebar";
 @import "header";
 @import "page";
