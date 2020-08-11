@@ -1,38 +1,72 @@
-header {
-  background: none;
+.el-header {
+  @media (min-width: $breakpoint-md) {
+    @apply relative;
+    @apply bg-white;
+    @apply shadow-none;
+    z-index: auto;
+  }
+
+  @apply fixed;
+  @apply top-0;
+  @apply w-full;
+  @apply bg-secondary-600;
+  @apply shadow-xl;
+
+  // .el-header 'height' config in app.blade.php
+  // Element UI set 'height' forced
+  //   height: $headerHeight;
+
+  // If .el-header z-index ~< 2001
+  // after open menu on 'mobile screen size',
+  // .el-header will be ovelayed by .el-drawer__wrapper
+  //
+  // el-drawer__wrapper ~= 2001 (changing dynamically)
+  z-index: 2020;
+
+  .el-dropdown-menu.el-popper {
+    z-index: 3000 !important;
+  }
 }
 
-.logo_header {
-  width: 100%;
-  padding: 0px;
-  margin: 0;
-  text-align: center;
-  font-family: "Lobster", cursive;
-  color: $primary;
+.header-icon__inner {
+  @apply px-5;
+  @apply py-2;
+}
 
+.header-icon {
   @include transition-500ms;
 
-  @include media-breakpoint-up(xs) {
-    font-size: 1.5rem;
+  @media (min-width: $breakpoint-lg) {
+    @apply text-2xl;
   }
 
-  @include media-breakpoint-up(sm) {
-    font-size: 2.25rem;
+  @media (min-width: $breakpoint-md) {
+    @apply text-secondary-900;
   }
 
-  @include media-breakpoint-up(md) {
-    font-size: 2rem;
+  @apply text-xl;
+  @apply text-primary-600;
+
+  &:hover,
+  &:focus,
+  &:active {
+    @apply text-primary-400;
+  }
+}
+
+.header-logo {
+  //   @include transition-500ms;
+
+  @media (min-width: $breakpoint-lg) {
+    @apply text-5xl;
   }
 
-  @include media-breakpoint-up(lg) {
-    font-size: 2.5rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 3rem;
-  }
+  @apply text-4xl;
+  @apply text-primary-500;
+  @apply font-handwritten;
+  @apply leading-none;
 
   &:hover {
-    color: lighten($primary, 10%);
+    @apply text-primary-400;
   }
 }
