@@ -4,10 +4,13 @@
 
 @import "element-ui/element-variables.scss";
 
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+@import "~tailwindcss/screens";
 
 @import "variables";
 @import "mixins";
-@import "~bootstrap/scss/bootstrap";
 @import "defaultStyles";
 @import "utilityClasses";
 @import "sidebar";

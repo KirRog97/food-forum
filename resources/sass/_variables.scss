@@ -1,8 +1,63 @@
-$line-height-base: 1.6;
 $primary: #b5904e;
 $secondary: #5b5b5b;
-$vk: #45668e;
-$twitter: #00aaec;
-$fistColor: #d1b183;
-$secondColor: #2b2c2f;
-$thirdColor: #1f2123;
+
+$headerHeight: 64px;
+
+$breakpoint-xs: "600px";
+$breakpoint-sm: "768px";
+$breakpoint-md: "992px";
+$breakpoint-lg: "1200px";
+
+// Trying to make like "Material Design" colors
+// Source: http://mcg.mbitson.com/#!?mcgpalette0=%23b5904e&mcgpalette1=%235b5b5b
+
+$primary50: #f6f2ea;
+$primary100: #e9deca;
+$primary200: #dac8a7;
+$primary300: #cbb183;
+$primary400: #c0a169;
+$primary500: #b5904e;
+$primary600: #b5904e;
+$primary700: #b5904e;
+$primary800: #b5904e;
+$primary900: #b5904e;
+
+$secondary50: #ebebeb;
+$secondary100: #cecece;
+$secondary200: #adadad;
+$secondary300: #8c8c8c;
+$secondary400: #747474;
+$secondary500: #5b5b5b;
+$secondary600: #535353;
+$secondary700: #494949;
+$secondary800: #404040;
+$secondary900: #2f2f2f;
+
+:root {
+  --breakpoint-xs: "600px";
+  --breakpoint-sm: "768px";
+  --breakpoint-md: "992px";
+  --breakpoint-lg: "1200px";
+
+  --color-primary50: #f6f2ea;
+  --color-primary100: #e9deca;
+  --color-primary200: #dac8a7;
+  --color-primary300: #cbb183;
+  --color-primary400: #c0a169;
+  --color-primary500: #b5904e;
+  --color-primary600: #b5904e;
+  --color-primary700: #b5904e;
+  --color-primary800: #b5904e;
+  --color-primary900: #b5904e;
+
+  --color-secondary50: #ebebeb;
+  --color-secondary100: #cecece;
+  --color-secondary200: #adadad;
+  --color-secondary300: #8c8c8c;
+  --color-secondary400: #747474;
+  --color-secondary500: #5b5b5b;
+  --color-secondary600: #535353;
+  --color-secondary700: #494949;
+  --color-secondary800: #404040;
+  --color-secondary900: #2f2f2f;
+}
