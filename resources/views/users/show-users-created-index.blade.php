@@ -29,21 +29,11 @@
     @endforeach
   </div>
 
-</div>
 @else
-<div class="container-fluid">
 
-  <x-heading>
-    Созданные рецепты
-  </x-heading>
+<x-message-empty-collection>
+    Пользователь пока не создал ни одного рецепта
+</x-message-empty-collection>
 
-  <div class="position-relative text-center text-muted text-justify mb-5">
-    <p>
-      Пользователь пока не создал ни одного рецепта
-    </p>
-  </div>
-
-</div>
 @endif
-
 @endsection
