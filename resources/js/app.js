@@ -57,6 +57,10 @@ Vue.component(
   require("./components/layouts/Selection.vue").default
 );
 Vue.component("backtop", require("./components/layouts/Backtop.vue").default);
+Vue.component(
+  "mobile-sidebar-button",
+  require("./components/layouts/MobileSidebarButton.vue").default
+);
 Vue.component("sidebar", require("./components/layouts/SideBar.vue").default);
 Vue.component(
   "sidebar-drawer",
@@ -65,6 +69,26 @@ Vue.component(
 Vue.component(
   "sidebar-menu",
   require("./components/layouts/SidebarMenu.vue").default
+);
+
+Vue.component(
+  "header-global-search",
+  require("./components/layouts/HeaderGlobalSearch.vue").default
+);
+
+Vue.component(
+  "header-notification-dropdown",
+  require("./components/layouts/HeaderNotificationDropdown.vue").default
+);
+
+Vue.component(
+  "header-notification-card",
+  require("./components/layouts/HeaderNotificationCard.vue").default
+);
+
+Vue.component(
+  "header-user-dropdown",
+  require("./components/layouts/HeaderUserDropdown.vue").default
 );
 
 Vue.component(
