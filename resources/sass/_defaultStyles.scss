@@ -1,35 +1,20 @@
-$maximum-viewport: 1200;
-$minimum-viewport: 576;
-$maximum-size: 14;
-$minimum-size: 8;
-
 body {
   font-family: "Oswald", sans-serif;
-  font-size: calc(
-    #{$minimum-size}px + (#{$maximum-size} - #{$minimum-size}) *
-      (
-        (100vw - #{$minimum-viewport}px) /
-          (#{$maximum-viewport} - #{$minimum-viewport})
-      )
-  );
-  scroll-behavior: smooth;
-}
-
-li {
-  list-style-type: none;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
+  font-size: 14px;
 }
 
 a,
 a:hover,
+a:focus,
 a:active {
   outline: none;
   text-decoration: none;
   color: inherit;
+}
+
+*::selection {
+  color: $primary400;
+  background-color: $secondary700;
 }
 
 input[type="number"] {
