@@ -33,31 +33,32 @@ $secondary700: #494949;
 $secondary800: #404040;
 $secondary900: #2f2f2f;
 
+// https://sass-lang.com/documentation/interpolation
 :root {
-  --breakpoint-xs: "600px";
-  --breakpoint-sm: "768px";
-  --breakpoint-md: "992px";
-  --breakpoint-lg: "1200px";
+  --breakpoint-xs: #{$breakpoint-xs};
+  --breakpoint-sm: #{$breakpoint-sm};
+  --breakpoint-md: #{$breakpoint-md};
+  --breakpoint-lg: #{$breakpoint-lg};
 
-  --color-primary50: #f6f2ea;
-  --color-primary100: #e9deca;
-  --color-primary200: #dac8a7;
-  --color-primary300: #cbb183;
-  --color-primary400: #c0a169;
-  --color-primary500: #b5904e;
-  --color-primary600: #b5904e;
-  --color-primary700: #b5904e;
-  --color-primary800: #b5904e;
-  --color-primary900: #b5904e;
+  --color-primary50: #{$primary50};
+  --color-primary100: #{$primary100};
+  --color-primary200: #{$primary200};
+  --color-primary300: #{$primary300};
+  --color-primary400: #{$primary400};
+  --color-primary500: #{$primary500};
+  --color-primary600: #{$primary600};
+  --color-primary700: #{$primary700};
+  --color-primary800: #{$primary800};
+  --color-primary900: #{$primary900};
 
-  --color-secondary50: #ebebeb;
-  --color-secondary100: #cecece;
-  --color-secondary200: #adadad;
-  --color-secondary300: #8c8c8c;
-  --color-secondary400: #747474;
-  --color-secondary500: #5b5b5b;
-  --color-secondary600: #535353;
-  --color-secondary700: #494949;
-  --color-secondary800: #404040;
-  --color-secondary900: #2f2f2f;
+  --color-secondary50: #{$secondary50};
+  --color-secondary100: #{$secondary100};
+  --color-secondary200: #{$secondary200};
+  --color-secondary300: #{$secondary300};
+  --color-secondary400: #{$secondary400};
+  --color-secondary500: #{$secondary500};
+  --color-secondary600: #{$secondary600};
+  --color-secondary700: #{$secondary700};
+  --color-secondary800: #{$secondary800};
+  --color-secondary900: #{$secondary900};
 }
