@@ -11,6 +11,6 @@ class IngredientPostTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\IngredientPost::class, 200)->create();
+        // factory(App\IngredientPost::class, 200)->create();
     }
 }
