@@ -1,25 +1,17 @@
 <template>
-  <el-dropdown
-    placement="bottom-start"
-    trigger="click"
-    :hide-timeout="700"
-    @command="redirect"
-  >
+  <el-dropdown placement="bottom-start" trigger="click" @command="redirect">
     <span class="el-dropdown-link header-icon__inner">
       <el-badge type="primary" is-dot="true">
         <i class="fa fa-user-circle header-icon" aria-hidden="true"></i>
       </el-badge>
     </span>
-    <el-dropdown-menu
-      style="min-width:200px; max-width: 290px; max-height: 200px; padding: 0;  z-index:2031;"
-      slot="dropdown"
-    >
+    <el-dropdown-menu class="header-dropdown-user" slot="dropdown">
       <el-card shadow="always" :body-style="{ padding: '0px' }">
         <div
           slot="header"
           class="flex flex-initial justify-between items-center"
         >
-          <div class="w-2/12 mr-2 sm:mr-3">
+          <div class="w-auto mr-2">
             <el-avatar
               shape="circle"
               fit="cover"
@@ -31,29 +23,29 @@
             </el-avatar>
           </div>
           <div class="w-10/12 flex flex-col justify-start space-y-1">
-            <span class="text-base sm:text-xl leading-tight text-secondary-700">
+            <span class="header-user__profile-username">
               {{ user.username }}
             </span>
-            <span class="text-sm sm:text-base text-secondary-600 font-light">
+            <span class="header-user__profile-email">
               {{ user.email }}
             </span>
           </div>
         </div>
         <el-dropdown-item tabindex="1" :command="`/users/${user.id}`">
-          <span class="text-base sm:text-lg">
+          <span class="header-user__menu-title">
             Мой профиль
           </span>
         </el-dropdown-item>
         <el-dropdown-item tabindex="2" :command="`/users/${user.id}/posts`">
-          <span class="text-base sm:text-lg">
+          <span class="header-user__menu-title">
             Мои рецепты
           </span>
         </el-dropdown-item>
         <el-dropdown-item tabindex="3" :command="`/users/${user.id}/favorites`">
-          <span class="text-base sm:text-lg">Понравилось</span>
+          <span class="header-user__menu-title">Понравилось</span>
         </el-dropdown-item>
         <el-dropdown-item tabindex="4" :command="`/users/${user.id}/favorites`">
-          <span class="text-base sm:text-lg">
+          <span class="header-user__menu-title">
             Закладки
           </span>
         </el-dropdown-item>
@@ -62,7 +54,7 @@
           class="el-dropdown-menu__item el-dropdown-menu__item--divided"
           @click="logout"
         >
-          <span class="text-base sm:text-lg">
+          <span class="header-user__menu-title">
             Выход
           </span>
         </li>

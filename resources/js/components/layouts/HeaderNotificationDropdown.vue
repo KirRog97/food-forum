@@ -5,11 +5,7 @@
         <i class="fa fa-bell header-icon" aria-hidden="true"></i>
       </el-badge>
     </span>
-    <el-dropdown-menu
-      class="w-auto overflow-hidden"
-      style="top:-74px !important; min-width:270px; max-width: 450px; min-height: 240px; max-height: 450px; padding: 0; z-index: 2041 !important;"
-      slot="dropdown"
-    >
+    <el-dropdown-menu class="header-dropdown-notification" slot="dropdown">
       <el-card shadow="always" :body-style="{ padding: '0px' }">
         <div
           slot="header"
