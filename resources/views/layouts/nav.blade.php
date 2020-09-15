@@ -25,16 +25,20 @@
             </li>
             @else
             <li>
-                <a href="{{ route('login') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
-                    title="Вход">
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
+                <div class="header-icon__inner">
+                    <a href="{{ route('login') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
+                        title="Вход">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                </div>
             </li>
             <li>
-                <a href="{{ route('register') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
-                    title="Зарегистрироваться">
-                    <i class="fas fa-address-card"></i>
-                </a>
+                <div class="header-icon__inner">
+                    <a href="{{ route('register') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
+                        title="Зарегистрироваться">
+                        <i class="fas fa-address-card"></i>
+                    </a>
+                </div>
             </li>
             @endauth
 
