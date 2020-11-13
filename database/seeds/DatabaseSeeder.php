@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,8 +19,10 @@ class DatabaseSeeder extends Seeder
             MenusTableSeeder::class,
             IngredientsTableSeeder::class,
             UsersTableSeeder::class,
-            // PostsTableSeeder::class,
+            PostsTableSeeder::class,
             // IngredientPostTableSeeder::class
         ]);
+
+        Artisan::call('love:reaction-type-add', ['--name' => 'Like', '--mass' => 1]);
     }
 }
