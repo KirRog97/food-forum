@@ -8,9 +8,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     $faker = \Faker\Factory::create('ru_RU');
+    $usersIdArray = User::select('id')->get();
+
     return [
         'title'         =>   $faker->name,
-        // 'user_id'       =>   factory(User::class)->create(),
+        'user_id'       =>   $usersIdArray->random(),
         'picture_id'    =>   factory(Picture::class)->create(),
         'category_id'   =>   $faker->numberBetween(1, 11),
         'kitchen_id'    =>   $faker->numberBetween(1, 10),
