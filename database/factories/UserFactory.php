@@ -19,9 +19,23 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->afterCreating(User::class, function ($user, $faker) {
-    $user->posts()
-        ->saveMany(factory(Post::class, $faker->numberBetween(1, 4))
+    $numberOfPosts = $faker->numberBetween(1, 4);
+    $posts = $user->posts()
+        ->saveMany(factory(Post::class, $numberOfPosts)
             ->make([
-                'user_id'     =>      $user->id,
+                'user_id' => $user->id,
             ]));
+
+    // For some reasons 'afterCreate' in PostFactory doesn't work if we create User
+    // So making same actions in here
+    foreach ($posts as $post) {
+        // new random number for each $post
+        $numberOfIngredients = $faker->numberBetween(2, 12);
+        $post->ingredients()->attach(
+            factory(App\IngredientPost::class, $numberOfIngredients)
+                ->make([
+                    'post_id' => $post->id
+                ])->toArray()
+        );
+    }
 });

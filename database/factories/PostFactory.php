@@ -27,9 +27,11 @@ $factory->define(Post::class, function (Faker $faker) {
 });
 
 $factory->afterCreating(Post::class, function ($post, $faker) {
-    $post->ingredients()
-        ->saveMany(factory(IngredientPost::class, $faker->numberBetween(2, 6))
+    $numberOfRelatedIngredients = $faker->numberBetween(2, 12);
+    $post->ingredients()->attach(
+        factory(IngredientPost::class, $numberOfRelatedIngredients)
             ->make([
-                'post_id'   =>  $post->id,
-            ]));
+                'post_id' => $post->id
+            ])->toArray()
+    );
 });
