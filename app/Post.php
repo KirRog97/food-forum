@@ -110,6 +110,7 @@ class Post extends Model implements ReactableContract
     {
         return $this->belongsToMany('App\Ingredient')
             ->using('App\IngredientPost')
-            ->withPivot(['amount']);
+            ->withPivot(['amount'])
+            ->withTimestamps();
     }
 }
