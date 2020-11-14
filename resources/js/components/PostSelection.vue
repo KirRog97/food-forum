@@ -23,6 +23,12 @@
             :label="item.name"
             :value="item"
           >
+            <span class="el-select-dropdown_title">
+              {{ item.name }}
+            </span>
+            <span class="el-select-dropdown_label">
+              Категория
+            </span>
           </el-option>
         </el-select>
       </el-col>
@@ -45,6 +51,12 @@
             :label="item.name"
             :value="item"
           >
+            <span class="el-select-dropdown_title">
+              {{ item.name }}
+            </span>
+            <span class="el-select-dropdown_label">
+              Кухня
+            </span>
           </el-option>
         </el-select>
       </el-col>
@@ -67,6 +79,12 @@
             :label="item.name"
             :value="item"
           >
+            <span class="el-select-dropdown_title">
+              {{ item.name }}
+            </span>
+            <span class="el-select-dropdown_label">
+              Блюдо
+            </span>
           </el-option>
         </el-select>
       </el-col>
@@ -89,6 +107,12 @@
             :label="item.name"
             :value="item"
           >
+            <span class="el-select-dropdown_title">
+              {{ item.name }}
+            </span>
+            <span class="el-select-dropdown_label">
+              Меню
+            </span>
           </el-option>
         </el-select>
       </el-col>

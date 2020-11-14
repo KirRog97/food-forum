@@ -88,3 +88,35 @@
     @apply text-primary-400;
   }
 }
+
+.el-select-dropdown__item {
+  .el-select-dropdown_title {
+    @include transition-500ms;
+    @apply text-base;
+  }
+
+  .el-select-dropdown_label {
+    // Mobile devices doesn't have HOVER
+    @include transition-500ms;
+
+    @apply text-primary-300;
+    @apply text-base;
+
+    @media (min-width: $breakpoint-md) {
+      @apply text-secondary-200;
+    }
+
+    @apply float-right;
+    @apply font-handwritten;
+  }
+
+  &.hover {
+    .el-select-dropdown_title {
+      @apply text-xl;
+    }
+    .el-select-dropdown_label {
+      @apply text-lg;
+      @apply text-primary-300;
+    }
+  }
+}
