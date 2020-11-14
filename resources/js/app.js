@@ -107,10 +107,6 @@ Vue.component(
 );
 
 Vue.component(
-  "picture-downloading",
-  require("./components/PictureDownloading.vue").default
-);
-Vue.component(
   "picture-upload-single",
   require("./components/PictureUploadSingle.vue").default
 );
