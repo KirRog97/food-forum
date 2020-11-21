@@ -144,10 +144,15 @@
             :isAdding="false"
           />
         </el-col>
-        <el-col class="mt-8 sm:mt-4" :span="24">
-          <el-button class="w-full" type="primary">
-            Очистить
-          </el-button>
+        <el-col class="flex justify-center mt-8 sm:mt-4" :span="24">
+          <button
+            type="button"
+            class="bg-transparent hover:bg-secondary-900 text-center text-secondary-300 hover:text-white transition-500ms rounded-lg p-2"
+            @click="$_PostSelection_resetIngredients"
+          >
+            <i class="fas fa-undo fa-lg mr-1"></i>
+            <span class="text-base">Сбросить</span>
+          </button>
         </el-col>
       </el-row>
     </el-collapse-transition>
@@ -236,6 +241,20 @@ export default {
       this.loadIngredients();
       this.loadKitchens();
       this.loadMenus();
+    },
+
+    $_PostSelection_resetIngredients: function() {
+      this.includedIngredients = [];
+      this.excludedIngredients = [];
+
+      return this.$snotify.success(
+        "Списки ингредиентов очищены",
+        "Выбор ингредиентов",
+        {
+          showProgressBar: false,
+          timeout: 2300
+        }
+      );
     }
   }
 };
