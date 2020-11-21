@@ -130,13 +130,17 @@
       >
         <el-col class="flex flex-wrap px-2" :xs="24" :md="12">
           <post-selection-search
-            :ingredientArray="ingredientArray"
+            :ingredients="ingredients"
+            :interfaceData="includedIngredients"
+            @interface="includedIngredients = $event"
             :isAdding="true"
           />
         </el-col>
         <el-col class="flex flex-wrap px-2" :xs="24" :md="12">
           <post-selection-search
-            :ingredientArray="ingredientArray"
+            :ingredients="ingredients"
+            :interfaceData="excludedIngredients"
+            @interface="excludedIngredients = $event"
             :isAdding="false"
           />
         </el-col>

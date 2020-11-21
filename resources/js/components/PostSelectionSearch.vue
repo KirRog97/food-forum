@@ -15,20 +15,20 @@
           :class="[
             isAdding ? 'fa-plus text-green-500' : 'fa-minus text-red-500'
           ]"
-          @click="$_PostSelectionSearch_addToOutputArray"
         ></i>
       </template>
     </el-input>
 
     <ul
       class="flex flex-col justify-start items-center rounded overflow-x-hidden overflow-y-auto divide-y-2"
+      v-show="filteredInput && filteredInput.length > 0"
     >
       <li
         class="w-full flex justify-start items-center bg-gray-100 hover:bg-gray-300 shadow px-3 py-2"
         v-for="(item, index) in filteredInput"
         :value="item"
         :key="index"
-        @click="$_PostSelectionSearch_copyToSearch(item)"
+        @click="$_PostSelectionSearch_addToOutputArray(item)"
       >
         <i
           class="fas fa-lg leading-tight cursor-pointer mr-3"
@@ -37,14 +37,16 @@
           ]"
         >
         </i>
-        <span>{{ item }}</span>
+        <span class="text-base text-left">
+          {{ item.name }}
+        </span>
       </li>
     </ul>
 
     <transition-group
       name="el-fade-in-linear"
+      v-show="outputArray && outputArray.length > 0"
       class="w-full flex flex-wrap justify-start items-center"
-      :class="[outputArray.length > 0 ? 'mt-2' : 'hidden']"
       tag="ul"
     >
       <li
@@ -57,7 +59,7 @@
           closable
           @close="$_PostSelectionSearch_delFromOutputArray(item, index)"
         >
-          <span class="text-base sm:text-lg text-center">{{ item.name }}</span>
+          <span class="text-base text-center">{{ item.name }}</span>
         </el-tag>
       </li>
     </transition-group>
@@ -67,7 +69,8 @@
 <script>
 export default {
   props: {
-    ingredientArray: Array,
+    ingredients: Array,
+    interfaceData: Array,
     isAdding: false
   },
 
@@ -78,17 +81,22 @@ export default {
     };
   },
 
+  watch: {
+    interfaceData(newValue, oldValue) {
+      this.outputArray = this.interfaceData;
+    }
+  },
+
   computed: {
     filteredInput: function() {
       if (!this.searchString || this.searchString.length < 2) {
         return;
       }
-
-      let ingNameArray = this.ingredientArray.map(i => i.name);
+      let ingredients = this.ingredients;
       let searchString = this.searchString.trim().toLowerCase();
 
-      return (ingNameArray = ingNameArray.filter(function(item) {
-        if (item.toLowerCase().indexOf(searchString) !== -1) {
+      return (ingredients = ingredients.filter(function(item) {
+        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
           return item;
         }
       }));
@@ -96,35 +104,16 @@ export default {
   },
 
   methods: {
-    $_PostSelectionSearch_addToOutputArray: function() {
-      if (_.isEmpty(this.searchString)) {
-        return this.$snotify.info(
-          "Вы не выбрали инредиент",
-          "Выбор ингредиента",
-          { showProgressBar: false, timeout: 1500 }
-        );
-      }
-      let ingNameArray = this.ingredientArray.map(i => i.name);
-      let outputArray = this.outputArray;
-      let searchString = this.searchString;
-
-      if (
-        ingNameArray.includes(searchString) &&
-        !_.find(outputArray, ["name", searchString])
-      ) {
-        let findedObj = _.find(this.ingredientArray, ["name", searchString]);
-
-        return outputArray.push({
-          id: findedObj.id,
-          name: findedObj.name
-        });
-      } else {
+    $_PostSelectionSearch_addToOutputArray: function(item) {
+      if (_.find(this.outputArray, ["id", item.id])) {
         return this.$snotify.error(
           "Указанный ингредиент уже выбран или отсутствует",
           "Выбор ингредиента",
           { showProgressBar: false, timeout: 1500 }
         );
       }
+      this.searchString = "";
+      return this.outputArray.push(item);
     },
 
     $_PostSelectionSearch_delFromOutputArray: function(item, index) {
@@ -145,6 +134,13 @@ export default {
     },
 
     $_PostSelectionSearch_copyToSearch: function(item) {
+      if (this.searchString == item) {
+        return this.$snotify.info(
+          "Указанный ингредиент уже скопирован в поле ввода",
+          "Выбор ингредиента",
+          { showProgressBar: false, timeout: 700 }
+        );
+      }
       return (this.searchString = item);
     }
   }
