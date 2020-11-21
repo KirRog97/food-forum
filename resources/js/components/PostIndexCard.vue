@@ -99,7 +99,7 @@
       <div
         class="flex justify-center items-center text-primary-500 hover:text-primary-300 hover:bg-secondary-700 border border-secondary-100 rounded-full px-2 py-2"
       >
-        <span class="text-xs sm:text-sm text-center leading-tight">
+        <span class="text-xs lg:text-sm text-center leading-tight">
           <i class="fas fa-running fa-lg"></i>
           {{ post.Kcal }} ккал
         </span>
@@ -111,7 +111,7 @@
       class="col-span-3 row-span-1 w-full flex justify-center items-center border-r border-secondary-100"
     >
       <el-popover placement="right" trigger="click">
-        <el-table max-height="250" :data="postingredients" border stripe>
+        <el-table max-height="250" :data="IngredientPost" border stripe>
           <el-table-column
             type="index"
             width="40"
@@ -135,8 +135,12 @@
           class="text-base sm:text-lg text-primary-500 focus:text-primary-300 focus:bg-secondary-700 text-center leading-normal focus:border focus:border-secondary-200 rounded-full px-3 py-2"
           type="button"
           slot="reference"
+          @click.once="$_PostIndexCard_loadIngredientPost"
         >
-          Ингредиенты
+          <template v-if="isLoadingPostIng">
+            <i class="fas fa-spinner fa-spin"></i>
+          </template>
+          <template v-else>Ингредиенты</template>
         </button>
       </el-popover>
     </div>
@@ -170,22 +174,15 @@ export default {
     return {
       showIngredients: false,
       isComponentLoading: true,
+      isLoadingPostIng: false,
+      IngredientPost: [],
       photoList: [this.postpicturepath]
     };
   },
-  mounted() {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.isComponentLoading = false;
-      }, 800);
-    });
-  },
+
   props: {
     post: {
       type: Object
-    },
-    postingredients: {
-      type: Array
     },
     postpicturepath: {
       type: String
@@ -202,6 +199,32 @@ export default {
     },
     useravatarpath: {
       type: String
+    }
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.isComponentLoading = false;
+      }, Math.floor(Math.random() * (2200 - 500 + 1)) + 500);
+    });
+  },
+
+  methods: {
+    $_PostIndexCard_loadIngredientPost: function() {
+      this.isLoadingPostIng = true;
+      axios
+        .get(`/api/posts/${this.post.id}/ingredients`)
+        .then(res => {
+          this.IngredientPost = res.data;
+          this.isLoadingPostIng = false;
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(res => {
+          return (this.isLoadingPostIng = false);
+        });
     }
   }
 };

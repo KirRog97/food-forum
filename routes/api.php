@@ -23,3 +23,5 @@ Route::get('ingredients', 'Api\\IngredientController@index');
 Route::get('dishes', 'Api\\DishController@index');
 Route::get('kitchens', 'Api\\KitchenController@index');
 Route::get('menus', 'Api\\MenuController@index');
+
+Route::get('posts/{id}/ingredients', 'Api\\IngredientPostController@index');
