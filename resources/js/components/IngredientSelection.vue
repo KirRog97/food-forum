@@ -61,10 +61,11 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      ingredientArray: [],
       added_ingredients: [],
       hasError: false,
       searchString: ""
@@ -72,25 +73,24 @@ export default {
   },
 
   mounted() {
-    this.$_IngredientSelection_getData();
+    this.$_IngredientSelection_loadData();
   },
 
   computed: {
+    ...mapState(["ingredients"]),
+
     filterIngredients: function() {
       if (!this.searchString || this.searchString.length < 2) {
         return;
       }
 
-      let ingNameArray = this.ingredientArray.map(i => i.name);
-      let searchString = this.searchString;
+      let searchString = this.searchString.trim().toLowerCase();
 
-      searchString = searchString.trim().toLowerCase();
-
-      return (ingNameArray = ingNameArray.filter(function(item) {
-        if (item.toLowerCase().indexOf(searchString) !== -1) {
+      return this.ingredients.filter(function(item) {
+        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
           return item;
         }
-      }));
+      });
     },
     summaryAmountOfIng: function() {
       let ingredientAmountArray = this.added_ingredients.map(i => i.amount);
@@ -108,6 +108,12 @@ export default {
   },
 
   methods: {
+    ...mapActions(["loadIngredients"]),
+
+    $_IngredientSelection_loadData: function() {
+      this.loadIngredients();
+    },
+
     $_IngredientSelection_addToList: function() {
       if (_.isEmpty(this.searchString)) {
         return this.$snotify.info(
@@ -115,7 +121,8 @@ export default {
           "Выбор ингредиента"
         );
       }
-      let ingNameArray = this.ingredientArray.map(i => i.name);
+
+      let ingNameArray = this.ingredients.map(i => i.name);
       let added_ingredients = this.added_ingredients;
       let searchString = this.searchString;
 
@@ -177,20 +184,7 @@ export default {
           );
           return this.$snotify.error(null, "Ошибка сервера");
         });
-    }, 3000),
-
-    $_IngredientSelection_getData: function() {
-      axios
-        .get("/post-filter")
-        .then(res => {
-          this.ingredientArray = Vue.toArrayOfObjects(
-            res.data["ingredient_list"]
-          );
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
+    }, 3000)
   }
 };
 </script>

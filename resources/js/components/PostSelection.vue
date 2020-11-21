@@ -14,17 +14,17 @@
         <el-select
           :class="postSelection.selectClass"
           placeholder="Выберите категорию"
-          v-model="selectedCategory"
+          v-model="selected.categories"
           value-key="id"
         >
           <el-option
-            v-for="item in categoryArray"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
+            v-for="category in categories"
+            :key="category.id"
+            :label="category.name"
+            :value="category"
           >
             <span class="el-select-dropdown_title">
-              {{ item.name }}
+              {{ category.name }}
             </span>
             <span class="el-select-dropdown_label">
               Категория
@@ -41,18 +41,18 @@
       >
         <el-select
           :class="postSelection.selectClass"
-          placeholder="Выберите категорию"
-          v-model="selectedKitchen"
+          placeholder="Выберите кухню"
+          v-model="selected.kitchens"
           value-key="id"
         >
           <el-option
-            v-for="item in kitchenArray"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
+            v-for="kitchen in kitchens"
+            :key="kitchen.id"
+            :label="kitchen.name"
+            :value="kitchen"
           >
             <span class="el-select-dropdown_title">
-              {{ item.name }}
+              {{ kitchen.name }}
             </span>
             <span class="el-select-dropdown_label">
               Кухня
@@ -69,18 +69,18 @@
       >
         <el-select
           :class="postSelection.selectClass"
-          placeholder="Выберите категорию"
-          v-model="selectedDish"
+          placeholder="Выберите блюдо"
+          v-model="selected.dishes"
           value-key="id"
         >
           <el-option
-            v-for="item in dishArray"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
+            v-for="dish in dishes"
+            :key="dish.id"
+            :label="dish.name"
+            :value="dish"
           >
             <span class="el-select-dropdown_title">
-              {{ item.name }}
+              {{ dish.name }}
             </span>
             <span class="el-select-dropdown_label">
               Блюдо
@@ -97,18 +97,18 @@
       >
         <el-select
           :class="postSelection.selectClass"
-          placeholder="Выберите категорию"
-          v-model="selectedMenu"
+          placeholder="Выберите меню"
+          v-model="selected.menus"
           value-key="id"
         >
           <el-option
-            v-for="item in menuArray"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
+            v-for="menu in menus"
+            :key="menu.id"
+            :label="menu.name"
+            :value="menu"
           >
             <span class="el-select-dropdown_title">
-              {{ item.name }}
+              {{ menu.name }}
             </span>
             <span class="el-select-dropdown_label">
               Меню
@@ -170,18 +170,11 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      ingredientArray: [],
-      categoryArray: [],
-      kitchenArray: [],
-      dishArray: [],
-      menuArray: [],
-      selectedCategory: {},
-      selectedDish: {},
-      selectedKitchen: {},
-      selectedMenu: {},
       postSelection: {
         selectClass: "w-full",
         grid: {
@@ -192,30 +185,53 @@ export default {
           xl: 6
         }
       },
-      isIngVisible: true
+      includedIngredients: [],
+      excludedIngredients: [],
+      isIngVisible: false
     };
   },
 
   mounted() {
-    this.$_postSelection_getData();
+    this.$_PostSelection_loadData();
+  },
+
+  computed: {
+    ...mapState(["categories", "dishes", "ingredients", "kitchens", "menus"]),
+
+    selected: {
+      get() {
+        return this.$store.state.selected;
+      },
+      set(value) {
+        this.$store.commit("setSelected", value);
+      }
+    }
+  },
+
+  watch: {
+    selected: {
+      handler: function() {
+        this.$_PostSelection_loadData();
+      },
+      deep: true
+    }
   },
 
   methods: {
-    $_postSelection_getData: function() {
-      axios
-        .get("/post-filter")
-        .then(res => {
-          this.ingredientArray = Vue.toArrayOfObjects(
-            res.data["ingredient_list"]
-          );
-          this.categoryArray = Vue.toArrayOfObjects(res.data["category_list"]);
-          this.kitchenArray = Vue.toArrayOfObjects(res.data["kitchen_list"]);
-          this.dishArray = Vue.toArrayOfObjects(res.data["dish_list"]);
-          this.menuArray = Vue.toArrayOfObjects(res.data["menu_list"]);
-        })
-        .catch(err => {
-          console.error(err);
-        });
+    ...mapActions([
+      "loadCategories",
+      "loadDishes",
+      "loadIngredients",
+      "loadKitchens",
+      "loadMenus"
+    ]),
+
+    $_PostSelection_loadData: function() {
+      this.loadCategories();
+      this.loadDishes();
+      this.loadIngredients();
+      this.loadKitchens();
+      this.loadMenus();
     }
   }
 };

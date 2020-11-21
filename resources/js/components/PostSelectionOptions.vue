@@ -12,17 +12,17 @@
       <el-select
         placeholder="Выберите категорию"
         :class="selectOptions.selectClass"
-        v-model="selectedCategory"
+        v-model="selected.categories"
         value-key="id"
       >
         <el-option
-          v-for="item in categoryArray"
-          :key="item.id"
-          :label="item.name"
-          :value="item"
+          v-for="category in categories"
+          :key="category.id"
+          :label="category.name"
+          :value="category"
         >
           <span class="el-select-dropdown_title">
-            {{ item.name }}
+            {{ category.name }}
           </span>
           <span class="el-select-dropdown_label">
             Категория
@@ -31,7 +31,7 @@
       </el-select>
       <el-input-number
         v-show="false"
-        v-model="selectedCategory.id"
+        v-model="selected.categories.id"
         name="post_category_id"
       ></el-input-number>
     </el-col>
@@ -45,17 +45,17 @@
       <el-select
         :class="selectOptions.selectClass"
         placeholder="Выберите кухню"
-        v-model="selectedKitchen"
+        v-model="selected.kitchens"
         value-key="id"
       >
         <el-option
-          v-for="item in kitchenArray"
-          :key="item.id"
-          :label="item.name"
-          :value="item"
+          v-for="kitchen in kitchens"
+          :key="kitchen.id"
+          :label="kitchen.name"
+          :value="kitchen"
         >
           <span class="el-select-dropdown_title">
-            {{ item.name }}
+            {{ kitchen.name }}
           </span>
           <span class="el-select-dropdown_label">
             Кухня
@@ -64,7 +64,7 @@
       </el-select>
       <el-input-number
         v-show="false"
-        v-model="selectedKitchen.id"
+        v-model="selected.kitchens.id"
         name="post_kitchen_id"
       ></el-input-number>
     </el-col>
@@ -78,17 +78,17 @@
       <el-select
         :class="selectOptions.selectClass"
         placeholder="Выберите блюдо"
-        v-model="selectedDish"
+        v-model="selected.dishes"
         value-key="id"
       >
         <el-option
-          v-for="item in dishArray"
-          :key="item.id"
-          :label="item.name"
-          :value="item"
+          v-for="dish in dishes"
+          :key="dish.id"
+          :label="dish.name"
+          :value="dish"
         >
           <span class="el-select-dropdown_title">
-            {{ item.name }}
+            {{ dish.name }}
           </span>
           <span class="el-select-dropdown_label">
             Блюдо
@@ -97,7 +97,7 @@
       </el-select>
       <el-input-number
         v-show="false"
-        v-model="selectedDish.id"
+        v-model="selected.dishes.id"
         name="post_dish_id"
       ></el-input-number>
     </el-col>
@@ -111,17 +111,17 @@
       <el-select
         :class="selectOptions.selectClass"
         placeholder="Выберите меню"
-        v-model="selectedMenu"
+        v-model="selected.menus"
         value-key="id"
       >
         <el-option
-          v-for="item in menuArray"
-          :key="item.id"
-          :label="item.name"
-          :value="item"
+          v-for="menu in menus"
+          :key="menu.id"
+          :label="menu.name"
+          :value="menu"
         >
           <span class="el-select-dropdown_title">
-            {{ item.name }}
+            {{ menu.name }}
           </span>
           <span class="el-select-dropdown_label">
             Меню
@@ -130,7 +130,7 @@
       </el-select>
       <el-input-number
         v-show="false"
-        v-model="selectedMenu.id"
+        v-model="selected.menus.id"
         name="post_menu_id"
       ></el-input-number>
     </el-col>
@@ -138,20 +138,13 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      categoryArray: [],
-      kitchenArray: [],
-      dishArray: [],
-      menuArray: [],
-      selectedCategory: {},
-      selectedDish: {},
-      selectedKitchen: {},
-      selectedMenu: {},
       selectOptions: {
         selectClass: "w-full",
-        selectSubSpanStyles: "float: right; color: #8492a6; font-size: 13px;",
         grid: {
           xs: 24,
           sm: 24,
@@ -164,22 +157,46 @@ export default {
   },
 
   mounted() {
-    this.$_PostSelectionOptions_getData();
+    this.$_PostSelectionOptions_loadData();
+  },
+
+  computed: {
+    ...mapState(["categories", "dishes", "ingredients", "kitchens", "menus"]),
+
+    selected: {
+      get() {
+        return this.$store.state.selected;
+      },
+      set(value) {
+        this.$store.commit("setSelected", value);
+      }
+    }
+  },
+
+  watch: {
+    selected: {
+      handler: function() {
+        this.$_PostSelectionOptions_loadData();
+      },
+      deep: true
+    }
   },
 
   methods: {
-    $_PostSelectionOptions_getData: function() {
-      axios
-        .get("/post-filter")
-        .then(res => {
-          this.categoryArray = Vue.toArrayOfObjects(res.data["category_list"]);
-          this.kitchenArray = Vue.toArrayOfObjects(res.data["kitchen_list"]);
-          this.dishArray = Vue.toArrayOfObjects(res.data["dish_list"]);
-          this.menuArray = Vue.toArrayOfObjects(res.data["menu_list"]);
-        })
-        .catch(err => {
-          console.error(err);
-        });
+    ...mapActions([
+      "loadCategories",
+      "loadDishes",
+      "loadIngredients",
+      "loadKitchens",
+      "loadMenus"
+    ]),
+
+    $_PostSelectionOptions_loadData: function() {
+      this.loadCategories();
+      this.loadDishes();
+      this.loadIngredients();
+      this.loadKitchens();
+      this.loadMenus();
     }
   }
 };
