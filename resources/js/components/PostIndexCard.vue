@@ -229,3 +229,16 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.post-list__item .el-loading-mask {
+  @apply bg-secondary-600;
+  @apply rounded;
+  @apply h-64;
+
+  .el-loading-spinner {
+    @apply flex;
+    @apply justify-center;
+  }
+}
+</style>
