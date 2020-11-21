@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-auto mx-auto px-0 my-3">
+  <div class="w-full flex flex-auto justify-center mx-auto px-0 my-3">
     <el-upload
       class="w-64"
       list-type="picture-card"

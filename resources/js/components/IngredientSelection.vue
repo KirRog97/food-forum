@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center">
+  <div class="w-full flex flex-col justify-center">
     <el-input v-model="searchString">
       <template slot="prepend">
         <i
@@ -10,15 +10,15 @@
     </el-input>
 
     <transition-group
-      class="flex flex-col mt-2"
-      enter-active-class="animate__animated animate__fadeIn"
+      class="flex flex-col rounded overflow-x-hidden overflow-y-auto divide-y-2 mt-2"
+      enter-active-class="animate__animated animate__fadeIn animate__slow"
       leave-active-class="animate__animated animate__fadeOutRight animate__delay-75 animate__fast"
       tag="ul"
       css
     >
       <li
         v-for="item in filterIngredients"
-        class="flex flex-start items-center shadow-sm px-6 py-4"
+        class="w-full flex justify-start items-center bg-gray-100 hover:bg-gray-300 shadow px-3 py-2"
         :value="item"
         :key="item.id"
         @click="$_IngredientSelection_copyToSearch(item)"
@@ -29,11 +29,11 @@
     </transition-group>
 
     <ul
-      class="list-group list-group-horizontal flex-wrap justify-center bg-dark35 rounded border border-primary-500 p-2 space-y-4 sm:space-y-3"
+      class="flex flex-wrap justify-between mt-4 space-y-4 sm:space-y-3"
       :class="[added_ingredients.length > 0 ? 'mt-2' : 'hidden']"
     >
       <li
-        class="list-group-item bg-transparent shadow-none border-0"
+        class="w-full flex flex-no-wrap justify-between bg-transparent shadow-none border-0 space-x-2"
         v-for="(item, index) in added_ingredients"
         :key="index"
       >

@@ -66,7 +66,7 @@
       class="col-span-3 row-span-2 flex flex-auto justify-center items-center  border-t border-r border-secondary-100 overflow-x-hidden overflow-y-auto px-2 py-3"
     >
       <a
-        class="w-full max-h-full text-lg xs:text-xl sm:text-2xl text-center font-medium tracking-tight leading-tight whitespace-pre-line"
+        class="text-lg xs:text-xl sm:text-2xl text-center font-medium tracking-tight leading-tight whitespace-pre-line"
         :href="`/posts/${post.id}`"
       >
         <!-- max: 64 characters -->
@@ -83,7 +83,7 @@
       <div
         class="flex justify-center items-center text-primary-500 hover:text-primary-300 hover:bg-secondary-700 border border-secondary-100 rounded-full px-2 py-2"
       >
-        <span class="text-xs sm:text-sm text-center leading-tight">
+        <span class="text-xs lg:text-sm text-center leading-tight">
           <i class="far fa-clock fa-lg"></i>
           {{ post.TTC }} мин
         </span>
@@ -91,7 +91,7 @@
       <div
         class="flex justify-center items-center text-primary-500 hover:text-primary-300 hover:bg-secondary-700 border border-secondary-100 rounded-full px-2 py-2"
       >
-        <span class="text-xs sm:text-sm text-center leading-tight">
+        <span class="text-xs lg:text-sm text-center leading-tight">
           <i class="fas fa-chart-pie fa-lg"></i>
           {{ post.COP }} порции
         </span>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full space-y-1">
+  <div class="w-full space-y-2">
     <label
       class="text-base sm:text-lg text-secondary-600 font-lighter"
       v-text="
@@ -11,7 +11,7 @@
     <el-input v-model="searchString">
       <template slot="prepend">
         <i
-          class="fas fa-lg leading-tight cursor-pointer"
+          class="fas fa-lg leading-tight"
           :class="[
             isAdding ? 'fa-plus text-green-500' : 'fa-minus text-red-500'
           ]"
@@ -20,17 +20,11 @@
       </template>
     </el-input>
 
-    <ul class="flex justify-start items-center mt-1">
+    <ul
+      class="flex flex-col justify-start items-center rounded overflow-x-hidden overflow-y-auto divide-y-2"
+    >
       <li
-        :class="[
-          'flex justify-center items-center',
-          isAdding
-            ? 'text-green-500 bg-green-400 border-green-700'
-            : 'text-red-500 bg-red-400 border-red-700',
-          'shadow',
-          'px-3',
-          'py-2'
-        ]"
+        class="w-full flex justify-start items-center bg-gray-100 hover:bg-gray-300 shadow px-3 py-2"
         v-for="(item, index) in filteredInput"
         :value="item"
         :key="index"
@@ -54,7 +48,7 @@
       tag="ul"
     >
       <li
-        class="mr-2 sm:mr-3 mb-3 sm:mb-2"
+        class="flex justify-between items-center mr-2 sm:mr-3 mb-3 sm:mb-2"
         v-for="(item, index) in outputArray"
         :key="item.id"
       >
