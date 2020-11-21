@@ -119,9 +119,14 @@
     </el-row>
 
     <el-collapse-transition>
+      <!--
+            Don't set v-if atribute instead of v-show.
+            All existing child visual stuff will be removed
+            after 'isIngVisible' change
+        -->
       <el-row
-        class="w-full flex flex-wrap justify-between items-center bg-secondary-100 rounded-lg mb-3 sm:mb-2 px-2 py-3"
-        v-if="isIngVisible"
+        class="w-full flex flex-wrap justify-between items-start bg-secondary-100 rounded-lg mb-3 sm:mb-2 px-2 py-3"
+        v-show="isIngVisible"
       >
         <el-col class="flex flex-wrap px-2" :xs="24" :md="12">
           <post-selection-search
