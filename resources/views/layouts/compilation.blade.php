@@ -1,6 +1,6 @@
 <div class="post-compilation">
 
-    <div class="post-compilation__item grid-item-1-1">
+    <div class="post-compilation__item post-compilation__item--large">
         <img class="img-fluid--cover" src="/images/recipes/пельмени.jpg" alt="Изображение рецепта дня">
         <div class="post-compilation__typography post-compilation__typography--large bg-vignette">
             <span class="post-compilation__category">
@@ -20,7 +20,7 @@
     </div>
 
 
-    <div class="post-compilation__item grid-item-1-2">
+    <div class="post-compilation__item post-compilation__item--large">
         <img class="img-fluid--cover" src="/images/recipes/пельмени.jpg" alt="Изображение рецепта дня">
         <div class="post-compilation__typography post-compilation__typography--large bg-vignette">
             <span class="post-compilation__category">
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-2-1">
+    <div class="post-compilation__item post-compilation__item--medium">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <div class="post-compilation__tag-wrapper">
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-2-2">
+    <div class="post-compilation__item post-compilation__item--small">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <div class="post-compilation__tag-wrapper">
@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-2-3">
+    <div class="post-compilation__item post-compilation__item--small">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <div class="post-compilation__tag-wrapper">
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-3-1">
+    <div class="post-compilation__item post-compilation__item--small">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <div class="post-compilation__tag-wrapper">
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-3-2">
+    <div class="post-compilation__item post-compilation__item--small">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <span class="post-compilation__title post-compilation__title--base">Как приготовить пирог в одной посуде 5
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="post-compilation__item grid-item-3-3">
+    <div class="post-compilation__item post-compilation__item--medium">
         <img class="img-fluid--cover absolute" src="/images/spice.jpg" alt="">
         <div class="post-compilation__typography post-compilation__typography--base vignette">
             <div class="post-compilation__tag-wrapper">

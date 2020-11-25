@@ -1,25 +1,12 @@
 .post-compilation {
   @apply w-full;
   @apply grid;
-  @apply grid-cols-4;
+  @apply grid-cols-2;
   @apply gap-3;
 
-  @media (min-width: $breakpoint-lg) {
-    grid-template-rows: 400px 270px 270px;
-    grid-template-areas:
-      "grid-item-1-1 grid-item-1-1 grid-item-1-2 grid-item-1-2"
-      "grid-item-2-1 grid-item-2-1 grid-item-2-2 grid-item-2-3"
-      "grid-item-3-1 grid-item-3-2 grid-item-3-3 grid-item-3-3";
+  @media (min-width: $breakpoint-sm) {
+    @apply grid-cols-4;
   }
-
-  grid-template-rows: 400px 400px 270px 270px 270px 270px;
-  grid-template-areas:
-    "grid-item-1-1 grid-item-1-1 grid-item-1-1 grid-item-1-1"
-    "grid-item-1-2 grid-item-1-2 grid-item-1-2 grid-item-1-2"
-    "grid-item-2-1 grid-item-2-1 grid-item-2-1 grid-item-2-1"
-    "grid-item-2-2 grid-item-2-2 grid-item-2-3 grid-item-2-3"
-    "grid-item-3-1 grid-item-3-1 grid-item-3-2 grid-item-3-2"
-    "grid-item-3-3 grid-item-3-3 grid-item-3-3 grid-item-3-3";
 
   img {
     z-index: 101;
@@ -27,12 +14,45 @@
 }
 
 .post-compilation__item {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   position: relative;
   overflow: hidden;
+
+  &--large {
+    @apply h-64;
+    @apply row-span-2;
+    @apply col-span-2;
+
+    @media (min-width: $breakpoint-sm) {
+      height: 400px;
+    }
+  }
+  &--medium {
+    @apply h-48;
+    @apply row-span-1;
+    @apply col-span-2;
+
+    @media (min-width: $breakpoint-sm) {
+      height: 270px;
+    }
+  }
+
+  &--small {
+    @apply h-48;
+    @apply row-span-1;
+    @apply col-span-2;
+
+    @media (min-width: $breakpoint-xs) {
+      @apply col-span-1;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      height: 270px;
+    }
+  }
 }
 
 .post-compilation__typography {
@@ -166,36 +186,4 @@
   width: fit-content;
   height: fit-content;
   color: rgba(255, 255, 255, 0.9);
-}
-
-.grid-item-1-1 {
-  grid-area: grid-item-1-1;
-}
-
-.grid-item-1-2 {
-  grid-area: grid-item-1-2;
-}
-
-.grid-item-2-1 {
-  grid-area: grid-item-2-1;
-}
-
-.grid-item-2-2 {
-  grid-area: grid-item-2-2;
-}
-
-.grid-item-2-3 {
-  grid-area: grid-item-2-3;
-}
-
-.grid-item-3-1 {
-  grid-area: grid-item-3-1;
-}
-
-.grid-item-3-2 {
-  grid-area: grid-item-3-2;
-}
-
-.grid-item-3-3 {
-  grid-area: grid-item-3-3;
 }
