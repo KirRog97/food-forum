@@ -106,9 +106,11 @@
 }
 
 .post-compilation__title {
+  @apply max-h-full;
   @apply uppercase;
   @apply font-semibold;
   @apply leading-tight;
+  @apply overflow-y-auto;
   z-index: 102;
 
   &--base {
@@ -116,7 +118,7 @@
       @apply text-lg;
     }
 
-    @apply text-xl;
+    @apply text-base;
     @apply text-secondary-600;
     @apply text-left;
     @apply p-1;
@@ -130,7 +132,7 @@
       @apply text-4xl;
     }
 
-    @apply text-2xl;
+    @apply text-xl;
     @apply text-white;
     @apply text-center;
     @apply tracking-wide;
@@ -142,8 +144,12 @@
   flex-wrap: nowrap;
   position: relative;
   height: 40px;
-  width: 25%;
+  width: 50%;
   margin: 0 auto;
+
+  @media (min-width: $breakpoint-xs) {
+    width: 25%;
+  }
 }
 
 .post-compilation__accessory__logo {
