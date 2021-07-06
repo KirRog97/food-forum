@@ -44,18 +44,16 @@ class User extends Authenticatable implements ReacterableContract
         return $reacterFacade->getReactions();
     }
 
-    public function react($reactant)
+    public function react($reactant, $reactionType = 'Like')
     {
         $reacterFacade = $this->viaLoveReacter();
 
-        if ($reacterFacade->hasReactedTo($reactant)) {
-            $reacterFacade->unreactTo($reactant, 'Like');
-            return 'UnLike';
-        }
-
         if ($reacterFacade->hasNotReactedTo($reactant)) {
-            $reacterFacade->reactTo($reactant, 'Like');
-            return 'Like';
+            $reacterFacade->reactTo($reactant, $reactionType);
+            return true;
+        } else {
+            $reacterFacade->unreactTo($reactant, $reactionType);
+            return false;
         }
     }
 
