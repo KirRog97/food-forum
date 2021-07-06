@@ -27,7 +27,7 @@ class PictureController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(null, 500);
+            return response()->json($validator->errors(), 500);
         }
 
         $path = $request->file->store('uploads', 'public');
@@ -38,7 +38,7 @@ class PictureController extends Controller
             'size'  =>  $request->file->getSize()
         ]);
 
-        $request->session()->put('post_picture', $picture->id);
+        $request->session()->put('picture_id', $picture->id);
 
         return response()->json(
             [
@@ -104,7 +104,7 @@ class PictureController extends Controller
      */
     public function destroy(Picture $picture)
     {
-        if (!Storage::disk('public')->delete($picture->path)) {
+        if (!Storage::disk('public')->delete(substr($picture->path, 8))) {
             return response()->json(
                 ['result' => true],
                 200
