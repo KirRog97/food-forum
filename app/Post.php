@@ -66,6 +66,21 @@ class Post extends Model implements ReactableContract
         return $likeCount;
     }
 
+    public function getPopularPosts()
+    {
+        if (!Cache::has('popular_posts')) {
+            $popularPosts = Post::query()
+                ->joinReactionCounterOfType('Like')
+                ->orderBy('reaction_like_count', 'desc')
+                ->limit(10)
+                ->get();
+            Cache::put('popular_posts',  $popularPosts, now()->addMinutes(30));
+            return $popularPosts;
+        };
+
+        return Cache::get('popular_posts');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

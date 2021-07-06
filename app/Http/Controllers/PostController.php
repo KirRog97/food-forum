@@ -44,10 +44,10 @@ class PostController extends Controller
      * @param  \App\Post  $user
      * @return \Illuminate\Http\Response
      */
-    public function popularPosts()
+    public function popularPosts(Post $post)
     {
         return view('posts.index-liked-by-user', [
-            'posts' => $this->getPopularPosts()
+            'posts' => $post->getPopularPosts()
         ]);
     }
 
@@ -160,26 +160,7 @@ class PostController extends Controller
         return redirect()->route('posts.index')
             ->with('success', 'Рецепт удален');
     }
-
-    /**
-     * Take 10 most liked posts.
-     *
-     * @return Illuminate\Support\Facades\Cache
-     */
-    private function getPopularPosts()
-    {
-        if (!Cache::has('popularPosts')) {
-            $popularPosts = \App\Post::query()
-                ->joinReactionCounterOfType('Like')
-                ->orderBy('reaction_like_count', 'desc')
-                ->limit(10)
-                ->get();
-            Cache::put('popularPosts',  $popularPosts, now()->addDay(1));
-        };
-
-        return Cache::get('popularPosts');
-    }
-
+    
     /**
      * Display a listing of the posts witch created by given user.
      *
