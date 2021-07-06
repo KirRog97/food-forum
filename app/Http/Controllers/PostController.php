@@ -108,6 +108,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post = $post->load('ingredients');
         return view('posts.show', compact('post'));
     }
 
@@ -119,6 +120,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $post = $post->load('pictures:id,path', 'ingredients:id,name,amount');
         return view('posts.edit', compact('post'));
     }
 
