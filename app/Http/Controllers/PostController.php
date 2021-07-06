@@ -67,11 +67,10 @@ class PostController extends Controller
     public function store(StorePost $request)
     {
         $ingredients = session('post_ing');
-        $picture_id = session('post_picture');
 
         $post = Post::create([
             'user_id'      =>  Auth::user()->id,
-            'picture_id'   =>  $picture_id,
+            'picture_id'   =>  session('picture_id'),
             'category_id'  =>  $request->post_category_id,
             'kitchen_id'   =>  $request->post_kitchen_id,
             'dish_id'      =>  $request->post_dish_id,
@@ -94,7 +93,7 @@ class PostController extends Controller
             ]);
         }
 
-        $request->session()->forget('post_picture');
+        $request->session()->forget('picture_id');
         $request->session()->forget('post_ing');
 
         return redirect()->route('posts.index')
