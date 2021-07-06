@@ -1,9 +1,8 @@
 module.exports = {
   purge: [
-    "./resources/views/**/*.blade.php",
-    "./resources/js/components/*.vue",
-    "./resources/js/components/**/*.vue",
-    "./resources/sass/*.scss"
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.vue"
   ],
   theme: {
     fontFamily: {
@@ -78,5 +77,9 @@ module.exports = {
   variants: {
     animation: ["responsive", "motion-safe", "motion-reduce"]
   },
-  plugins: [require("@tailwindcss/custom-forms")]
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio")
+  ]
 };
