@@ -25,6 +25,8 @@ Route::get('/users/{user}/posts', 'UserController@postsCreatedByUser');
 Route::get('/users/{user}/favorites', 'UserController@postsLikedByUser');
 
 Route::resource('ingredients', 'IngredientController');
+Route::get('ingredients/{ingredient}/usage', 'IngredientController@usage');
+
 Route::resource('dishes', 'DishController');
 
 

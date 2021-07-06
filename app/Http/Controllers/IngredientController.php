@@ -28,6 +28,20 @@ class IngredientController extends Controller
     }
 
     /**
+     * Display a listing of posts witch using a particular ingredient.
+     *
+     * @param  \App\Ingredient  $ingredient
+     * @return \Illuminate\Http\Response
+     */
+    public function usage(Ingredient $ingredient)
+    {
+        return view('ingredients.usage', [
+            'ingredient' => $ingredient,
+            'posts' => $ingredient->posts()->paginate(10)
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
