@@ -30,8 +30,11 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
+        $post = Post::orderBy('title', 'asc')
+            ->paginate(10);
+
         return view('posts.index', [
-            'posts' => $post->getAscTitles()->paginate(10)
+            'posts' => $post
         ]);
     }
 
