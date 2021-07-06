@@ -15,43 +15,36 @@ class LikeController extends Controller
     /**
      * Take current like count.
      *
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function likeCount(Request $request)
+    public function likeCount(Post $post)
     {
-        $post = Post::find($request->post_id);
-        $likeCount = $post->likeCount();
-
         return response()
-            ->json(['likeCount' => $likeCount], 200);
+            ->json(['likeCount' => $post->likeCount()], 200);
     }
 
     /**
      * Take current like status.
-     *
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function isReactedByUser(Request $request)
+    public function isReactedByUser(Post $post)
     {
-        $post = Post::find($request->post_id);
-        $liked = $post->isReactedByUser($request->user());
-
         return response()
-            ->json(['liked' => $liked], 200);
+            ->json(['liked' => $post->isReactedByUser(auth()->user())], 200);
     }
 
     /**
      * Using laravel-love reacter facade for make reaction.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function reactToPost(Request $request)
+    public function reactToPost(Request $request, Post $post)
     {
-        $post = Post::find($request->post_id);
-        $reaction = $request->user()->react($post);
-
         return response()
-            ->json(['reaction' => $reaction], 200);
+            ->json(['reaction' => $request->user()->react($post)], 200);
     }
 }
