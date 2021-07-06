@@ -57,15 +57,6 @@ class User extends Authenticatable implements ReacterableContract
         }
     }
 
-    public function getDescUsernames()
-    {
-        return User::orderBy('username', 'desc');
-    }
-
-    public function getAscUsernames()
-    {
-        return User::orderBy('username', 'asc');
-    }
 
     public function hasOwnerRights($checkId)
     {
