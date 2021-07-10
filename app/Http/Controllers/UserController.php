@@ -8,16 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => [
-            'index', 'show'
-        ]]);
 
-        $this->middleware('own.user', ['only' => [
-            'edit',  'update', 'destroy'
-        ]]);
-    }
 
     /**
      * Display a listing of the resource.

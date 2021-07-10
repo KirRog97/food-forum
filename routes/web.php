@@ -17,32 +17,44 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('home', 'HomeController@index')->name('home');
 
-Route::resource('posts', 'PostController');
-Route::get('/popular/posts', 'PostController@popularPosts');
-
 Route::resource('users', 'UserController');
+Route::resource('users', 'UserController')->except([
+    'index', 'show'
+])->middleware(['auth', 'own.user']);
+
 Route::get('/users/{user}/posts', 'UserController@postsCreatedByUser');
 Route::get('/users/{user}/favorites', 'UserController@postsLikedByUser');
 
 Route::resource('ingredients', 'IngredientController');
+Route::resource('ingredients', 'IngredientController')->except([
+    'index', 'show'
+])->middleware('auth');
 Route::get('ingredients/{ingredient}/usage', 'IngredientController@usage');
 
 Route::resource('dishes', 'DishController');
 
+Route::resource('posts', 'PostController');
+Route::resource('posts', 'PostController')->except([
+    'index', 'show', 'popularPosts'
+])->middleware('auth');
+Route::post('post/ing/save', 'IngredientPostController@saveInSession')->middleware('auth');
+Route::get('popular/posts', 'PostController@popularPosts')->name('posts.popular');
 
-Route::group(['prefix' => 'api'], function () {
-    Route::post('/favorites/{post_id}/action', 'LikeController@reactToPost');
-    Route::post('/favorites/{post_id}/status', 'LikeController@isReactedByUser');
-    Route::post('/favorites/{post_id}/count', 'LikeController@likeCount');
+Route::group(['prefix' => 'picture', 'middleware' => ['auth']], function () {
+    Route::post('save', 'PictureController@store');
+    Route::post('update/{picture}', 'PictureController@update');
+    // Route::put('update/{picture}', 'PictureController@update'); not allowed files
+    Route::delete('delete/{picture}', 'PictureController@destroy');
 });
 
-Route::post('/p/s', 'PictureController@store');
-Route::put('/p/u/{id}', 'PictureController@update');
-Route::delete('/p/d/{id}', 'PictureController@destroy');
+Route::group(['prefix' => 'api/favorites'], function () {
+    Route::post('{post}/action', 'LikeController@reactToPost')->middleware('auth');
+    Route::post('{post}/status', 'LikeController@isReactedByUser')->middleware('auth');
+    Route::post('{post}/count', 'LikeController@likeCount');
+});
 
-Route::post('/post/ing/save', 'IngredientPostController@saveInSession');
-Route::post('/post/ing/store/', 'IngredientPostController@store');
-Route::put('/post/ing/update/{id}', 'IngredientPostController@update');
+
+
 
 Route::redirect('/', 'home');
 

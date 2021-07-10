@@ -3,7 +3,7 @@
     <el-upload
       class="w-64"
       list-type="picture-card"
-      action="/p/s/"
+      action="/picture/save/"
       :file-list="fileList"
       :on-exceed="handleExceed"
       :before-upload="beforeAvatarUpload"
@@ -118,7 +118,7 @@ export default {
       form.append("file", file.raw);
 
       await axios
-        .post("/p/s", form)
+        .post("/picture/save", form)
         .then(res => {
           file.id = res.data.id;
           file.url = res.data.path;
@@ -160,7 +160,7 @@ export default {
       }
 
       axios
-        .delete(`/p/d/${file.id}`)
+        .delete(`/picture/delete/${file.id}`)
         .then(res => {
           if (res.data.result === true) {
             this.fileList.splice(_.findIndex(this.fileList, file.id), 1);
