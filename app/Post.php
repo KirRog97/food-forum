@@ -53,6 +53,17 @@ class Post extends Model implements ReactableContract
         'is_muted' => 'boolean',
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'pictures:id,path',
+        'user',
+        'user.avatar:id,path'
+    ];
+
     public function isReactedByUser($user)
     {
         $reactantFacade = $this->viaLoveReactant();

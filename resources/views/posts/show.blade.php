@@ -10,16 +10,17 @@
     <div class="relative w-full bg-secondary-100">
         {{-- Post Image --}}
         <div class="relative pb-2/3">
-            {{-- <img class="absolute h-full w-full object-cover" src="{{ $post->pictures->path}}" alt="Post
-            image"> --}}
+            <img class="absolute h-full w-full object-cover" src="{{ $post->pictures->path}}" alt="Post
+            image">
 
-            <img class="absolute h-full w-full object-cover" src="/images/login_background.jpg" alt="Post image">
+            {{-- Placeholder --}}
+            {{-- <img class="absolute h-full w-full object-cover" src="/images/login_background.jpg" alt="Post image"> --}}
         </div>
 
         {{-- Post Actions: Like, Edit, Bookmark --}}
         <div class="absolute bottom-0 w-full h-10 sm:h-12 flex justify-between items-center bg-dark50 px-4 py-2">
 
-            <like-button post_id="{{ $post->id }}"></like-button>
+            <like-button :post_id='@json($post->id)'></like-button>
 
             @if ($post->user->hasOwnerRights($post->user->id))
             <a class="text-xs sm:text-base text-primary-200 hover:text-blue-700"

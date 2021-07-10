@@ -19,9 +19,7 @@
 <div class="post-list">
     @foreach ($posts as $post)
     <div class="post-list__item">
-        <post-index-card userId="{{$post->user->id}}" username="{{$post->user->username}}"
-            userAvatarPath="{{$post->user->avatar->path}}" :post='@json($post)'
-            postPicturePath="{{$post->pictures->path}}" :postIngredients='@json($post->ingredients)'>
+        <post-index-card :post='@json($post)'>
         </post-index-card>
     </div>
     @endforeach

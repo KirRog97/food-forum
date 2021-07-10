@@ -7,7 +7,7 @@
         <el-avatar
           class="w-full h-full object-cover"
           shape="circle"
-          :src="useravatarpath"
+          :src="post.user.avatar.path"
           :size="40"
           alt="User picture"
         >
@@ -18,7 +18,7 @@
       <!-- Usename -->
       <div class="col-span-6 flex flex-col justify-start">
         <span class="text-lg text-secondary-700 tracking-wide leading-none">
-          {{ username }}
+          {{ post.user.username }}
         </span>
 
         <!-- Action -->
@@ -42,7 +42,7 @@
         <el-image
           class="w-full h-full"
           fit="cover"
-          :src="postpicturepath"
+          :src="post.pictures.path"
           :preview-src-list="photoList"
           alt="Post picture"
         >
@@ -108,7 +108,7 @@
 export default {
   data() {
     return {
-      photoList: [this.postpicturepath],
+      photoList: [this.post.pictures.path],
       testComment:
         "Я в шоке от вашего рецепта! Даже наш кот из дома сбежал в знак протеста против ваших гнилых рецептов. Я потеряла семью, работу, кота и шторы только из-за вашего рецепта. Хотя шторы, наверное, вина. lorem ipsum lorem ipsum"
     };
@@ -116,21 +116,6 @@ export default {
   props: {
     post: {
       type: Object
-    },
-    postingredients: {
-      type: Array
-    },
-    username: {
-      type: String
-    },
-    postpicturepath: {
-      type: String
-    },
-    username: {
-      type: String
-    },
-    useravatarpath: {
-      type: String
     }
   }
 };

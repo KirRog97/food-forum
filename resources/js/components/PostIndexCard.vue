@@ -10,8 +10,7 @@
           <el-avatar
             class="img-fluid--cover"
             shape="circle"
-            fit="contain"
-            :src="useravatarpath"
+            :src="post.user.avatar.path"
             :size="40"
             alt="User picture"
           >
@@ -34,10 +33,10 @@
             </div>
             <a
               class="w-full text-base lg:text-lg text-white hover:text-primary-300 text-center tracking-wide font-light leading-tight"
-              :href="`/users/${userid}`"
+              :href="`/users/${post.user_id}`"
             >
               <span>
-                {{ username }}
+                {{ post.user.username }}
               </span>
             </a>
           </el-tooltip>
@@ -53,7 +52,7 @@
         <el-image
           class="w-full h-full"
           fit="cover"
-          :src="postpicturepath"
+          :src="post.pictures.path"
           :preview-src-list="photoList"
           alt="Post picture"
         >
@@ -176,29 +175,13 @@ export default {
       isComponentLoading: true,
       isLoadingPostIng: false,
       IngredientPost: [],
-      photoList: [this.postpicturepath]
+      photoList: [this.post.pictures.path]
     };
   },
 
   props: {
     post: {
       type: Object
-    },
-    postpicturepath: {
-      type: String
-    },
-    userid: {
-      type: String
-    },
-    username: {
-      type: String
-    },
-
-    username: {
-      type: String
-    },
-    useravatarpath: {
-      type: String
     }
   },
 
