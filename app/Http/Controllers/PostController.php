@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\User;
 use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -159,22 +157,5 @@ class PostController extends Controller
         Post::destroy($post->id);
         return redirect()->route('posts.index')
             ->with('success', 'Рецепт удален');
-    }
-    
-    /**
-     * Display a listing of the posts witch created by given user.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function postsCreatedByUser(User $user)
-    {
-        $posts = Post::query()
-            ->where('user_id', $user->id)
-            ->get();
-
-        return view('posts.index-created-by-user', [
-            'posts' => $posts
-        ]);
     }
 }

@@ -120,4 +120,21 @@ class UserController extends Controller
             'posts' => $posts
         ]);
     }
+
+    /**
+     * Display a listing of the posts witch created by given user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function postsCreatedByUser(User $user)
+    {
+        $posts = Post::query()
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('posts.index-created-by-user', [
+            'posts' => $posts
+        ]);
+    }
 }
