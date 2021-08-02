@@ -2,7 +2,7 @@
   <div class="flex flex-auto flex-wrap mb-2 sm:mb-3">
     <!-- Selects: Category, Kitchen, Dish, Menu -->
     <el-row
-      class="w-full flex flex-wrap sm:flex-no-wrap justify-between items-center mb-3 sm:mb-2 sm:space-x-2 space-y-2 sm:space-y-0"
+      class="w-full flex flex-wrap sm:flex-nowrap justify-between items-center mb-3 sm:mb-2 sm:space-x-2 space-y-2 sm:space-y-0"
     >
       <el-col
         :xs="postSelection.grid.xs"

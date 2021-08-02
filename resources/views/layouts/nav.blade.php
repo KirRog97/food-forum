@@ -1,4 +1,4 @@
-<div class="h-full flex flex-auto flex-no-wrap justify-between items-center py-3">
+<div class="h-full flex flex-auto flex-nowrap justify-between items-center py-3">
     <div class="w-auto md:w-1/12 flex justify-start items-center">
         <a href="/home">
             <span class="header-logo">

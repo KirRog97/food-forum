@@ -33,7 +33,7 @@
       :class="[added_ingredients.length > 0 ? 'mt-2' : 'hidden']"
     >
       <li
-        class="w-full flex flex-no-wrap justify-between bg-transparent shadow-none border-0 space-x-2"
+        class="w-full flex flex-nowrap justify-between bg-transparent shadow-none border-0 space-x-2"
         v-for="(item, index) in added_ingredients"
         :key="index"
       >

@@ -77,7 +77,7 @@
 
     <!-- Post tags: 'COP','TTC', 'Kcal' -->
     <div
-      class="col-span-3 row-span-2 flex flex-row flex-no-wrap justify-between items-center border-r border-secondary-100 px-2 py-1 space-x-px"
+      class="col-span-3 row-span-2 flex flex-col md:flex-row flex-nowrap justify-between items-center border-r border-secondary-100 px-2 py-1 space-y-px md:space-y-0 space-x-0 md:space-x-px"
     >
       <div
         class="flex justify-center items-center text-primary-500 hover:text-primary-300 hover:bg-secondary-700 border border-secondary-100 rounded-full px-2 py-2"
@@ -146,7 +146,7 @@
 
     <!-- Post Like, Share-->
     <div
-      class="col-span-3 row-span-1 flex flex-row flex-no-wrap justify-center items-end"
+      class="col-span-3 row-span-1 flex flex-row flex-nowrap justify-center items-end"
     >
       <div
         class="w-full h-full flex justify-between items-center border-t border-r border-b border-secondary-100 px-2 py-1"
