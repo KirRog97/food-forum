@@ -29,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('components.paginate-links', 'paginate-links');
         Blade::component('components.message', 'message');
         Blade::component('components.message-empty-collection', 'message-empty-collection');
+        Blade::component('components.index-ingredient-card', 'index-ingredient-card');
     }
 }
