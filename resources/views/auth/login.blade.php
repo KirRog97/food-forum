@@ -9,7 +9,7 @@
 @endsection
 
 @section('form')
-<form class="w-full bg-blue-900" method="POST" action="{{ route('login') }}">
+<form class="w-full bg-secondary-800" method="POST" action="{{ route('login') }}">
     @csrf
 
     {{-- Email&Password --}}
@@ -19,7 +19,7 @@
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
                         for="email">
                         Почта
                     </label>
@@ -44,7 +44,7 @@
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0 "
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0 "
                         for="password">
                         Пароль
                     </label>
@@ -67,7 +67,7 @@
 
     {{-- Remember --}}
     <div class="flex items-center justify-center mb-4">
-        <label class="w-auto block text-gray-500 font-bold" for="remember">
+        <label class="w-auto block text-gray-200 font-bold" for="remember">
             <input class="leading-tight bg-primary-500 mr-2" type="checkbox" name="remember" id="remember"
                 {{ old('remember') ? 'checked' : '' }}>
             <span class="text-base font-handwritten font-light">

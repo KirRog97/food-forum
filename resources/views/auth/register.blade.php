@@ -9,7 +9,7 @@ Eда - Регистрация
 @endsection
 
 @section('form')
-<form class="w-full bg-blue-900" method="POST" action="{{ route('register') }}">
+<form class="w-full bg-secondary-800" method="POST" action="{{ route('users.store') }}">
     @csrf
 
 
@@ -20,7 +20,7 @@ Eда - Регистрация
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
                         for="username">
                         Имя
                     </label>
@@ -45,7 +45,7 @@ Eда - Регистрация
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
                         for="email">
                         Почта
                     </label>
@@ -70,7 +70,7 @@ Eда - Регистрация
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
                         for="password">
                         Пароль
                     </label>
@@ -95,7 +95,7 @@ Eда - Регистрация
             <div class="sm:flex sm:items-center justify-center mb-4">
                 <div class="sm:w-auto">
                     <label
-                        class="block text-2xl sm:text-xl text-gray-500 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
+                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
                         for="password_confirmation">
                         Пароль
                     </label>
