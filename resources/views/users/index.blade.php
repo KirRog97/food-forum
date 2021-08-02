@@ -14,7 +14,7 @@
     Список кулинаров нашего сайта. Объединяйтесь и воплощайте свои самые смелые кулинарные фантазии в жизнь.
 </x-sub-heading>
 
-@if (count($users) > 0)
+@isset($users[0])
 <div class="grid grid-cols-6 gap-5">
     @foreach ($users as $user)
     <div class="col-span-6 sm:col-span-3 lg:col-span-2 rounded-lg transition-500ms shadow hover:shadow-2xl">
@@ -23,11 +23,15 @@
     </div>
     @endforeach
 </div>
-
 <x-paginate-links>
-    {{$users->links()}}
+    {{$users->links() }}
 </x-paginate-links>
+@endisset
 
-@endif
+@empty($users)
+<x-message-empty-collection>
+    Нет зарегестрированных пользователей
+</x-message-empty-collection>
+@endempty
 
 @endsection

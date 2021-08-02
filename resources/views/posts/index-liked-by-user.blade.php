@@ -15,8 +15,7 @@
     Здесь собраны все рецепты, которые понравились пользователю
 </x-sub-heading>
 
-@if (count($posts) > 0)
-
+@isset($posts[0])
 <div class="post-list">
     @foreach ($posts as $post)
     <div class="post-list__item">
@@ -26,13 +25,16 @@
     @endforeach
 </div>
 
-</div>
-@else
+{{-- <x-paginate-links>
+    {{$posts->links() }}
+</x-paginate-links> --}}
 
+@endisset
+
+@empty($posts)
 <x-message-empty-collection>
     Пользователь пока не дал оценки ни одному рецепту
 </x-message-empty-collection>
-
-@endif
+@endempty
 
 @endsection

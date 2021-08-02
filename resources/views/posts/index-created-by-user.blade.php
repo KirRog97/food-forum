@@ -12,11 +12,10 @@
 </x-heading>
 
 <x-sub-heading>
-    Здесь собраны все рецепты, которые были написанны пользователем
+    Здесь собраны все рецепты, которые были созданы пользователем
 </x-sub-heading>
 
-@if (count($posts) > 0)
-
+@isset($posts[0])
 <div class="post-list">
     @foreach ($posts as $post)
     <div class="post-list__item">
@@ -26,11 +25,16 @@
     @endforeach
 </div>
 
-@else
+{{-- <x-paginate-links>
+    {{$posts->links() }}
+</x-paginate-links> --}}
 
+@endisset
+
+@empty($posts)
 <x-message-empty-collection>
-    Пользователь пока не создал ни одного рецепта
+    Пользователь пока не дал оценки ни одному рецепту
 </x-message-empty-collection>
+@endempty
 
-@endif
 @endsection

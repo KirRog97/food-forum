@@ -14,11 +14,10 @@ Eда - Книга ингредиентов
     Здесь вы можете ознакомиться с ингредиентами, которые будут использоваться в ваших рецептах.
 </x-sub-heading>
 
-@if (count($ingredients) > 0)
-
 <div class="space-y-8 md:space-y-6">
-    @foreach ($ingredients as $ingredient)
+    @isset($ingredients)
 
+    @foreach ($ingredients as $ingredient)
     <div class="grid grid-cols-6 gap-3 bg-secondary-100 rounded-lg p-2 md:p-4">
         {{-- Ing Image --}}
         <div class="col-span-3 row-span-1 md:row-span-3 flex justify-center items-center">
@@ -70,20 +69,19 @@ Eда - Книга ингредиентов
             </p>
         </div>
     </div>
-
     @endforeach
+
+    <x-paginate-links>
+        {{$ingredients->links()}}
+    </x-paginate-links>
+
+    @endisset
+
+    @empty($ingredients)
+    <x-message-empty-collection>
+        Список ингредиентов временно пуст
+    </x-message-empty-collection>
+    @endempty
 </div>
-
-<x-paginate-links>
-    {{$ingredients->links()}}
-</x-paginate-links>
-
-@else
-
-<x-message-empty-collection>
-    Список ингредиентов временно пуст
-</x-message-empty-collection>
-
-@endif
 
 @endsection

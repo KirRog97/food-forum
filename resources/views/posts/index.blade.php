@@ -15,7 +15,7 @@
     Ищите рецепты, выбирая категорию блюда, его подкатегорию, кухню или меню.
 </x-sub-heading>
 
-
+@isset($posts[0])
 <div class="post-list">
     @foreach ($posts as $post)
     <div class="post-list__item">
@@ -24,9 +24,15 @@
     </div>
     @endforeach
 </div>
-
 <x-paginate-links>
-    {{ $posts->links() }}
+    {{$posts->links() }}
 </x-paginate-links>
+@endisset
+
+@empty($posts)
+<x-message-empty-collection>
+    Список рецептов временно пуст
+</x-message-empty-collection>
+@endempty
 
 @endsection
