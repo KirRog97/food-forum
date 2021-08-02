@@ -17,9 +17,7 @@
         </x-heading>
 
         @foreach ($user->posts as $post)
-        <post-show-card :post='@json($post)' :postIngredients='@json($post->ingredients)'
-            username="{{ $post->user->username }}" userAvatarPath="{{ $post->user->avatar->path }}"
-            postPicturePath="{{ $post->pictures->path }}">
+        <post-show-card :post='@json($post)'>
         </post-show-card>
         @endforeach
     </div>
