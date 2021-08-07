@@ -9,7 +9,7 @@ class IngredientController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of all ingredients
      *
      * @param  \App\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
@@ -57,7 +57,7 @@ class IngredientController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the particular ingredient.
      *
      * @param  \App\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
@@ -68,7 +68,7 @@ class IngredientController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified ingredient.
      *
      * @param  \App\Ingredient  $ingredient
      * @return \Illuminate\Http\Response

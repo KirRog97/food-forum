@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class PictureController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created picture in storage and database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -50,7 +50,7 @@ class PictureController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified specified in storage and database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Picture  $picture
@@ -97,7 +97,7 @@ class PictureController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified pciture from storage and database.
      *
      * @param  \App\Picture  $picture
      * @return \Illuminate\Http\Response

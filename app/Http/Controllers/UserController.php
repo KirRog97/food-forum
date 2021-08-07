@@ -11,7 +11,7 @@ class UserController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the users.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
@@ -24,7 +24,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +45,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
@@ -68,7 +68,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
@@ -84,7 +84,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from database.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response

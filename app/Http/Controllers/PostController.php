@@ -12,8 +12,9 @@ class PostController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the posts.
      *
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function index(Post $post)
@@ -29,7 +30,7 @@ class PostController extends Controller
     /**
      * Display a top-10 of the popular posts witch have more likes.
      *
-     * @param  \App\Post  $user
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function popularPosts(Post $post)
@@ -50,7 +51,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in database.
      *
      * @param  App\Http\Requests\StorePost   $request
      * @return \Illuminate\Http\Response
@@ -92,7 +93,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post.
      *
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
@@ -116,7 +117,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified post in database.
      *
      * @param  App\Http\Requests\UpdatePost $request
      * @param  \App\Post  $post
@@ -137,7 +138,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified post from database.
      *
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
