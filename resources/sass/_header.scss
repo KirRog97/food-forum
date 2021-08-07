@@ -29,13 +29,14 @@
 }
 
 .header-icon__inner {
+  @apply flex;
+  @apply justify-center;
+  @apply items-center;
   @apply px-5;
   @apply py-2;
 }
 
 .header-icon {
-  @include transition-500ms;
-
   @media (min-width: $breakpoint-lg) {
     @apply text-2xl;
   }
@@ -50,6 +51,7 @@
   &:hover,
   &:focus,
   &:active {
+    @include transition-500ms;
     @apply text-primary-400;
   }
 }

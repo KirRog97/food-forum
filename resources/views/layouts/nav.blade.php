@@ -12,9 +12,9 @@
     <div class="w-auto md:w-2/12 h-full justify-between items-center">
         <ul class="h-full flex flex-row flex-nowrap justify-around items-center">
             <li class="block md:hidden">
-                <span class="header-icon__inner">
+                <div class="header-icon__inner">
                     <i class="fas fa-search header-icon"></i>
-                </span>
+                </div>
             </li>
             @auth
             <li>
@@ -26,17 +26,16 @@
             @else
             <li>
                 <div class="header-icon__inner">
-                    <a href="{{ route('login') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
-                        title="Вход">
-                        <i class="fas fa-sign-in-alt"></i>
+                    <a href="{{ route('login') }}" data-toggle="tooltip" data-placement="bottom" title="Вход">
+                        <i class="fas fa-sign-in-alt header-icon"></i>
                     </a>
                 </div>
             </li>
             <li>
                 <div class="header-icon__inner">
-                    <a href="{{ route('register') }}" class="header-icon" data-toggle="tooltip" data-placement="bottom"
+                    <a href="{{ route('register') }}" data-toggle="tooltip" data-placement="bottom"
                         title="Зарегистрироваться">
-                        <i class="fas fa-address-card"></i>
+                        <i class="fas fa-address-card header-icon"></i>
                     </a>
                 </div>
             </li>
