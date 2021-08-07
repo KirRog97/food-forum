@@ -21,7 +21,8 @@
                 <header-notification-dropdown></header-notification-dropdown>
             </li>
             <li>
-                <header-user-dropdown :user='@json(auth()->user())'></header-user-dropdown>
+                <header-user-dropdown :user='@json(auth()->user())' :avatar="{{auth()->user()->avatar }}">
+                </header-user-dropdown>
             </li>
             @else
             <li>
