@@ -1,6 +1,6 @@
 <div class="flex flex-col justify-center items-center px-2 py-6 space-y-2">
     {{-- UserAvatar --}}
-    <el-avatar fit="contain" shape="circle" :size="130" src="{{ $user->avatar->path }}" alt="User picture">
+    <el-avatar fit="cover" shape="circle" :size="130" src="{{ $user->avatar->path }}" alt="User picture">
         <img src="/images/icons/user_avacado.svg" />
     </el-avatar>
     <span class="text-lg text-secondary-700 text-center tracking-wide font-handwritten">

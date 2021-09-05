@@ -5,7 +5,7 @@
   >
     <el-col class="flex justify-center" :span="24">
       <el-avatar
-        fit="contain"
+        fit="cover"
         shape="circle"
         :size="150"
         :src="avatar"

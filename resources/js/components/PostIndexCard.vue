@@ -10,6 +10,7 @@
           <el-avatar
             class="img-fluid--cover"
             shape="circle"
+            fit="cover"
             :src="post.user.avatar.path"
             :size="40"
             alt="User picture"
