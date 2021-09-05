@@ -43,17 +43,17 @@ export default {
     });
   },
   methods: {
-    checkLikeCount() {
+    checkLikeCount: function() {
       axios
         .post(`/api/favorites/${this.post_id}/count`)
         .then(res => {
-          this.likeCount = res.data.likeCount;
+          return (this.likeCount = res.data.likeCount);
         })
         .catch(err => {
           console.error(err);
         });
     },
-    checkLikeStatus() {
+    checkLikeStatus: function() {
       axios
         .post(`/api/favorites/${this.post_id}/status`)
         .then(res => {
@@ -63,23 +63,34 @@ export default {
           console.error(err);
         });
     },
-    sendReaction() {
+    predictReaction: function() {
+      // "Why?": Just to show faster reaction to user
+      // Dilemma: Comfort for user or "real data" but with delay(300ms-2s)?
+      // ToDo: Maby make an animation for this period of "dellay"
+      this.liked = !this.liked;
+      this.liked ? this.likeCount++ : this.likeCount--;
+
+      return this.liked;
+    },
+    sendReaction: _.debounce(function() {
+      let resultOfPrediction = this.predictReaction();
+
       axios
         .post(`/api/favorites/${this.post_id}/action`)
         .then(res => {
-          if (res.data.reaction === "Like") {
-            this.liked = true;
-            return this.likeCount++;
-          }
-          if (res.data.reaction === "UnLike") {
-            this.liked = false;
-            return this.likeCount--;
+          if (res.data.reaction !== resultOfPrediction) {
+            res.data.reaction ? (this.liked = true) : (this.liked = false);
+            this.likeCount = this.checkLikeCount();
           }
         })
         .catch(err => {
           console.error(err);
           //  If our user is a guest
           if (err.response.status === 401) {
+            // change back visual data
+            this.likeCount--;
+            this.liked = false;
+
             return this.$snotify.simple(
               "Войдите в аккаунт, чтобы поставить отметку.",
               "Понравился рецепт?",
@@ -94,7 +105,7 @@ export default {
             timeout: 1500
           });
         });
-    }
+    }, 400)
   }
 };
 </script>
