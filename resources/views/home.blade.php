@@ -10,6 +10,12 @@ Eда - Главная
 
 <post-selection></post-selection>
 
-@include('layouts.compilation')
+
+<x-heading>
+    Топы рецептов
+</x-heading>
+
+<main-page-trands></main-page-trands>
+
 
 @endsection
