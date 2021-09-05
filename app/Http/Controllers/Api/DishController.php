@@ -16,9 +16,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::select('id', 'name')->get();
-        return response()->json($dishes);
+        return response()->json(Dish::select('id', 'name')->get());
 
-        // return DishResource::collection($dishes);
+        // return DishResource::collection(Dish::select('id', 'name')->get())
     }
 }

@@ -15,12 +15,10 @@ class IngredientPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Post $post)
     {
-        $post = Post::find($id);
-        $postIngredients = $post->ingredients()->get();
-        return response()->json($postIngredients);
+        return response()->json($post->ingredients()->get());
 
-        // return IngredientPostResource::collection($ingredients);
+        // return IngredientPostResource::collection($post->ingredients()->get());
     }
 }

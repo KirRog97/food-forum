@@ -16,9 +16,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::select('id', 'name')->get();
-        return response()->json($menus);
+        return response()->json(Menu::select('id', 'name')->get());
 
-        // return MenuResource::collection($menus);
+        // return MenuResource::collection(Menu::select('id', 'name')->get());
     }
 }

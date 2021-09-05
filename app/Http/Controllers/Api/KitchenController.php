@@ -16,9 +16,8 @@ class KitchenController extends Controller
      */
     public function index()
     {
-        $kitchens = Kitchen::select('id', 'name')->get();
-        return response()->json($kitchens);
+        return response()->json(Kitchen::select('id', 'name')->get());
 
-        // return KitchenResource::collection($kitchens);
+        // return KitchenResource::collection(Kitchen::select('id', 'name')->get());
     }
 }

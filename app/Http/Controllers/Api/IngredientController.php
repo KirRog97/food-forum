@@ -16,9 +16,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::select('id', 'name')->get();
-        return response()->json($ingredients);
+        return response()->json(Ingredient::select('id', 'name')->get());
 
-        // return IngredientResource::collection($ingredients);
+        // return IngredientResource::collection(Ingredient::select('id', 'name')->get());
     }
 }

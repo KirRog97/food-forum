@@ -16,10 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select('id', 'name')->get();
-        return response()->json($categories);
+        return response()->json(Category::select('id', 'name')->get());
 
-
-        // return CategoryResource::collection($categories);
+        // return CategoryResource::collection(Category::select('id', 'name')->get());
     }
 }
