@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title')
-Логин
+Еда - Логин
 @endsection
 
 @section('background_image')
@@ -12,63 +12,19 @@
 <form class="w-full bg-secondary-800" method="POST" action="{{ route('login') }}">
     @csrf
 
-    {{-- Email&Password --}}
-    <div class="flex flex-row flex-wrap justify-center items-center">
+    <div class="flex flex-col flex-wrap justify-center items-center space-y-6">
         {{-- Email --}}
-        <div class="w-full sm:w-10/12">
-            <div class="sm:flex sm:items-center justify-center mb-4">
-                <div class="sm:w-auto">
-                    <label
-                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0"
-                        for="email">
-                        Почта
-                    </label>
-                </div>
-                <div class="sm:w-7/12">
-                    <input
-                        class="w-full text-gray-700 bg-gray-300 focus:bg-white leading-tight appearance-none border-2 border-gray-200 rounded focus:outline-none focus:border-primary-500 transition-500ms py-2 px-4"
-                        id="email" name="email" type="text" value="{{ old('email') }}" required autofocus>
-                </div>
-            </div>
-            @if ($errors->has('email'))
-            <span class="text-sm text-red-600" role="alert">
-                <strong>
-                    {{ $errors->first('email') }}
-                </strong>
-            </span>
-            @endif
-        </div>
-
+        <x-auth-form-field name='email' title='Имя' input_attributes='required autofocus'>
+        </x-auth-form-field>
         {{-- Password --}}
-        <div class="w-full sm:w-10/12">
-            <div class="sm:flex sm:items-center justify-center mb-4">
-                <div class="sm:w-auto">
-                    <label
-                        class="block text-2xl sm:text-xl text-gray-200 font-handwritten font-light tracking-wide sm:text-right pr-4 mb-1 sm:mb-0 "
-                        for="password">
-                        Пароль
-                    </label>
-                </div>
-                <div class="sm:w-7/12">
-                    <input
-                        class="w-full text-gray-700 bg-gray-300 focus:bg-white leading-tight appearance-none border-2 border-gray-200 rounded focus:outline-none focus:border-primary-500 transition-500ms py-2 px-4"
-                        id="password" name="password" type="password" value="{{ old('password') }}" required>
-                </div>
-            </div>
-            @if ($errors->has('password'))
-            <span class="text-sm text-red-600" role="alert">
-                <strong>
-                    {{ $errors->first('password') }}
-                </strong>
-            </span>
-            @endif
-        </div>
+        <x-auth-form-field name='password' title='Пароль' type='password' input_attributes='required'>
+        </x-auth-form-field>
     </div>
 
     {{-- Remember --}}
-    <div class="flex items-center justify-center mb-4">
-        <label class="w-auto block text-gray-200 font-bold" for="remember">
-            <input class="leading-tight bg-primary-500 mr-2" type="checkbox" name="remember" id="remember"
+    <div class="flex flex-col justify-center items-center mt-3 mb-6">
+        <label class="w-auto flex items-center text-gray-200 font-bold" for="remember">
+            <input class="leading-tight rounded mr-2" type="checkbox" name="remember" id="remember"
                 {{ old('remember') ? 'checked' : '' }}>
             <span class="text-base font-handwritten font-light">
                 Запомни меня
@@ -76,9 +32,9 @@
         </label>
     </div>
 
+    {{-- Submit --}}
     <div class="w-full flex justify-center items-center">
-        <button
-            class="shadow bg-primary-500 hover:bg-primary-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        <button class="text-lg bg-primary-500 hover:bg-primary-400 text-white font-handwritten py-2 px-4 rounded shadow"
             type="submit">
             Вход
         </button>

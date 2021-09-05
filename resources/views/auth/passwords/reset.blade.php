@@ -9,61 +9,29 @@
 @endsection
 
 @section('form')
-<form method="POST" action="{{ route('password.update') }}">
+<form class="w-full" method="POST" action="{{ route('password.update') }}">
   @csrf
 
   <input type="hidden" name="token" value="{{ $token }}">
 
-  <div class="form-group row">
-    <label for="email" class="col-md-4 col-form-label text-md-right">
-      Адрес почты:
-    </label>
-
-    <div class="col-md-6">
-      <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-        value="{{ $email ?? old('email') }}" required autofocus>
-
-      @if ($errors->has('email'))
-      <span class="invalid-feedback" role="alert">
-        <strong>{{ $errors->first('email') }}</strong>
-      </span>
-      @endif
-    </div>
+  <div class="flex flex-col flex-wrap justify-center items-center space-y-6">
+    {{-- Email --}}
+    <x-auth-form-field name='email' title='Имя' input_attributes='required autofocus'>
+    </x-auth-form-field>
+    {{-- Password --}}
+    <x-auth-form-field name='password' title='Пароль' type='password' input_attributes='required'>
+    </x-auth-form-field>
+    {{-- Password_confirmation --}}
+    <x-auth-form-field name='password_confirmation' title='Пароль' type='password' input_attributes='required'>
+    </x-auth-form-field>
   </div>
 
-  <div class="form-group row">
-    <label for="password" class="col-md-4 col-form-label text-md-right">
-      Новый пароль:
-    </label>
-
-    <div class="col-md-6">
-      <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-        name="password" required>
-
-      @if ($errors->has('password'))
-      <span class="invalid-feedback" role="alert">
-        <strong>{{ $errors->first('password') }}</strong>
-      </span>
-      @endif
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
-      Подтверждение:
-    </label>
-
-    <div class="col-md-6">
-      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-    </div>
-  </div>
-
-  <div class="form-group row mb-0">
-    <div class="col-md-6 offset-md-4">
-      <button type="submit" class="btn btn-primary">
-        Сбросить пароль
-      </button>
-    </div>
+  {{-- Submit --}}
+  <div class="w-full flex justify-center items-center mt-6">
+    <button class="text-lg bg-primary-500 hover:bg-primary-400 text-white font-handwritten py-2 px-4 rounded shadow"
+      type="submit">
+      Сбросить пароль
+    </button>
   </div>
 </form>
 @endsection

@@ -45,6 +45,15 @@
   }
 }
 
+[type="checkbox"]:checked,
+[type="checkbox"]:checked:hover,
+[type="checkbox"]:checked:focus,
+[type="radio"]:checked:hover,
+[type="radio"]:checked:focus {
+  background-color: $primary500 !important;
+  color: white !important;
+}
+
 .el-input-group.el-input-group--append.el-input-group--prepend {
   .el-input-group__prepend,
   .el-input-group__append {

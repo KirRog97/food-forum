@@ -30,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('components.message', 'message');
         Blade::component('components.message-empty-collection', 'message-empty-collection');
         Blade::component('components.index-ingredient-card', 'index-ingredient-card');
+        Blade::component('components.auth-form-field', 'auth-form-field');
     }
 }
