@@ -67,7 +67,7 @@
       <!-- Post Comment-->
       <div class="col-span-7 row-span-3 px-2 py-3">
         <p
-          class="h-24 text-lg text-secondary-700 font-base leading-tight bg-secondary-100 rounded overflow-x-hidden overflow-y-auto px-2 py-1 mb-2"
+          class="h-24 text-lg text-secondary-700 leading-tight bg-secondary-100 rounded overflow-x-hidden overflow-y-auto px-2 py-1 mb-2"
         >
           {{ testComment }}
           <span class="text-teal-600 font-handwritten">

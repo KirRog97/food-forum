@@ -8,7 +8,6 @@ module.exports = {
     fontFamily: {
       handwritten: ["Lobster", "cursive"],
       display: ["Oswald", "sans-serif"],
-      base: ["PFDinTextCondPro", "sans-serif"],
       body: ["Oswald", "sans-serif"]
     },
     extend: {
