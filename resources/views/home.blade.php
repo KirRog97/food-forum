@@ -10,6 +10,7 @@ Eда - Главная
 
 <post-selection></post-selection>
 
+<news-board></news-board>
 
 <x-heading>
     Топы рецептов
