@@ -67,3 +67,6 @@ Vue.component("user-index-card", require("./UserIndexCard.vue").default);
 Vue.component("post-index-card", require("./PostIndexCard.vue").default);
 Vue.component("post-show-card", require("./PostShowCard.vue").default);
 Vue.component("like-button", require("./layouts/LikeButton.vue").default);
+
+
+Vue.component("post-trands", require("./PostTrands.vue").default);
