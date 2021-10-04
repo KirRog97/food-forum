@@ -15,7 +15,8 @@ Eда - Главная
     Топы рецептов
 </x-heading>
 
-<main-page-trands></main-page-trands>
+<post-trands></post-trands>
+
 
 
 @endsection
