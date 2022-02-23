@@ -1,12 +1,23 @@
 <?php
 
-use App\Category;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$arrayOfCategories = ['Заготовки', 'Выпечка и десерты', 'Основные блюда', 'Завтраки', 'Салаты', 'Супы', 'Паста и пицца', 'Закуски', 'Сэндвичи',  'Напитки', 'Бульоны'];
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Category::class, function (Faker $faker) use ($arrayOfCategories) {
-    return [
-        'name' => $faker->unique()->randomElement($arrayOfCategories)
-    ];
-});
+class CategoryFactory extends Factory
+{
+    private array  $arrayOfCategories = ['Заготовки', 'Выпечка и десерты', 'Основные блюда', 'Завтраки', 'Салаты', 'Супы', 'Паста и пицца', 'Закуски', 'Сэндвичи',  'Напитки', 'Бульоны'];
+
+    /**
+     * 
+     * Define the model's default state.
+     *
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->unique()
+                ->randomElement($this->arrayOfCategories)
+        ];
+    }
+}

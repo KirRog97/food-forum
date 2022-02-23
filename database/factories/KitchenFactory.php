@@ -1,12 +1,20 @@
 <?php
 
-use App\Kitchen;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$arrayOfKitchens = ['Китайская', 'Мексиканская', 'Грузинская', 'Фрацузская', 'Японская', 'Индийская', 'Русская', 'Среднеземноморкая', 'Армянская', 'Тайская'];
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Kitchen::class, function (Faker $faker) use ($arrayOfKitchens) {
-    return [
-        'name' => $faker->unique()->randomElement($arrayOfKitchens),
-    ];
-});
+class KitchenFactory extends Factory
+{
+    private array $arrayOfKitchens = ['Китайская', 'Мексиканская', 'Грузинская', 'Фрацузская', 'Японская', 'Индийская', 'Русская', 'Среднеземноморкая', 'Армянская', 'Тайская'];
+
+    /** 
+     * Define the model's default state.     
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->unique()->randomElement($this->arrayOfKitchens),
+        ];
+    }
+}

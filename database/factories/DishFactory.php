@@ -1,23 +1,50 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$arrayOfPreparedStuff = ['Варенье', 'Салаты на зиму', 'Соленья и консервация'];
-$arrayOfPastriesAndDesserts = ['Анма', 'Беляши', 'Бисквит', 'Бискотти', 'Блины', 'Брауни', 'Бублик', 'Булочки', 'Ватрушки', 'Вафли', 'Галетты', 'Кексы', 'Мусс', 'Слойки'];
-$arrayOfMainDishes = ['Бешбармак', 'Биточки', 'Бифштекс', 'Буженина', 'Гуляш', 'Кебаб', 'Пельмени', 'Роллы'];
-$arrayOfBreakfasts = ['Драники', 'Каши', 'Мюсли', 'Омлет', 'Сырники', 'Яичница'];
-$arrayOfSalads = ['Винегреты', 'Греческий салат', 'Мясные салаты', 'Овощные салаты', 'Оливье', 'Салат Цезарь', 'Фруктовые салаты'];
-$arrayOfSoups = ['Борщ', 'Гаспачо', 'Гороховый суп', 'Грибной суп', 'Мисо', 'Окрошка', 'Солянка', 'Суп Харчо', 'Уха', 'Щи'];
-$arrayOfPastaAndPizza = ['Болньезе', 'Паста карбонара', 'Равиоли', 'Тесто для пиццы'];
-$arrayOfSnacks = ['Бастурма', 'Горячие закуски', 'Заливное', 'Канапе', 'Лечо', 'Чипсы'];
-$arrayOfSandwiches = ['Брускета', 'Гамбургер', 'Панини', 'Тосты', 'Хот-дог', 'Чизбургер'];
-$arrayOfDrinks = ['Горячий шоколад', 'Квас', 'Кисель', 'Коктейли алкогольные', 'Морс', 'Сидр', 'Смузи'];
-$arrayOfBroths = ['Куриный бульон', 'Овощной суп'];
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$arrayofDishes = array_merge($arrayOfPreparedStuff, $arrayOfPastriesAndDesserts, $arrayOfMainDishes, $arrayOfBreakfasts, $arrayOfSalads, $arrayOfSoups, $arrayOfPastaAndPizza, $arrayOfSnacks, $arrayOfSandwiches, $arrayOfDrinks, $arrayOfBroths);
+class DishFactory extends Factory
+{
+    private array $arrayOfPreparedStuff = ['Варенье', 'Салаты на зиму', 'Соленья и консервация'];
+    private array $arrayOfPastriesAndDesserts = ['Анма', 'Беляши', 'Бисквит', 'Бискотти', 'Блины', 'Брауни', 'Бублик', 'Булочки', 'Ватрушки', 'Вафли', 'Галетты', 'Кексы', 'Мусс', 'Слойки'];
+    private array $arrayOfMainDishes = ['Бешбармак', 'Биточки', 'Бифштекс', 'Буженина', 'Гуляш', 'Кебаб', 'Пельмени', 'Роллы'];
+    private array $arrayOfBreakfasts = ['Драники', 'Каши', 'Мюсли', 'Омлет', 'Сырники', 'Яичница'];
+    private array $arrayOfSalads = ['Винегреты', 'Греческий салат', 'Мясные салаты', 'Овощные салаты', 'Оливье', 'Салат Цезарь', 'Фруктовые салаты'];
+    private array $arrayOfSoups = ['Борщ', 'Гаспачо', 'Гороховый суп', 'Грибной суп', 'Мисо', 'Окрошка', 'Солянка', 'Суп Харчо', 'Уха', 'Щи'];
+    private array $arrayOfPastaAndPizza = ['Болньезе', 'Паста карбонара', 'Равиоли', 'Тесто для пиццы'];
+    private array $arrayOfSnacks = ['Бастурма', 'Горячие закуски', 'Заливное', 'Канапе', 'Лечо', 'Чипсы'];
+    private array $arrayOfSandwiches = ['Брускета', 'Гамбургер', 'Панини', 'Тосты', 'Хот-дог', 'Чизбургер'];
+    private array $arrayOfDrinks = ['Горячий шоколад', 'Квас', 'Кисель', 'Коктейли алкогольные', 'Морс', 'Сидр', 'Смузи'];
+    private array $arrayOfBroths = ['Куриный бульон', 'Овощной суп'];
 
-$factory->define(App\Dish::class, function (Faker $faker) use ($arrayofDishes) {
-    return [
-        'name' => $faker->unique()->randomElement($arrayofDishes)
-    ];
-});
+    private function getArrayOfDishes()
+    {
+        return array_merge(
+            $this->arrayOfPreparedStuff,
+            $this->arrayOfPastriesAndDesserts,
+            $this->arrayOfMainDishes,
+            $this->arrayOfBreakfasts,
+            $this->arrayOfSalads,
+            $this->arrayOfSoups,
+            $this->arrayOfPastaAndPizza,
+            $this->arrayOfSnacks,
+            $this->arrayOfSandwiches,
+            $this->arrayOfDrinks,
+            $this->arrayOfBroths,
+        );
+    }
+
+    /**
+     * 
+     * Define the model's default state.
+     *
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->unique()
+                ->randomElement($this->getArrayOfDishes())
+        ];
+    }
+}

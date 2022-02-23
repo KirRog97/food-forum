@@ -1,15 +1,22 @@
 <?php
 
-use App\Ingredient;
-use App\IngredientPost;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(IngredientPost::class, function (Faker $faker) {
-    $ingredientsIdArray = Ingredient::select('id')->get();
+use App\Models\Post;
+use App\Models\Ingredient;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-    return [
-        'post_id'        =>  $faker->numberBetween(1, 5),
-        'ingredient_id'  =>  $ingredientsIdArray->random()->id,
-        'amount'         =>  $faker->randomNumber(3)
-    ];
-});
+class IngredientPostFactory extends Factory
+{
+    /** 
+     * Define the model's default state.     
+     */
+    public function definition(): array
+    {
+        return [
+            'post_id'        =>  Post::select('id')->get()->random(),
+            'ingredient_id'  =>  Ingredient::select('id')->get()->random(),
+            'amount'         =>  $this->faker->randomNumber(3)
+        ];
+    }
+}
