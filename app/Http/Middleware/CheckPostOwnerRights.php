@@ -16,6 +16,7 @@ class CheckPostOwnerRights
      */
     public function handle($request, Closure $next)
     {
+        // $post->author()->is($user);
         if (!$request->user()->hasOwnerRights($request->post->user_id)) {
             return redirect('/')->with('errors', 'Нет прав доступа');
         }
