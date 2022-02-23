@@ -1,32 +1,21 @@
 require("./bootstrap");
 
-window.Vue = require("vue");
+import { createApp, h } from "vue";
+import { createInertiaApp } from "@inertiajs/inertia-vue3";
+import { InertiaProgress } from "@inertiajs/progress";
 
-import { store } from "./store";
+const appName =
+  window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
-window.ElementUI = require("element-ui");
-import locale from "element-ui/lib/locale/lang/ru-RU";
-
-Vue.use(ElementUI, { locale });
-
-// https:www.npmjs.com/package/vue-snotify
-import Snotify, { SnotifyPosition } from "vue-snotify";
-Vue.use(Snotify, {
-  toast: {
-    position: SnotifyPosition.leftBottom,
-    timeout: 5000,
-    animation: {
-      time: 800
-    },
-    titleMaxLength: 32,
-    bodyMaxLength: 240,
-    placeholder: "Введите текст..."
-  }
+createInertiaApp({
+  title: (title) => `${title} - ${appName}`,
+  resolve: (name) => require(`./Pages/${name}.vue`),
+  setup({ el, app, props, plugin }) {
+    return createApp({ render: () => h(app, props) })
+      .use(plugin)
+      .mixin({ methods: { route } })
+      .mount(el);
+  },
 });
 
-require("./components/index");
-
-const app = new Vue({
-  el: "#app",
-  store
-});
+InertiaProgress.init({ color: "#4B5563", showSpinner: true });
