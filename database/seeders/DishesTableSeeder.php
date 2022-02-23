@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Dish;
 use Illuminate\Database\Seeder;
 
 class DishesTableSeeder extends Seeder
@@ -19,6 +22,8 @@ class DishesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Dish::class, 70)->create();
+        Dish::factory()
+            ->count(70)
+            ->create();
     }
 }

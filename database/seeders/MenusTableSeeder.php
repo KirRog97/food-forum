@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Models\Menu;
 use Illuminate\Database\Seeder;
 
 class MenusTableSeeder extends Seeder
@@ -16,6 +19,8 @@ class MenusTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Menu::class, 6)->create();
+        Menu::factory()
+            ->count(6)
+            ->create();
     }
 }
