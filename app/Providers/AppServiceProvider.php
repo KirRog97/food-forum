@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
@@ -24,12 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::component('components.heading', 'heading');
-        Blade::component('components.sub-heading', 'sub-heading');
-        Blade::component('components.paginate-links', 'paginate-links');
-        Blade::component('components.message', 'message');
-        Blade::component('components.message-empty-collection', 'message-empty-collection');
-        Blade::component('components.index-ingredient-card', 'index-ingredient-card');
-        Blade::component('components.auth-form-field', 'auth-form-field');
+        Paginator::defaultView('vendor.pagination.tailwind');
+        Paginator::defaultSimpleView('vendor.pagination.simple-tailwind');
     }
 }

@@ -4,10 +4,14 @@
 /storage/*.key
 /vendor
 .env
+.env.backup
 .phpunit.result.cache
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-public/css/app.min.css
-public/css/app.css
+public/css/
+public/admin
+/.idea
+/.vscode
