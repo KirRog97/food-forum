@@ -1,17 +1,21 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use \Illuminate\Support\Facades\Auth;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Picture;
+use App\Models\Post;
 use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
 use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements ReacterableContract
 {
-    use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
     use Reacterable;
 
     protected $fillable = [
@@ -57,7 +61,6 @@ class User extends Authenticatable implements ReacterableContract
         }
     }
 
-
     public function hasOwnerRights($checkId)
     {
         return !Auth::guest() && Auth::user()->id === $checkId;
@@ -65,11 +68,11 @@ class User extends Authenticatable implements ReacterableContract
 
     public function avatar()
     {
-        return $this->belongsTo('App\Picture');
+        return $this->belongsTo(Picture::class);
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany(Post::class);
     }
 }

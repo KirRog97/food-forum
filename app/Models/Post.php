@@ -1,15 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Dish;
+use App\Models\Menu;
+use App\Models\User;
+use App\Models\Kitchen;
+use App\Models\Picture;
+use App\Models\Category;
+use App\Models\Ingredient;
+use App\Models\IngredientPost;
 use Illuminate\Support\Facades\Cache;
-use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+
+
 
 class Post extends Model implements ReactableContract
 {
-    use Reactable;
+    use HasFactory, Reactable;
 
     protected $fillable = [
         'user_id',
@@ -80,50 +91,55 @@ class Post extends Model implements ReactableContract
 
     public function getPopularPosts()
     {
-        return Cache::remember('popular_posts', now()->addMinutes(30), function () {
-            return Post::query()
-                ->joinReactionCounterOfType('Like')
-                ->orderBy('reaction_like_count', 'desc')
-                ->limit(10)
-                ->get();
-        });
+        return Cache::remember(
+            'popular_posts',
+            now()->addMinutes(30),
+            function () {
+                return Post::query()
+                    ->joinReactionCounterOfType('Like')
+                    ->orderBy('reaction_like_count', 'desc')
+                    ->limit(10)
+                    ->get();
+            }
+        );
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function pictures()
     {
-        return $this->belongsTo('App\Picture', 'picture_id');
+        return $this->belongsTo(Picture::class, 'picture_id');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Category', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function kitchen()
     {
-        return $this->belongsTo('App\Kitchen', 'kitchen_id');
+        return $this->belongsTo(Kitchen::class, 'kitchen_id');
     }
 
     public function dish()
     {
-        return $this->belongsTo('App\Dish', 'dish_id');
+        return $this->belongsTo(Dish::class, 'dish_id');
     }
 
     public function menu()
     {
-        return $this->belongsTo('App\Menu', 'menu_id');
+        return $this->belongsTo(Menu::class, 'menu_id');
     }
 
-    public function ingredients()
+    // Name of fucn chaind with factory
+    public function ingredientPosts()
     {
-        return $this->belongsToMany('App\Ingredient')
-            ->using('App\IngredientPost')
-            ->withPivot(['amount'])
+        return $this->belongsToMany(Ingredient::class,)
+            ->using(IngredientPost::class)
+            ->withPivot('amount')
             ->withTimestamps();
     }
 }
