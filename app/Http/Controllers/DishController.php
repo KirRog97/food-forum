@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dish;
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
 class DishController extends Controller
@@ -10,14 +10,17 @@ class DishController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
     public function index(Dish $dish)
     {
-        return view('dishes.index', [
-            'dishes' => $dish->getAscNames()->paginate(10)
-        ]);
+        return view(
+            'dishes.index',
+            [
+                'dishes' => $dish->getAscNames()->paginate(10)
+            ]
+        );
     }
 
     /**
@@ -38,9 +41,12 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'name' => 'required'
+            ]
+        );
 
         $dish = new Dish;
         $dish->author = Auth()->user()->id;
@@ -57,7 +63,7 @@ class DishController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
     public function show(Dish $dish)
@@ -68,7 +74,7 @@ class DishController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
@@ -80,7 +86,7 @@ class DishController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Dish $dish)
@@ -93,7 +99,7 @@ class DishController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
     public function destroy(Dish $dish)

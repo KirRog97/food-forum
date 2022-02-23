@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -10,7 +10,7 @@ class LikeController extends Controller
     /**
      * Take current like count.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function likeCount(Post $post)
@@ -21,7 +21,7 @@ class LikeController extends Controller
 
     /**
      * Take current like status.
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function isReactedByUser(Post $post)
@@ -34,7 +34,7 @@ class LikeController extends Controller
      * Using laravel-love reacter facade for make reaction.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function reactToPost(Request $request, Post $post)

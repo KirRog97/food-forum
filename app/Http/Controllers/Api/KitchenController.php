@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\KitchenResource;
-use App\Kitchen;
+use App\Models\Kitchen;
 use Illuminate\Http\Request;
 
 class KitchenController extends Controller

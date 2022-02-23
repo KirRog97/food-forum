@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Dish;
+use App\Models\Dish;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DishResource;
 use Illuminate\Http\Request;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Kitchen;
+use App\Models\Kitchen;
 use Illuminate\Http\Request;
 
 class KitchenController extends Controller
@@ -41,7 +41,7 @@ class KitchenController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Kitchen  $kitchen
+     * @param  \App\Models\Kitchen  $kitchen
      * @return \Illuminate\Http\Response
      */
     public function show(Kitchen $kitchen)
@@ -52,7 +52,7 @@ class KitchenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Kitchen  $kitchen
+     * @param  \App\Models\Kitchen  $kitchen
      * @return \Illuminate\Http\Response
      */
     public function edit(Kitchen $kitchen)
@@ -64,7 +64,7 @@ class KitchenController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Kitchen  $kitchen
+     * @param  \App\Models\Kitchen  $kitchen
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Kitchen $kitchen)
@@ -75,7 +75,7 @@ class KitchenController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Kitchen  $kitchen
+     * @param  \App\Models\Kitchen  $kitchen
      * @return \Illuminate\Http\Response
      */
     public function destroy(Kitchen $kitchen)

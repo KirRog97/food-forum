@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\IngredientPost;
+use App\Models\IngredientPost;
 use Illuminate\Http\Request;
 
 class IngredientPostController extends Controller
@@ -10,7 +10,7 @@ class IngredientPostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
     public function saveInSession(Request $request)

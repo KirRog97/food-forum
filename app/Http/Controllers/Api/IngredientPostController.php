@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\IngredientPostResource;
-use App\IngredientPost;
-use App\Post;
+use App\Models\IngredientPost;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class IngredientPostController extends Controller
@@ -17,8 +17,8 @@ class IngredientPostController extends Controller
      */
     public function index(Post $post)
     {
-        return response()->json($post->ingredients()->get());
+        return response()->json($post->ingredientPosts()->get());
 
-        // return IngredientPostResource::collection($post->ingredients()->get());
+        // return IngredientPostResource::collection($post->ingredientPosts()->get());
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Models\Post;
 use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class PostController extends Controller
 {
@@ -14,30 +16,41 @@ class PostController extends Controller
     /**
      * Display a listing of the posts.
      *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Post  $post
+     * @return \Inertia\Response
      */
-    public function index(Post $post)
+    public function index(Post $posts)
     {
-        $post = Post::orderBy('title', 'asc')
-            ->paginate(10);
-
-        return view('posts.index', [
-            'posts' => $post
-        ]);
+        return Inertia::render(
+            'Posts/Index',
+            [
+                'posts' => $posts->orderBy('title', 'asc')
+                    ->paginate(10)
+            ]
+        );
     }
 
     /**
      * Display a top-10 of the popular posts witch have more likes.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function popularPosts(Post $post)
     {
-        return view('posts.index-liked-by-user', [
-            'posts' => $post->getPopularPosts()
-        ]);
+        return Inertia::render(
+            'Posts/IndexCreatedByUser',
+            [
+                'posts' =>  $post->getPopularPosts()
+            ]
+        );
+
+        // return view(
+        //     'posts.index-liked-by-user',
+        //     [
+        //         'posts' => $post->getPopularPosts()
+        //     ]
+        // );
     }
 
     /**
@@ -47,7 +60,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return Inertia::render('Posts/Create');
+
+        // return view('posts.create');
     }
 
     /**
@@ -60,29 +75,34 @@ class PostController extends Controller
     {
         $ingredients = session('post_ing');
 
-        $post = Post::create([
-            'user_id'      =>  Auth::user()->id,
-            'picture_id'   =>  session('picture_id'),
-            'category_id'  =>  $request->post_category_id,
-            'kitchen_id'   =>  $request->post_kitchen_id,
-            'dish_id'      =>  $request->post_dish_id,
-            'menu_id'      =>  $request->post_menu_id,
-            'title'        =>  $request->title,
-            'description'  =>  $request->description,
-            'instruction'  =>  $request->instruction,
-            'TTC'          =>  $request->TTC,
-            'COP'          =>  $request->COP,
-            'Kcal'         =>  $request->Kcal
-        ]);
+        $post = Post::create(
+            [
+                'user_id'      =>  Auth::user()->id,
+                'picture_id'   =>  session('picture_id'),
+                'category_id'  =>  $request->post_category_id,
+                'kitchen_id'   =>  $request->post_kitchen_id,
+                'dish_id'      =>  $request->post_dish_id,
+                'menu_id'      =>  $request->post_menu_id,
+                'title'        =>  $request->title,
+                'description'  =>  $request->description,
+                'instruction'  =>  $request->instruction,
+                'TTC'          =>  $request->TTC,
+                'COP'          =>  $request->COP,
+                'Kcal'         =>  $request->Kcal
+            ]
+        );
 
         foreach ($ingredients as $ingredient) {
-            $post->ingredients()->attach(1, [
-                'post_id' => $post->id,
-                'ingredient_id' => $ingredient['ingredient_id'],
-                'amount' => $ingredient['amount'],
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
+            $post->ingredientPosts()->attach(
+                1,
+                [
+                    'post_id' => $post->id,
+                    'ingredient_id' => $ingredient['ingredient_id'],
+                    'amount' => $ingredient['amount'],
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            );
         }
 
         $request->session()->forget('picture_id');
@@ -95,32 +115,54 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
     {
-        $post = $post->load('ingredients');
-        return view('posts.show', compact('post'));
+        return Inertia::render(
+            'Posts/Show',
+            [
+                'post' => $post->load([
+                    'category',
+                    'dish',
+                    'ingredientPosts.picture',
+                    'kitchen',
+                    'menu',
+                    'pictures',
+                    'user',
+                ])
+            ]
+        );
+        // 
+        // $post = $post->load('ingredientPosts');
+        // return view('posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
     {
-        $post = $post->load('pictures:id,path', 'ingredients:id,name,amount');
-        return view('posts.edit', compact('post'));
+        return Inertia::render(
+            'Posts/Edit',
+            [
+                'posts' => $post->load('pictures:id,path', 'ingredientPosts:id,name,amount')
+            ]
+        );
+
+        // $post = $post->load('pictures:id,path', 'ingredientPosts:id,name,amount');
+        // return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified post in database.
      *
      * @param  App\Http\Requests\UpdatePost $request
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePost $request, Post $post)
@@ -140,7 +182,7 @@ class PostController extends Controller
     /**
      * Remove the specified post from database.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

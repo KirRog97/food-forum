@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Ingredient;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class IngredientController extends Controller
 {
@@ -11,94 +12,68 @@ class IngredientController extends Controller
     /**
      * Display a listing of all ingredients
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function index(Ingredient $ingredient)
+    public function index(Ingredient $ingredients)
     {
-        return view('ingredients.index', [
-            'ingredients' => $ingredient->getAscNames()->paginate(10)
-        ]);
+        $ingredients = Ingredient::orderBy('name', 'asc')->with('picture:id,path');
+
+        return Inertia::render(
+            'Ingredients/Index',
+            [
+                'ingredients' => $ingredients->paginate(10)
+            ]
+        );
+
+        // return view(
+        //     'ingredients.index',
+        //     [
+        //         'ingredients' => $ingredient->getAscNames()->paginate(10)
+        //     ]
+        // );
     }
 
     /**
      * Display a listing of posts witch using a particular ingredient.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
     public function usage(Ingredient $ingredient)
     {
-        return view('ingredients.usage', [
-            'ingredient' => $ingredient,
-            'posts' => $ingredient->posts()->paginate(10)
-        ]);
-    }
+        return Inertia::render(
+            'Ingredients/IngredientUsage',
+            [
+                'ingredient' => $ingredient,
+                'posts' => $ingredient->posts()->paginate(10)
+            ]
+        );
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        // return view(
+        //     'ingredients.usage',
+        //     [
+        //         'ingredient' => $ingredient,
+        //         'posts' => $ingredient->posts()->paginate(10)
+        //     ]
+        // );
     }
 
     /**
      * Display the particular ingredient.
      *
-     * @param  \App\Ingredient  $ingredient
+     * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
     public function show(Ingredient $ingredient)
     {
-        return view('ingredients.show', compact('ingredient'));
-    }
+        return Inertia::render(
+            'Ingredients/Show',
+            [
+                'ingredient' => $ingredient,
+            ]
+        );
 
-    /**
-     * Show the form for editing the specified ingredient.
-     *
-     * @param  \App\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ingredient $ingredient)
-    {
-        return view('ingredients.edit')
-            ->with('ingredient', $ingredient);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ingredient $ingredient)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ingredient $ingredient)
-    {
-        //
+        // return view('ingredients.show', compact('ingredient'));
     }
 }
