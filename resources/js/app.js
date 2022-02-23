@@ -8,6 +8,8 @@ import "../sass/element-ui/element-variables.scss";
 import ElementPlus from "element-plus";
 import ElementPlusRussianLocale from "element-plus/lib/locale/lang/ru";
 
+import { store } from "./store/index.js";
+
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
@@ -19,6 +21,7 @@ createInertiaApp({
       .use(ElementPlus, {
         locale: ElementPlusRussianLocale,
       })
+      .use(store)
       .use(plugin)
       .mixin({ methods: { route } })
       .mount(el);
