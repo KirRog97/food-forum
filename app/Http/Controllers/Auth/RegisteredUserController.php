@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Picture;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      *
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function create()
     {
@@ -35,28 +34,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'username' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]
-        );
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
-        $picture = Picture::create(
-            [
-                'path' => '/images/icons/user_avacado.svg'
-            ]
-        );
-
-        $user = User::create(
-            [
-                'username' => $request->username,
-                'email' => $request->email,
-                'avatar_id' => $picture->id,
-                'password' => Hash::make($request->password),
-            ]
-        );
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         event(new Registered($user));
 

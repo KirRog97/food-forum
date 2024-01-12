@@ -18,17 +18,14 @@ class NewPasswordController extends Controller
      * Display the password reset view.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function create(Request $request)
     {
-        return Inertia::render(
-            'Auth/ResetPassword',
-            [
-                'email' => $request->email,
-                'token' => $request->route('token'),
-            ]
-        );
+        return Inertia::render('Auth/ResetPassword', [
+            'email' => $request->email,
+            'token' => $request->route('token'),
+        ]);
     }
 
     /**
@@ -41,13 +38,11 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'token' => 'required',
-                'email' => 'required|email',
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]
-        );
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -71,10 +66,8 @@ class NewPasswordController extends Controller
             return redirect()->route('login')->with('status', __($status));
         }
 
-        throw ValidationException::withMessages(
-            [
-                'email' => [trans($status)],
-            ]
-        );
+        throw ValidationException::withMessages([
+            'email' => [trans($status)],
+        ]);
     }
 }
