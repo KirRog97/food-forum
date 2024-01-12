@@ -4,7 +4,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DishController;
-use App\Http\Controllers\IngredientPostController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +48,7 @@ Route::resource('posts', PostController::class)
             'index', 'show', 'popularPosts'
         ]
     )->middleware('auth');
-Route::post('post/ing/save', [IngredientPostController::class, 'saveInSession'])
-    ->middleware('auth');
+
 Route::get('popular/posts', [PostController::class, 'popularPosts'])
     ->name('posts.popular');
 
