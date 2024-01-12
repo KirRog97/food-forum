@@ -17,6 +17,7 @@
         "animate.css": "^4.1.1",
         "laravel-vite-plugin": "^0.3.0",
         "lodash": "^4.17.21",
+        "naive-ui": "^2.33.2",
         "postcss": "^8.4.16",
         "vite": "^2.9.15",
         "vuex": "^4.0.2"
