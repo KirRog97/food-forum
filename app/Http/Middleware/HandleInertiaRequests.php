@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Tightenco\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -18,7 +17,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      *
-     * @param \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
     public function version(Request $request)
@@ -35,30 +34,16 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         // https://wiki.php.net/rfc/nullsafe_operator
-        // $user =  $request?->user()?->load('avatar:id,path');
-
-        return array_merge(
+        $user =  $request?->user()?->load('avatar:id,path');
+        $sharedData = array_merge(
             parent::share($request),
             [
-                // Lazily
-                'auth.user' => fn () => $request->user()
-                    ? $request->user()->load('avatar:id,path')
-                    : null,
-
-                // Lazily
-                'token' => fn () => $request->user()
-                    ? $request->user()->currentAccessToken()
-                    : null,
-
-                'ziggy' => function () use ($request) {
-                    return array_merge(
-                        (new Ziggy)->toArray(),
-                        [
-                            'location' => $request->url(),
-                        ]
-                    );
-                },
+                'auth' => [
+                    'user' => $user
+                ],
             ]
         );
+
+        return $sharedData;
     }
 }

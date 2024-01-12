@@ -14,7 +14,7 @@ class ConfirmablePasswordController extends Controller
     /**
      * Show the confirm password view.
      *
-     * @return \Inertia\Response
+     * @return \Illuminate\View\View
      */
     public function show()
     {
@@ -29,13 +29,17 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
-            'password' => $request->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
+        if (!Auth::guard('web')->validate(
+            [
+                'email' => $request->user()->email,
+                'password' => $request->password,
+            ]
+        )) {
+            throw ValidationException::withMessages(
+                [
+                    'password' => __('auth.password'),
+                ]
+            );
         }
 
         $request->session()->put('auth.password_confirmed_at', time());
