@@ -9,15 +9,17 @@ class PictureFactory extends Factory
     private string $default_post_image = '/images/recipes/default_post_img.jpg';
     private string $default_avatar_image =  '/images/icons/user_avacado.svg';
 
-    /** 
-     * Define the model's default state.     
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            'path'  =>   $this->default_post_image,
+            'path'  =>  $this->default_post_image,
             'mime'  =>  'image/jpg',
-            'size'  =>  $this->faker->randomDigitNotNull
+            'size'  =>  fake()->randomDigitNotNull
         ];
     }
 

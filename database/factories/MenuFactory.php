@@ -8,13 +8,15 @@ class MenuFactory extends Factory
 {
     private $arrayOfMenus = ['Вегетарианская еда', 'Веганская еда', 'Детское меню', 'Низкоколорийная еда', 'Постная еда', 'Меню при диабете'];
 
-    /** 
-     * Define the model's default state.     
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()
+            'name' => fake()->unique()
                 ->randomElement($this->arrayOfMenus),
         ];
     }

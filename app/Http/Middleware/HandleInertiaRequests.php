@@ -12,15 +12,12 @@ class HandleInertiaRequests extends Middleware
      *
      * @var string
      */
-    protected $rootView = 'layouts.app';
+    protected $rootView = 'app';
 
     /**
      * Determine the current asset version.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
      */
-    public function version(Request $request)
+    public function version(Request $request): string|null
     {
         return parent::version($request);
     }
@@ -28,22 +25,15 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<string, mixed>
      */
-    public function share(Request $request)
+    public function share(Request $request): array
     {
-        // https://wiki.php.net/rfc/nullsafe_operator
-        $user =  $request?->user()?->load('avatar:id,path');
-        $sharedData = array_merge(
-            parent::share($request),
-            [
-                'auth' => [
-                    'user' => $user
-                ],
-            ]
-        );
-
-        return $sharedData;
+        return [
+            ...parent::share($request),
+            'auth' => [
+                'user' => $request->user(),
+            ],
+        ];
     }
 }

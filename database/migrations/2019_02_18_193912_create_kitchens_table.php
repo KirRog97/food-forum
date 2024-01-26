@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateKitchensTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('kitchens', function (Blueprint $table) {
             $table->id();
@@ -15,7 +15,7 @@ class CreateKitchensTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('kitchens');
     }

@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateIngredientsTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
@@ -19,7 +19,7 @@ class CreateIngredientsTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('ingredients');
     }

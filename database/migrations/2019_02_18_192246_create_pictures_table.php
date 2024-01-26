@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePicturesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
@@ -17,7 +17,7 @@ class CreatePicturesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('pictures');
     }

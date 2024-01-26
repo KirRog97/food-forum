@@ -8,13 +8,16 @@ class KitchenFactory extends Factory
 {
     private array $arrayOfKitchens = ['Китайская', 'Мексиканская', 'Грузинская', 'Фрацузская', 'Японская', 'Индийская', 'Русская', 'Среднеземноморкая', 'Армянская', 'Тайская'];
 
-    /** 
-     * Define the model's default state.     
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->randomElement($this->arrayOfKitchens),
+            'name' => fake()->unique()
+                ->randomElement($this->arrayOfKitchens),
         ];
     }
 }

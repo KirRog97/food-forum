@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateIngredientPostTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('ingredient_post', function (Blueprint $table) {
             $table->foreignId('post_id');
@@ -22,7 +22,7 @@ class CreateIngredientPostTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('ingredient_post');
     }

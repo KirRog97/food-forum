@@ -6,12 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDishesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
@@ -20,12 +15,7 @@ class CreateDishesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('dishes');
     }
