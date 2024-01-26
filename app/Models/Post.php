@@ -12,13 +12,14 @@ use App\Models\Ingredient;
 use App\Models\IngredientPost;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
-use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableInterface;
 
 
 
-class Post extends Model implements ReactableContract
+class Post extends Model implements ReactableInterface
 {
     use HasFactory, Reactable;
 
@@ -74,6 +75,11 @@ class Post extends Model implements ReactableContract
         'user',
         'user.avatar:id,path'
     ];
+
+    public function newEloquentBuilder($query): PostEloquentBuilder
+    {
+        return new PostEloquentBuilder($query);
+    }
 
     public function isReactedByUser($user)
     {
@@ -142,4 +148,13 @@ class Post extends Model implements ReactableContract
             ->withPivot('amount')
             ->withTimestamps();
     }
+}
+// https://github.com/cybercog/laravel-love/blob/master/UPGRADING.md#from-v8-to-v9
+
+// https://github.com/cybercog/laravel-love/discussions/226#discussioncomment-4612667
+class PostEloquentBuilder extends Builder
+{
+    use \Cog\Laravel\Love\Reactable\ReactableEloquentBuilderTrait;
+
+    // Other Post model local query scopes
 }

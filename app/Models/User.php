@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use \Illuminate\Support\Facades\Auth;
-use App\Models\Picture;
 use App\Models\Post;
-use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
-use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
+use App\Models\Picture;
+use Laravel\Sanctum\HasApiTokens;
+use \Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableInterface;
 
-class User extends Authenticatable implements ReacterableContract
+class User extends Authenticatable implements ReacterableInterface
 {
     use HasApiTokens, HasFactory, Notifiable;
     use Reacterable;
@@ -41,6 +42,14 @@ class User extends Authenticatable implements ReacterableContract
         'is_banned' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @method static UserEloquentBuilder query()
+     */
+    public function newEloquentBuilder($query): UserEloquentBuilder
+    {
+        return new UserEloquentBuilder($query);
+    }
 
     public function getAllReactions()
     {
@@ -75,4 +84,15 @@ class User extends Authenticatable implements ReacterableContract
     {
         return $this->hasMany(Post::class);
     }
+}
+
+
+// https://github.com/cybercog/laravel-love/blob/master/UPGRADING.md#from-v8-to-v9
+
+// https://github.com/cybercog/laravel-love/discussions/226#discussioncomment-4612667
+class UserEloquentBuilder extends Builder
+{
+    use \Cog\Laravel\Love\Reactable\ReactableEloquentBuilderTrait;
+
+    // Other User model local query scopes
 }
