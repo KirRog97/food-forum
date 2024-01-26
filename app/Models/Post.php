@@ -143,7 +143,7 @@ class Post extends Model implements ReactableInterface
     // Name of fucn chaind with factory
     public function ingredientPosts()
     {
-        return $this->belongsToMany(Ingredient::class,)
+        return $this->belongsToMany(Ingredient::class)
             ->using(IngredientPost::class)
             ->withPivot('amount')
             ->withTimestamps();
