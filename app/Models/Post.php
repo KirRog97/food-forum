@@ -86,7 +86,7 @@ class Post extends Model implements ReactableInterface
         return $this->viaLoveReactant()->isReactedBy($user, 'Like', 1.0);
     }
 
-    public function likeCount()
+    public function getLikesCount()
     {
         return $this->viaLoveReactant()->getReactionCounterOfType('Like')->getCount();
     }
