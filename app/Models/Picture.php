@@ -16,7 +16,9 @@ class Picture extends Model
         'path', 'mime', 'size'
     ];
 
-    protected $hidden = [];
+    protected $hidden = [
+        'mime', 'size',
+    ];
 
     public function ingredient()
     {
