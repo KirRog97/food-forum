@@ -39,7 +39,7 @@ class PostController extends Controller
     public function popularPosts(Post $post)
     {
         return Inertia::render(
-            'Posts/IndexCreatedByUser',
+            'Posts/PostsPopular',
             [
                 'posts' =>  $post->getPopularPosts()
             ]
