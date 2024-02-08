@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableInterface;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 
@@ -75,6 +76,16 @@ class Post extends Model implements ReactableInterface
         'user',
         'user.avatar:id,path'
     ];
+
+    protected $appends  = ['likes_count'];
+
+    protected function likesCount(): Attribute
+    {
+
+        return new Attribute(
+            get: fn () => $this->getLikesCount(),
+        );
+    }
 
     public function newEloquentBuilder($query): PostEloquentBuilder
     {
