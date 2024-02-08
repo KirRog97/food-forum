@@ -1,105 +1,90 @@
+<script setup>
+import PostLayout from "@/Layouts/PostLayout.vue";
+import { onMounted, ref, watch } from "vue";
+
+const activeTab = ref(0);
+const maxTabs = ref(3);
+const posts = ref([]);
+
+onMounted(() => {
+  // Load only viewable first tab
+  loadPopularPost();
+  // loadNewPost();
+  // loadEditorPost();
+});
+
+watch(activeTab, async (newValue) => {
+  switch (newValue) {
+    case 0:
+      loadPopularPost();
+      break;
+
+    case 1:
+      loadNewPost();
+      break;
+
+    case 2:
+      loadEditorPost();
+      break;
+
+    default:
+      loadPopularPost();
+      break;
+  }
+});
+
+function switchTabTo(tabIndex) {
+  if (activeTab.value <= maxTabs.value - 1) activeTab.value = tabIndex;
+}
+
+function loadPopularPost() {
+  axios
+    .get(`/api/posts/favorites/top`)
+    .then((res) => {
+      posts.value = res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function loadNewPost() {
+  axios
+    .get(`/api/posts/new`)
+    .then((res) => {
+      posts.value = res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function loadEditorPost() {
+  axios
+    .get(`/api/posts/favorites/editor-choice`)
+    .then((res) => {
+      posts.value = res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+</script>
 <template>
   <div class="mb-8">
     <div class="w-full flex justify-center mb-4">
-      <el-button-group>
-        <el-button class="hover:bg-secondary-700" @click="switchTabTo(0)">
+      <n-button-group>
+        <n-button round primary bordered type="primary" @click="switchTabTo(0)">
           Высший рейтинг
-        </el-button>
-        <el-button class="hover:bg-secondary-700" @click="switchTabTo(1)">
+        </n-button>
+        <n-button round primary bordered type="primary" @click="switchTabTo(1)">
           Новые
-        </el-button>
-        <el-button class="hover:bg-secondary-700" @click="switchTabTo(2)"
-          >Выбор редакции
-        </el-button>
-      </el-button-group>
+        </n-button>
+        <n-button round primary bordered type="primary" @click="switchTabTo(2)">
+          Выбор редакции
+        </n-button>
+      </n-button-group>
     </div>
-    <div class="w-full post-list">
-      <!--
-        Don't use :key="index".
-        When u switches between lists count of likes start to bugging
-        (staying the same according the order of indexes)
-        -->
-      <div class="post-list__item" v-for="post in posts" :key="post.id">
-        <post-index-card :post="post"></post-index-card>
-      </div>
-    </div>
+    <PostLayout :posts="posts" />
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      posts: [],
-      maxTabs: 3,
-      activeTab: 0
-    };
-  },
-  mounted() {
-    // Load only viewable first tab
-    this.loadPopularPost();
-    // this.loadNewPost();
-    // this.loadEditorPost();
-  },
-
-  watch: {
-    activeTab(newValue, oldValue) {
-      switch (newValue) {
-        case 0:
-          this.loadPopularPost();
-          break;
-
-        case 1:
-          this.loadNewPost();
-          break;
-
-        case 2:
-          this.loadEditorPost();
-          break;
-
-        default:
-          this.loadPopularPost();
-          break;
-      }
-    }
-  },
-
-  methods: {
-    switchTabTo(tabIndex) {
-      if (this.activeTab <= this.maxTabs - 1) this.activeTab = tabIndex;
-    },
-
-    loadPopularPost() {
-      axios
-        .get(`/api/posts/favorites/top`)
-        .then(res => {
-          this.posts = res.data;
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    },
-
-    loadNewPost() {
-      axios
-        .get(`/api/posts/new`)
-        .then(res => {
-          this.posts = res.data;
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    },
-    loadEditorPost() {
-      axios
-        .get(`/api/posts/favorites/editor-choice`)
-        .then(res => {
-          this.posts = res.data;
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    }
-  }
-};
-</script>
