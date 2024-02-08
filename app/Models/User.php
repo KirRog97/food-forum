@@ -30,6 +30,10 @@ class User extends Authenticatable implements ReacterableInterface
         'password', 'remember_token',
     ];
 
+    protected $with = [
+        'avatar:id,path'
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -53,8 +57,7 @@ class User extends Authenticatable implements ReacterableInterface
 
     public function getAllReactions()
     {
-        $reacterFacade = $this->viaLoveReacter();
-        return $reacterFacade->getReactions();
+        return $this->viaLoveReacter()->getReactions();
     }
 
     public function react($reactant, $reactionType = 'Like')
