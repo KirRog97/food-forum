@@ -83,16 +83,12 @@ class Post extends Model implements ReactableInterface
 
     public function isReactedByUser($user)
     {
-        $reactantFacade = $this->viaLoveReactant();
-        $isReacted = $reactantFacade->isReactedBy($user, 'Like', 1.0);
-        return $isReacted;
+        return $this->viaLoveReactant()->isReactedBy($user, 'Like', 1.0);
     }
 
     public function likeCount()
     {
-        $reactantFacade = $this->viaLoveReactant();
-        $likeCount = $reactantFacade->getReactionCounterOfType('Like')->getCount();
-        return $likeCount;
+        return $this->viaLoveReactant()->getReactionCounterOfType('Like')->getCount();
     }
 
     public function getPopularPosts()
