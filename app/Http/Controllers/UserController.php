@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-
-
-    /**
-     * Display a listing of the users.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function index(User $users)
+    public function index(User $users): Response
     {
         return Inertia::render(
             'Users/Index',
@@ -27,53 +23,24 @@ class UserController extends Controller
                     ->paginate(9)
             ]
         );
-
-        // return view(
-        //     'users.index',
-        //     [
-        //         'users' => $user->orderBy('username', 'asc')->paginate(9)
-        //     ]
-        // );
     }
 
-    /**
-     * Show the form for creating a new user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Users/Create');
-        // return view('users.create');
     }
 
-    /**
-     * Display the specified user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    public function show(User $user): Response
     {
         return Inertia::render(
             'Users/Show',
             [
                 'user' => $user->load('avatar', 'posts')
-
             ]
         );
-
-        // $user = $user->load('posts');
-        // return view('users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    public function edit(User $user): Response
     {
         return Inertia::render(
             'Users/Edit',
@@ -81,18 +48,9 @@ class UserController extends Controller
                 'user' => $user
             ]
         );
-
-        // return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified user in database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): RedirectResponse
     {
         User::where('id', $user->id)
             ->update(array('username' => $request->username, 'email' => $request->email));
@@ -101,26 +59,14 @@ class UserController extends Controller
             ->with('success', 'Изменения сохранены');
     }
 
-    /**
-     * Remove the specified user from database.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function destroy(Request $request): RedirectResponse
     {
         User::destroy($user->id);
         return redirect()->route('posts.index')
             ->with('success', 'Рецепт удален');
     }
 
-    /**
-     * Display a listing of the posts witch liked by given user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function postsLikedByUser(User $user)
+    public function postsLikedByUser(User $user): Response
     {
         $posts = Post::query()
             ->whereReactedBy($user, 'Like')
@@ -132,22 +78,9 @@ class UserController extends Controller
                 'posts' => $posts
             ]
         );
-
-        // return view(
-        //     'posts.index-liked-by-user',
-        //     [
-        //         'posts' => $posts
-        //     ]
-        // );
     }
 
-    /**
-     * Display a listing of the posts witch created by given user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function postsCreatedByUser(User $user)
+    public function postsCreatedByUser(User $user): Response
     {
         $posts = Post::query()
             ->where('user_id', $user->id)
@@ -159,12 +92,5 @@ class UserController extends Controller
                 'posts' => $posts
             ]
         );
-
-        // return view(
-        //     'posts.index-created-by-user',
-        //     [
-        //         'posts' => $posts
-        //     ]
-        // );
     }
 }

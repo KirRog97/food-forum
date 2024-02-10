@@ -4,18 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Picture;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PictureController extends Controller
 {
-    /**
-     * Store a newly created picture in storage and database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $validator = Validator::make(
             $request->all(),
@@ -61,7 +56,7 @@ class PictureController extends Controller
      * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Picture $picture)
+    public function update(Request $request, Picture $picture): JsonResponse
     {
         $validator = Validator::make(
             $request->all(),
@@ -107,13 +102,7 @@ class PictureController extends Controller
         );
     }
 
-    /**
-     * Remove the specified pciture from storage and database.
-     *
-     * @param  \App\Models\Picture  $picture
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Picture $picture)
+    public function destroy(Picture $picture): JsonResponse
     {
         if (!Storage::disk('public')->delete(substr($picture->path, 8))) {
             return response()->json(

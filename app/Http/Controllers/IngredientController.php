@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredient;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
+use App\Models\Ingredient;
 
 class IngredientController extends Controller
 {
@@ -15,7 +15,7 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function index(Ingredient $ingredients)
+    public function index(Ingredient $ingredients): Response
     {
         $ingredients = Ingredient::orderBy('name', 'asc')->with('picture:id,path');
 
@@ -25,13 +25,6 @@ class IngredientController extends Controller
                 'ingredients' => $ingredients->paginate(10)
             ]
         );
-
-        // return view(
-        //     'ingredients.index',
-        //     [
-        //         'ingredients' => $ingredient->getAscNames()->paginate(10)
-        //     ]
-        // );
     }
 
     /**
@@ -40,7 +33,7 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function usage(Ingredient $ingredient)
+    public function usage(Ingredient $ingredient): Response
     {
         return Inertia::render(
             'Ingredients/IngredientUsage',
@@ -49,14 +42,6 @@ class IngredientController extends Controller
                 'posts' => $ingredient->posts()->paginate(10)
             ]
         );
-
-        // return view(
-        //     'ingredients.usage',
-        //     [
-        //         'ingredient' => $ingredient,
-        //         'posts' => $ingredient->posts()->paginate(10)
-        //     ]
-        // );
     }
 
     /**
@@ -65,7 +50,7 @@ class IngredientController extends Controller
      * @param  \App\Models\Ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingredient $ingredient)
+    public function show(Ingredient $ingredient): Response
     {
         return Inertia::render(
             'Ingredients/Show',
@@ -73,7 +58,5 @@ class IngredientController extends Controller
                 'ingredient' => $ingredient,
             ]
         );
-
-        // return view('ingredients.show', compact('ingredient'));
     }
 }

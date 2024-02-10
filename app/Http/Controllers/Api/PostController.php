@@ -2,40 +2,31 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the 10 most liked Posts.
      * 
-     * @return \Illuminate\Http\Response
      */
-    public function top(Post $post)
+    public function top(Post $post): Response
     {
         return $post->getPopularPosts();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function new(Post $post)
+    public function new(Post $post): Response
     {
         return Post::orderBy('created_at')
             ->take(10)
             ->get();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function editorChoise(Post $post)
+
+    public function editorChoise(Post $post): Response
     {
         // Just a placeholder
         return Post::orderBy('user_id')

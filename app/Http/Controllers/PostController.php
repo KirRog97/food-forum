@@ -3,23 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Inertia\Inertia;
+use Inertia\Response;
 use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-
+use Illuminate\Http\RedirectResponse;
 
 class PostController extends Controller
 {
-
-    /**
-     * Display a listing of the posts.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Inertia\Response
-     */
-    public function index(Post $posts)
+    public function index(Post $posts): Response
     {
         return Inertia::render(
             'Posts/Index',
@@ -33,10 +26,8 @@ class PostController extends Controller
     /**
      * Display a top-10 of the popular posts witch have more likes.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
      */
-    public function popularPosts(Post $post)
+    public function popularPosts(Post $post): Response
     {
         return Inertia::render(
             'Posts/PostsPopular',
@@ -44,34 +35,15 @@ class PostController extends Controller
                 'posts' =>  $post->getPopularPosts()
             ]
         );
-
-        // return view(
-        //     'posts.index-liked-by-user',
-        //     [
-        //         'posts' => $post->getPopularPosts()
-        //     ]
-        // );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Posts/Create');
-
-        // return view('posts.create');
     }
 
-    /**
-     * Store a newly created post in database.
-     *
-     * @param  App\Http\Requests\StorePost   $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePost $request)
+
+    public function store(StorePost $request): RedirectResponse
     {
         $ingredients = session('post_ing');
 
@@ -112,13 +84,8 @@ class PostController extends Controller
             ->with('success', 'Ваш рецепт успешно создан');
     }
 
-    /**
-     * Display the specified post.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
+
+    public function show(Post $post): Response
     {
         return Inertia::render(
             'Posts/Show',
@@ -134,18 +101,10 @@ class PostController extends Controller
                 ])
             ]
         );
-        // 
-        // $post = $post->load('ingredientPosts');
-        // return view('posts.show', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
+
+    public function edit(Post $post): Response
     {
         return Inertia::render(
             'Posts/Edit',
@@ -153,18 +112,8 @@ class PostController extends Controller
                 'posts' => $post->load('pictures:id,path', 'ingredientPosts:id,name,amount')
             ]
         );
-
-        // $post = $post->load('pictures:id,path', 'ingredientPosts:id,name,amount');
-        // return view('posts.edit', compact('post'));
     }
 
-    /**
-     * Update the specified post in database.
-     *
-     * @param  App\Http\Requests\UpdatePost $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdatePost $request, Post $post)
     {
         $post = Post::find($post->id);
@@ -179,13 +128,7 @@ class PostController extends Controller
             ->with('success', 'Внесенные изменения сохранены');
     }
 
-    /**
-     * Remove the specified post from database.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         Post::destroy($post->id);
         return redirect()->route('posts.index')
