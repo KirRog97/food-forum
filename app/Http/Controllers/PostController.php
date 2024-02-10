@@ -65,7 +65,7 @@ class PostController extends Controller
         );
 
         foreach ($ingredients as $ingredient) {
-            $post->ingredientPosts()->attach(
+            $post->ingredients()->attach(
                 1,
                 [
                     'post_id' => $post->id,
@@ -93,11 +93,11 @@ class PostController extends Controller
                 'post' => $post->load([
                     'category',
                     'dish',
-                    'ingredientPosts.picture',
-                    'kitchen',
-                    'menu',
-                    'pictures',
-                    'user',
+                        'ingredients.picture',
+                        'kitchen',
+                        'menu',
+                        'pictures',
+                        'user',
                 ])
             ]
         );
@@ -109,7 +109,7 @@ class PostController extends Controller
         return Inertia::render(
             'Posts/Edit',
             [
-                'posts' => $post->load('pictures:id,path', 'ingredientPosts:id,name,amount')
+                'posts' => $post->load('pictures:id,path', 'ingredients:id,name,amount')
             ]
         );
     }

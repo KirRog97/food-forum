@@ -80,7 +80,7 @@ defineProps({
           >
             Используемые ингредиенты
           </h2>
-          <PostIngredientsTable :ingredients="post.ingredient_posts" />
+          <PostIngredientsTable :ingredients="post.ingredients" />
         </div>
 
         <div class="flex justify-center flex-wrap">
