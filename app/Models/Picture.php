@@ -20,12 +20,12 @@ class Picture extends Model
         'mime', 'size',
     ];
 
-    public function ingredient()
+    public function ingredients()
     {
         return $this->hasMany(Ingredient::class);
     }
 
-    public function post()
+    public function posts()
     {
         return $this->hasMany(Post::class, 'picture_id');
     }
