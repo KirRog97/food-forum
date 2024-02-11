@@ -65,7 +65,7 @@ class PostController extends Controller
         );
 
         foreach ($ingredients as $ingredient) {
-            $post->ingredients()->attach(
+            $post->ingredientPosts()->attach(
                 1,
                 [
                     'post_id' => $post->id,
@@ -96,7 +96,7 @@ class PostController extends Controller
                         'kitchen:id,name',
                         'dish:id,name',
                         'menu:id,name',
-                        'ingredients.picture',
+                        'ingredientPosts.picture',
                         'pictures',
                         'user',
                     ]
@@ -118,7 +118,7 @@ class PostController extends Controller
                         'dish:id,name',
                         'menu:id,name',
                         'pictures:id,path',
-                        'ingredients.picture'
+                        'ingredientPosts.picture'
                     ]
                 )
             ]

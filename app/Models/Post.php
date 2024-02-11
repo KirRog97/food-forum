@@ -176,7 +176,8 @@ class Post extends Model implements ReactableInterface
         return $this->belongsTo(Menu::class, 'menu_id');
     }
 
-    public function ingredients()
+    // Name of fucn chaind with factory
+    public function ingredientPosts()
     {
         return $this->belongsToMany(Ingredient::class)
             ->using(IngredientPost::class)

@@ -19,7 +19,7 @@ const postEditForm = useForm({
   menu: post.menu,
   postPicture: post.pictures,
   description: post.description,
-  ingredients: post.ingredients,
+  ingredients: post.ingredient_posts,
   instruction: post.instruction,
   //   instructions: post.instructions,
 });
