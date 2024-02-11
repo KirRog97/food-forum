@@ -16,7 +16,7 @@ class LikeController extends Controller
     public function likeCount(Post $post)
     {
         return response()
-            ->json(['likeCount' => $post->likeCount()], 200);
+            ->json(['likes_count' => $post->getLikesCount()], 200);
     }
 
     /**
