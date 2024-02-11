@@ -117,6 +117,35 @@ class Post extends Model implements ReactableInterface
         );
     }
 
+    public function getNewestPosts()
+    {
+        return Cache::remember(
+            'new_posts',
+            now()->addMinutes(30),
+            function () {
+                return Post::query()
+                    ->orderBy('created_at', 'desc')
+                    ->limit(10)
+                    ->get();
+            }
+        );
+    }
+
+    public function getEditorsPosts()
+    {
+        // Just a placeholder
+        return Cache::remember(
+            'editors_posts',
+            now()->addMinutes(30),
+            function () {
+                return Post::query()
+                    ->orderBy('created_at', 'desc')
+                    ->limit(10)
+                    ->get();
+            }
+        );
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
