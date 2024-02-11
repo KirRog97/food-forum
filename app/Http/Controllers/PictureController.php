@@ -58,6 +58,7 @@ class PictureController extends Controller
      */
     public function update(Request $request, Picture $picture): JsonResponse
     {
+        // TODO: Move Validator to Requests
         $validator = Validator::make(
             $request->all(),
             [
@@ -73,15 +74,12 @@ class PictureController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'Sended file check faild'], 500);
         }
-
         try {
-            Storage::delete($picture->path);
-
             // delete "storage/" in string
-            // $oldPicturePath = substr($picture->path, 8);
-            // Storage::disk('public')->delete($oldPicturePath);
+            $oldPicturePath = substr($picture->path, 8);
+            Storage::disk('public')->delete($oldPicturePath);
 
-            $path = $request->file->store('uploads', 'public');
+            $path = $request->file->store('avatars', 'public');
             $picture->update(
                 [
                     'path'  =>  '/storage/' . $path,
@@ -89,17 +87,13 @@ class PictureController extends Controller
                     'size'  =>  $request->file->getSize()
                 ]
             );
+
+            return response()->json([
+                'message' => "Picture updated successfully"
+            ], 200);
         } catch (\Throwable $exepction) {
             return response()->json(['message' => $exepction->getMessage()], 500);
         }
-
-        return response()->json(
-            [
-                'id'    =>  $picture->id,
-                'path'  =>  $picture->path
-            ],
-            200
-        );
     }
 
     public function destroy(Picture $picture): JsonResponse
