@@ -10,6 +10,6 @@ class IngredientPostController extends Controller
 {
     public function index(Post $post): JsonResponse
     {
-        return response()->json($post->ingredients()->get());
+        return response()->json($post->ingredientPosts()->get());
     }
 }
