@@ -45,7 +45,7 @@ class UserController extends Controller
         return Inertia::render(
             'Users/Edit',
             [
-                'user' => $user
+                'user' => $user->load('avatar:id,path')
             ]
         );
     }

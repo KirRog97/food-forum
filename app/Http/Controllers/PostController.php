@@ -90,15 +90,17 @@ class PostController extends Controller
         return Inertia::render(
             'Posts/Show',
             [
-                'post' => $post->load([
-                    'category',
-                    'dish',
+                'post' => $post->loadMissing(
+                    [
+                        'category:id,name',
+                        'kitchen:id,name',
+                        'dish:id,name',
+                        'menu:id,name',
                         'ingredients.picture',
-                        'kitchen',
-                        'menu',
                         'pictures',
                         'user',
-                ])
+                    ]
+                )
             ]
         );
     }
@@ -109,7 +111,16 @@ class PostController extends Controller
         return Inertia::render(
             'Posts/Edit',
             [
-                'posts' => $post->load('pictures:id,path', 'ingredients:id,name,amount')
+                'post' => $post->loadMissing(
+                    [
+                        'category:id,name',
+                        'kitchen:id,name',
+                        'dish:id,name',
+                        'menu:id,name',
+                        'pictures:id,path',
+                        'ingredients.picture'
+                    ]
+                )
             ]
         );
     }

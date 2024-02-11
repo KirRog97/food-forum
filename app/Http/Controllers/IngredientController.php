@@ -55,7 +55,9 @@ class IngredientController extends Controller
         return Inertia::render(
             'Ingredients/Show',
             [
-                'ingredient' => $ingredient,
+                'ingredient' => $ingredient->load(
+                    'picture:id,path'
+                ),
             ]
         );
     }
