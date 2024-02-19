@@ -73,7 +73,7 @@ class UserController extends Controller
             ->get();
 
         return Inertia::render(
-            'Posts/IndexLikedByUser',
+            'Posts/PostsLikedByUser',
             [
                 'posts' => $posts
             ]
@@ -87,7 +87,7 @@ class UserController extends Controller
             ->paginate(10);
 
         return Inertia::render(
-            'Posts/IndexCreatedByUser',
+            'Posts/PostsCreatedByUser',
             [
                 'posts' => $posts
             ]
