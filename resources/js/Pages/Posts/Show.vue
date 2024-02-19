@@ -4,6 +4,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostIngredientsTable from "@/Components/PostIngredientsTable.vue";
 import LikeButton from "@/Components/LikeButton.vue";
 import PostOptions from "@/Components/PostShowOptions.vue";
+import PostShare from "@/Layouts/PostShare.vue";
+import PostShowPopularRequests from "@/Layouts/PostShowPopularRequests.vue";
 import PostShowSectionLayout from "@/Layouts/PostShowSectionLayout.vue";
 import PostShowTags from "@/Layouts/PostShowTags.vue";
 
@@ -59,6 +61,23 @@ defineProps({
       <div
         class="flex flex-auto flex-wrap justify-center bg-gray-300 px-6 py-8 mx-auto space-y-6 sm:space-y-8"
       >
+        <div
+          class="w-full flex flex-col md:flex-row justify-center align-items-start"
+        >
+          <PostShowSectionLayout>
+            <template #heading>Поделиться рецептом</template>
+            <template #content>
+              <PostShare />
+            </template>
+          </PostShowSectionLayout>
+          <PostShowSectionLayout>
+            <template #heading>Популярные запросы</template>
+            <template #content>
+              <PostShowPopularRequests />
+            </template>
+          </PostShowSectionLayout>
+        </div>
+
         <PostShowSectionLayout>
           <template #heading> {{ post.title }}</template>
         </PostShowSectionLayout>
