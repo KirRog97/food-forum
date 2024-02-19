@@ -4,7 +4,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostIngredientsTable from "@/Components/PostIngredientsTable.vue";
 import LikeButton from "@/Components/LikeButton.vue";
 import PostOptions from "@/Components/PostShowOptions.vue";
-import PostTags from "@/Layouts/PostShowTags.vue";
+import PostShowSectionLayout from "@/Layouts/PostShowSectionLayout.vue";
+import PostShowTags from "@/Layouts/PostShowTags.vue";
 
 defineProps({
   post: {
@@ -23,9 +24,12 @@ defineProps({
     <div class="flex flex-auto flex-wrap mx-auto">
       <div class="relative w-full bg-secondary-300">
         <div class="relative pb-2/3">
-          <img
-            class="absolute h-full w-full object-cover"
-            :src="`${post.pictures.path ?? '/images/login_background.jpg'}`"
+          <n-image
+            class="absolute h-full w-full"
+            :img-props="{ class: 'w-full h-full' }"
+            object-fit="cover"
+            fallback-src="/images/login_background.jpg"
+            :src="post.pictures.path"
             alt="Post image"
           />
         </div>
@@ -35,16 +39,15 @@ defineProps({
         >
           <LikeButton :postId="post.id" :initialLikeCount="post.likes_count" />
 
-          <template v-if="$page.props.auth.user?.id === post.user.id">
-            <Link
-              class="text-base text-primary-500 hover:text-primary-700"
-              :href="route('posts.edit', { post: post })"
-              method="GET"
-            >
-              <i class="far fa-edit mr-1"></i>
-              <span>Редактировать</span>
-            </Link>
-          </template>
+          <Link
+            v-if="$page.props.auth.user?.id === post.user.id"
+            :href="route('posts.edit', { post: post })"
+            method="GET"
+            class="text-base text-primary-500 hover:text-primary-700"
+          >
+            <i class="far fa-edit mr-1"></i>
+            <span>Редактировать</span>
+          </Link>
 
           <a class="text-base text-primary-500 hover:text-primary-700" href="">
             <i class="far fa-bookmark mr-1"></i>
@@ -56,45 +59,41 @@ defineProps({
       <div
         class="flex flex-auto flex-wrap justify-center bg-gray-300 px-6 py-8 mx-auto space-y-6 sm:space-y-8"
       >
-        <div class="flex justify-center flex-wrap">
-          <h1
-            class="text-4xl text-primary-600 text-center leading-tight font-handwritten mb-1 sm:mb-2"
-          >
-            {{ post.title }}
-          </h1>
-
-          <PostTags :post="post" />
-
-          <p
-            class="w-full text-base sm:text-lg text-secondary-800 leading-snug sm:leading-normal"
-          >
-            {{ post.description }}
-          </p>
-        </div>
+        <PostShowSectionLayout>
+          <template #heading> {{ post.title }}</template>
+        </PostShowSectionLayout>
 
         <PostOptions :post="post" />
+        <PostShowTags :post="post" />
 
-        <div class="flex justify-center flex-wrap">
-          <h2
-            class="text-3xl text-primary-600 text-center leading-tight font-handwritten mb-1 sm:mb-2"
-          >
-            Используемые ингредиенты
-          </h2>
-          <PostIngredientsTable :ingredients="post.ingredient_posts" />
-        </div>
+        <PostShowSectionLayout>
+          <template #heading>Описание рецепта</template>
+          <template #content>
+            <p
+              class="w-full text-lg text-secondary-800 leading-snug sm:leading-normal mt-4"
+            >
+              {{ post.description }}
+            </p>
+          </template>
+        </PostShowSectionLayout>
 
-        <div class="flex justify-center flex-wrap">
-          <h2
-            class="text-3xl text-primary-600 text-center leading-tight font-handwritten mb-1 sm:mb-2"
-          >
-            Способ приготовления
-          </h2>
-          <p
-            class="w-full text-base sm:text-lg text-secondary-800 leading-snug sm:leading-normal"
-          >
-            {{ post.instruction }}
-          </p>
-        </div>
+        <PostShowSectionLayout>
+          <template #heading>Используемые ингредиенты</template>
+          <template #content>
+            <PostIngredientsTable :ingredients="post.ingredient_posts" />
+          </template>
+        </PostShowSectionLayout>
+
+        <PostShowSectionLayout>
+          <template #heading> Способ приготовления</template>
+          <template #content>
+            <p
+              class="w-full text-base sm:text-lg text-secondary-800 leading-snug sm:leading-normal"
+            >
+              {{ post.instruction }}
+            </p>
+          </template>
+        </PostShowSectionLayout>
       </div>
     </div>
   </AppLayout>
