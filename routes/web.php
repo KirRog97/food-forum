@@ -2,12 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\DishController;
-use App\Http\Controllers\PictureController;
-use App\Http\Controllers\LikeController;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\InstructionController;
 
 Route::redirect('/', '/home');
 
@@ -101,15 +96,16 @@ Route::controller(PostController::class)
             });
     });
 
-// Route::resource('posts', PostController::class);
-// Route::resource('posts', PostController::class)
-//     ->except(
-//         [
-//             'index', 'show', 'popularPosts'
-//         ]
-//     )->middleware('auth');
-// Route::get('popular/posts', [PostController::class, 'popularPosts'])
-//     ->name('posts.popular');
+Route::controller(InstructionController::class)
+    ->middleware(['auth'])
+    ->prefix('instructions')
+    ->name('instructions.')
+    ->group(function () {
+        Route::get('/{instruction}/edit', 'edit')->name('edit');
+        Route::post('/{instruction}/store', 'store')->name('store');
+        Route::put('/{instruction}/update', 'update')->name('update');
+        Route::delete('/{instruction}/destroy', 'destroy')->name('destroy');
+    });
 
 Route::controller(PictureController::class)
     ->prefix('picture')

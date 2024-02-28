@@ -8,12 +8,18 @@ import PostShare from "@/Layouts/PostShare.vue";
 import PostShowPopularRequests from "@/Layouts/PostShowPopularRequests.vue";
 import PostShowSectionLayout from "@/Layouts/PostShowSectionLayout.vue";
 import PostShowTags from "@/Layouts/PostShowTags.vue";
+import PostShowInstructionCard from "@/Components/PostShowInstructionCard.vue";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
   post: {
     type: Object,
     default: {},
   },
+});
+
+const sortedByOrderInstructions = computed(() => {
+  return props.post.instructions.sort((a, b) => a.order - b.order);
 });
 </script>
 <template>
@@ -106,11 +112,11 @@ defineProps({
         <PostShowSectionLayout>
           <template #heading> Способ приготовления</template>
           <template #content>
-            <p
-              class="w-full text-base sm:text-lg text-secondary-800 leading-snug sm:leading-normal"
-            >
-              {{ post.instruction }}
-            </p>
+            <PostShowInstructionCard
+              v-for="instruction in sortedByOrderInstructions"
+              :key="instruction.order"
+              :instruction="instruction"
+            />
           </template>
         </PostShowSectionLayout>
       </div>

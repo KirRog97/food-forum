@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
             $table->foreignId('kitchen_id');
             $table->foreignId('dish_id');
             $table->foreignId('menu_id');
-            $table->text('instruction');
             $table->text('description');
             $table->integer('TTC');
             $table->integer('COP');

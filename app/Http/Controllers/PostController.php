@@ -97,6 +97,7 @@ class PostController extends Controller
                         'dish:id,name',
                         'menu:id,name',
                         'ingredientPosts.picture',
+                        'instructions.picture:id,path',
                         'pictures',
                         'user',
                     ]
@@ -118,7 +119,8 @@ class PostController extends Controller
                         'dish:id,name',
                         'menu:id,name',
                         'pictures:id,path',
-                        'ingredientPosts.picture'
+                        'ingredientPosts.picture',
+                        'instructions.picture',
                     ]
                 )
             ]

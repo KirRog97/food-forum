@@ -7,6 +7,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import FormHeading from "@/Layouts/FormHeading.vue";
 import FormSection from "@/Layouts/FormSection.vue";
 import { Head, useForm } from "@inertiajs/vue3";
+// import { Route as route } from 'vendor/tightenco/ziggy/src/js'
 
 const postCreateForm = useForm({
   title: "",
@@ -113,9 +114,7 @@ function submitPostCreateForm() {
 
         <div class="flex flex-row flex-wrap justify-center mb-4 lg:mb-2">
           <FormHeading title="Выбор изображения" />
-          <PictureUploadSingle
-            v-model:postPicture="postCreateForm.postPicture"
-          />
+          <PictureUploadSingle v-model:picture="postCreateForm.postPicture" />
         </div>
 
         <FormSection>

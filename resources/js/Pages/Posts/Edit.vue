@@ -22,8 +22,7 @@ const postEditForm = useForm({
   postPicture: post.pictures,
   description: post.description,
   ingredients: post.ingredient_posts,
-  instruction: post.instruction,
-  //   instructions: post.instructions,
+  instructions: post.instructions,
 });
 
 // Breeze Example
@@ -128,8 +127,8 @@ function submitPostEditForm() {
           <div class="flex flex-col bg-secondary-700 rounded p-4">
             <div class="flex flex-col justify-start items-center">
               <!-- <PictureEditCustom
-                  :picture="postEditForm.pictures"
-                ></PictureEditCustom> -->
+                    :picture="postEditForm.pictures"
+                  ></PictureEditCustom> -->
             </div>
           </div>
         </FormSection>
@@ -151,7 +150,7 @@ function submitPostEditForm() {
             :autosize="{ minRows: 4, maxRows: 16 }"
             placeholder="Описание блюда"
             type="textarea"
-            v-model:value="postEditForm.instruction"
+            v-model:value="postEditForm.instructions"
           >
           </n-input>
         </FormSection>

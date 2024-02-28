@@ -176,6 +176,11 @@ class Post extends Model implements ReactableInterface
         return $this->belongsTo(Menu::class, 'menu_id');
     }
 
+    public function instructions()
+    {
+        return $this->hasMany(Instruction::class, 'post_id');
+    }
+
     // Name of fucn chaind with factory
     public function ingredientPosts()
     {

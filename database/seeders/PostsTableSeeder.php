@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\Ingredient;
 use App\Models\IngredientPost;
+use App\Models\Instruction;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -26,6 +27,8 @@ class PostsTableSeeder extends Seeder
                     'ingredient_id' => Ingredient::all()->random()->id,
                     'amount' => rand(min: 1, max: 36000),
                 ]
+            )->has(
+                Instruction::factory()->count(12)
             )
             ->create();
     }

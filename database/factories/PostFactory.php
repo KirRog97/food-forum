@@ -29,7 +29,6 @@ class PostFactory extends Factory
             'dish_id'       =>   Dish::select('id')->get()->random(),
             'menu_id'       =>   Menu::select('id')->get()->random(),
             'description'   =>   fake()->paragraphs(fake()->numberBetween(3, 6), true),
-            'instruction'   =>   fake()->text(fake()->numberBetween(145, 255)),
             'TTC'           =>   fake()->numberBetween(1, 240),
             'COP'           =>   fake()->numberBetween(1, 12),
             'Kcal'          =>   fake()->numberBetween(100, 2500),
