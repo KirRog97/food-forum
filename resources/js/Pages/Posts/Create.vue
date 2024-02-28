@@ -1,10 +1,11 @@
 <script setup>
-import HeadingForm from "@/Components/HeadingForm.vue";
 import IngredientSelection from "@/Components/IngredientSelection.vue";
 import PictureUploadSingle from "@/Components/PictureUploadSingle.vue";
 import PostCreateInstruction from "@/Components/PostCreateInstruction.vue";
 import PostSelectionOptions from "@/Components/PostSelectionOptions.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import FormHeading from "@/Layouts/FormHeading.vue";
+import FormSection from "@/Layouts/FormSection.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 
 const postCreateForm = useForm({
@@ -34,8 +35,8 @@ function submitPostCreateForm() {
     <Head title="Создание нового рецепта" />
     <div class="w-full mx-auto bg-secondary-100 rounded px-4 py-6">
       <form class="w-full" @submit.prevent="submitPostCreateForm">
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Название рецепта" />
+        <FormSection>
+          <FormHeading title="Название рецепта" />
 
           <n-input
             class="w-full flex flex-auto text-center border-0"
@@ -46,10 +47,10 @@ function submitPostCreateForm() {
             show-count
           >
           </n-input>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Основные свойства" />
+        <FormSection>
+          <FormHeading title="Основные свойства" />
 
           <div
             class="w-full flex flex-col md:flex-row md:flex-nowrap items-center justify-center space-x-0 md:space-x-1 space-y-1 md:space-y-0"
@@ -91,34 +92,34 @@ function submitPostCreateForm() {
               </template>
             </n-input>
           </div>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Выбор категорий" />
+        <FormSection>
+          <FormHeading title="Выбор категорий" />
           <PostSelectionOptions
             v-model:category="postCreateForm.category"
             v-model:kitchen="postCreateForm.kitchen"
             v-model:dish="postCreateForm.dish"
             v-model:menu="postCreateForm.menu"
           />
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Выбор ингредиентов" />
+        <FormSection>
+          <FormHeading title="Выбор ингредиентов" />
           <IngredientSelection
             v-model:selectedIngredients="postCreateForm.ingredients"
           />
-        </div>
+        </FormSection>
 
         <div class="flex flex-row flex-wrap justify-center mb-4 lg:mb-2">
-          <HeadingForm title="Выбор изображения" />
+          <FormHeading title="Выбор изображения" />
           <PictureUploadSingle
             v-model:postPicture="postCreateForm.postPicture"
           />
         </div>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Описание блюда" />
+        <FormSection>
+          <FormHeading title="Описание блюда" />
           <n-input
             :autosize="{ minRows: 4, maxRows: 16 }"
             placeholder="Описание блюда"
@@ -126,15 +127,15 @@ function submitPostCreateForm() {
             v-model:value="postCreateForm.description"
           >
           </n-input>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <HeadingForm title="Способ приготовления" />
+        <FormSection>
+          <FormHeading title="Способ приготовления" />
           <PostCreateInstruction
             v-model:instructions="postCreateForm.instructions"
           />
-        </div>
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
+        </FormSection>
+        <FormSection>
           <n-button
             primary
             type="primary"
@@ -146,7 +147,7 @@ function submitPostCreateForm() {
           >
             Создать рецепт
           </n-button>
-        </div>
+        </FormSection>
       </form>
     </div>
   </AppLayout>

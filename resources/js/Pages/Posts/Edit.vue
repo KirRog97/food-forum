@@ -3,6 +3,8 @@ import IngredientSelection from "@/Components/IngredientSelection.vue";
 import PostSelectionOptions from "@/Components/PostSelectionOptions.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Heading from "@/Layouts/Heading.vue";
+import FormHeading from "@/Layouts/FormHeading.vue";
+import FormSection from "@/Layouts/FormSection.vue";
 import { Head, useForm, usePage } from "@inertiajs/vue3";
 // import PictureEditCustom from "@/Components/PictureEditCustom.vue";
 
@@ -47,16 +49,8 @@ function submitPostEditForm() {
 
     <div class="flex flex-col justify-center bg-secondary-400 p-4 rounded">
       <form class="w-full space-y-4" @submit.prevent="submitPostEditForm">
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Название рецепта
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Название рецепта" />
           <n-input
             class="w-full flex flex-auto text-center border-0"
             placeholder="Холодный бодрящий компот с нотками драмы и ностальгии"
@@ -65,21 +59,10 @@ function submitPostEditForm() {
             show-count
           >
           </n-input>
-        </div>
+        </FormSection>
 
-        <div
-          class="flex flex-row flex-wrap justify-around items-center mb-8 lg:mb-4 space-y-4"
-        >
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-xl lg:text-2xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Количество порций
-            </span>
-          </div>
-
+        <FormSection>
+          <FormHeading title="Количество порций" />
           <div
             class="w-full flex flex-col md:flex-row md:flex-nowrap items-center justify-center space-x-0 md:space-x-1 space-y-1 md:space-y-0"
           >
@@ -120,49 +103,28 @@ function submitPostEditForm() {
               </template>
             </n-input>
           </div>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Выбор категорий
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Выбор категорий" />
+
           <PostSelectionOptions
             v-model:category="postEditForm.category"
             v-model:kitchen="postEditForm.kitchen"
             v-model:dish="postEditForm.dish"
             v-model:menu="postEditForm.menu"
           />
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Выбор ингредиентов
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Выбор ингредиентов" />
           <IngredientSelection
             v-model:selectedIngredients="postEditForm.ingredients"
           />
-        </div>
+        </FormSection>
 
-        <div class="flex flex-col justify-center items-center mb-4 lg:mb-2">
-          <div class="flex justify-center bg-secondary-900 rounded-lg mb-2">
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Выбор изображения
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Выбор изображения" />
           <div class="flex flex-col bg-secondary-700 rounded p-4">
             <div class="flex flex-col justify-start items-center">
               <!-- <PictureEditCustom
@@ -170,18 +132,10 @@ function submitPostEditForm() {
                 ></PictureEditCustom> -->
             </div>
           </div>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Описание блюда
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Описание блюда" />
           <n-input
             :autosize="{ minRows: 4, maxRows: 16 }"
             placeholder="Описание блюда"
@@ -189,18 +143,10 @@ function submitPostEditForm() {
             v-model:value="postEditForm.description"
           >
           </n-input>
-        </div>
+        </FormSection>
 
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
-          <div
-            class="w-auto flex justify-center bg-secondary-900 rounded-lg mb-2"
-          >
-            <span
-              class="text-2xl lg:text-3xl text-primary-500 text-center font-black px-2 py-1"
-            >
-              Способ приготовления
-            </span>
-          </div>
+        <FormSection>
+          <FormHeading title="Способ приготовления" />
           <n-input
             :autosize="{ minRows: 4, maxRows: 16 }"
             placeholder="Описание блюда"
@@ -208,8 +154,8 @@ function submitPostEditForm() {
             v-model:value="postEditForm.instruction"
           >
           </n-input>
-        </div>
-        <div class="flex flex-row flex-wrap justify-center mb-8 lg:mb-4">
+        </FormSection>
+        <FormSection>
           <n-button
             primary
             type="primary"
@@ -219,9 +165,9 @@ function submitPostEditForm() {
             :loading="postEditForm.processing"
             :disabled="postEditForm.processing"
           >
-            Создать рецепт
+            Сохранить изменения
           </n-button>
-        </div>
+        </FormSection>
       </form>
     </div>
   </AppLayout>
