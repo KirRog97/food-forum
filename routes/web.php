@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\InstrumentController;
 use App\Http\Controllers\InstructionController;
 
 Route::redirect('/', '/home');
@@ -93,6 +94,23 @@ Route::controller(PostController::class)
                 Route::get('{post}/edit', 'edit')->name('edit');
                 Route::put('{post}/update', 'update')->name('update');
                 Route::delete('{post}/destroy', 'destroy')->name('destroy');
+            });
+    });
+
+Route::controller(InstrumentController::class)
+    ->prefix('instruments')
+    ->name('instruments.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{instrument}', 'show')->name('show');
+
+        Route::middleware(['auth'])
+            ->group(function () {
+                Route::get('create', 'create')->name('create');
+                Route::post('{instrument}/store', 'store')->name('store');
+                Route::get('{instrument}/edit', 'edit')->name('edit');
+                Route::put('{instrument}/update', 'update')->name('update');
+                Route::delete('{instrument}/destroy', 'destroy')->name('destroy');
             });
     });
 

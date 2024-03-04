@@ -98,6 +98,8 @@ class PostController extends Controller
                         'menu:id,name',
                         'ingredientPosts.picture',
                         'instructions.picture:id,path',
+                        'instructions.instrument:id,name,description',
+                        'instructions.instrument.picture:id,path',
                         'pictures',
                         'user',
                     ]
@@ -121,6 +123,7 @@ class PostController extends Controller
                         'pictures:id,path',
                         'ingredientPosts.picture',
                         'instructions.picture',
+                        'instructions.instrument'
                     ]
                 )
             ]
