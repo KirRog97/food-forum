@@ -21,7 +21,7 @@ const props = defineProps({
           {{ instruction.content }}
         </span>
       </div>
-      <div class="flex flex-nowrap justify-center align-items-center mt-6">
+      <div class="flex flex-nowrap justify-center items-center mt-6">
         <div class="max-w-4/12 mr-6">
           <n-avatar
             round

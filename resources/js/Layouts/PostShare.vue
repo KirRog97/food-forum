@@ -2,9 +2,7 @@
 import { LogoVk, Send, Mail, Share } from "@vicons/ionicons5";
 </script>
 <template>
-  <div
-    class="flex flex-row flex-wrap justify-center align-items-center space-x-2"
-  >
+  <div class="flex flex-row flex-wrap justify-center items-center space-x-2">
     <n-tooltip trigger="hover">
       <template #trigger>
         <n-button type="primary" ghost bordered color="#2787f5">

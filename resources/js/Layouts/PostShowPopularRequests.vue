@@ -11,9 +11,7 @@ const testRequests = ref([
 ]);
 </script>
 <template>
-  <div
-    class="flex flex-row flex-wrap justify-center align-items-center space-x-2"
-  >
+  <div class="flex flex-row flex-wrap justify-center items-center space-x-2">
     <n-tooltip v-for="request in testRequests" trigger="hover">
       <template #trigger>
         <Link
