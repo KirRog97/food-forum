@@ -3,7 +3,6 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InstrumentController;
-use App\Http\Controllers\InstructionController;
 
 Route::redirect('/', '/home');
 
@@ -112,17 +111,6 @@ Route::controller(InstrumentController::class)
                 Route::put('{instrument}/update', 'update')->name('update');
                 Route::delete('{instrument}/destroy', 'destroy')->name('destroy');
             });
-    });
-
-Route::controller(InstructionController::class)
-    ->middleware(['auth'])
-    ->prefix('instructions')
-    ->name('instructions.')
-    ->group(function () {
-        Route::get('/{instruction}/edit', 'edit')->name('edit');
-        Route::post('/{instruction}/store', 'store')->name('store');
-        Route::put('/{instruction}/update', 'update')->name('update');
-        Route::delete('/{instruction}/destroy', 'destroy')->name('destroy');
     });
 
 Route::controller(PictureController::class)
