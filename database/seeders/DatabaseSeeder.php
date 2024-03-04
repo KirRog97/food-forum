@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
                 DishesTableSeeder::class,
                 MenusTableSeeder::class,
                 IngredientsTableSeeder::class,
+                InstrumentSeeder::class,
                 UsersTableSeeder::class,
                 PostsTableSeeder::class,
                 InstructionSeeder::class,
