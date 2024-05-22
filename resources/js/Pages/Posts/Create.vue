@@ -21,7 +21,7 @@ const postCreateForm = useForm({
   postPicture: [],
   description: "",
   ingredients: [],
-  instructions: [{ text: "" }],
+  instructions: [{ content: "" }],
 });
 
 function submitPostCreateForm() {

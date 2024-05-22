@@ -1,8 +1,8 @@
 <script setup>
 const props = defineProps({
   instructions: {
-    type: Object,
-    default: {},
+    type: Array,
+    default: [],
   },
 });
 
@@ -14,7 +14,7 @@ function addInstructionStep() {
     //   { showProgressBar: true, timeout: 4000 }
     // );
   }
-  props.instructions.push({ text: "" });
+  props.instructions.push({ content: "" });
 }
 
 function deleteInstructionStep(index) {
