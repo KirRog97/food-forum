@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
-
-
     /**
      * The current password being used by the factory.
      */
@@ -27,7 +25,7 @@ class UserFactory extends Factory
             'username' => fake()->name(),
             'avatar_id' => Picture::factory()->avatar()->create()->id,
             'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('secret'),
+            'password' => static::$password ??= bcrypt('secret'),
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
         ];
