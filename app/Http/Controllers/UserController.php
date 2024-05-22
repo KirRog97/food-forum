@@ -50,13 +50,12 @@ class UserController extends Controller
         );
     }
 
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        User::where('id', $user->id)
-            ->update(array('username' => $request->username, 'email' => $request->email));
+        $request->user()->fill($request->validated());
+        $request->user()->save();
 
-        return redirect()->route('posts.index')
-            ->with('success', 'Изменения сохранены');
+        return Redirect::route('users.show', $user);
     }
 
     public function destroy(Request $request): RedirectResponse
