@@ -33,7 +33,7 @@ function handleUpdate(file) {
       Фото профиля показывается, например, рядом с вашими видео или
       комментариями на FoodForum.
     </div>
-    <div class="flex flex-auto flex-row justify-between align-items-center">
+    <div class="flex flex-auto flex-row justify-between items-center">
       <div class="mr-4">
         <n-avatar
           round
