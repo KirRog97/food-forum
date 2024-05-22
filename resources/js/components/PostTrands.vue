@@ -74,13 +74,11 @@ function loadEditorPost() {
   <div class="mb-8">
     <div class="w-full flex justify-center mb-4">
       <n-button-group>
-        <n-button round primary bordered type="primary" @click="switchTabTo(0)">
+        <n-button round primary @click="switchTabTo(0)">
           Высший рейтинг
         </n-button>
-        <n-button round primary bordered type="primary" @click="switchTabTo(1)">
-          Новые
-        </n-button>
-        <n-button round primary bordered type="primary" @click="switchTabTo(2)">
+        <n-button round primary @click="switchTabTo(1)"> Новые </n-button>
+        <n-button round primary @click="switchTabTo(2)">
           Выбор редакции
         </n-button>
       </n-button-group>

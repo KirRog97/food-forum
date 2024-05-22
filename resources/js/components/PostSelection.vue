@@ -141,6 +141,7 @@ function resetIngredients() {
       <div class="w-full sm:w-6/12">
         <n-button
           class="w-full"
+          primary
           type="primary"
           @click="isIngVisible = !isIngVisible"
         >
@@ -148,7 +149,7 @@ function resetIngredients() {
         </n-button>
       </div>
       <div class="w-full sm:w-6/12">
-        <n-button class="w-full" type="primary"> Подобрать </n-button>
+        <n-button class="w-full" primary> Подобрать </n-button>
       </div>
     </div>
   </div>
