@@ -61,9 +61,16 @@ class UserController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
-        User::destroy($user->id);
-        return redirect()->route('posts.index')
-            ->with('success', 'Рецепт удален');
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/');
     }
 
     public function postsLikedByUser(User $user): Response
