@@ -73,8 +73,7 @@ class Post extends Model implements ReactableInterface
      */
     protected $with = [
         'pictures:id,path',
-        'user',
-        'user.avatar:id,path'
+        'user'
     ];
 
     protected $appends  = ['likes_count'];
