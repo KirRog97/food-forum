@@ -2,84 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Inertia\Inertia;
+use Inertia\Response;
+use App\Models\Picture;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function create() : Response
     {
-        //
+        return Inertia::render('Categories/Create');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request) : RedirectResponse
     {
-        //
+        $picture = Picture::create([
+            'path' => '/storage/' . $request->file->store('categories', 'public'),
+            'mime' => $request->file->getMimeType(),
+            'size' => $request->file->getSize()
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'picture_id' => $picture->id,
+            'description' => $request->description
+        ]);
+
+        return Redirect::route('home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function show(Category $category) : Response
     {
-        //
+        return Inertia::render(
+            'Categories/Show',
+            [
+                'category' => $category,
+                'posts' => Post::where('menu_id', $category->id)
+                    ->paginate(12)
+            ]
+        );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function edit(Category $category) : Response
     {
-        //
+        return Inertia::render(
+            'Categories/Edit',
+            [
+                'category' => $category
+            ]
+        );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+    public function update(Request $request, Category $category) : RedirectResponse
     {
-        //
+        $category->fill($request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]));
+
+        $category->save();
+
+        return Redirect::route('categories.show', $category);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
+    public function destroy(Category $category) : RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
+        $category->delete();
+        return Redirect::route('home');
     }
 }
