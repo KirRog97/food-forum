@@ -3,109 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Post;
+use Inertia\Inertia;
+use Inertia\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Picture;
 
 class DishController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Dish $dish)
+    public function create() : Response
     {
-        return view(
-            'dishes.index',
+        return Inertia::render('Dishes/Create');
+    }
+
+    public function store(Request $request) : RedirectResponse
+    {
+        $picture = Picture::create([
+            'path' => '/storage/' . $request->file->store('dishes', 'public'),
+            'mime' => $request->file->getMimeType(),
+            'size' => $request->file->getSize()
+        ]);
+
+
+        Dish::create([
+            'name' => $request->name,
+            'picture_id' => $picture->id,
+            'description' => $request->description
+        ]);
+
+        return Redirect::route('home');
+    }
+
+    public function show(Dish $dish) : Response
+    {
+        return Inertia::render(
+            'Dishes/Show',
             [
-                'dishes' => $dish->getAscNames()->paginate(10)
+                'dish' => $dish,
+                'posts' => Post::where('dish_id', $dish->id)
+                    ->paginate(12)
             ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function edit(Dish $dish) : Response
     {
-        return view('dishes.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate(
-            $request,
+        return Inertia::render(
+            'Dishes/Edit',
             [
-                'name' => 'required'
+                'dish' => $dish,
             ]
         );
+    }
 
-        $dish = new Dish;
-        $dish->author = Auth()->user()->id;
-        $dish->title = $request->input('title');
-        $dish->TTC = $request->input('TTC');
-        $dish->COP = $request->input('COP');
-        $dish->Kcal = $request->input('Kcal');
+    public function update(Request $request, Dish $dish) : RedirectResponse
+    {
+        $dish->fill($request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]));
+
         $dish->save();
 
-        return redirect()->route('dishes.index')
-            ->with('success', 'Ваш блюдо успешно создано');
+        return Redirect::route('dishes.show', $dish);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Dish $dish)
+    public function destroy(Dish $dish) : RedirectResponse
     {
-        return view('dishes.show', compact('dish'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dish $dish)
-    {
-        return view('dishes.edit', compact('dish'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Dish $dish)
-    {
-        Dish::whereId($dish->id)->update($request->all());
-        return redirect()->route('dishes.index')
-            ->with('success', 'Изменения сохранены');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Dish $dish)
-    {
-        Dish::destroy($dish->id);
-        return redirect()->route('dishes.index')
-            ->with('success', 'Рецепт удален');
+        $dish->delete();
+        return Redirect::route('home');
     }
 }
