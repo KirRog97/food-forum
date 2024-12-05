@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Picture;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DishFactory extends Factory
@@ -43,8 +44,9 @@ class DishFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()
-                ->randomElement($this->getArrayOfDishes())
+            'name'          =>  fake()->unique()->randomElement($this->getArrayOfDishes()),
+            'picture_id'    =>  Picture::factory()->create(),
+            'description'   =>  fake()->paragraphs(fake()->numberBetween(3, 6), true),
         ];
     }
 }
