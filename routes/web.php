@@ -22,8 +22,16 @@ Route::get(
     }
 )->name('home');
 
-
 Route::controller(UserController::class)
+    ->prefix('users')
+    ->name('users.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('{user}/edit', 'edit')->name('edit');
+        Route::put('{user}/update', 'update')->name('update');
+        Route::delete('{user}/delete', 'destroy')->name('destroy');
+    });
+Route::controller(controller: UserController::class)
     ->prefix('users')
     ->name('users.')
     ->group(function () {
@@ -31,29 +39,7 @@ Route::controller(UserController::class)
         Route::get('{user}', 'show')->name('show');
         Route::get('{user}/favorites', 'postsLikedByUser')->name('postsLikedByUser');
         Route::get('{user}/posts', 'postsCreatedByUser')->name('postsCreatedByUser');
-
-
-        Route::middleware(['auth', 'own.user'])
-            ->group(function () {
-                Route::get('create', 'create')->name('create');
-                Route::post('{user}/store', 'store')->name('store');
-                Route::get('{user}/edit', 'edit')->name('edit');
-                Route::put('{user}/update', 'update')->name('update');
-                Route::delete('{user}/delete', 'destroy')->name('destroy');
-            });
     });
-
-// Route::resource('users', UserController::class);
-// Route::resource('users', UserController::class)
-//     ->except(
-//         [
-//             'index', 'show'
-//         ]
-//     )->middleware(['auth', 'own.user']);
-
-// Route::get('/users/{user}/posts', [UserController::class, 'postsCreatedByUser']);
-// Route::get('/users/{user}/favorites', [UserController::class, 'postsLikedByUser']);
-
 
 Route::controller(IngredientController::class)
     ->prefix('ingredients')
