@@ -112,20 +112,21 @@ Route::get('dishes/{dish}', action: [DishController::class, 'show'])->name('dish
 Route::controller(PostController::class)
     ->prefix('posts')
     ->name('posts.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/{post}/edit', 'edit')->name('edit');
+        Route::post('/{post}/store', 'store')->name('store');
+        Route::put('/{post}/update', 'update')->name('update');
+        Route::delete('/{post}/destroy', 'destroy')->name('destroy');
+    });
+Route::controller(PostController::class)
+    ->prefix('posts')
+    ->name('posts.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
         Route::get('{post}', 'show')->name('show');
         Route::get('/popular', 'popularPosts')->name('popular');
-
-
-        Route::middleware(['auth'])
-            ->group(function () {
-                Route::get('/create', 'create')->name('create');
-                Route::post('{post}/store', 'store')->name('store');
-                Route::get('{post}/edit', 'edit')->name('edit');
-                Route::put('{post}/update', 'update')->name('update');
-                Route::delete('{post}/destroy', 'destroy')->name('destroy');
-            });
     });
 
 Route::controller(InstrumentController::class)
