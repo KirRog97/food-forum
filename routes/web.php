@@ -130,20 +130,22 @@ Route::controller(PostController::class)
     });
 
 Route::controller(InstrumentController::class)
+    ->name('instruments.')
+    ->prefix('instruments')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('create', 'create')->name('create');
+        Route::post('/{instrument}/store', 'store')->name('store');
+        Route::get('/{instrument}/edit', 'edit')->name('edit');
+        Route::put('/{instrument}/update', 'update')->name('update');
+        Route::delete('/{instrument}/destroy', 'destroy')->name('destroy');
+    });
+Route::controller(InstrumentController::class)
     ->prefix('instruments')
     ->name('instruments.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('{instrument}', 'show')->name('show');
-
-        Route::middleware(['auth'])
-            ->group(function () {
-                Route::get('create', 'create')->name('create');
-                Route::post('{instrument}/store', 'store')->name('store');
-                Route::get('{instrument}/edit', 'edit')->name('edit');
-                Route::put('{instrument}/update', 'update')->name('update');
-                Route::delete('{instrument}/destroy', 'destroy')->name('destroy');
-            });
     });
 
 Route::controller(PictureController::class)
