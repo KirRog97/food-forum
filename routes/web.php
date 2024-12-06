@@ -81,7 +81,17 @@ Route::controller(IngredientController::class)
 //     ->middleware('auth');
 // Route::get('ingredients/{ingredient}/usage', [IngredientController::class, 'usage']);
 
-Route::resource('dishes', DishController::class);
+Route::controller(DishController::class)
+    ->prefix('dishes')
+    ->name('dishes.')
+    ->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/{dish}/store', 'store')->name('store');
+        Route::get('/{dish}/edit', 'edit')->name('edit');
+        Route::put('/{dish}/update', 'update')->name('update');
+        Route::delete('/{dish}/destroy', 'destroy')->name('destroy');
+    });
+Route::get('dishes/{dish}', action: [DishController::class, 'show'])->name('dishes.show');
 
 Route::controller(PostController::class)
     ->prefix('posts')
