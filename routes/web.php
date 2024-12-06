@@ -7,6 +7,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InstrumentController;
@@ -81,6 +82,18 @@ Route::controller(IngredientController::class)
 //     )
 //     ->middleware('auth');
 // Route::get('ingredients/{ingredient}/usage', [IngredientController::class, 'usage']);
+
+Route::controller(KitchenController::class)
+    ->prefix('kitchens')
+    ->name('kitchens.')->middleware('auth')
+    ->group(function () {
+        Route::get('create', 'create')->name('create');
+        Route::post('{kitchen}/store', 'store')->name('store');
+        Route::get('{kitchen}/edit', 'edit')->name('edit');
+        Route::put('{kitchen}/update', 'update')->name('update');
+        Route::delete('{kitchen}/destroy', 'destroy')->name('destroy');
+    });
+Route::get('kitchens/{kitchen}', action: [KitchenController::class, 'show'])->name('kitchens.show');
 
 Route::controller(MenuController::class)
     ->prefix('menus')
