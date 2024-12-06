@@ -74,7 +74,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::route('home');
     }
 
     public function postsLikedByUser(User $user): Response
