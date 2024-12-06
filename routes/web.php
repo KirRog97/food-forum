@@ -2,9 +2,11 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PictureController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InstrumentController;
 
