@@ -153,21 +153,11 @@ Route::controller(PictureController::class)
     ->name('picture.')
     ->middleware(['auth'])
     ->group(function () {
-        Route::get('save', 'store')->name('store');
-        Route::get('{picture}/update', 'update')->name('update');
-        // Route::put('{picture}/update', 'update')->name('update'); not allowed files
+        Route::post('save', 'store')->name('store');
+        // Route::put('{picture}/update', 'update')->name('update'); not transfer files
+        Route::post('{picture}/update', 'update')->name('update');
         Route::get('{picture}/destroy', 'destroy')->name('destroy');
     });
-
-// Route::group(
-//     ['prefix' => 'picture', 'middleware' => ['auth']],
-//     function () {
-//         Route::post('save', [PictureController::class, 'store']);
-//         Route::post('update/{picture}', [PictureController::class, 'update']);
-//         // Route::put('update/{picture}', [PictureController::class, 'update']); not allowed files
-//         Route::delete('delete/{picture}', [PictureController::class, 'destroy']);
-//     }
-// );
 
 Route::controller(LikeController::class)
     ->prefix('api/favorites')
