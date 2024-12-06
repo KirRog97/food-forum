@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PictureController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function store(Request $request) : JsonResponse
     {
         $validator = Validator::make(
             $request->all(),
@@ -32,9 +32,9 @@ class PictureController extends Controller
 
         $picture = Picture::create(
             [
-                'path'  =>  '/storage/' . $path,
-                'mime'  =>  $request->file->getMimeType(),
-                'size'  =>  $request->file->getSize()
+                'path' => '/storage/' . $path,
+                'mime' => $request->file->getMimeType(),
+                'size' => $request->file->getSize()
             ]
         );
 
@@ -42,8 +42,8 @@ class PictureController extends Controller
 
         return response()->json(
             [
-                'id'    =>  $picture->id,
-                'path'  =>  $picture->path
+                'id' => $picture->id,
+                'path' => $picture->path
             ],
             200
         );
@@ -56,7 +56,7 @@ class PictureController extends Controller
      * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Picture $picture): JsonResponse
+    public function update(Request $request, Picture $picture) : JsonResponse
     {
         // TODO: Move Validator to Requests
         $validator = Validator::make(
@@ -72,43 +72,47 @@ class PictureController extends Controller
         );
 
         if ($validator->fails()) {
-            return response()->json(['message' => 'Sended file check faild'], 500);
+            return response()->json($validator->errors(), 500);
         }
+
         try {
+            // TODO: Refactor that code... use Destroy method or whatever
+
             // delete "storage/" in string
             $oldPicturePath = substr($picture->path, 8);
             Storage::disk('public')->delete($oldPicturePath);
 
-            $path = $request->file->store('avatars', 'public');
+            $newPicturePath = $request->file->store('avatars', 'public');
             $picture->update(
                 [
-                    'path'  =>  '/storage/' . $path,
-                    'mime'  =>  $request->file->getMimeType(),
-                    'size'  =>  $request->file->getSize()
+                    'path' => '/storage/' . $newPicturePath,
+                    'mime' => $request->file->getMimeType(),
+                    'size' => $request->file->getSize()
                 ]
             );
 
             return response()->json([
-                'message' => "Picture updated successfully"
+                'message' => "Picture updated successfully",
+                'path' => '/storage/' . $newPicturePath
             ], 200);
-        } catch (\Throwable $exepction) {
-            return response()->json(['message' => $exepction->getMessage()], 500);
+        } catch (\Throwable $exception) {
+            return response()->json(['message' => $exception->getMessage()], 500);
         }
     }
 
-    public function destroy(Picture $picture): JsonResponse
+    public function destroy(Picture $picture) : JsonResponse
     {
-        if (!Storage::disk('public')->delete(substr($picture->path, 8))) {
-            return response()->json(
-                ['result' => true],
-                200
-            );
-        }
-        if ($picture->delete()) {
-            return response()->json(
-                ['result' => true],
-                200
-            );
+        $cleanedPath = substr($picture->path, 8);
+        if (Storage::disk('public')->exists($cleanedPath)) { {
+                Storage::disk('public')->delete($cleanedPath);
+                return response()->json([
+                    'message' => "Picture deleted successfully",
+                ], 200);
+            }
+        } else {
+            return response()->json([
+                'message' => "Picture wasn't delete",
+            ], 500);
         }
     }
 }
