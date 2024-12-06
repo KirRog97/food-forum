@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\PictureController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InstrumentController;
 
@@ -82,6 +83,18 @@ Route::controller(IngredientController::class)
 //     )
 //     ->middleware('auth');
 // Route::get('ingredients/{ingredient}/usage', [IngredientController::class, 'usage']);
+
+Route::controller(CategoryController::class)
+    ->prefix('categories')
+    ->name('categories.')->middleware('auth')
+    ->group(function () {
+        Route::get('create', 'create')->name('create');
+        Route::post('{category}/store', 'store')->name('store');
+        Route::get('{category}/edit', 'edit')->name('edit');
+        Route::put('{category}/update', 'update')->name('update');
+        Route::delete('{category}/destroy', 'destroy')->name('destroy');
+    });
+Route::get('categories/{category}', action: [CategoryController::class, 'show'])->name('categories.show');
 
 Route::controller(KitchenController::class)
     ->prefix('kitchens')
