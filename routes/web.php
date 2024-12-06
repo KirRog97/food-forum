@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PictureController;
@@ -80,6 +81,18 @@ Route::controller(IngredientController::class)
 //     )
 //     ->middleware('auth');
 // Route::get('ingredients/{ingredient}/usage', [IngredientController::class, 'usage']);
+
+Route::controller(MenuController::class)
+    ->prefix('menus')
+    ->name('menus.')->middleware('auth')
+    ->group(function () {
+        Route::get('create', 'create')->name('create');
+        Route::post('{menu}/store', 'store')->name('store');
+        Route::get('{menu}/edit', 'edit')->name('edit');
+        Route::put('{menu}/update', 'update')->name('update');
+        Route::delete('{menu}/destroy', 'destroy')->name('destroy');
+    });
+Route::get('menus/{menu}', action: [MenuController::class, 'show'])->name('menus.show');
 
 Route::controller(DishController::class)
     ->prefix('dishes')
