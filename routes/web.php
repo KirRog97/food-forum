@@ -169,15 +169,4 @@ Route::controller(LikeController::class)
         Route::post('{post}/count', 'likeCount')->name('likeCount');
     });
 
-// Route::group(
-//     ['prefix' => 'api/favorites'],
-//     function () {
-//         Route::post('{post}/action', [LikeController::class, 'reactToPost'])
-//             ->middleware('auth');
-//         Route::post('{post}/status', [LikeController::class, 'isReactedByUser'])
-//             ->middleware('auth');
-//         Route::post('{post}/count', [LikeController::class, 'likeCount']);
-//     }
-// );
-
 require __DIR__ . '/auth.php';
