@@ -44,31 +44,22 @@ Route::controller(controller: UserController::class)
 Route::controller(IngredientController::class)
     ->prefix('ingredients')
     ->name('ingredients.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/{ingredient}/store', 'store')->name('store');
+        Route::get('/{ingredient}/edit', 'edit')->name('edit');
+        Route::put('/{ingredient}/update', 'update')->name('update');
+        Route::delete('/{ingredient}/destroy', 'destroy')->name('destroy');
+    });
+Route::controller(IngredientController::class)
+    ->prefix('ingredients')
+    ->name('ingredients.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('{ingredient}', 'show')->name('show');
-        Route::get('{ingredient}/usage', 'usage')->name('usage');
-
-
-        Route::middleware(['auth'])
-            ->group(function () {
-                Route::get('create', 'create')->name('create');
-                Route::post('{ingredient}/store', 'store')->name('store');
-                Route::get('{ingredient}/edit', 'edit')->name('edit');
-                Route::put('{ingredient}/update', 'update')->name('update');
-                Route::delete('{ingredient}/destroy', 'destroy')->name('destroy');
-            });
+        Route::get('/{ingredient}', 'show')->name('show');
+        Route::get('/ingredients/{ingredient}/usage', 'usage')->name('usage');
     });
-
-// Route::resource('ingredients', IngredientController::class);
-// Route::resource('ingredients', IngredientController::class)
-//     ->except(
-//         [
-//             'index', 'show'
-//         ]
-//     )
-//     ->middleware('auth');
-// Route::get('ingredients/{ingredient}/usage', [IngredientController::class, 'usage']);
 
 Route::controller(CategoryController::class)
     ->prefix('categories')
