@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
 use App\Models\Instrument;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('instructions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class);
+            $table->foreignIdFor(Recipe::class);
             $table->foreignIdFor(Picture::class);
             $table->foreignIdFor(Instrument::class)->nullable();
             $table->tinyInteger('order');

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         User::factory()
             ->count(3)
-            ->has(Post::factory()->count(rand(min: 1, max: 4)))
+            ->has(Recipe::factory()->count(rand(min: 1, max: 4)))
             ->create();
     }
 }

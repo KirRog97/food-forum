@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -10,36 +10,36 @@ class LikeController extends Controller
     /**
      * Take current like count.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function likeCount(Post $post)
+    public function likeCount(Recipe $recipe)
     {
         return response()
-            ->json(['likes_count' => $post->getLikesCount()], 200);
+            ->json(['likes_count' => $recipe->getLikesCount()], 200);
     }
 
     /**
      * Take current like status.
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function isReactedByUser(Post $post)
+    public function isReactedByUser(Recipe $recipe)
     {
         return response()
-            ->json(['liked' => $post->isReactedByUser(auth()->user())], 200);
+            ->json(['liked' => $recipe->isReactedByUser(auth()->user())], 200);
     }
 
     /**
      * Using laravel-love reacter facade for make reaction.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function reactToPost(Request $request, Post $post)
+    public function reactToRecipe(Request $request, Recipe $recipe)
     {
         return response()
-            ->json(['reaction' => $request->user()->react($post)], 200);
+            ->json(['reaction' => $request->user()->react($recipe)], 200);
     }
 }

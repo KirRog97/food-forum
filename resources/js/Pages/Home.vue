@@ -1,7 +1,7 @@
 <script setup>
 import NewsBoard from "@/Components/NewsBoard.vue";
-import PostSelection from "@/Components/PostSelection.vue";
-import PostTrands from "@/Components/PostTrands.vue";
+import RecipeSelection from "@/Components/RecipeSelection.vue";
+import RecipeTrends from "@/Components/RecipeTrends.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Heading from "@/Layouts/Heading.vue";
 import { Head } from "@inertiajs/vue3";
@@ -10,12 +10,12 @@ import { Head } from "@inertiajs/vue3";
   <AppLayout>
     <Head title="Eда | Главная" />
 
-    <PostSelection />
+    <RecipeSelection />
 
-    <Heading>Подбор рецптов</Heading>
+    <Heading>Подбор рецептов</Heading>
     <NewsBoard />
 
     <Heading>Топы рецептов</Heading>
-    <PostTrands />
+    <RecipeTrends />
   </AppLayout>
 </template>

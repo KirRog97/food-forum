@@ -86,7 +86,7 @@ async function uploadFile(uploadableFile) {
       <img
         class="relative object-scale-down z-10"
         :src="picture.path"
-        alt="Post Picture"
+        alt="Recipe Picture"
       />
     </div>
     <div

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
-use App\Models\IngredientPost;
+use App\Models\IngredientRecipe;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,10 +20,10 @@ class Ingredient extends Model
         'description',
     ];
 
-    public function posts(): BelongsToMany
+    public function recipes(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class)
-            ->using(IngredientPost::class)
+        return $this->belongsToMany(Recipe::class)
+            ->using(IngredientRecipe::class)
             ->withPivot(['amount']);
     }
 

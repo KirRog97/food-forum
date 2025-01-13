@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
 use Laravel\Sanctum\HasApiTokens;
 use \Illuminate\Support\Facades\Auth;
@@ -75,7 +75,7 @@ class User extends Authenticatable implements ReacterableInterface
 
     public function hasOwnerRights($checkId)
     {
-        return !Auth::guest() && Auth::user()->id === $checkId;
+        return ! Auth::guest() && Auth::user()->id === $checkId;
     }
 
     public function avatar()
@@ -83,9 +83,9 @@ class User extends Authenticatable implements ReacterableInterface
         return $this->belongsTo(Picture::class);
     }
 
-    public function posts()
+    public function recipes()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Recipe::class);
     }
 }
 

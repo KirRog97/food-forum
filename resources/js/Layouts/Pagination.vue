@@ -11,7 +11,7 @@ defineProps({
 
 <!-- ❗️ ToDO:Try to understand this pagination conception  ❗️-->
 <!-- https://www.naiveui.com/en-US/os-theme/components/pagination#item-count.vue -->
-<!-- <n-pagination :page="posts.current_page" :item-count="posts.total" :page-sizes="[10, 20, 30, 40]"
+<!-- <n-pagination :page="recipes.current_page" :item-count="recipes.total" :page-sizes="[10, 20, 30, 40]"
         on-update:page="onUpdatePaginationPage" on-update:page-size="onUpdatePaginationPageSize" /> -->
 
 <template>

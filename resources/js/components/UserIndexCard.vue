@@ -27,7 +27,7 @@ defineProps({
         type="button"
         class="text-sm sm:text-lg text-center text-primary-500 focus:text-primary-300 focus:bg-secondary-700 leading-normal focus:border focus:border-secondary-200 rounded-lg hover:underline"
       >
-        <a :href="`users/${user.id}/posts`">Список рецептов</a>
+        <a :href="`users/${user.id}/recipes`">Список рецептов</a>
       </button>
     </div>
   </div>

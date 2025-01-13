@@ -59,7 +59,7 @@ function handleSelect(key) {
     <div class="hidden md:block w-0 md:w-4/12 mx-2">
       <img
         class="w-full h-24 object-cover rounded-sm"
-        :src="notification.post_picture"
+        :src="notification.recipe_picture"
         alt
       />
     </div>

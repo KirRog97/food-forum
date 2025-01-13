@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\IngredientController;
-use App\Http\Controllers\Api\IngredientPostController;
+use App\Http\Controllers\Api\IngredientRecipeController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\MenuController;
-use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\RecipeController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -22,11 +22,11 @@ Route::get('menus', [MenuController::class, 'index']);
 
 
 Route::group(
-    ['prefix' => 'posts'],
+    ['prefix' => 'recipes'],
     function () {
-        Route::get('/{post}/ingredients', [IngredientPostController::class, 'index']);
-        Route::get('favorites/editor-choice', [PostController::class, 'editorChoise']);
-        Route::get('/favorites/top', [PostController::class, 'top']);
-        Route::get('/new', [PostController::class, 'new']);
+        Route::get('/{recipe}/ingredients', [IngredientRecipeController::class, 'index']);
+        Route::get('favorites/editor-choice', [RecipeController::class, 'editorChoise']);
+        Route::get('/favorites/top', [RecipeController::class, 'top']);
+        Route::get('/new', [RecipeController::class, 'new']);
     }
 );

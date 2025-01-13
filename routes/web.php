@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\PictureController;
@@ -37,8 +37,8 @@ Route::controller(controller: UserController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('{user}', 'show')->name('show');
-        Route::get('{user}/favorites', 'postsLikedByUser')->name('postsLikedByUser');
-        Route::get('{user}/posts', 'postsCreatedByUser')->name('postsCreatedByUser');
+        Route::get('{user}/favorites', 'recipesLikedByUser')->name('recipesLikedByUser');
+        Route::get('{user}/recipes', 'recipesCreatedByUser')->name('recipesCreatedByUser');
     });
 
 Route::controller(IngredientController::class)
@@ -109,24 +109,24 @@ Route::controller(DishController::class)
     });
 Route::get('dishes/{dish}', action: [DishController::class, 'show'])->name('dishes.show');
 
-Route::controller(PostController::class)
-    ->prefix('posts')
-    ->name('posts.')
+Route::controller(RecipeController::class)
+    ->prefix('recipes')
+    ->name('recipes.')
     ->middleware('auth')
     ->group(function () {
-        Route::get('/{post}/edit', 'edit')->name('edit');
-        Route::post('/{post}/store', 'store')->name('store');
-        Route::put('/{post}/update', 'update')->name('update');
-        Route::delete('/{post}/destroy', 'destroy')->name('destroy');
+        Route::get('/{recipe}/edit', 'edit')->name('edit');
+        Route::post('/{recipe}/store', 'store')->name('store');
+        Route::put('/{recipe}/update', 'update')->name('update');
+        Route::delete('/{recipe}/destroy', 'destroy')->name('destroy');
     });
-Route::controller(PostController::class)
-    ->prefix('posts')
-    ->name('posts.')
+Route::controller(RecipeController::class)
+    ->prefix('recipes')
+    ->name('recipes.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
-        Route::get('{post}', 'show')->name('show');
-        Route::get('/popular', 'popularPosts')->name('popular');
+        Route::get('{recipe}', 'show')->name('show');
+        Route::get('/popular', 'popularRecipes')->name('popular');
     });
 
 Route::controller(InstrumentController::class)
@@ -164,9 +164,9 @@ Route::controller(LikeController::class)
     ->name('api.picture.')
     ->middleware(['auth'])
     ->group(function () {
-        Route::post('{post}/action', 'reactToPost')->name('reactToPost');
-        Route::post('{post}/status', 'isReactedByUser')->name('isReactedByUser');
-        Route::post('{post}/count', 'likeCount')->name('likeCount');
+        Route::post('{recipe}/action', 'reactToRecipe')->name('reactToRecipe');
+        Route::post('{recipe}/status', 'isReactedByUser')->name('isReactedByUser');
+        Route::post('{recipe}/count', 'likeCount')->name('likeCount');
     });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

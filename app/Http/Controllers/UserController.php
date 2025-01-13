@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,7 +19,7 @@ class UserController extends Controller
         return Inertia::render(
             'Users/Index',
             [
-                'users' =>  $users->orderBy('username', 'asc')
+                'users' => $users->orderBy('username', 'asc')
                     ->with('avatar')
                     ->paginate(9)
             ]
@@ -36,7 +36,7 @@ class UserController extends Controller
         return Inertia::render(
             'Users/Show',
             [
-                'user' => $user->load('avatar', 'posts')
+                'user' => $user->load('avatar', 'recipes')
             ]
         );
     }
@@ -77,30 +77,30 @@ class UserController extends Controller
         return Redirect::route('home');
     }
 
-    public function postsLikedByUser(User $user): Response
+    public function recipesLikedByUser(User $user): Response
     {
-        $posts = Post::query()
+        $recipes = Recipe::query()
             ->whereReactedBy($user, 'Like')
             ->get();
 
         return Inertia::render(
-            'Posts/PostsLikedByUser',
+            'Recipes/RecipesLikedByUser',
             [
-                'posts' => $posts
+                'recipes' => $recipes
             ]
         );
     }
 
-    public function postsCreatedByUser(User $user): Response
+    public function recipesCreatedByUser(User $user): Response
     {
-        $posts = Post::query()
+        $recipes = Recipe::query()
             ->where('user_id', $user->id)
             ->paginate(10);
 
         return Inertia::render(
-            'Posts/PostsCreatedByUser',
+            'Recipes/RecipesCreatedByUser',
             [
-                'posts' => $posts
+                'recipes' => $recipes
             ]
         );
     }

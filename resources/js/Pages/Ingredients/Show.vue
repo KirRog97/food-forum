@@ -29,7 +29,7 @@ defineProps({
           <!-- <img
           class="absolute h-full w-full object-cover"
           src="/images/login_background.jpg"
-          alt="Post image"
+          alt="Recipe image"
         /> -->
         </div>
       </div>

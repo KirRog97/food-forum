@@ -2,7 +2,7 @@
 import MessageEmptyCollection from "@/Components/MessageEmptyCollection.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Heading from "@/Layouts/Heading.vue";
-import UserActivityPostCard from "@/Layouts/UserActivityPostCard.vue";
+import UserActivityRecipeCard from "@/Layouts/UserActivityRecipeCard.vue";
 import ShowSidebar from "@/Layouts/UserShowSidebar.vue";
 import { Head } from "@inertiajs/vue3";
 
@@ -26,10 +26,10 @@ defineProps({
           <template v-else> История {{ user.username }} </template>
         </Heading>
 
-        <template v-if="user.posts">
+        <template v-if="user.recipes">
           <div class="space-y-8">
-            <template v-for="post in user.posts" :key="post.id">
-              <UserActivityPostCard :post="post" />
+            <template v-for="recipe in user.recipes" :key="recipe.id">
+              <UserActivityRecipeCard :recipe="recipe" />
             </template>
           </div>
         </template>

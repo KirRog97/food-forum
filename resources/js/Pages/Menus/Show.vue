@@ -2,15 +2,15 @@
 import { Head } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import GenericShowLayout from "@/Layouts/GenericShowLayout.vue";
-import PostLayout from "@/Layouts/PostLayout.vue";
-import PostShowPopularRequests from "@/Layouts/PostShowPopularRequests.vue";
+import RecipeLayout from "@/Layouts/RecipeLayout.vue";
+import RecipeShowPopularRequests from "@/Layouts/RecipeShowPopularRequests.vue";
 
 defineProps({
   menu: {
     type: Object,
     default: {},
   },
-  posts: {
+  recipes: {
     type: Object,
     default: {},
   },
@@ -22,13 +22,13 @@ defineProps({
     <Head :title="`Меню ${menu.name}`" />
     <GenericShowLayout :entity="menu">
       <template #showFooter>
-        <PostShowPopularRequests />
+        <RecipeShowPopularRequests />
       </template>
-      <template #posts>
-        <PostLayout
+      <template #recipes>
+        <RecipeLayout
           :headingText="`Рецепты из меню &quot;${menu.name}&quot;`"
-          :paginationLinks="posts.links"
-          :posts="posts.data"
+          :paginationLinks="recipes.links"
+          :recipes="recipes.data"
         />
       </template>
     </GenericShowLayout>

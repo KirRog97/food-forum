@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
-use App\Models\Post;
+use App\Models\Recipe;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -13,15 +13,15 @@ use App\Models\Picture;
 
 class DishController extends Controller
 {
-    public function create() : Response
+    public function create(): Response
     {
         return Inertia::render('Dishes/Create');
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $picture = Picture::create([
-            'path' => '/storage/' . $request->file->store('dishes', 'public'),
+            'path' => '/storage/'.$request->file->store('dishes', 'public'),
             'mime' => $request->file->getMimeType(),
             'size' => $request->file->getSize()
         ]);
@@ -36,19 +36,19 @@ class DishController extends Controller
         return Redirect::route('home');
     }
 
-    public function show(Dish $dish) : Response
+    public function show(Dish $dish): Response
     {
         return Inertia::render(
             'Dishes/Show',
             [
                 'dish' => $dish,
-                'posts' => Post::where('dish_id', $dish->id)
+                'recipes' => Recipe::where('dish_id', $dish->id)
                     ->paginate(12)
             ]
         );
     }
 
-    public function edit(Dish $dish) : Response
+    public function edit(Dish $dish): Response
     {
         return Inertia::render(
             'Dishes/Edit',
@@ -58,7 +58,7 @@ class DishController extends Controller
         );
     }
 
-    public function update(Request $request, Dish $dish) : RedirectResponse
+    public function update(Request $request, Dish $dish): RedirectResponse
     {
         $dish->fill($request->validate([
             'name' => 'required',
@@ -70,7 +70,7 @@ class DishController extends Controller
         return Redirect::route('dishes.show', $dish);
     }
 
-    public function destroy(Dish $dish) : RedirectResponse
+    public function destroy(Dish $dish): RedirectResponse
     {
         $dish->delete();
         return Redirect::route('home');

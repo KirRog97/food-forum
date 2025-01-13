@@ -21,7 +21,7 @@ defineProps({
             object-fit="cover"
             fallback-src="/images/login_background.jpg"
             :src="entity.picture.path"
-            alt="Post image"
+            alt="Recipe image"
           />
         </div>
       </div>
@@ -40,6 +40,6 @@ defineProps({
       <slot name="showFooter"></slot>
     </div>
 
-    <slot name="posts"></slot>
+    <slot name="recipes"></slot>
   </div>
 </template>

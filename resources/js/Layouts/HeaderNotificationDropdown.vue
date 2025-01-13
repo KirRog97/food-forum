@@ -14,7 +14,7 @@ const notifications = ref(
   Array(12).fill({
     id: Math.round(Math.random() * 100),
     channel_logo: "/images/category_healthy.jpg",
-    post_picture: "/images/recipes/пельмени.jpg",
+    recipe_picture: "/images/recipes/пельмени.jpg",
     text_body: `На канале "Очень длинное имя" появилось новое видео:
     "Второй день: Лорем Ипсум Доллар". Советуем его посмотреть.`,
   })

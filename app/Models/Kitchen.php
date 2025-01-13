@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,9 +24,9 @@ class Kitchen extends Model
 
     ];
 
-    public function posts(): HasMany
+    public function recipes(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Recipe::class);
     }
     public function picture(): BelongsTo
     {

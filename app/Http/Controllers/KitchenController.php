@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Kitchen;
@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class KitchenController extends Controller
 {
-    public function create() : Response
+    public function create(): Response
     {
         return Inertia::render('Kitchens/Create');
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $picture = Picture::create([
-            'path' => '/storage/' . $request->file->store('kitchens', 'public'),
+            'path' => '/storage/'.$request->file->store('kitchens', 'public'),
             'mime' => $request->file->getMimeType(),
             'size' => $request->file->getSize()
         ]);
@@ -35,13 +35,13 @@ class KitchenController extends Controller
         return Redirect::route('home');
     }
 
-    public function show(Kitchen $kitchen) : Response
+    public function show(Kitchen $kitchen): Response
     {
         return Inertia::render(
             'Kitchens/Show',
             [
                 'kitchen' => $kitchen,
-                'posts' => Post::where('kitchen_id', $kitchen->id)
+                'recipes' => Recipe::where('kitchen_id', $kitchen->id)
                     ->paginate(12)
             ]
         );
@@ -59,7 +59,7 @@ class KitchenController extends Controller
     }
 
 
-    public function update(Request $request, Kitchen $kitchen) : RedirectResponse
+    public function update(Request $request, Kitchen $kitchen): RedirectResponse
     {
         $kitchen->fill($request->validate([
             'name' => 'required',
@@ -72,7 +72,7 @@ class KitchenController extends Controller
     }
 
 
-    public function destroy(Kitchen $kitchen) : RedirectResponse
+    public function destroy(Kitchen $kitchen): RedirectResponse
     {
         $kitchen->delete();
         return Redirect::route('home');

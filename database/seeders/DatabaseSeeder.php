@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
                 IngredientsTableSeeder::class,
                 InstrumentSeeder::class,
                 UsersTableSeeder::class,
-                PostsTableSeeder::class,
+                RecipesTableSeeder::class,
                 InstructionSeeder::class,
-                IngredientPostTableSeeder::class
+                IngredientRecipeTableSeeder::class
             ]
         );
 

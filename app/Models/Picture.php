@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\User;
 use App\Models\Ingredient;
 use Illuminate\Database\Eloquent\Model;
@@ -25,9 +25,9 @@ class Picture extends Model
         return $this->hasMany(Ingredient::class);
     }
 
-    public function posts()
+    public function recipes()
     {
-        return $this->hasMany(Post::class, 'picture_id');
+        return $this->hasMany(Recipe::class, 'picture_id');
     }
 
     public function user()

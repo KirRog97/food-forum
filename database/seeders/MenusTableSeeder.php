@@ -13,7 +13,7 @@ class MenusTableSeeder extends Seeder
      * Make sure the number of creating seed equal or less than 6
      * Because 6 is number of $arrayOfMenus length in factory
      *
-     * (!!!)Make sure you set right second argument in PostFactory
+     * (!!!)Make sure you set right second argument in RecipeFactory
      *
      * @return void
      */

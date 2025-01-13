@@ -27,11 +27,11 @@ const headerUserMenu = ref([
       h(
         "a",
         {
-          href: `/users/${user.value.id}/posts`,
+          href: `/users/${user.value.id}/recipes`,
         },
         { default: () => "Мои посты" }
       ),
-    key: "go-to-user-posts",
+    key: "go-to-user-recipes",
     params: { class: "flex justify-center items-center" },
     icon: () =>
       h(NIcon, null, {

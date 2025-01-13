@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
 use App\Models\Instrument;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,11 +20,11 @@ class InstructionFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id'       =>  Post::select('id')->get()->random(),
-            'picture_id'    =>  Picture::factory()->create(),
-            'instrument_id' =>  Instrument::select('id')->get()->random(),
-            'order'         =>  fake()->numberBetween(1, 15),
-            'content'       =>  fake()->paragraph(mt_rand(5, 25))
+            'recipe_id' => Recipe::select('id')->get()->random(),
+            'picture_id' => Picture::factory()->create(),
+            'instrument_id' => Instrument::select('id')->get()->random(),
+            'order' => fake()->numberBetween(1, 15),
+            'content' => fake()->paragraph(mt_rand(5, 25))
         ];
     }
 }

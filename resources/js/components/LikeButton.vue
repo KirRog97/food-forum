@@ -7,7 +7,7 @@ import { ref, onMounted } from "vue";
 // code in VueComponents at same time
 
 const props = defineProps({
-  postId: Number,
+  recipeId: Number,
   initialLikeCount: {
     type: Number,
     default: 0,
@@ -27,7 +27,7 @@ onMounted(() => {
 
 function syncLikeCount() {
   axios
-    .post(`/api/favorites/${props.postId}/count`)
+    .post(`/api/favorites/${props.recipeId}/count`)
     .then((res) => {
       return (likeCount.value = res.data.likeCount);
     })
@@ -38,7 +38,7 @@ function syncLikeCount() {
 
 function syncLikeStatus() {
   axios
-    .post(`/api/favorites/${props.postId}/status`)
+    .post(`/api/favorites/${props.recipeId}/status`)
     .then((res) => {
       isLiked.value = res.data.liked;
     })
@@ -67,7 +67,7 @@ function sendReaction() {
   let resultOfPrediction = predictReaction();
 
   axios
-    .post(`/api/favorites/${props.postId}/action`)
+    .post(`/api/favorites/${props.recipeId}/action`)
     .then((res) => {
       if (res.data.reaction !== resultOfPrediction) {
         res.data.reaction ? (isLiked.value = true) : (isLiked.value = false);

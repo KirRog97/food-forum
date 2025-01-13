@@ -4,7 +4,7 @@ import { ref } from "vue";
 const footerOptions = ref({
   localLinks: [
     { title: "Главная", url: "/home" },
-    { title: "Рецепты", url: "/posts" },
+    { title: "Рецепты", url: "/recipes" },
     { title: "Идеи", url: "/" },
     { title: "Авторы", url: "/" },
     { title: "Журналы", url: "/" },

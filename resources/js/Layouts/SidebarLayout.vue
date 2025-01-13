@@ -57,12 +57,12 @@ const menuOptions = reactive([
       h(
         "a",
         {
-          href: route("posts.index"),
+          href: route("recipes.index"),
           rel: "noopenner noreferrer",
         },
         "Посты"
       ),
-    key: "Index Post",
+    key: "Index Recipe",
     icon: renderIcon(BookIcon),
   },
   {
@@ -93,25 +93,25 @@ const menuOptions = reactive([
   },
   {
     label: "Посты",
-    key: "posts-sidebar-button",
+    key: "recipes-sidebar-button",
     icon: renderIcon(AlbumsIcon),
     children: [
       {
         type: "group",
         label: "Посты",
-        key: "posts-group",
+        key: "recipes-group",
         children: [
           {
             label: () =>
               h(
                 "a",
                 {
-                  href: route("posts.index"),
+                  href: route("recipes.index"),
                   rel: "noopenner noreferrer",
                 },
                 "Все посты"
               ),
-            key: "Posts-index",
+            key: "Recipes-index",
             icon: renderIcon(AlbumsIcon),
           },
           {
@@ -119,12 +119,12 @@ const menuOptions = reactive([
               h(
                 "a",
                 {
-                  href: route("posts.create"),
+                  href: route("recipes.create"),
                   rel: "noopenner noreferrer",
                 },
                 "Добавить пост"
               ),
-            key: "Posts-create",
+            key: "Recipes-create",
             icon: renderIcon(PersonIcon),
           },
           {
@@ -132,12 +132,12 @@ const menuOptions = reactive([
               h(
                 "a",
                 {
-                  href: route("posts.popular"),
+                  href: route("recipes.popular"),
                   rel: "noopenner noreferrer",
                 },
                 "Популярные посты"
               ),
-            key: "Posts-popular",
+            key: "Recipes-popular",
             icon: renderIcon(PersonIcon),
           },
 

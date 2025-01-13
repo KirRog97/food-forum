@@ -2,14 +2,14 @@
 import { Head } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import GenericShowLayout from "@/Layouts/GenericShowLayout.vue";
-import PostLayout from "@/Layouts/PostLayout.vue";
+import RecipeLayout from "@/Layouts/RecipeLayout.vue";
 
 const props = defineProps({
   kitchen: {
     type: Object,
     default: {},
   },
-  posts: {
+  recipes: {
     type: Object,
     default: {},
   },
@@ -20,11 +20,11 @@ const props = defineProps({
   <AppLayout>
     <Head :title="`Кухня &quot;${kitchen.name}&quot;`" />
     <GenericShowLayout :entity="kitchen">
-      <template #posts>
-        <PostLayout
+      <template #recipes>
+        <RecipeLayout
           :headingText="`Рецепты кухни &quot;${kitchen.name}&quot;`"
-          :paginationLinks="posts.links"
-          :posts="posts.data"
+          :paginationLinks="recipes.links"
+          :recipes="recipes.data"
         />
       </template>
     </GenericShowLayout>

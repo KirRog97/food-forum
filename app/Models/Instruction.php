@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Recipe;
 use App\Models\Picture;
 use App\Models\Instrument;
 use Illuminate\Database\Eloquent\Model;
@@ -20,9 +20,9 @@ class Instruction extends Model
     ];
     protected $with = ['instrument',];
 
-    public function post(): BelongsTo
+    public function recipe(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Recipe::class);
     }
 
     public function instrument(): BelongsTo
