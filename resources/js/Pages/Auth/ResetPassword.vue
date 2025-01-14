@@ -1,10 +1,9 @@
 <script setup>
-// import GuestLayout from "@/Layouts/Guest.vue";
-import TextInput from "@/Components/TextInput.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import InputError from "@/Components/InputError.vue";
 import { Head, useForm } from "@inertiajs/vue3";
+import AppAuthLayout from "@/Layouts/AppAuthLayout.vue";
+import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
   email: String,
@@ -26,7 +25,7 @@ const submit = () => {
 </script>
 
 <template>
-  <GuestLayout>
+  <AppAuthLayout>
     <Head title="Reset Password" />
 
     <InputError class="mb-4" />
@@ -78,5 +77,6 @@ const submit = () => {
         </PrimaryButton>
       </div>
     </form>
-  </GuestLayout>
+    </div>
+  </AppAuthLayout>
 </template>
