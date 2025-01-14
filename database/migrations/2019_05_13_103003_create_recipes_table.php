@@ -21,8 +21,6 @@ class CreateRecipesTable extends Migration
             $table->integer('TTC');
             $table->integer('COP');
             $table->integer('Kcal');
-            $table->boolean('is_banned')->default(0);
-            $table->boolean('is_muted')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
