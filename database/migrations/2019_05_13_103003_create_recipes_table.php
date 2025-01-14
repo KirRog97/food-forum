@@ -25,13 +25,12 @@ class CreateRecipesTable extends Migration
             $table->boolean('is_muted')->default(0);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('picture_id')->references('id')->on('pictures')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('kitchen_id')->references('id')->on('kitchens');
-            $table->foreign('dish_id')->references('id')->on('dishes');
-            $table->foreign('menu_id')->references('id')->on('menus');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('picture_id')->references('id')->on('pictures')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('kitchen_id')->references('id')->on('kitchens')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('dish_id')->references('id')->on('dishes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menus')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
