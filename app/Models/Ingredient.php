@@ -19,6 +19,9 @@ class Ingredient extends Model
         'picture_id',
         'description',
     ];
+    protected $with = [
+        'picture:id,path',
+    ];
 
     public function recipes(): BelongsToMany
     {
