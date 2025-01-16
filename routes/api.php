@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\IngredientRecipeController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\RecipeController;
+use App\Http\Controllers\Api\UserUsernameValidateController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -20,6 +21,7 @@ Route::get('dishes', [DishController::class, 'index']);
 Route::get('kitchens', [KitchenController::class, 'index']);
 Route::get('menus', [MenuController::class, 'index']);
 
+Route::post('validate/user/username', UserUsernameValidateController::class);
 
 Route::group(
     ['prefix' => 'recipes'],
