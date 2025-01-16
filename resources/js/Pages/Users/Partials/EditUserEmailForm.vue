@@ -1,9 +1,12 @@
 <script setup>
+import { PencilOutline as PencilIcon } from "@vicons/ionicons5";
+import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
+import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { useForm } from "@inertiajs/vue3";
-// import InputError from "@/Components/InputError.vue";
-//Todo: Add Error Handling
+
+const isEmailAvailable = ref(null);
 
 const props = defineProps({
   user: Object,
@@ -11,13 +14,16 @@ const props = defineProps({
 
 //Todo: End fucnc on BackEnd
 const EditUserEmailForm = useForm({
-  password: "",
+  confirm_password: "",
   email: "",
 });
 
 function submitEmail() {
-  EditUserEmailForm.post(
-    route("user.update", {
+  // Todo:make error Message $snotify like
+  if (isEmailAvailable === false) return;
+
+  EditUserEmailForm.put(
+    route("users.update", {
       user: props.user,
     }),
     {
@@ -25,42 +31,54 @@ function submitEmail() {
     }
   );
 }
+
+function UserEmailValidate(email) {
+  axios
+    .post("/api/validate/user/email", {
+      email,
+    })
+    .then((res) => {
+      isEmailAvailable.value = res.data.isEmailAvailable;
+    })
+    .catch({
+      // callback(error);
+    });
+}
 </script>
+
 <template>
-  <form
-    class="flex flex-col w-full bg-secondary-700 rounded p-4 space-y-4"
-    @submit.prevent="submitEmail"
-  >
-    <div class="">
-      <InputLabel for="newEmail" value="Новый Email" />
-      <TextInput
-        v-model="EditUserEmailForm.email"
-        id="newEmail"
-        type="email"
-        class="mt-1 block w-full"
-        required
-        autofocus
-        autocomplete="newEmail"
-      />
-    </div>
-    <div class="">
-      <InputLabel for="password" value="Ваш пароль" />
-      <TextInput
-        v-model="EditUserEmailForm.password"
-        id="password"
-        type="password"
-        class="mt-1 block w-full"
-        required
-        autocomplete="password"
-      />
-    </div>
-    <div class="flex justify-center items-center">
-      <button
-        type="submit"
-        class="text-lg text-primary-500 hover:text-primary-300 bg-secondary-900 text-center leading-normal border border-secondary-700 hover:border-secondary-500 rounded-full px-3 py-2"
-      >
-        Сменить почту
-      </button>
+  <form @submit.prevent="submitEmail">
+    <div class="flex flex-col w-full py-2">
+      <div class="w-full flex flex-row flex-nowrap justify-center items-center p-2">
+        <div class="w-2/12 mr-2">
+          <InputLabel for="email" value="Новый Email" />
+        </div>
+        <div class="w-10/12 h-fit">
+          <TextInput
+            v-model="EditUserEmailForm.email"
+            id="email"
+            type="email"
+            class="mt-1 block w-full"
+            :class="isEmailAvailable ? 'ring ring-green-600' : 'ring ring-red-600'"
+            autocomplete="email"
+            :update="UserEmailValidate(EditUserEmailForm.email)"
+          />
+        </div>
+        <div class="flex ml-2 mx-auto">
+          <n-button
+            attr-type="submit"
+            class="flex size-full px-3 py-2"
+            primary
+            :class="{ 'opacity-25': EditUserEmailForm.processing }"
+            :disabled="EditUserEmailForm.processing || isEmailAvailable === false"
+          >
+            <n-icon size="24" :component="PencilIcon" />
+          </n-button>
+        </div>
+      </div>
+      <div class="ml-2/12 w-10/12 flex flex-col" v-if="isEmailAvailable === false">
+        <InputError message="Этот адрес почты недоступен" />
+      </div>
     </div>
   </form>
 </template>
