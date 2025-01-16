@@ -1,67 +1,80 @@
 <script setup>
+import { PencilOutline as PencilIcon } from "@vicons/ionicons5";
+import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
+import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { useForm } from "@inertiajs/vue3";
-// import InputError from "@/Components/InputError.vue";
+
 //Todo: Add Error Handling
+
+const isUsernameAvailable = ref(null);
 
 const props = defineProps({
   user: Object,
 });
 
-const EditUserUsernamelForm = useForm({
+const EditUserUsernameForm = useForm({
   username: "",
-  password: "",
 });
 
-// Todo: End fucnc on BackEnd
 function submitEmail() {
-  EditUserUsernamelForm.post(
-    route("user.update", {
+  EditUserUsernameForm.put(
+    route("users.update", {
       user: props.user,
-    }),
-    {
-      // onFinish: () => EditUserUsernamelForm.reset(["file"]),
-    }
+    })
   );
 }
+
+function UsernameValidate(username) {
+  axios
+    .post("/api/validate/user/username", {
+      username,
+    })
+    .then((res) => {
+      isUsernameAvailable.value = res.data.isUsernameAvailable;
+    })
+    .catch({
+      // callback(error);
+    });
+}
 </script>
+
 <template>
-  <form
-    class="flex flex-col w-full bg-secondary-700 rounded p-4 space-y-4"
-    @submit.prevent="submitEmail"
-  >
-    <div class="">
-      <!-- Todo: Make backend email check for avaiblness -->
-      <InputLabel for="username" value="Новое имя пользователя" />
-      <TextInput
-        v-model="EditUserUsernamelForm.username"
-        id="username"
-        type="text"
-        class="mt-1 block w-full"
-        required
-        autofocus
-        autocomplete="username"
-      />
-    </div>
-    <div class="">
-      <InputLabel for="password" value="Ваш пароль" />
-      <TextInput
-        v-model="EditUserUsernamelForm.password"
-        id="password"
-        type="password"
-        class="mt-1 block w-full"
-        required
-        autocomplete="password"
-      />
-    </div>
-    <div class="flex justify-center items-center">
-      <button
-        type="submit"
-        class="text-lg text-primary-500 hover:text-primary-300 bg-secondary-900 text-center leading-normal border border-secondary-700 hover:border-secondary-500 rounded-full px-3 py-2"
-      >
-        Сменить имя
-      </button>
+  <form @submit.prevent="submitEmail">
+    <div class="flex flex-col w-full py-2">
+      <div class="w-full flex flex-row flex-nowrap justify-center items-center p-2">
+        <div class="w-2/12 mr-2">
+          <InputLabel for="username" value="Новое имя пользователя" />
+        </div>
+        <div class="w-10/12 h-fit">
+          <TextInput
+            v-model="EditUserUsernameForm.username"
+            id="username"
+            type="text"
+            class="mt-1 block w-full"
+            :class="isUsernameAvailable ? 'ring ring-green-600' : 'ring ring-red-600'"
+            auto
+            autocomplete=""
+            :update="UsernameValidate(EditUserUsernameForm.username)"
+          />
+        </div>
+        <div class="flex ml-2 mx-auto">
+          <!-- ToDO: LOW make button more fancy... -->
+          <n-button
+            attr-type="submit"
+            class="flex size-full px-3 py-2"
+            primary
+            :class="{ 'opacity-25': EditUserUsernameForm.processing }"
+            :disabled="EditUserUsernameForm.processing || isUsernameAvailable === false"
+          >
+            <n-icon size="24" :component="PencilIcon" />
+          </n-button>
+        </div>
+      </div>
+      <div class="ml-2/12 w-10/12 flex flex-col" v-if="isUsernameAvailable === false">
+        <InputError message="Это имя пользователя недоступно" />
+      </div>
     </div>
   </form>
 </template>
