@@ -15,7 +15,7 @@ const categoryEditForm = useForm({
 });
 
 function submitCategoryEditForm() {
-  categoryEditForm.patch(route("categories.update", { category: categoryEditForm }));
+  categoryEditForm.put(route("categories.update", { category: categoryEditForm }));
 }
 </script>
 

@@ -16,7 +16,7 @@ const kitchenEditForm = useForm({
 });
 
 function submitKitchenEditForm() {
-  kitchenEditForm.patch(route("kitchens.update", { kitchen: kitchenEditForm }));
+  kitchenEditForm.put(route("kitchens.update", { kitchen: kitchenEditForm }));
 }
 </script>
 

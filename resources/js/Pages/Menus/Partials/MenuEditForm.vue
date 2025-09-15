@@ -16,7 +16,7 @@ const menuEditForm = useForm({
 });
 
 function submitMenuEditForm() {
-  menuEditForm.patch(route("menus.update", { menu: menuEditForm }));
+  menuEditForm.put(route("menus.update", { menu: menuEditForm }));
 }
 </script>
 

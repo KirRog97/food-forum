@@ -34,9 +34,11 @@ const submit = () => {
 // One for common data and second for password
 // Password Controller - NewPasswordController
 function submitRecipeEditForm() {
-  recipeEditForm.post(route("recipes.update"), {
-    // onFinish: () => form.reset("password"),
-  });
+  recipeEditForm.put(
+    route("recipes.update", {
+     //data
+    })
+  );
 }
 </script>
 
