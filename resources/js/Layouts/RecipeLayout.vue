@@ -34,7 +34,7 @@ defineProps({
 
   <template v-if="recipes.length > 0">
     <div
-      class="grid grid-cols-[repeat(auto-fill,_minmax(450px,_1fr))] gap-6 md:gap-3"
+      class="grid grid-cols-[repeat(auto-fill,_minmax(240px,_1fr))] xs:grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(450px,_1fr))] gap-6 md:gap-3"
     >
       <RecipeIndexCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
     </div>
