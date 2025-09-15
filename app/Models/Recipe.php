@@ -18,8 +18,6 @@ use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-
-
 class Recipe extends Model implements ReactableInterface
 {
     use HasFactory, Reactable;
@@ -37,8 +35,6 @@ class Recipe extends Model implements ReactableInterface
         'Kcal',
         'instruction',
         'description',
-        'is_banned',
-        'is_muted'
     ];
 
     /**
@@ -61,9 +57,6 @@ class Recipe extends Model implements ReactableInterface
         'TTC' => 'integer',
         'COP' => 'integer',
         'Kcal' => 'integer',
-
-        'is_banned' => 'boolean',
-        'is_muted' => 'boolean',
     ];
 
     /**

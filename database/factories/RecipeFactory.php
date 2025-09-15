@@ -32,8 +32,6 @@ class RecipeFactory extends Factory
             'TTC' => fake()->numberBetween(1, 240),
             'COP' => fake()->numberBetween(1, 12),
             'Kcal' => fake()->numberBetween(100, 2500),
-            'is_banned' => 0,
-            'is_muted' => 0
         ];
     }
 }
