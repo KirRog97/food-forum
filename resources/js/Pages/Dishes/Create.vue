@@ -18,7 +18,7 @@ function handleUpdate(file) {
 }
 
 function submitDishCreateForm() {
-  dishCreateForm.post(route("dishes.store", dishCreateForm));
+  dishCreateForm.post(route("dishes.store", { dish: dishCreateForm.data }));
 }
 </script>
 <template>

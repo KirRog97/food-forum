@@ -18,7 +18,7 @@ function handleFileChange(file) {
 }
 
 function submitCategoryCreateForm() {
-  categoryCreateForm.post(route("categories.store", categoryCreateForm));
+  categoryCreateForm.post(route("categories.store", { category: categoryCreateForm }));
 }
 </script>
 <script>

@@ -18,7 +18,7 @@ function handleUpdate(file) {
 }
 
 function submitKitchenCreateForm() {
-  kitchenCreateForm.post(route("kitchens.store", kitchenCreateForm), {
+  kitchenCreateForm.post(route("kitchens.store", { kitchen: kitchenCreateForm }), {
     // onFinish: () =>  kitchenCreateForm.reset("password"),
   });
 }

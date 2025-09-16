@@ -25,7 +25,7 @@ const recipeCreateForm = useForm({
 });
 
 function submitRecipeCreateForm() {
-  recipeCreateForm.post(route("recipes.store", recipeCreateForm), {
+  recipeCreateForm.post(route("recipes.store", { recipe: recipeCreateForm }), {
     // onFinish: () => recipeCreateForm.reset("password"),
   });
 }
