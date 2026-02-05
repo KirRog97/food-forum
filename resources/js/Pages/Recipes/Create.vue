@@ -114,7 +114,7 @@ function submitRecipeCreateForm() {
 
         <div class="flex flex-row flex-wrap justify-center mb-4 lg:mb-2">
           <FormHeading title="Выбор изображения" />
-          <PictureUploadSingle v-model:picture="recipeCreateForm.recipePicture" />
+          <PictureUploadSingle v-model:file="recipeCreateForm.file" />
         </div>
 
         <FormSection>
