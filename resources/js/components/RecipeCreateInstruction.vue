@@ -39,16 +39,12 @@ function deleteInstructionStep(index) {
         :key="instructionStepIndex"
       >
         <div class="w-24 flex flex-col space-y-1">
-          <div
-            class="h-1/2 flex justify-center items-center bg-secondary-900 rounded"
-          >
+          <div class="h-1/2 flex justify-center items-center bg-secondary-900 rounded">
             <span class="text-lg text-primary-400 bold font-handwritten">
               {{ instructionStepIndex + 1 }} шаг
             </span>
           </div>
-          <div
-            class="h-1/2 flex justify-center items-center bg-secondary-900 rounded"
-          >
+          <div class="h-1/2 flex justify-center items-center bg-secondary-900 rounded">
             <button
               type="button"
               class="text-primary-400 hover:text-red-700"
@@ -64,7 +60,7 @@ function deleteInstructionStep(index) {
           placeholder="Описание шага приготовления блюда"
           type="textarea"
           maxlength="250"
-          v-model:value="instructionStep.text"
+          v-model:value="instructionStep.content"
         >
         </n-input>
       </div>
