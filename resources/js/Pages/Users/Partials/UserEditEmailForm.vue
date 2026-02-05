@@ -12,14 +12,13 @@ const props = defineProps({
   user: Object,
 });
 
-//Todo: End fucnc on BackEnd
 const EditUserEmailForm = useForm({
   confirm_password: "",
   email: "",
 });
 
 function submitEmail() {
-  // Todo:make error Message $snotify like
+  // Todo: [HARD] make error Message $snotify like
   if (isEmailAvailable === false) return;
 
   EditUserEmailForm.put(

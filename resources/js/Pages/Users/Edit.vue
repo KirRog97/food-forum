@@ -1,9 +1,9 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Heading from "@/Layouts/Heading.vue";
-import EditUserEmailForm from "@/Pages/Users/Partials/EditUserEmailForm.vue";
-import EditUserPictureForm from "@/Pages/Users/Partials/EditUserPictureForm.vue";
-import EditUserUsernamelForm from "@/Pages/Users/Partials/EditUserUsernamelForm.vue";
+import UserEditEmailForm from "@/Pages/Users/Partials/UserEditEmailForm.vue";
+import UserEditPictureForm from "@/Pages/Users/Partials/UserEditPictureForm.vue";
+import UserEditUsernameForm from "@/Pages/Users/Partials/UserEditUsernameForm.vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
@@ -23,11 +23,11 @@ const user = computed(() => usePage().props.auth.user);
     <Heading>Редактирование профиля</Heading>
 
     <div class="flex flex-col justify-center bg-secondary-100 p-2 space-y-4">
-      <EditUserPictureForm :user="user" />
+      <UserEditPictureForm :user="user" />
 
-      <div class="flex flex-col space-y-4">
-        <EditUserUsernamelForm :user="user" />
-        <EditUserEmailForm :user="user" />
+      <div class="flex flex-col bg-secondary-700 rounded">
+        <UserEditUsernameForm :user="user" />
+        <UserEditEmailForm :user="user" />
       </div>
     </div>
   </AppLayout>
