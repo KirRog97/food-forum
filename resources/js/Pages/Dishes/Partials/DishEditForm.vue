@@ -15,7 +15,7 @@ const dishEditForm = useForm({
 });
 
 function submitDishEditForm() {
-  dishEditForm.patch(route("dishes.update", { dish: dishEditForm }));
+  dishEditForm.put(route("dishes.update", { dish: dishEditForm }));
 }
 </script>
 
