@@ -23,14 +23,14 @@ function loadIngredientRecipes() {
       showIngredients.value = true;
       isLoadingRecipeIng.value = false;
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 }
 </script>
 
 <template>
-  <div class="grid grid-cols-6 rounded h-64 min-w-[450px]">
+  <div
+    class="grid grid-cols-6 rounded h-64 min-w-[240px] xs:min-w-[350px] md:min-w-[450px]"
+  >
     <div class="relative col-start-1 col-end-4 row-start-1 row-end-7">
       <div
         class="absolute bottom-0 w-full flex justify-center items-center bg-b-to-t-vignette overflow-hidden px-2 pt-4 pb-2 z-20"
@@ -44,9 +44,7 @@ function loadIngredientRecipes() {
             fallback-src="/images/icons/user_avacado.svg"
           />
         </div>
-        <div
-          class="max-w-full flex flex-auto justify-center items-center px-px sm:px-1"
-        >
+        <div class="max-w-full flex flex-auto justify-center items-center px-px sm:px-1">
           <n-tooltip placement="top" trigger="hover">
             <template #trigger>
               <Link
@@ -58,7 +56,7 @@ function loadIngredientRecipes() {
                 </span>
               </Link>
             </template>
-            <span class="text-base"> Просмотреть профиль </span>
+            <span class="text-base">Просмотреть профиль</span>
           </n-tooltip>
         </div>
       </div>
@@ -156,9 +154,7 @@ function loadIngredientRecipes() {
       </n-modal>
     </div>
 
-    <div
-      class="col-span-3 row-span-1 flex flex-row flex-nowrap justify-center items-end"
-    >
+    <div class="col-span-3 row-span-1 flex flex-row flex-nowrap justify-center items-end">
       <div
         class="w-full h-full flex justify-between items-center border-t border-r border-b border-secondary-100 px-2 py-1"
       >
