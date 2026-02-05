@@ -5,6 +5,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import ValidationErrors from "@/Components/ValidationErrors.vue";
 
 defineProps({
   status: String,
@@ -23,40 +24,42 @@ const submit = () => {
   <AppAuthLayout>
     <Head title="Forgot Password" />
 
-    <div class="mb-4 text-sm text-primary-600">
-      Forgot your password? No problem. Just let us know your email address and we will
-      email you a password reset link that will allow you to choose a new one.
-    </div>
+    <div class="w-full flex flex-wrap justify-center items-center px-8">
+      <ValidationErrors class="mb-4" />
 
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-      {{ status }}
-    </div>
-
-    <InputError class="mb-4" />
-
-    <form @submit.prevent="submit">
-      <div>
-        <InputLabel for="email" value="Email" />
-        <TextInput
-          id="email"
-          type="email"
-          class="mt-1 block w-full"
-          v-model="form.email"
-          required
-          autofocus
-          autocomplete="username"
-        />
+      <div class="mb-4 text-base text-center text-primary-600">
+        Забыли пароль? Не проблема. Просто укажите адрес почты, куда будет выслана ссылка
+        для сброса и выбора нового пароля
+      </div>
+      <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        {{ status }}
       </div>
 
-      <div class="flex items-center justify-end mt-4">
-        <PrimaryButton
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-        >
-          Email Password Reset Link
-        </PrimaryButton>
-      </div>
-    </form>
+      <InputError class="mb-4" />
+
+      <form @submit.prevent="submit">
+        <div>
+          <InputLabel for="email" value="Email" />
+          <TextInput
+            id="email"
+            type="email"
+            class="mt-1 block w-full"
+            v-model="form.email"
+            required
+            autofocus
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="mt-4">
+          <PrimaryButton
+            :class="{ 'opacity-25': form.processing }"
+            :disabled="form.processing"
+          >
+            Сбросить пароль Email Password Reset Link
+          </PrimaryButton>
+        </div>
+      </form>
     </div>
   </AppAuthLayout>
 </template>
