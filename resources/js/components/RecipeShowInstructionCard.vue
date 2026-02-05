@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { isNull } from "lodash";
 
 const props = defineProps({
   instruction: {
@@ -9,10 +10,13 @@ const props = defineProps({
 </script>
 <template>
   <div class="w-full flex flex-nowrap">
-    <div class="w-6/12 mr-4">
+    <div class="w-6/12 mr-4" v-if="!isNull(instruction.picture)">
       <n-image :src="instruction.picture.path" />
     </div>
-    <div class="w-6/12 flex flex-col p-2">
+    <div
+      class="flex flex-col p-2"
+      :class="!isNull(instruction.instrument) ? 'w-6/12' : 'w-full'"
+    >
       <div>
         <span class="text-xl font-handwritten font-bold leading-6 mr-1">
           {{ instruction.order }}
@@ -21,13 +25,12 @@ const props = defineProps({
           {{ instruction.content }}
         </span>
       </div>
-      <div class="flex flex-nowrap justify-center items-center mt-6">
+      <div
+        class="flex flex-nowrap justify-center items-center mt-6"
+        v-if="!isNull(instruction.instrument)"
+      >
         <div class="max-w-4/12 mr-6">
-          <n-avatar
-            round
-            :size="96"
-            :src="instruction.instrument.picture.path"
-          />
+          <n-avatar round :size="96" :src="instruction.instrument.picture.path" />
         </div>
         <div class="w-5/12 flex flex-col">
           <Link
@@ -37,9 +40,7 @@ const props = defineProps({
             Инструменты
           </Link>
           <Link
-            :href="
-              route('instruments.show', { instrument: instruction.instrument })
-            "
+            :href="route('instruments.show', { instrument: instruction.instrument })"
             class="text-xl leading-5 font-medium font-handwritten tracking-wide text-secondary-700 hover:text-primary-700"
           >
             {{ instruction.instrument.name }}
